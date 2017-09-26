@@ -1,0 +1,9 @@
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\bin\Debug\Diablo.exe.config
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\bin\Debug\Diablo.exe
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\bin\Debug\Diablo.pdb
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\obj\Debug\Diablo.csprojResolveAssemblyReference.cache
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\obj\Debug\Diablo.exe
+C:\Users\andreas.bartilson\Source\Repos\Filhantering\Diablo\Diablo\obj\Debug\Diablo.pdb
+C:\Users\andreas.bartilson\Source\Repos\Diablo\Diablo\Diablo\bin\Debug\Diablo.exe.config
+C:\Users\andreas.bartilson\Source\Repos\Diablo\Diablo\Diablo\obj\Debug\Diablo.exe
+C:\Users\andreas.bartilson\Source\Repos\Diablo\Diablo\Diablo\obj\Debug\Diablo.pdb
