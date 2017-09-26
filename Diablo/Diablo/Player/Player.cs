@@ -26,7 +26,7 @@ namespace Diablo.Player
             myDamage = 15;
             mySpellDamage = 20;
             myCoin = 0;
-            myHPPotionAmount = 0;
+            myHPPotionAmount = 2;
         }
 
         public bool Update()

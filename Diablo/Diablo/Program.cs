@@ -70,7 +70,7 @@ namespace Diablo.Utilities
 
         static void Play()
         {
-            
+            Console.WriteLine("");
         }
 
         static void Battle(int aRoomIndex)
@@ -108,6 +108,8 @@ namespace Diablo.Utilities
 
                         break;
                     case (int)Enums.BattleActions.USEITEM:
+
+
 
                         break;
                     case (int)Enums.BattleActions.FLEE:
