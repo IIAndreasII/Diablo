@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,16 +8,26 @@ namespace Diablo
     class Room
     {
         List<Enemies.Skeleton> mySkeletons;
+        bool myHostilesPresent;
 
         public Room(int aNumberOfSkeletons)
         {
             mySkeletons = new List<Enemies.Skeleton>();
+            for (int i = 0; i < aNumberOfSkeletons; i++)
+            {
+                mySkeletons.Add(new Enemies.Skeleton(1));
+            }
+            myHostilesPresent = true;
         }
 
-        public void Encounter()
+        public List<Enemies.Skeleton> GetSkeletons()
         {
-            Console.WriteLine("You have encountered hostiles!!!");
-            Console.ReadKey();
+            return mySkeletons;
+        }
+
+        public int GetSkeletonCount()
+        {
+            return mySkeletons.Count;
         }
     }
 }

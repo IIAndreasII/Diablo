@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,15 +9,19 @@ namespace Diablo.Enemies
     {
         public void TakeDamage(int aDamageToTake, int anArmourRating, float aHealth)
         {
-            aHealth -= aDamageToTake * (1f - (float)anArmourRating / 100f);
+            float tempDamageDealt = aDamageToTake * (1f - (float)anArmourRating / 100f);
+            aHealth -= tempDamageDealt;
+            Console.WriteLine("You swing your sword and strike the enemy!");
+            System.Threading.Thread.Sleep(500);
+            Console.WriteLine("You dealt ");
         }
 
         public void DealDamage(Player.Player aPlayer, int aDamage)
         {
-            float tempDamageDealt = 0;
+            float tempDamageDealt;
             aPlayer.TakeDamage(aDamage, aPlayer.GetIsDefending(), out tempDamageDealt);
             Console.WriteLine("You took ");
-            Program.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Red);
+            Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Red);
             Console.Write(" damage!");
         }
     }
