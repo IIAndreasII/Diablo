@@ -23,6 +23,7 @@ namespace Diablo.Enemies
             Console.WriteLine("You took ");
             Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Red);
             Console.Write(" damage!");
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }

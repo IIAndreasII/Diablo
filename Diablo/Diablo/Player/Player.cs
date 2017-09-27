@@ -29,11 +29,6 @@ namespace Diablo.Player
             myHPPotionAmount = 2;
         }
 
-        public bool Update()
-        {
-            return true;
-        }
-
         public void OpenInventory()
         {
             Console.WriteLine("Inventory:\n");
