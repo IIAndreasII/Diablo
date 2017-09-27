@@ -22,8 +22,9 @@ namespace Diablo.Player
 
         public Player()
         {
-            myArmourRating = 0;
+            myArmourRating = 10;
             myHealth = 100;
+            myMana = 100;
             myDamage = 15;
             mySpellDamage = 20;
             myCoin = 0;
@@ -37,9 +38,37 @@ namespace Diablo.Player
 
         public void PrintUI()
         {
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■\ " + "\n" +
-                                            @" |HP: " + myHealth + " |" + "\n" +
-                                            @" \■■■■■■■■/", ConsoleColor.Red);
+            int 
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Console.Clear();
+            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.Red);
+            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 4);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"  HP: " + myHealth, ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 4);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 +  5 );
+            Utilities.Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 4);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"  Arm: " + myArmourRating.ToString(), ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 4);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@" Mana: " + myMana.ToString(), ConsoleColor.Blue);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
+
         }
 
         public void OpenInventory()
@@ -48,17 +77,22 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("Health potions: ", ConsoleColor.Red);
             Console.Write(myHPPotionAmount.ToString());
             Console.ReadKey();
-        }
+        } /// TODO: Finish this
 
         #region BattleRelated
         public void DealDamage(Enemies.Skeleton aSkeleton)
-            {
-                aSkeleton.TakeDamage(myDamage);
-            }
+        {
+            aSkeleton.TakeDamage(myDamage);
+        }
+
+        public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
+        {
+            aSkeleton.TakeDamage(aDamage);
+        }
 
         public void TakeDamage(int aDamage, bool isDefending, out float DamageTaken)
             {
-                if (isDefending)
+                if (!isDefending)
                 {
                     DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f;
                     myHealth -= DamageTaken;
@@ -71,34 +105,48 @@ namespace Diablo.Player
             }
 
         public int ChooseBattleAction()
+        {
+            int 
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempChoice = 0;
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 11);
+            Console.Write("What will you do?");
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
+            Console.Write("[1] Attack    [2] Defend");
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 8);
+            Console.Write("[3] Use item  [4] Flee");
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 7);
+            Console.Write("[5] Abstain");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 5);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
             {
-                int tempChoice = 0;
-                Console.WriteLine("What will you do?\n[1] Attack    [2] Defend\n[3] Use item  [4] Flee\n[ ]");
-                Console.SetCursorPosition(1, 5);
-                PrintUI();
-                Console.SetCursorPosition(1, 3);
-                while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 4))
-                {
-                    Console.SetCursorPosition(1, 3);
-                    Console.Write(" \b");
-                }
-                switch (tempChoice)
-                {
-                    case 1:
-                        myIsDefending = false;
-                        return (int)Enums.BattleActions.ATTACK;
-                    case 2:
-                        myIsDefending = true;
-                        return (int)Enums.BattleActions.DEFEND;
-                    case 3:
-                        myIsDefending = false;
-                        return (int)Enums.BattleActions.USEITEM;
-                    case 4:
-                        myIsDefending = false;
-                        return (int)Enums.BattleActions.FLEE;
-                    default:
-                        myIsDefending = true;
-                        return (int)Enums.BattleActions.DEFEND;
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
+                Console.Write(" \b");
+            }
+           switch (tempChoice)
+            {
+                case 1:
+                    myIsDefending = false;
+                    return (int)Enums.BattleActions.ATTACK;
+                case 2:
+                    myIsDefending = true;
+                    return (int)Enums.BattleActions.DEFEND;
+                case 3:
+                    myIsDefending = false;
+                    return (int)Enums.BattleActions.USEITEM;
+                case 4:
+                    myIsDefending = false;
+                    return (int)Enums.BattleActions.FLEE;
+                case 5:
+                    myIsDefending = false;
+                    return (int)Enums.BattleActions.ABSTAIN;
+                default:
+                    myIsDefending = true;
+                    return (int)Enums.BattleActions.ABSTAIN;
                 }
             }
 

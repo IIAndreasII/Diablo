@@ -100,58 +100,141 @@ namespace Diablo.Utilities
 
         static void Play()
         {
-            Battle(0);
+            Console.Clear();
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempChoice = 0;
+            myPlayer.PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 11);
+            Console.Write("Possible actions");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
+            Console.Write("[1] Enter dungeon");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
+            Console.Write("[2] Open inventory");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 2))
+            {
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+                Console.Write(" \b");
+            }
+            switch (tempChoice)
+            {
+                case 1:
+                    EnterRoom(0);
+                    break;
+                case 2:
+                    myPlayer.OpenInventory();
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
+            Play();
         }
 
-        static void Battle(int aRoomIndex)
+        static void EnterRoom(int aRoomIndex)
         {
-            Console.WriteLine("You have encountered " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemies!");
-            System.Threading.Thread.Sleep(1000);
-            while(myRooms[aRoomIndex].GetSkeletonCount() > 0)
+            Console.Clear();
+            myPlayer.PrintUI();
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
+            Console.Write("You enter the room and look around");
+            if (myRooms[aRoomIndex].GetSkeletonCount() > 0)
             {
+                if(myRooms[aRoomIndex].GetSkeletonCount() == 1)
+                {
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 9);
+                    Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemy!");
+                }
+                else
+                {
+                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+                    Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemies!");
+                }
+                Console.ReadKey();
+                BattleSequence(aRoomIndex);
+            }
+            else
+            {
+                Console.Write("The room is empty");
+            }
+            
+            
+        }
+
+        static void BattleSequence(int aRoomIndex)
+        {
+            while (myRooms[aRoomIndex].GetSkeletonCount() > 0)
+            {
+                int
+                    tempWWD2 = Console.WindowWidth / 2,
+                    tempWHD2 = Console.WindowHeight / 2;
                 Console.Clear();
                 switch (myPlayer.ChooseBattleAction())
                 {
                     case (int)Enums.BattleActions.ATTACK:
 
                         Console.Clear();
-                        Console.WriteLine("Choose an enemy to attack:");
+                        myPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
+                        Console.WriteLine("Choose an enemy to attack");
                         for (int i = 0; i < myRooms[aRoomIndex].GetSkeletons().Count; i++)
                         {
-                            Console.WriteLine("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + myRooms[aRoomIndex].GetSkeletons()[i].GetHealth() + "; Armour - " + myRooms[aRoomIndex].GetSkeletons()[i].GetArmourRating() + ";" + (!myRooms[aRoomIndex].GetSkeletons()[i].GetIsAlive() ? " *dead*" : ""));
+                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9 + i);
+                            Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + myRooms[aRoomIndex].GetSkeletons()[i].GetHealth() + "; Armour - " + myRooms[aRoomIndex].GetSkeletons()[i].GetArmourRating().ToString());
                         }
-                        Console.WriteLine("[ ]");
-                        Console.SetCursorPosition(1, myRooms[aRoomIndex].GetSkeletons().Count + 1);
+                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
+                        Console.Write("[ ]");
+                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
                         int tempChoice = 0;
                         while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myRooms[aRoomIndex].GetSkeletons().Count))
                         {
-                            Console.SetCursorPosition(1, myRooms[aRoomIndex].GetSkeletons().Count + 2);
+                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
                             Console.Write(" \b");
                         }
-                        myPlayer.DealDamage(myRooms[aRoomIndex].GetSkeletons()[tempChoice - 1]);                 
+                        Console.Clear();
+                        myPlayer.PrintUI();
+                        myPlayer.DealDamage(myRooms[aRoomIndex].GetSkeletons()[tempChoice - 1]);
 
                         break;
                     case (int)Enums.BattleActions.DEFEND:
 
-                        Console.Clear();
-                        Console.WriteLine("You have chosen to defend yourself");
+                        myPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+                        Console.Write("You raise your defences and");
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 8);
+                        Console.Write("brace for a strike!");
                         myPlayer.SetIsDefending(true);
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(2000);
 
                         break;
                     case (int)Enums.BattleActions.USEITEM:
 
-                        Console.Clear();
                         myPlayer.OpenInventory();
 
                         break;
                     case (int)Enums.BattleActions.FLEE:
 
                         break;
+                    case (int)Enums.BattleActions.ABSTAIN:
+
+                        myPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
+                        Console.Write("You do not wish to attack");
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 8);
+                        Console.Write("and lower your arms.");
+                        System.Threading.Thread.Sleep(2000);
+
+                        break;
                 }
                 for (int i = myRooms[aRoomIndex].GetSkeletons().Count; i > 0; i--)
                 {
-                    if(!myRooms[aRoomIndex].GetSkeletons()[i - 1].GetIsAlive())
+                    if (!myRooms[aRoomIndex].GetSkeletons()[i - 1].GetIsAlive())
                     {
                         myRooms[aRoomIndex].GetSkeletons().Remove(myRooms[aRoomIndex].GetSkeletons()[i - 1]);
                     }
@@ -167,6 +250,7 @@ namespace Diablo.Utilities
 
         static void GenerateRooms()
         {
+            myRooms.Clear();
             myRooms.Add(new Room(1));
         }
     }
