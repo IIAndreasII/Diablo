@@ -22,6 +22,7 @@ namespace Diablo.Player
 
         public Player()
         {
+            myArmourRating = 0;
             myHealth = 100;
             myDamage = 15;
             mySpellDamage = 20;
@@ -29,9 +30,24 @@ namespace Diablo.Player
             myHPPotionAmount = 2;
         }
 
+        public bool Update()
+        {
+            return true;
+        }
+
+        public void PrintUI()
+        {
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■\ " + "\n" +
+                                            @" |HP: " + myHealth + " |" + "\n" +
+                                            @" \■■■■■■■■/", ConsoleColor.Red);
+        }
+
         public void OpenInventory()
         {
             Console.WriteLine("Inventory:\n");
+            Utilities.Utility.PrintInColour("Health potions: ", ConsoleColor.Red);
+            Console.Write(myHPPotionAmount.ToString());
+            Console.ReadKey();
         }
 
         #region BattleRelated
@@ -44,12 +60,12 @@ namespace Diablo.Player
             {
                 if (isDefending)
                 {
-                    DamageTaken = aDamage * (float)myArmourRating / 100f;
+                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f;
                     myHealth -= DamageTaken;
                 }
                 else
                 {
-                    DamageTaken = aDamage * (float)myArmourRating / 120f;
+                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.4f;
                     myHealth -= DamageTaken;
                 }
             }
@@ -58,6 +74,8 @@ namespace Diablo.Player
             {
                 int tempChoice = 0;
                 Console.WriteLine("What will you do?\n[1] Attack    [2] Defend\n[3] Use item  [4] Flee\n[ ]");
+                Console.SetCursorPosition(1, 5);
+                PrintUI();
                 Console.SetCursorPosition(1, 3);
                 while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 4))
                 {
