@@ -73,10 +73,11 @@ namespace Diablo.Utilities
                 Utility.PrintInColour(tempPrintValue, ConsoleColor.Yellow);
             }
             Utility.PrintPentagram(Console.WindowWidth / 2 - 17, 8, ConsoleColor.Red);
-
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(Console.WindowWidth / 2, 6);
             while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
             {
-                Console.SetCursorPosition(1, 5);
+                Console.SetCursorPosition(Console.WindowWidth / 2, 6);
                 Console.Write(" \b");
             }
             switch (tempChoice)
