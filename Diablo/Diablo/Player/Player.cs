@@ -11,7 +11,7 @@ namespace Diablo.Player
             myMana,
             myDamage,
             mySpellDamage,
-            myCoin,
+            myGold,
             myHPPotionAmount,
             myArmourRating,
             myInventoryCapacity;
@@ -27,7 +27,7 @@ namespace Diablo.Player
             myMana = 100;
             myDamage = 15;
             mySpellDamage = 20;
-            myCoin = 0;
+            myGold = 0;
             myHPPotionAmount = 2;
         }
 
@@ -44,6 +44,9 @@ namespace Diablo.Player
             Console.Clear();
             Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.Red);
             Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 2);
+            Utilities.Utility.PrintInColour(@"■ Gold: " + myGold.ToString(), ConsoleColor.Yellow);
+
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 4);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
@@ -73,10 +76,17 @@ namespace Diablo.Player
 
         public void OpenInventory()
         {
-            Console.WriteLine("Inventory:\n");
-            Utilities.Utility.PrintInColour("Health potions: ", ConsoleColor.Red);
-            Console.Write(myHPPotionAmount.ToString());
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 11);
+            Utilities.Utility.PrintInColour("■  HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
             Console.ReadKey();
+
+
+
+
         } /// TODO: Finish this
 
         #region BattleRelated
@@ -152,7 +162,7 @@ namespace Diablo.Player
 
         #endregion
 
-        #region Gets
+        #region Get
         public float GetHealth()
             {
                 return myHealth;
@@ -188,19 +198,19 @@ namespace Diablo.Player
                 return myIsDefending;
             }
 
-            #endregion
+        #endregion
 
-        #region Sets
-            public void SetInventoryCapacity(int aNewCapacity)
+        #region Set
+        public void SetInventoryCapacity(int aNewCapacity)
             {
                 myInventoryCapacity = aNewCapacity;
             }
 
-            public void SetIsDefending(bool aNewValue)
+        public void SetIsDefending(bool aNewValue)
             {
                 myIsDefending = aNewValue;
             }
 
-            #endregion
+        #endregion
     }  
 }

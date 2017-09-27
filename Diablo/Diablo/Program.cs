@@ -25,7 +25,8 @@ namespace Enums
 namespace Diablo.Utilities
 {
     class Program
-    { 
+    {
+        public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
         static Player.Player myPlayer;
         static List<Room> myRooms;
 
@@ -44,8 +45,8 @@ namespace Diablo.Utilities
 
         static void Menu()
         {
+            Console.Clear();
             int tempChoice = 0;
-
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
             {
@@ -124,6 +125,7 @@ namespace Diablo.Utilities
             {
                 case 1:
                     EnterRoom(0);
+                    Menu();
                     break;
                 case 2:
                     myPlayer.OpenInventory();
@@ -156,7 +158,7 @@ namespace Diablo.Utilities
                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
                     Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemies!");
                 }
-                Console.ReadKey();
+                System.Threading.Thread.Sleep(2000);
                 BattleSequence(aRoomIndex);
             }
             else
@@ -169,11 +171,11 @@ namespace Diablo.Utilities
 
         static void BattleSequence(int aRoomIndex)
         {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
             while (myRooms[aRoomIndex].GetSkeletonCount() > 0)
             {
-                int
-                    tempWWD2 = Console.WindowWidth / 2,
-                    tempWHD2 = Console.WindowHeight / 2;
                 Console.Clear();
                 switch (myPlayer.ChooseBattleAction())
                 {
@@ -244,14 +246,16 @@ namespace Diablo.Utilities
                     }
                 }
             }
-            Console.WriteLine("All enemies defeated!");
-            Console.ReadKey();
+            myPlayer.PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
+            Console.Write("All enemies were defeated!");
+            System.Threading.Thread.Sleep(2000);
         }
 
         static void GenerateRooms()
         {
             myRooms.Clear();
-            myRooms.Add(new Room(1));
+            myRooms.Add(new Room(2));
         }
     }
 }

@@ -147,7 +147,7 @@ namespace Diablo.Utilities
         {
             Console.ForegroundColor = aConsoleColour;
             Console.Write(aStringToPrint);
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = Program.StandardTextColour;
         }
 
     }
