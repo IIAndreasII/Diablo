@@ -7,13 +7,15 @@ namespace Diablo.Enemies
 {
     class Enemy
     {
-        public void TakeDamage(int aDamageToTake, int anArmourRating, float aHealth)
+        public float TakeDamage(int aDamageToTake, int anArmourRating, float aHealth)
         {
             float tempDamageDealt = aDamageToTake * (1f - (float)anArmourRating / 100f);
             aHealth -= tempDamageDealt;
             Console.WriteLine("You swing your sword and strike the enemy!");
             System.Threading.Thread.Sleep(500);
-            Console.WriteLine("You dealt ");
+            Console.WriteLine("You dealt " + tempDamageDealt + " damage!");
+            System.Threading.Thread.Sleep(750);
+            return aHealth;
         }
 
         public void DealDamage(Player.Player aPlayer, int aDamage)

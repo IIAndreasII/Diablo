@@ -7,6 +7,79 @@ namespace Diablo.Utilities
 {
     class Utility
     {
+        public static void PrintPentagram(int anXOffset, int aYOffset, ConsoleColor aColour)
+        {
+            string tempPrintValue;
+            for (int i = 0; i < 19; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        tempPrintValue = @"         .d$$$$*$$$$$$$bc";
+                        break;
+                    case 1:
+                        tempPrintValue = @"      .d$P'     d$$    '*$$.";
+                        break;
+                    case 2:
+                        tempPrintValue = @"     d$'       4$'$$      '$$.";
+                        break;
+                    case 3:
+                        tempPrintValue = @"   4$P         $F ^$F       '$c";
+                        break;
+                    case 4:
+                        tempPrintValue = @"  z$%         d$   3$        ^$L";
+                        break;
+                    case 5:
+                        tempPrintValue = @" 4$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F";
+                        break;
+                    case 6:
+                        tempPrintValue = @" $$$F''''''''$F''''''$F'''''C$$*$";
+                        break;
+                    case 7:
+                        tempPrintValue = @".$% '$$e    d$       3$   z$$'  $F";
+                        break;
+                    case 8:
+                        tempPrintValue = @"4$     *$$.4$'        $$d$P'    $$";
+                        break;
+                    case 9:
+                        tempPrintValue = @"4$      ^ *$$.       .d$F       $$";
+                        break;
+                    case 10:
+                        tempPrintValue = @"4$        d$'$$c   z$$'3$       $F";
+                        break;
+                    case 11:
+                        tempPrintValue = @" $L      4$' ^ *$$$P'   $$     4$";
+                        break;
+                    case 12:
+                        tempPrintValue = @"  3$     $F  .d$P$$e    ^$F    $P";
+                        break;
+                    case 13:
+                        tempPrintValue = @"   $$   d$  .$$'    '$$c 3$   d$";
+                        break;
+                    case 14:
+                        tempPrintValue = @"    *$.4$'z$$'        ^*$$$$ $$";
+                        break;
+                    case 15:
+                        tempPrintValue = @"     '$$$$P'             '$$$P";
+                        break;
+                    case 16:
+                        tempPrintValue = @"       *$b.             .d$P'";
+                        break;
+                    case 17:
+                        tempPrintValue = @"         '$$$ec.....ze$$$'";
+                        break;
+                    case 18:
+                        tempPrintValue = @"             '**$$$**''";
+                        break;
+                    default:
+                        tempPrintValue = "Error";
+                        break;
+                }
+                Console.SetCursorPosition(anXOffset, aYOffset + i);
+                PrintInColour(tempPrintValue, aColour);
+            }
+        }
+
         /// <summary>
         /// Makes the user unable to type anything but letters while entering information
         /// </summary>

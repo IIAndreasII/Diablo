@@ -13,9 +13,12 @@ namespace Diablo.Enemies
             myArmourRating;
         private float
             myHealth;
+        private bool
+            myIsAlive;
 
         public Skeleton(int aLevel)
         {
+            myIsAlive = true;
             myLevel = aLevel;
             if (aLevel == 1)
             {
@@ -36,7 +39,11 @@ namespace Diablo.Enemies
 
         public void TakeDamage(int aDamage)
         {
-            base.TakeDamage(aDamage, myArmourRating, myHealth);
+            myHealth = base.TakeDamage(aDamage, myArmourRating, myHealth);
+            if(myHealth <= 0)
+            {
+                myIsAlive = false;
+            }
         }
 
         #region Gets
@@ -58,6 +65,11 @@ namespace Diablo.Enemies
         public int GetLevel()
         {
             return myLevel;
+        }
+
+        public bool GetIsAlive()
+        {
+            return myIsAlive;
         }
         #endregion
     }
