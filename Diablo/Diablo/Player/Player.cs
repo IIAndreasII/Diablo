@@ -37,10 +37,9 @@ namespace Diablo.Player
 
         public void PrintUI()
         {
-            Utilities.Utility.PrintInColour(@"   _______   " + "\n" +
-                                            @" /         \ " + "\n" +
-                                            @"| HP: " + myHealth + "   |" + "\n" +
-                                            @" \_________/", ConsoleColor.Red);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■\ " + "\n" +
+                                            @" |HP: " + myHealth + " |" + "\n" +
+                                            @" \■■■■■■■■/", ConsoleColor.Red);
         }
 
         public void OpenInventory()
@@ -66,7 +65,7 @@ namespace Diablo.Player
                 }
                 else
                 {
-                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 120f;
+                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.4f;
                     myHealth -= DamageTaken;
                 }
             }

@@ -10,7 +10,8 @@ namespace Enums
         ATTACK,
         DEFEND,
         USEITEM,
-        FLEE
+        FLEE,
+        ABSTAIN
     }
 
     public enum EnemyTypes
@@ -109,7 +110,6 @@ namespace Diablo.Utilities
             while(myRooms[aRoomIndex].GetSkeletonCount() > 0)
             {
                 Console.Clear();
-                Console.WriteLine("HP: " + myPlayer.GetHealth());
                 switch (myPlayer.ChooseBattleAction())
                 {
                     case (int)Enums.BattleActions.ATTACK:
@@ -123,7 +123,7 @@ namespace Diablo.Utilities
                         Console.WriteLine("[ ]");
                         Console.SetCursorPosition(1, myRooms[aRoomIndex].GetSkeletons().Count + 1);
                         int tempChoice = 0;
-                        while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myRooms[aRoomIndex].GetSkeletons().Count))
+                        while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myRooms[aRoomIndex].GetSkeletons().Count))
                         {
                             Console.SetCursorPosition(1, myRooms[aRoomIndex].GetSkeletons().Count + 2);
                             Console.Write(" \b");
