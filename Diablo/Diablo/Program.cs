@@ -93,7 +93,6 @@ namespace Diablo.Utilities
                     Environment.Exit(0);
                     break;
                 default:
-
                     break;
             }
         }

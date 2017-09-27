@@ -7,7 +7,13 @@ namespace Diablo.Utilities
 {
     class Utility
     {
-        public static void PrintPentagram(int anXOffset, int aYOffset, ConsoleColor aColour)
+        /// <summary>
+        /// Prints an ASCII-style pentagram at given position in given colour
+        /// </summary>
+        /// <param name="anXOffset">Position X</param>
+        /// <param name="aYOffset">Position Y</param>
+        /// <param name="aColour">Colour to print in</param>
+        public static void PrintPentagram(int anXPosition, int aYPosition, ConsoleColor aColour)
         {
             string tempPrintValue;
             for (int i = 0; i < 19; i++)
@@ -75,7 +81,7 @@ namespace Diablo.Utilities
                         tempPrintValue = "Error";
                         break;
                 }
-                Console.SetCursorPosition(anXOffset, aYOffset + i);
+                Console.SetCursorPosition(anXPosition, aYPosition + i);
                 PrintInColour(tempPrintValue, aColour);
             }
         }
