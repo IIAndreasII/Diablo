@@ -158,32 +158,32 @@ namespace Diablo.Player
                 return myHealth;
             }
 
-            public int GetMana()
+        public int GetMana()
             {
                 return myMana;
             }
 
-            public int GetDamage()
+        public int GetDamage()
             {
                 return myDamage;
             }
 
-            public int GetSpellDamage()
+        public int GetSpellDamage()
             {
                 return mySpellDamage;
             }
 
-            public int GetArmourRating()
+        public int GetArmourRating()
             {
                 return myArmourRating;
             }
 
-            public int GetInventoryCapacity()
+        public int GetInventoryCapacity()
             {
                 return myInventoryCapacity;
             }
 
-            public bool GetIsDefending()
+        public bool GetIsDefending()
             {
                 return myIsDefending;
             }
