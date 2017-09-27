@@ -46,7 +46,6 @@ namespace Diablo.Player
             Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 2);
             Utilities.Utility.PrintInColour(@"■ Gold: " + myGold.ToString(), ConsoleColor.Yellow);
-
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 4);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
