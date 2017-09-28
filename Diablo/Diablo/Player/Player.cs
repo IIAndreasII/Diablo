@@ -54,7 +54,7 @@ namespace Diablo.Player
 
         public void PrintUI()
         {
-            int 
+            int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             Console.Clear();
@@ -84,7 +84,6 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
-
         }
 
         public void OpenInventory()
@@ -136,7 +135,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 3);
             Utilities.Utility.PrintInColour("||", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 2);
-            Utilities.Utility.PrintInColour("O==[]==O", ConsoleColor.Gray);
+            Utilities.Utility.PrintInColour(@"O==\/==O", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 1);
             Utilities.Utility.PrintInColour("][", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2);
@@ -155,14 +154,27 @@ namespace Diablo.Player
             }
             switch (tempChoice)
             {
-                
+                case 1:
+                    DrinkHPPotion();
+                    OpenInventory();
+                    break;
+                case 2:
+                    DrinkManaPotion();
+                    OpenInventory();
+                    break;
+                default:
+                    break;
             }
             
         } /// TODO: Finish this
 
         private void DrinkHPPotion()
         {
-            if(myHPPotionAmount > 0)
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+
+            if (myHPPotionAmount > 0)
             {
                 myHPPotionAmount -= 1;
                 myHealth += 25;
@@ -171,11 +183,25 @@ namespace Diablo.Player
                     myHealth = myMaxHealth;
                 }
             }
+
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
+            Console.Write("You have drunk a health-potion.");
+            System.Threading.Thread.Sleep(1000);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
+            Console.Write("You re-gained ");
+            Utilities.Utility.PrintInColour("25", ConsoleColor.Green);
+            Console.Write(" health!");
+            System.Threading.Thread.Sleep(1500);
         }
 
         private void DrinkManaPotion()
         {
-            if(myManaPotionAmount > 0)
+            int
+               tempWWD2 = Console.WindowWidth / 2,
+               tempWHD2 = Console.WindowHeight / 2;
+
+            if (myManaPotionAmount > 0)
             {
                 myManaPotionAmount -= 1;
                 myMaxMana += 25;
@@ -184,6 +210,16 @@ namespace Diablo.Player
                     myMana = myMaxMana;
                 }
             }
+
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
+            Console.Write("You have drunk a mana-potion.");
+            System.Threading.Thread.Sleep(1000);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
+            Console.Write("You re-gained ");
+            Utilities.Utility.PrintInColour("25", ConsoleColor.Blue);
+            Console.Write(" mana!");
+            System.Threading.Thread.Sleep(1500);
         }
 
         #region BattleRelated
