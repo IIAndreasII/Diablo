@@ -13,6 +13,7 @@ namespace Diablo.Player
             mySpellDamage,
             myGold,
             myHPPotionAmount,
+            myManaPotionAmount,
             myArmourRating,
             myInventoryCapacity;
         private float
@@ -27,13 +28,9 @@ namespace Diablo.Player
             myMana = 100;
             myDamage = 15;
             mySpellDamage = 20;
-            myGold = 0;
+            myGold = 50;
             myHPPotionAmount = 2;
-        }
-
-        public bool Update()
-        {
-            return true;
+            myManaPotionAmount = 2;
         }
 
         public void PrintUI()
@@ -79,13 +76,18 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 11);
-            Utilities.Utility.PrintInColour("■  HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 11);
+            Console.Write("Inventory:");
+            Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
+            Console.Write("[1]");
+            Utilities.Utility.PrintInColour(" ■ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 8);
+            Console.Write("[2]");
+            Utilities.Utility.PrintInColour(" ■ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
+
+
+
             Console.ReadKey();
-
-
-
-
         } /// TODO: Finish this
 
         #region BattleRelated
@@ -108,7 +110,7 @@ namespace Diablo.Player
                 }
                 else
                 {
-                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.4f;
+                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.6f;
                     myHealth -= DamageTaken;
                 }
             }
@@ -136,7 +138,7 @@ namespace Diablo.Player
                 Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
                 Console.Write(" \b");
             }
-           switch (tempChoice)
+            switch (tempChoice)
             {
                 case 1:
                     myIsDefending = false;
