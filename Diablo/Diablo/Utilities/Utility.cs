@@ -7,6 +7,66 @@ namespace Diablo.Utilities
 {
     class Utility
     {
+        public static Random myRNG = new Random();
+
+        /// <summary>
+        /// Generates all suffixes for items 
+        /// </summary>
+        private static string[] GetSuffixes()
+        {
+            string[] tempSuffixes = new string[11];
+            for (int i = 0; i < tempSuffixes.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        tempSuffixes[i] = "Divinity";
+                        break;
+                    case 1:
+                        tempSuffixes[i] = "Corruption";
+                        break;
+                    case 2:
+                        tempSuffixes[i] = "Fräsighet";
+                        break;
+                    case 3:
+                        tempSuffixes[i] = "Deceit";
+                        break;
+                    case 4:
+                        tempSuffixes[i] = "Peasants";
+                        break;
+                    case 5:
+                        tempSuffixes[i] = "Odin";
+                        break;
+                    case 6:
+                        tempSuffixes[i] = "Despair";
+                        break;
+                    case 7:
+                        tempSuffixes[i] = "Clumpsiness";
+                        break;
+                    case 8:
+                        tempSuffixes[i] = "Stupidity";
+                        break;
+                    case 9:
+                        tempSuffixes[i] = "Saltiness";
+                        break;
+                    case 10:
+                        tempSuffixes[i] = "Wisdom";
+                        break;
+                }
+            }
+            return tempSuffixes;
+        }
+
+        /// <summary>
+        /// Gets a random suffix from the suffix-array
+        /// </summary>
+        /// <returns>String containing a random suffix</returns>
+        public static string GetRandomSuffix()
+        {
+            string[] tempSuffixArray = GetSuffixes();
+            return tempSuffixArray[myRNG.Next(0, tempSuffixArray.Length)];
+        }
+
         /// <summary>
         /// Prints an ASCII-style pentagram at given position in given colour
         /// </summary>

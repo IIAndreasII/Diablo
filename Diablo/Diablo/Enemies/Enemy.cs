@@ -15,10 +15,10 @@ namespace Diablo.Enemies
             float 
                 tempDamageDealt = aDamageToTake * (1f - (float)anArmourRating / 100f);          
             aHealth -= tempDamageDealt;
-            Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 9);
+            Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
             Console.Write("You swing your sword and strike the enemy!");
             System.Threading.Thread.Sleep(1000);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 7);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
             Console.Write("You dealt ");
             Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Green);
             Console.Write(" damage!");
@@ -35,9 +35,9 @@ namespace Diablo.Enemies
                 tempDamageDealt;
             aPlayer.PrintUI();
             aPlayer.TakeDamage(aDamage, aPlayer.GetIsDefending(), out tempDamageDealt);
-            Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+            Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
             Console.WriteLine("The enemy swings his sword!");
-            Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 7);
+            Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
             System.Threading.Thread.Sleep(1000);
             Console.Write("You took ");
             Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Red);

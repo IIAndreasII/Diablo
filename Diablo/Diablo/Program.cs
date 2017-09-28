@@ -35,6 +35,7 @@ namespace Diablo.Utilities
             Console.ForegroundColor = ConsoleColor.White;
             myPlayer = new Player.Player();
             myRooms = new List<Room>();
+
         }
 
         static void Main(string[] args)
@@ -107,18 +108,18 @@ namespace Diablo.Utilities
                 tempWHD2 = Console.WindowHeight / 2,
                 tempChoice = 0;
             myPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 11);
+            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
             Console.Write("Possible actions");
-            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 10);
             Console.Write("[1] Enter dungeon");
-            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
             Console.Write("[2] Open inventory");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 7);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 7);
             while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 2))
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 7);
                 Console.Write(" \b");
             }
             switch (tempChoice)
@@ -144,18 +145,18 @@ namespace Diablo.Utilities
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
             Console.Write("You enter the room and look around");
             if (myRooms[aRoomIndex].GetSkeletonCount() > 0)
             {
                 if(myRooms[aRoomIndex].GetSkeletonCount() == 1)
                 {
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 9);
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
                     Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemy!");
                 }
                 else
                 {
-                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
                     Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemies!");
                 }
                 System.Threading.Thread.Sleep(2000);
@@ -183,20 +184,20 @@ namespace Diablo.Utilities
 
                         Console.Clear();
                         myPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                         Console.WriteLine("Choose an enemy to attack");
                         for (int i = 0; i < myRooms[aRoomIndex].GetSkeletons().Count; i++)
                         {
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9 + i);
+                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
                             Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + myRooms[aRoomIndex].GetSkeletons()[i].GetHealth() + "; Armour - " + myRooms[aRoomIndex].GetSkeletons()[i].GetArmourRating().ToString());
                         }
-                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
+                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + myRooms[aRoomIndex].GetSkeletons().Count);
                         Console.Write("[ ]");
-                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
+                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myRooms[aRoomIndex].GetSkeletons().Count);
                         int tempChoice = 0;
                         while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myRooms[aRoomIndex].GetSkeletons().Count))
                         {
-                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 8 + myRooms[aRoomIndex].GetSkeletons().Count);
+                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myRooms[aRoomIndex].GetSkeletons().Count);
                             Console.Write(" \b");
                         }
                         Console.Clear();
@@ -204,31 +205,31 @@ namespace Diablo.Utilities
                         myPlayer.DealDamage(myRooms[aRoomIndex].GetSkeletons()[tempChoice - 1]);
 
                         break;
-                    case (int)Enums.BattleActions.DEFEND:
+                    case Enums.BattleActions.DEFEND:
 
                         myPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
                         Console.Write("You raise your defences and");
-                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 8);
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
                         Console.Write("brace for a strike!");
                         myPlayer.SetIsDefending(true);
                         System.Threading.Thread.Sleep(2000);
 
                         break;
-                    case (int)Enums.BattleActions.USEITEM:
+                    case Enums.BattleActions.USEITEM:
 
                         myPlayer.OpenInventory();
 
                         break;
-                    case (int)Enums.BattleActions.FLEE:
+                    case Enums.BattleActions.FLEE:
 
                         break;
-                    case (int)Enums.BattleActions.ABSTAIN:
+                    case Enums.BattleActions.ABSTAIN:
 
                         myPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
                         Console.Write("You do not wish to attack");
-                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 8);
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
                         Console.Write("and lower your arms.");
                         System.Threading.Thread.Sleep(2000);
 
@@ -247,7 +248,7 @@ namespace Diablo.Utilities
                 }
             }
             myPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
             Console.Write("All enemies were defeated!");
             System.Threading.Thread.Sleep(2000);
         }
