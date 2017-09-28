@@ -10,8 +10,8 @@ namespace Diablo.Utilities
         /// <summary>
         /// Prints an ASCII-style pentagram at given position in given colour
         /// </summary>
-        /// <param name="anXOffset">Position X</param>
-        /// <param name="aYOffset">Position Y</param>
+        /// <param name="anXPosition">Position X</param>
+        /// <param name="aYPosition">Position Y</param>
         /// <param name="aColour">Colour to print in</param>
         public static void PrintPentagram(int anXPosition, int aYPosition, ConsoleColor aColour)
         {
