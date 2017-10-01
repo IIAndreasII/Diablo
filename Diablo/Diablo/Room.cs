@@ -8,7 +8,7 @@ namespace Diablo
     class Room
     {
         List<Enemies.Skeleton> mySkeletons;
-        bool myIsHostilesPresent;
+        bool myAreHostilesPresent;
 
         public Room(int aNumberOfSkeletons)
         {
@@ -17,7 +17,7 @@ namespace Diablo
             {
                 mySkeletons.Add(new Enemies.Skeleton(1));
             }
-            myIsHostilesPresent = true;
+            myAreHostilesPresent = true;
         }
 
         public List<Enemies.Skeleton> GetSkeletons()
@@ -32,12 +32,12 @@ namespace Diablo
 
         public bool IsHostilesPresent()
         {
-            return myIsHostilesPresent;
+            return myAreHostilesPresent;
         }
 
         public void SetIsHostilesPresent(bool aNewValue)
         {
-            myIsHostilesPresent = aNewValue;
+            myAreHostilesPresent = aNewValue;
         }
     }
 }

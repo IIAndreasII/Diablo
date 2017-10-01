@@ -22,7 +22,13 @@ namespace Diablo.Enemies
             Console.Write("You dealt ");
             Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Green);
             Console.Write(" damage!");
-            System.Threading.Thread.Sleep(2000);           
+            if (aHealth <= 0)
+            {
+                System.Threading.Thread.Sleep(1000);
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 7);
+                Console.Write("Enemy defeated!");
+            }
+            System.Threading.Thread.Sleep(2000);
             return aHealth;
         }
 
