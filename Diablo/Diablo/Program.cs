@@ -14,13 +14,6 @@ namespace Enums
         ABSTAIN
     }
 
-    public enum EnemyTypes
-    {
-        SKELETON,
-        SKELETONARCHER,
-        SKELETONCAPTAIN
-    }
-
 }
 namespace Diablo.Utilities
 {
@@ -32,7 +25,7 @@ namespace Diablo.Utilities
 
         static void Initialize()
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = StandardTextColour;
             myPlayer = new Player.Player();
             myRooms = new List<Room>();
 
@@ -86,6 +79,7 @@ namespace Diablo.Utilities
             switch (tempChoice)
             {
                 case 1:
+                    Initialize();
                     GenerateRooms();
                     Play();
                     break;
@@ -175,7 +169,9 @@ namespace Diablo.Utilities
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            while (myRooms[aRoomIndex].GetSkeletonCount() > 0)
+            bool
+                tempHasFled = false;
+            while (myRooms[aRoomIndex].GetSkeletonCount() > 0 && !tempHasFled)
             {
                 Console.Clear();
                 switch (myPlayer.ChooseBattleAction())
@@ -219,9 +215,12 @@ namespace Diablo.Utilities
                     case Enums.BattleActions.USEITEM:
 
                         myPlayer.OpenInventory();
+                        BattleSequence(aRoomIndex);
 
                         break;
                     case Enums.BattleActions.FLEE:
+
+                        tempHasFled = true;
 
                         break;
                     case Enums.BattleActions.ABSTAIN:
@@ -247,10 +246,20 @@ namespace Diablo.Utilities
                     }
                 }
             }
-            myPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-            Console.Write("All enemies were defeated!");
-            System.Threading.Thread.Sleep(2000);
+            if (!tempHasFled)
+            {
+                myPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.Write("All enemies were defeated!");
+                System.Threading.Thread.Sleep(2000);
+            }
+            else
+            {
+                myPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
+                Console.Write("You have fled the battle, coward...");
+                System.Threading.Thread.Sleep(2000);
+            }
         }
 
         static void GenerateRooms()
