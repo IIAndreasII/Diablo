@@ -7,19 +7,103 @@ namespace Diablo
 {
     class Room
     {
-        List<Enemies.Skeleton> mySkeletons;
-        bool myAreHostilesPresent;
+        List<Enemies.Skeleton> 
+            mySkeletons;
+        List<Items.Item> 
+            myLoot;
+        int
+            myGold;
+        bool 
+            myAreHostilesPresent;
 
-        public Room(int aNumberOfSkeletons)
+        public Room(int aNumberOfSkeletons, int anAmountOfItems)
         {
             mySkeletons = new List<Enemies.Skeleton>();
-            for (int i = 0; i < aNumberOfSkeletons; i++)
+            myLoot = new List<Items.Item>();
+            if (aNumberOfSkeletons > 0)
             {
-                mySkeletons.Add(new Enemies.Skeleton(1));
+                myAreHostilesPresent = true;
+                for (int i = 0; i < aNumberOfSkeletons; i++)
+                {
+                    mySkeletons.Add(new Enemies.Skeleton(1));
+                }
+                myGold = Utilities.Utility.myRNG.Next(5, 20 * aNumberOfSkeletons + 1);
             }
-            myAreHostilesPresent = true;
+            else
+            {
+                myAreHostilesPresent = false;
+            }
+            for (int i = 0; i < anAmountOfItems; i++)
+            {
+                myLoot.Add(new Items.Item());
+            }
         }
 
+        public void LootSequence(Player.Player aPlayer)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempTextOffset = tempWHD2 - 10;
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+            if(myLoot.Count > 0)
+            {
+                Console.Write("You have found some loot!");
+                System.Threading.Thread.Sleep(1500);
+                for (int i = 0; i < myLoot.Count; i++)
+                {
+                    Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
+                    Console.Write("[" + (i + 1) + "] ");
+                    if (myLoot[i].GetArmourRating() > 0)
+                    {
+                        Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                    }
+                    else
+                    {
+                        Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetDamage() + "]", ConsoleColor.Gray);
+                    }
+                    if(i == myLoot.Count - 1)
+                    {
+                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
+                        Console.Write("Gold: " + myGold);                      
+                    }
+                }
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
+                Console.Write("[" + (myLoot.Count + 1) + "] Pick up all    [0] Discard all");
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
+                Console.Write("[ ]");
+                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+                int tempChoice = -1;
+                while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(myLoot.Count / 2 + 1), out tempChoice) || (tempChoice < 0 || tempChoice > myLoot.Count + 1))
+                {
+                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+                    Console.Write(" \b");
+                }
+                switch (tempChoice)
+                {
+                    case 0:
+                        myLoot.Clear();
+                        break;
+                    default:
+                        aPlayer.AddItemsToInventory(myLoot);
+                        aPlayer.AddGold(myGold);
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                        Console.Write("Loot added to inventory!");
+                        System.Threading.Thread.Sleep(1500);
+                        break;
+                }
+            }
+            else
+            {
+                Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
+                Console.Write("Looking around the room, you found no loot");
+                System.Threading.Thread.Sleep(1500);
+            }
+            Console.ReadLine();
+        }
+
+        #region Get
         public List<Enemies.Skeleton> GetSkeletons()
         {
             return mySkeletons;
@@ -39,5 +123,6 @@ namespace Diablo
         {
             myAreHostilesPresent = aNewValue;
         }
+        #endregion
     }
 }

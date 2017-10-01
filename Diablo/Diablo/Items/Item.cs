@@ -26,6 +26,7 @@ namespace Diablo.Items
             myArmourRating,
             myDamage;
 
+        #region Constructors
         public Item()
         {
             myType = GetRandomType();
@@ -50,6 +51,7 @@ namespace Diablo.Items
             myArmourRating = anArmourRating;
             myDamage = aDamage;
         }
+        #endregion
 
         /// <summary>
         /// Gets a random item-type
@@ -135,6 +137,17 @@ namespace Diablo.Items
             }
         }
 
+        #region Get
+
+        /// <summary>
+        /// Gets the full name of the item
+        /// </summary>
+        /// <returns>String containing the full name of the item</returns>
+        public string GetFullName()
+        {
+            return myPrefix + " " + mySuffix;
+        }
+
         /// <summary>
         /// Gets the item's prefix
         /// </summary>
@@ -170,5 +183,6 @@ namespace Diablo.Items
         {
             return myDamage;
         }
+        #endregion
     }
 }

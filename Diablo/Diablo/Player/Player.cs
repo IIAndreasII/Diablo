@@ -5,8 +5,18 @@ using System.Threading.Tasks;
 
 namespace Diablo.Player
 { 
-    class Player
+    public enum BattleActions
     {
+        ATTACK,
+        DEFEND,
+        USEITEM,
+        FLEE,
+        ABSTAIN
+    }
+
+    class Player /// TODO: Add summaries
+    {
+        #region Variables
         private int
             myMana,
             myMaxMana,
@@ -30,6 +40,7 @@ namespace Diablo.Player
             myEquippedTrousers,
             myEquippedBoots,
             myEquippedWeapon;
+        #endregion
 
         public Player()
         {
@@ -84,6 +95,18 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
+        }
+
+        public void AddItemsToInventory(List<Items.Item> anItemList)
+        {
+            for (int i = 0; i < anItemList.Count; i++)
+            {
+                if(myInventory.Count < myInventoryCapacity)
+                {
+                    myInventory.Add(anItemList[i]);
+                }
+            }
+            anItemList.Clear(); /// Temporary line
         }
 
         public void OpenInventory()
@@ -222,7 +245,16 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1500);
         }
 
-        #region BattleRelated
+        public void AddGold(int anAmountToAdd)
+        {
+            myGold += anAmountToAdd;
+        }
+
+        public void SubtractGold(int anAmountToSubtract)
+        {
+            myGold -= anAmountToSubtract;
+        }
+
         public void DealDamage(Enemies.Skeleton aSkeleton)
         {
             aSkeleton.TakeDamage(myDamage);
@@ -247,7 +279,7 @@ namespace Diablo.Player
                 }
             }
 
-        public Enums.BattleActions ChooseBattleAction()
+        public BattleActions ChooseBattleAction()
         {
             int 
                 tempWWD2 = Console.WindowWidth / 2,
@@ -274,26 +306,24 @@ namespace Diablo.Player
             {
                 case 1:
                     myIsDefending = false;
-                    return Enums.BattleActions.ATTACK;
+                    return BattleActions.ATTACK;
                 case 2:
                     myIsDefending = true;
-                    return Enums.BattleActions.DEFEND;
+                    return BattleActions.DEFEND;
                 case 3:
                     myIsDefending = false;
-                    return Enums.BattleActions.USEITEM;
+                    return BattleActions.USEITEM;
                 case 4:
                     myIsDefending = false;
-                    return Enums.BattleActions.FLEE;
+                    return BattleActions.FLEE;
                 case 5:
                     myIsDefending = false;
-                    return Enums.BattleActions.ABSTAIN;
+                    return BattleActions.ABSTAIN;
                 default:
                     myIsDefending = true;
-                    return Enums.BattleActions.ABSTAIN;
+                    return BattleActions.ABSTAIN;
                 }
             }
-
-        #endregion
 
         #region Get
         public float GetHealth()

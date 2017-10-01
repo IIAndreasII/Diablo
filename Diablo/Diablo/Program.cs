@@ -3,18 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enums
-{
-    public enum BattleActions
-    {
-        ATTACK,
-        DEFEND,
-        USEITEM,
-        FLEE,
-        ABSTAIN
-    }
 
-}
 namespace Diablo.Utilities
 {
     class Program
@@ -34,12 +23,13 @@ namespace Diablo.Utilities
         static void Main(string[] args)
         {
             Initialize();
-            Menu();
+            MainMenu();
         }
 
-        static void Menu()
+        static void MainMenu()
         {
             Console.Clear();
+            Console.WriteLine("Förmågan att byta mellan vapen och rustningar kommer läggas till (det läggs dock till i inventariet)");
             int tempChoice = 0;
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
@@ -119,8 +109,7 @@ namespace Diablo.Utilities
             switch (tempChoice)
             {
                 case 1:
-                    EnterRoom(0);
-                    Menu();
+                    EnterRoom(0);                 
                     break;
                 case 2:
                     myPlayer.OpenInventory();
@@ -176,7 +165,7 @@ namespace Diablo.Utilities
                 Console.Clear();
                 switch (myPlayer.ChooseBattleAction())
                 {
-                    case (int)Enums.BattleActions.ATTACK:
+                    case Player.BattleActions.ATTACK:
 
                         Console.Clear();
                         myPlayer.PrintUI();
@@ -201,7 +190,7 @@ namespace Diablo.Utilities
                         myPlayer.DealDamage(myRooms[aRoomIndex].GetSkeletons()[tempChoice - 1]);
 
                         break;
-                    case Enums.BattleActions.DEFEND:
+                    case Player.BattleActions.DEFEND:
 
                         myPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
@@ -212,18 +201,18 @@ namespace Diablo.Utilities
                         System.Threading.Thread.Sleep(2000);
 
                         break;
-                    case Enums.BattleActions.USEITEM:
+                    case Player.BattleActions.USEITEM:
 
                         myPlayer.OpenInventory();
                         BattleSequence(aRoomIndex);
 
                         break;
-                    case Enums.BattleActions.FLEE:
+                    case Player.BattleActions.FLEE:
 
                         tempHasFled = true;
 
                         break;
-                    case Enums.BattleActions.ABSTAIN:
+                    case Player.BattleActions.ABSTAIN:
 
                         myPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
@@ -252,6 +241,8 @@ namespace Diablo.Utilities
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                 Console.Write("All enemies were defeated!");
                 System.Threading.Thread.Sleep(2000);
+                myPlayer.PrintUI();
+                myRooms[aRoomIndex].LootSequence(myPlayer);
             }
             else
             {
@@ -265,7 +256,7 @@ namespace Diablo.Utilities
         static void GenerateRooms()
         {
             myRooms.Clear();
-            myRooms.Add(new Room(2));
+            myRooms.Add(new Room(1, 2));
         }
     }
 }
