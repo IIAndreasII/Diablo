@@ -26,10 +26,20 @@ namespace Diablo.Player
             myHPPotionAmount,
             myManaPotionAmount,
             myArmourRating,
-            myInventoryCapacity;
+            myInventoryCapacity,
+            myLevel,
+            myEXP,
+            myStrength,
+            myAgility,
+            
+            myIntelligence,
+            myWisdom,
+            myLuck;
         private float
-             myHealth,
-             myMaxHealth;
+            myStamina,
+            myMaxStamina,
+            myHealth,
+            myMaxHealth;
         private bool
             myIsDefending;
         private List<Items.Item> 
@@ -44,16 +54,24 @@ namespace Diablo.Player
 
         public Player()
         {
+            myLevel = 1;
+            myStrength = 5; //Antal procent mer skada
+            myAgility = 5; // Antal procent chans det är att undvika en attack
+            myMaxStamina = 100; // Antal procent av maxHP
+            myStamina = myMaxStamina;
+            /// TODO: Set bas Intelligence and Wisdom
+            myLuck = 10; // Antal procent för att hitta extra loot
+
             myArmourRating = 10;
-            myMaxHealth = 100;
+            myMaxHealth = 100 * myStamina / 100;
             myHealth = myMaxHealth;
             myMaxMana = 100;
             myMana = myMaxMana;
             myDamage = 15;
             mySpellDamage = 20;
             myGold = 50;
-            myHPPotionAmount = 2;
-            myManaPotionAmount = 2;
+            myHPPotionAmount = 1;
+            myManaPotionAmount = 1;
             myInventoryCapacity = 50;
             myInventory = new List<Items.Item>();
             myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2, 0);
@@ -63,6 +81,83 @@ namespace Diablo.Player
             myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 0, 15);
         }
 
+        public void Rest()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            if (myGold - 10 < 0)
+            {
+                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 5);
+                Console.Write("Insufficient funds!");
+            }
+            else
+            {
+                PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.Write("You light a fire and rest.");
+                System.Threading.Thread.Sleep(2000);
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.Write("You re-gained 20 stamina!");
+                System.Threading.Thread.Sleep(1500);
+                AddStamina(20);
+                SubtractGold(10);
+            }
+        }
+
+        public void PrintUI()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Console.Clear();
+            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.Red);
+            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour("  " + myHealth + @"/" + myMaxHealth, ConsoleColor.Red);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 7);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 +  6);
+            Utilities.Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 7);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"  Arm: " + (myEquippedHelmet.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedBoots.GetArmourRating()).ToString(), ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2, tempWHD2 + 7);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 5);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 6);
+            Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
+        }
+
+        public void AddStamina(int anAmountToAdd)
+        {
+            myStamina += anAmountToAdd;
+            if (myStamina > myMaxStamina)
+            {
+                myStamina = myMaxStamina;
+            }
+        }
+
+        public void SubtractStamina(int anAmountToSubtract)
+        {
+            myStamina -= anAmountToSubtract;
+            if(myStamina < 10)
+            {
+                myStamina = 10;
+            }
+        }
+
+        #region Inventory       
         public void Equip(Items.Item anItem)
         {
             Items.Item tempItem;
@@ -114,52 +209,8 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
             }
-        }
-
-        public void PrintUI()
-        {
-            int
-                tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2;
-            Console.Clear();
-            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.Red);
-            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour("  " + myHealth + @"/" + myMaxHealth, ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 +  6);
-            Utilities.Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  Arm: " + (myEquippedHelmet.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedBoots.GetArmourRating()).ToString(), ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
-        }
-
-        public void AddItemsToInventory(List<Items.Item> anItemList)
-        {
-            for (int i = 0; i < anItemList.Count; i++)
-            {
-                if(myInventory.Count < myInventoryCapacity)
-                {
-                    myInventory.Add(anItemList[i]);
-                }
-            }
-            anItemList.Clear(); /// Temporary line
+            myDamage = myEquippedWeapon.GetDamage();
+            myArmourRating = myEquippedBoots.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedHelmet.GetArmourRating();
         }
 
         public void EquipBestItems(List<Items.Item> anItemList)
@@ -212,7 +263,7 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
 
-            #region Doodle
+            #region Doodle Inventory
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
             Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
@@ -286,6 +337,18 @@ namespace Diablo.Player
             }
             
         } /// TODO: Finish this
+
+        public void AddItemsToInventory(List<Items.Item> anItemList)
+        {
+            for (int i = 0; i < anItemList.Count; i++)
+            {
+                if (myInventory.Count < myInventoryCapacity)
+                {
+                    myInventory.Add(anItemList[i]);
+                }
+            }
+            anItemList.Clear(); /// Temporary line
+        }
 
         private void DrinkHPPotion()
         {
@@ -366,21 +429,30 @@ namespace Diablo.Player
         {
             myGold -= anAmountToSubtract;
         }
+        #endregion
 
         #region Battle
         public void DealDamage(Enemies.Skeleton aSkeleton)
         {
-            aSkeleton.TakeDamage(myDamage);
+            aSkeleton.TakeDamage(myDamage, myStrength);
         }
 
         public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
         {
-            aSkeleton.TakeDamage(aDamage);
+            aSkeleton.TakeDamage(aDamage, myStrength);
+            
         }
 
-        public void TakeDamage(int aDamage, bool isDefending, out float DamageTaken)
+        public bool TakeDamage(float aDamage, out float DamageTaken)
+        {
+            int tempAgility = myAgility;
+            if (myIsDefending)
             {
-                if (!isDefending)
+                tempAgility += 20;
+            }
+            if (Utilities.Utility.myRNG.Next(1, 101) > tempAgility)
+            {
+                if (!myIsDefending)
                 {
                     DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f;
                     myHealth -= DamageTaken;
@@ -390,7 +462,14 @@ namespace Diablo.Player
                     DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.6f;
                     myHealth -= DamageTaken;
                 }
+                return true;
             }
+            else
+            {
+                DamageTaken = 0;
+                return false;
+            }
+        }
 
         public BattleActions ChooseBattleAction()
         {
@@ -440,6 +519,26 @@ namespace Diablo.Player
         #endregion
 
         #region Get
+        public int GetLevel()
+        {
+            return myLevel;
+        }
+
+        public int GetStrength()
+        {
+            return myStrength;
+        }
+
+        public int GetAgility()
+        {
+            return myAgility;
+        }
+
+        public float GetStamina()
+        {
+            return myStamina;
+        }
+
         public int GetHPPotionAmount()
         {
             return myHPPotionAmount;
@@ -484,7 +583,6 @@ namespace Diablo.Player
             {
                 return myIsDefending;
             }
-
         #endregion
 
         #region Set

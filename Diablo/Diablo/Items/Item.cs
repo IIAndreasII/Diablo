@@ -12,7 +12,8 @@ namespace Diablo.Items
         CHESTPLATE,
         TROUSERS,
         BOOTS,
-        WEAPON
+        WEAPON,
+        SCROLL
     }
 
     class Item

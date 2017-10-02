@@ -29,7 +29,6 @@ namespace Diablo.Utilities
         static void MainMenu()
         {
             Console.Clear();
-            Console.WriteLine("Förmågan att byta mellan vapen och rustningar kommer läggas till (det läggs dock till i inventariet)");
             int tempChoice = 0;
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
@@ -97,12 +96,14 @@ namespace Diablo.Utilities
             Console.Write("[1] Enter dungeon");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
             Console.Write("[2] Open inventory");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 7);
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
+            Console.Write("[3] Rest (-10 gold)");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 7);
-            while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 2))
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 7);
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
                 Console.Write(" \b");
             }
             switch (tempChoice)
@@ -113,6 +114,9 @@ namespace Diablo.Utilities
                     break;
                 case 2:
                     myPlayer.OpenInventory();
+                    break;
+                case 3:
+                    myPlayer.Rest();
                     break;
                 default:
                     Console.WriteLine("Error");
@@ -235,7 +239,15 @@ namespace Diablo.Utilities
                     }
                 }
             }
-            if (!tempHasFled)
+            if(myPlayer.GetHealth() <= 0)
+            {
+                myPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
+                Console.Write("YOU DIED!");
+                Console.ReadKey();
+                MainMenu();
+            }
+            else if (!tempHasFled)
             {
                 myPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
@@ -256,7 +268,7 @@ namespace Diablo.Utilities
         static void GenerateRooms()
         {
             myRooms.Clear();
-            myRooms.Add(new Room(1, 2));
-        }
+            myRooms.Add(new Room(Utility.myRNG.Next(1, myPlayer.GetLevel() + 2), 2));
+        } // Far from finished
     }
 }

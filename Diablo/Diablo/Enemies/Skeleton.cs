@@ -9,15 +9,20 @@ namespace Diablo.Enemies
     {
         private int
             myLevel,
-            myDamage,
-            myArmourRating;
+            myArmourRating,
+            myAgility,
+            myStamina;
         private float
+            myDamage,
             myHealth;
         private bool
             myIsAlive;
+        Type 
+            myType;
 
-        public Skeleton(int aLevel)
+        public Skeleton(int aLevel, Type aType)
         {
+            myType = aType;
             myIsAlive = true;
             myLevel = aLevel;
             if (aLevel == 1)
@@ -28,18 +33,20 @@ namespace Diablo.Enemies
             {
                 myArmourRating = 5 * myLevel;
             }
-            myHealth = 25 * myLevel;
             myDamage = 5 * myLevel;
+            myAgility = myLevel;
+            myStamina = 100 + myLevel * 5;
+            myHealth = 25 * myLevel * (float)myStamina / 100;
         }
 
         public void DealDamage(Player.Player aPlayer)
         {
-            base.DealDamage(aPlayer, myDamage);
+            DealDamage(aPlayer, myDamage);
         }
 
-        public void TakeDamage(int aDamage)
+        public void TakeDamage(int aDamage, int aStrength)
         {
-            myHealth = base.TakeDamage(aDamage, myArmourRating, myHealth);
+            myHealth = TakeDamage(aDamage, myArmourRating, myHealth, aStrength, myAgility);
             if(myHealth <= 0)
             {
                 myIsAlive = false;
@@ -52,7 +59,7 @@ namespace Diablo.Enemies
             return myHealth;
         }
 
-        public int GetDamage()
+        public float GetDamage()
         {
             return myDamage;
         }

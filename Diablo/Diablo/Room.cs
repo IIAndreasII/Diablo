@@ -27,11 +27,11 @@ namespace Diablo
                 myAreHostilesPresent = true;
                 for (int i = 0; i < aNumberOfSkeletons; i++)
                 {
-                    mySkeletons.Add(new Enemies.Skeleton(1));
+                    mySkeletons.Add(new Enemies.Skeleton(1, Enemies.Type.SWORDSMAN));
                 }
                 myGold = Utilities.Utility.myRNG.Next(5, 20 * aNumberOfSkeletons + 1);
-                myHPPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons + 1);
-                myManaPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons + 1);
+                myHPPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons / 2);
+                myManaPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons / 2);
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Diablo
                 for (int i = 0; i < myLoot.Count; i++)
                 {
                     Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                    Console.Write("[" + (i + 1) + "] ");
+                    Console.Write("[" + (i + 3) + "] ");
                     if (myLoot[i].GetArmourRating() > 0)
                     {
                         Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetArmourRating() + "]", ConsoleColor.Gray);
@@ -77,9 +77,9 @@ namespace Diablo
                     }
                 }
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-                Console.Write("[" + (myLoot.Count + 1) + "] Pick up all    [0] Discard all");
+                Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                Console.Write("[" + (myLoot.Count + 2) + "] Pick up and equip best");
+                Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
                 Console.Write("[ ]");
                 Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
@@ -89,12 +89,13 @@ namespace Diablo
                     Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
                     Console.Write(" \b");
                 }
+
                 switch (tempChoice)
                 {
                     case 0:
                         myLoot.Clear();
                         break;
-                    default:
+                    case 1:
                         aPlayer.AddItemsToInventory(myLoot);
                         aPlayer.AddGold(myGold);
                         aPlayer.AddHealthPotions(myHPPotions);
@@ -104,6 +105,15 @@ namespace Diablo
                         Console.Write("Loot added to inventory!");
                         System.Threading.Thread.Sleep(1500);
                         break;
+                    case 2:
+                        aPlayer.EquipBestItems(myLoot);
+                        aPlayer.AddGold(myGold);
+                        aPlayer.AddHealthPotions(myHPPotions);
+                        aPlayer.AddManaPotions(myManaPotions);
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                        Console.Write("Loot added to inventory!");
+                        break;
                 }
             }
             else
@@ -112,7 +122,6 @@ namespace Diablo
                 Console.Write("Looking around the room, you found no loot");
                 System.Threading.Thread.Sleep(1500);
             }
-            Console.ReadLine();
         }
 
         #region Get
