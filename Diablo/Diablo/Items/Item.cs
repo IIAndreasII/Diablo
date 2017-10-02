@@ -139,6 +139,11 @@ namespace Diablo.Items
 
         #region Get
 
+        public Type GetItemType()
+        {
+            return myType;
+        }
+
         /// <summary>
         /// Gets the full name of the item
         /// </summary>

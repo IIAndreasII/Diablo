@@ -70,7 +70,6 @@ namespace Diablo.Utilities
             {
                 case 1:
                     Initialize();
-                    GenerateRooms();
                     Play();
                     break;
                 case 2:
@@ -109,6 +108,7 @@ namespace Diablo.Utilities
             switch (tempChoice)
             {
                 case 1:
+                    GenerateRooms();
                     EnterRoom(0);                 
                     break;
                 case 2:

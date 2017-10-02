@@ -12,7 +12,9 @@ namespace Diablo
         List<Items.Item> 
             myLoot;
         int
-            myGold;
+            myGold,
+            myHPPotions,
+            myManaPotions;
         bool 
             myAreHostilesPresent;
 
@@ -28,6 +30,8 @@ namespace Diablo
                     mySkeletons.Add(new Enemies.Skeleton(1));
                 }
                 myGold = Utilities.Utility.myRNG.Next(5, 20 * aNumberOfSkeletons + 1);
+                myHPPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons + 1);
+                myManaPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons + 1);
             }
             else
             {
@@ -65,11 +69,17 @@ namespace Diablo
                     if(i == myLoot.Count - 1)
                     {
                         Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
+                        Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
+                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
+                        Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
+                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
                         Console.Write("Gold: " + myGold);                      
                     }
                 }
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
                 Console.Write("[" + (myLoot.Count + 1) + "] Pick up all    [0] Discard all");
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
+                Console.Write("[" + (myLoot.Count + 2) + "] Pick up and equip best");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
                 Console.Write("[ ]");
                 Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
@@ -87,6 +97,8 @@ namespace Diablo
                     default:
                         aPlayer.AddItemsToInventory(myLoot);
                         aPlayer.AddGold(myGold);
+                        aPlayer.AddHealthPotions(myHPPotions);
+                        aPlayer.AddManaPotions(myManaPotions);
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
                         Console.Write("Loot added to inventory!");

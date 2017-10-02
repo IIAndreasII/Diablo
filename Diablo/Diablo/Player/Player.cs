@@ -63,6 +63,59 @@ namespace Diablo.Player
             myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 0, 15);
         }
 
+        public void Equip(Items.Item anItem)
+        {
+            Items.Item tempItem;
+            switch (anItem.GetItemType())
+            {
+                case Items.Type.HELMET:
+                    tempItem = myEquippedHelmet;
+                    myEquippedHelmet = anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
+                case Items.Type.CHESTPLATE:
+                    tempItem = myEquippedChestplate;
+                    myEquippedChestplate = anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
+                case Items.Type.TROUSERS:
+                    tempItem = myEquippedTrousers;
+                    myEquippedTrousers = anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
+                case Items.Type.BOOTS:
+                    tempItem = myEquippedBoots;
+                    myEquippedBoots = anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
+                case Items.Type.WEAPON:
+                    tempItem = myEquippedWeapon;
+                    myEquippedWeapon = anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
+            }
+        }
+
         public void PrintUI()
         {
             int
@@ -107,6 +160,49 @@ namespace Diablo.Player
                 }
             }
             anItemList.Clear(); /// Temporary line
+        }
+
+        public void EquipBestItems(List<Items.Item> anItemList)
+        {
+            for (int i = 0; i < anItemList.Count; i++)
+            {
+                switch (anItemList[i].GetItemType())
+                {
+                    case Items.Type.HELMET:
+                        if(anItemList[i].GetArmourRating() > myEquippedHelmet.GetArmourRating())
+                        {
+                            Equip(anItemList[i]);
+                        }
+                        break;
+                    case Items.Type.CHESTPLATE:
+                        if(anItemList[i].GetArmourRating() > myEquippedChestplate.GetArmourRating())
+                        {
+                            Equip(anItemList[i]);
+                        }
+                        break;
+                    case Items.Type.TROUSERS:
+                        if (anItemList[i].GetArmourRating() > myEquippedTrousers.GetArmourRating())
+                        {
+                            Equip(anItemList[i]);
+                        }
+                        break;
+                    case Items.Type.BOOTS:
+                        if(anItemList[i].GetArmourRating() > myEquippedBoots.GetArmourRating())
+                        {
+                            Equip(anItemList[i]);
+                        }
+                        break;
+                    case Items.Type.WEAPON:
+                        if (anItemList[i].GetDamage() > myEquippedWeapon.GetDamage())
+                        {
+                            Equip(anItemList[i]);
+                        }
+                        break;
+                    default:
+                        Console.WriteLine("ERROR!");
+                        break;
+                }
+            }
         }
 
         public void OpenInventory()
@@ -245,6 +341,22 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1500);
         }
 
+        public void AddHealthPotions(int anAmountToAdd)
+        {
+            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
+            {
+                myHPPotionAmount += anAmountToAdd;
+            }
+        }
+
+        public void AddManaPotions(int anAmountToAdd)
+        {
+            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
+            {
+                myManaPotionAmount += anAmountToAdd;
+            }
+        }
+
         public void AddGold(int anAmountToAdd)
         {
             myGold += anAmountToAdd;
@@ -255,6 +367,7 @@ namespace Diablo.Player
             myGold -= anAmountToSubtract;
         }
 
+        #region Battle
         public void DealDamage(Enemies.Skeleton aSkeleton)
         {
             aSkeleton.TakeDamage(myDamage);
@@ -324,8 +437,19 @@ namespace Diablo.Player
                     return BattleActions.ABSTAIN;
                 }
             }
+        #endregion
 
         #region Get
+        public int GetHPPotionAmount()
+        {
+            return myHPPotionAmount;
+        }
+
+        public int GetManaPotionAmount()
+        {
+            return myManaPotionAmount;
+        }
+
         public float GetHealth()
             {
                 return myHealth;
