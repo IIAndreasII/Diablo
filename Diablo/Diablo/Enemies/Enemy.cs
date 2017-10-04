@@ -39,6 +39,7 @@ namespace Diablo.Enemies
                     System.Threading.Thread.Sleep(1000);
                     Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 7);
                     Console.Write("Enemy defeated!");
+                    myIsAlive = false;
                 }
             }
             else
