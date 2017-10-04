@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +15,13 @@ namespace Diablo.Items
         SCROLL
     }
 
+    public enum ScrollEffect
+    {
+        DMGBUFF,
+        HPBOOST,
+        ARMBUFF
+    }
+   
     class Item
     {
         Type 
@@ -31,7 +37,7 @@ namespace Diablo.Items
         public Item()
         {
             myType = GetRandomType();
-            myPrefix = SetPrefix();
+            SetPrefix();
             SetSuffix();
             SetArmourAndDamage();
         }
@@ -39,20 +45,30 @@ namespace Diablo.Items
         public Item(Type aType)
         {
             myType = aType;
-            myPrefix = SetPrefix();
+            SetPrefix();
             SetSuffix();
             SetArmourAndDamage();
         }
 
-        public Item(Type aType, string aSuffix, int anArmourRating, int aDamage)
+        public Item(Type aType, string aSuffix, int anArmourRating)
         {
             myType = aType;
-            myPrefix = SetPrefix();
+            SetPrefix();
             mySuffix = aSuffix;
             myArmourRating = anArmourRating;
+        }
+
+        public Item(Type aType, string aSuffix, Int16 aDamage)
+        {
+            myType = aType;
+            SetPrefix();
+            mySuffix = aSuffix;
             myDamage = aDamage;
         }
         #endregion
+
+
+        
 
         /// <summary>
         /// Gets a random item-type
@@ -60,7 +76,7 @@ namespace Diablo.Items
         /// <returns>A random type</returns>
         private Type GetRandomType()
         {
-            switch(Utilities.Utility.myRNG.Next(0, 5))
+            switch(Utilities.Utility.myRNG.Next(0, 6))
             {
                 case 0:
                     return Type.HELMET;
@@ -72,6 +88,8 @@ namespace Diablo.Items
                     return Type.BOOTS;
                 case 4:
                     return Type.WEAPON;
+                case 5:
+                    return Type.SCROLL;
                 default:
                     return Type.WEAPON;
             }
@@ -81,22 +99,31 @@ namespace Diablo.Items
         /// Gets prefix based on type
         /// </summary>
         /// <returns>String containing a prefix</returns>
-        private string SetPrefix()
+        private void SetPrefix()
         {
             switch (myType)
             {
                 case Type.HELMET:
-                    return "Helmet of";
+                    myPrefix = "Helmet of";
+                    break;
                 case Type.CHESTPLATE:
-                    return "Chestplate of";
+                    myPrefix = "Chestplate of";
+                    break;
                 case Type.TROUSERS:
-                    return "Trousers of";
+                    myPrefix = "Trousers of";
+                    break;
                 case Type.BOOTS:
-                    return "Boots of";
+                    myPrefix = "Boots of";
+                    break;
                 case Type.WEAPON:
-                    return "Sword of";
+                    myPrefix = "Sword of";
+                    break;
+                case Type.SCROLL:
+                    myPrefix = "Scroll of";
+                    break;
                 default:
-                    return "Error of";
+                    myPrefix = "Error of";
+                    break;
             }
         }
 
@@ -135,11 +162,14 @@ namespace Diablo.Items
                     myDamage = Utilities.Utility.myRNG.Next(1, 51);
                     myArmourRating = 0;
                     break;
+                default:
+                    myDamage = 0;
+                    myArmourRating = 0;
+                    break;
             }
         }
 
         #region Get
-
         public Type GetItemType()
         {
             return myType;

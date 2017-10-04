@@ -252,6 +252,7 @@ namespace Diablo.Utilities
                 myPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                 Console.Write("All enemies were defeated!");
+                myPlayer.SubtractStamina(20);
                 System.Threading.Thread.Sleep(2000);
                 myPlayer.PrintUI();
                 myRooms[aRoomIndex].LootSequence(myPlayer);
@@ -261,6 +262,7 @@ namespace Diablo.Utilities
                 myPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
                 Console.Write("You have fled the battle, coward...");
+                myPlayer.SubtractStamina(30);
                 System.Threading.Thread.Sleep(2000);
             }
         }

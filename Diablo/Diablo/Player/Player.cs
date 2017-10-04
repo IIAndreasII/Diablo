@@ -20,35 +20,43 @@ namespace Diablo.Player
         private int
             myMana,
             myMaxMana,
+
             myDamage,
             mySpellDamage,
+            myArmourRating,
+
             myGold,
             myHPPotionAmount,
             myManaPotionAmount,
-            myArmourRating,
             myInventoryCapacity,
+
             myLevel,
             myEXP,
+            
             myStrength,
             myAgility,
-            
             myIntelligence,
             myWisdom,
             myLuck;
         private float
             myStamina,
             myMaxStamina,
+
             myHealth,
             myMaxHealth;
+
         private bool
             myIsDefending;
+
         private List<Items.Item> 
             myInventory;
+
         private Items.Item
             myEquippedHelmet,
             myEquippedChestplate,
             myEquippedTrousers,
             myEquippedBoots,
+
             myEquippedWeapon;
         #endregion
 
@@ -74,11 +82,11 @@ namespace Diablo.Player
             myManaPotionAmount = 1;
             myInventoryCapacity = 50;
             myInventory = new List<Items.Item>();
-            myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2, 0);
-            myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4, 0);
-            myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3, 0);
-            myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1, 0);
-            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 0, 15);
+            myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
+            myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4);
+            myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
+            myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
+            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 15);
         }
 
         public void Rest()
@@ -581,51 +589,51 @@ namespace Diablo.Player
         }
 
         public float GetHealth()
-            {
-                return myHealth;
-            }
+        {
+            return myHealth;
+        }
 
         public int GetMana()
-            {
-                return myMana;
-            }
+        {
+            return myMana;
+        }
 
         public int GetDamage()
-            {
-                return myDamage;
-            }
+        {
+            return myDamage;
+        }
 
         public int GetSpellDamage()
-            {
-                return mySpellDamage;
-            }
+        {
+            return mySpellDamage;
+        }
 
         public int GetArmourRating()
-            {
-                return myArmourRating;
-            }
+        {
+            return myArmourRating;
+        }
 
         public int GetInventoryCapacity()
-            {
-                return myInventoryCapacity;
-            }
+        {
+            return myInventoryCapacity;
+       }
 
         public bool GetIsDefending()
-            {
-                return myIsDefending;
-            }
+        {
+            return myIsDefending;
+        }
         #endregion
 
         #region Set
         public void SetInventoryCapacity(int aNewCapacity)
-            {
-                myInventoryCapacity = aNewCapacity;
-            }
+        {
+            myInventoryCapacity = aNewCapacity;
+        }
 
         public void SetIsDefending(bool aNewValue)
-            {
-                myIsDefending = aNewValue;
-            }
+        {
+            myIsDefending = aNewValue;
+        }
 
         #endregion
     }  

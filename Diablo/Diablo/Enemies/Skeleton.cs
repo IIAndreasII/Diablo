@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Enemies
 {
     class Skeleton : Enemy 
     { 
-        public Skeleton(int aLevel, Type aType)
+        public Skeleton(int aLevel)
         {
-            myType = aType;
             myIsAlive = true;
             myLevel = aLevel;
             if (aLevel == 1)

@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Enemies
 {
-    public enum Type
-    {
-        SWORDSMAN,
-        ARCHER,
-        CAPTAIN
-    }
-
     class Enemy
     {
         protected int
@@ -24,9 +16,6 @@ namespace Diablo.Enemies
             myHealth;
         protected bool
             myIsAlive;
-        protected Type
-            myType;
-
 
         public void TakeDamage(int aDamageToTake, int aStrength)
         {
