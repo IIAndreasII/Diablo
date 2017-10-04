@@ -20,35 +20,43 @@ namespace Diablo.Player
         private int
             myMana,
             myMaxMana,
+
             myDamage,
             mySpellDamage,
+            myArmourRating,
+
             myGold,
             myHPPotionAmount,
             myManaPotionAmount,
-            myArmourRating,
             myInventoryCapacity,
+
             myLevel,
             myEXP,
+            
             myStrength,
             myAgility,
-            
             myIntelligence,
             myWisdom,
             myLuck;
         private float
             myStamina,
             myMaxStamina,
+
             myHealth,
             myMaxHealth;
+
         private bool
             myIsDefending;
+
         private List<Items.Item> 
             myInventory;
+
         private Items.Item
             myEquippedHelmet,
             myEquippedChestplate,
             myEquippedTrousers,
             myEquippedBoots,
+
             myEquippedWeapon;
         #endregion
 
@@ -57,14 +65,14 @@ namespace Diablo.Player
             myLevel = 1;
             myStrength = 5; //Antal procent mer skada
             myAgility = 5; // Antal procent chans det är att undvika en attack
-            myMaxStamina = 100; // Antal procent av maxHP
+            myMaxStamina = 120; // Antal procent av maxHP
             myStamina = myMaxStamina;
-            /// TODO: Set bas Intelligence and Wisdom
+            /// TODO: Set base Intelligence and Wisdom
             myLuck = 10; // Antal procent för att hitta extra loot
 
             myArmourRating = 10;
-            myMaxHealth = 100 * myStamina / 100;
-            myHealth = myMaxHealth;
+            myMaxHealth = 100;
+            myHealth = myMaxHealth * myStamina / 100;
             myMaxMana = 100;
             myMana = myMaxMana;
             myDamage = 15;
@@ -74,11 +82,11 @@ namespace Diablo.Player
             myManaPotionAmount = 1;
             myInventoryCapacity = 50;
             myInventory = new List<Items.Item>();
-            myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2, 0);
-            myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4, 0);
-            myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3, 0);
-            myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1, 0);
-            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 0, 15);
+            myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
+            myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4);
+            myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
+            myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
+            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 15);
         }
 
         public void Rest()
@@ -137,6 +145,36 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 8);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 9);
+            Utilities.Utility.PrintInColour(@"  Str: " + myStrength.ToString(), ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 10);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 8);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkBlue);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 9);
+            Utilities.Utility.PrintInColour(@"  Agi: " + myAgility.ToString(), ConsoleColor.DarkBlue);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 10);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkBlue);
+            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 8);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Cyan);
+            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 9);
+            Utilities.Utility.PrintInColour(@"  Int: " + myIntelligence.ToString(), ConsoleColor.Cyan);
+            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 10);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Cyan);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 11);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 12);
+            Utilities.Utility.PrintInColour(@"Sta:" + myStamina.ToString() + "/" + myMaxStamina.ToString(), ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 13);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 11);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkMagenta);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 12);
+            Utilities.Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 13);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
         }
 
         public void AddStamina(int anAmountToAdd)
@@ -155,6 +193,7 @@ namespace Diablo.Player
             {
                 myStamina = 10;
             }
+            myMaxHealth = 100 * myStamina / 100;
         }
 
         #region Inventory       
@@ -550,51 +589,51 @@ namespace Diablo.Player
         }
 
         public float GetHealth()
-            {
-                return myHealth;
-            }
+        {
+            return myHealth;
+        }
 
         public int GetMana()
-            {
-                return myMana;
-            }
+        {
+            return myMana;
+        }
 
         public int GetDamage()
-            {
-                return myDamage;
-            }
+        {
+            return myDamage;
+        }
 
         public int GetSpellDamage()
-            {
-                return mySpellDamage;
-            }
+        {
+            return mySpellDamage;
+        }
 
         public int GetArmourRating()
-            {
-                return myArmourRating;
-            }
+        {
+            return myArmourRating;
+        }
 
         public int GetInventoryCapacity()
-            {
-                return myInventoryCapacity;
-            }
+        {
+            return myInventoryCapacity;
+       }
 
         public bool GetIsDefending()
-            {
-                return myIsDefending;
-            }
+        {
+            return myIsDefending;
+        }
         #endregion
 
         #region Set
         public void SetInventoryCapacity(int aNewCapacity)
-            {
-                myInventoryCapacity = aNewCapacity;
-            }
+        {
+            myInventoryCapacity = aNewCapacity;
+        }
 
         public void SetIsDefending(bool aNewValue)
-            {
-                myIsDefending = aNewValue;
-            }
+        {
+            myIsDefending = aNewValue;
+        }
 
         #endregion
     }  

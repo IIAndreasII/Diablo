@@ -27,7 +27,7 @@ namespace Diablo
                 myAreHostilesPresent = true;
                 for (int i = 0; i < aNumberOfSkeletons; i++)
                 {
-                    mySkeletons.Add(new Enemies.Skeleton(1, Enemies.Type.SWORDSMAN));
+                    mySkeletons.Add(new Enemies.Skeleton(1));
                 }
                 myGold = Utilities.Utility.myRNG.Next(5, 20 * aNumberOfSkeletons + 1);
                 myHPPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons / 2);
