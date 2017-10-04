@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Diablo.Enemies
 {
-    class Skeleton : Enemy /// TODO: Add summaries
+    class Skeleton : Enemy 
     {
         private int
             myLevel,
