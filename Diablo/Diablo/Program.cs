@@ -17,7 +17,6 @@ namespace Diablo.Utilities
             Console.ForegroundColor = StandardTextColour;
             myPlayer = new Player.Player();
             myRooms = new List<Room>();
-
         }
 
         static void Main(string[] args)
