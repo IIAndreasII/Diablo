@@ -58,7 +58,7 @@ namespace Diablo.Items
             myArmourRating = anArmourRating;
         }
 
-        public Item(Type aType, string aSuffix, Int16 aDamage)
+        public Item(Type aType, int aDamage, string aSuffix)
         {
             myType = aType;
             SetPrefix();

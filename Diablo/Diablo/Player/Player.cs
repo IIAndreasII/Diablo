@@ -86,7 +86,7 @@ namespace Diablo.Player
             myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4);
             myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
             myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
-            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, "Basicness", 15);
+            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, 15, "Basicness");
         }
 
         public void Rest()
@@ -185,6 +185,11 @@ namespace Diablo.Player
             if (myStamina > myMaxStamina)
             {
                 myStamina = myMaxStamina;
+            }
+            myMaxHealth = 100 * myStamina / 100;
+            if(myHealth > myMaxHealth * myStamina / 100)
+            {
+                myHealth = myMaxHealth;
             }
         }
 
@@ -401,9 +406,9 @@ namespace Diablo.Player
             {
                 myHPPotionAmount -= 1;
                 myHealth += 25;
-                if(myHealth > myMaxHealth)
+                if(myHealth > myMaxHealth * myStamina / 100)
                 {
-                    myHealth = myMaxHealth;
+                    myHealth = myMaxHealth * myStamina / 100;
                 }
             }
 
