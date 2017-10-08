@@ -67,8 +67,8 @@ namespace Diablo.Player
             myAgility = 5; // Antal procent chans det är att undvika en attack
             myMaxStamina = 120; // Antal procent av maxHP
             myStamina = myMaxStamina;
+            myLuck = 10; // Antal procent chans för att hitta extra loot
             /// TODO: Set base Intelligence and Wisdom
-            myLuck = 10; // Antal procent för att hitta extra loot
 
             myArmourRating = 10;
             myMaxHealth = 100;
@@ -186,11 +186,7 @@ namespace Diablo.Player
             {
                 myStamina = myMaxStamina;
             }
-            myMaxHealth = 100 * myStamina / 100;
-            if(myHealth > myMaxHealth * myStamina / 100)
-            {
-                myHealth = myMaxHealth;
-            }
+            myHealth += anAmountToAdd * 0.2f;
         }
 
         public void SubtractStamina(int anAmountToSubtract)
@@ -201,9 +197,18 @@ namespace Diablo.Player
                 myStamina = 10;
             }
             myMaxHealth = 100 * myStamina / 100;
+            if(myHealth > myMaxHealth * myStamina / 100)
+            {
+                myHealth = myMaxHealth;
+            }
         }
 
-        #region Inventory       
+        #region Inventory     
+        
+        /// <summary>
+        /// Equips the player with given item
+        /// </summary>
+        /// <param name="anItem">Item to equip</param>      
         public void Equip(Items.Item anItem)
         {
             Items.Item tempItem;
@@ -259,6 +264,10 @@ namespace Diablo.Player
             myArmourRating = myEquippedBoots.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedHelmet.GetArmourRating();
         }
 
+        /// <summary>
+        /// Equips all the best items in the list
+        /// </summary>
+        /// <param name="anItemList">List with items to equip</param>
         public void EquipBestItems(List<Items.Item> anItemList)
         {
             for (int i = 0; i < anItemList.Count; i++)
@@ -302,6 +311,9 @@ namespace Diablo.Player
             }
         }
 
+        /// <summary>
+        /// Opens the inventory and let's the player equip or use items
+        /// </summary>
         public void OpenInventory()
         {
             int
@@ -313,34 +325,37 @@ namespace Diablo.Player
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
             Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
-            Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
             Utilities.Utility.PrintInColour(" ▓ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
+            Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 10);
+            Console.Write("[3]");
+            Utilities.Utility.PrintInColour(" ▓ Scrolls", ConsoleColor.DarkMagenta);
+            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
             Utilities.Utility.PrintInColour(" ▓ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 7);
-            Console.Write("[3] ");
+            Console.Write("[4] ");
             Utilities.Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetArmourRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 6);
             Utilities.Utility.PrintInColour("╚═╝ " + myEquippedHelmet.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 4);
-            Console.Write("[4]");
+            Console.Write("[5]");
             Utilities.Utility.PrintInColour("╔╦═╦╗[" + myEquippedChestplate.GetArmourRating() + "]" + myEquippedChestplate.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 3);
             Utilities.Utility.PrintInColour("╚═╝ " + myEquippedChestplate.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 1);
-            Console.Write("[5] ");
+            Console.Write("[6] ");
             Utilities.Utility.PrintInColour("╔═╗ [" + myEquippedTrousers.GetArmourRating() + "]" + myEquippedTrousers.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2);
             Utilities.Utility.PrintInColour("║ ║ " + myEquippedTrousers.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 2);
-            Console.Write("[6] ");
+            Console.Write("[7] ");
             Utilities.Utility.PrintInColour("    [" + myEquippedBoots.GetArmourRating() + "]" + myEquippedBoots.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 3);
             Utilities.Utility.PrintInColour("╝ ╚ " + myEquippedBoots.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 7);
-            Console.Write("[7]");
+            Console.Write("[8]");
             Utilities.Utility.PrintInColour(@"/\  [" + myEquippedWeapon.GetDamage() + "]" + myEquippedWeapon.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 6);
             Utilities.Utility.PrintInColour(@"||  " + myEquippedWeapon.GetSuffix(), ConsoleColor.Gray);

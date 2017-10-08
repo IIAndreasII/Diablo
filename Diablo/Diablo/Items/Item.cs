@@ -68,8 +68,6 @@ namespace Diablo.Items
         #endregion
 
 
-        
-
         /// <summary>
         /// Gets a random item-type
         /// </summary>
@@ -144,23 +142,18 @@ namespace Diablo.Items
             {
                 case Type.HELMET:
                     myArmourRating = Utilities.Utility.myRNG.Next(1, 21);
-                    myDamage = 0;
                     break;
                 case Type.CHESTPLATE:
                     myArmourRating = Utilities.Utility.myRNG.Next(1, 31);
-                    myDamage = 0;
                     break;
                 case Type.TROUSERS:
                     myArmourRating = Utilities.Utility.myRNG.Next(1, 26);
-                    myDamage = 0;
                     break;
                 case Type.BOOTS:
                     myArmourRating = Utilities.Utility.myRNG.Next(1, 16);
-                    myDamage = 0;
                     break;
                 case Type.WEAPON:
                     myDamage = Utilities.Utility.myRNG.Next(1, 51);
-                    myArmourRating = 0;
                     break;
                 default:
                     myDamage = 0;
