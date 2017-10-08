@@ -91,6 +91,8 @@ namespace Diablo.Player
 
         public void Rest()
         {
+            
+
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
