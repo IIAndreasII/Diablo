@@ -11,12 +11,14 @@ namespace Diablo.Utilities
         public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
         static Player.Player myPlayer;
         static List<Room> myRooms;
+        
 
         static void Initialize()
         {
             Console.ForegroundColor = StandardTextColour;
             myPlayer = new Player.Player();
             myRooms = new List<Room>();
+            Managers.EnemyManager.Init();
         }
 
         static void Main(string[] args)
@@ -163,7 +165,8 @@ namespace Diablo.Utilities
                 tempWHD2 = Console.WindowHeight / 2;
             bool
                 tempHasFled = false;
-            while (myRooms[aRoomIndex].GetSkeletonCount() > 0 && !tempHasFled)
+            Managers.EnemyManager.SetEnemies(myRooms[aRoomIndex].GetSkeletons());
+            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled)
             {
                 Console.Clear();
                 switch (myPlayer.ChooseBattleAction())
@@ -226,17 +229,7 @@ namespace Diablo.Utilities
 
                         break;
                 }
-                for (int i = myRooms[aRoomIndex].GetSkeletons().Count; i > 0; i--)
-                {
-                    if (!myRooms[aRoomIndex].GetSkeletons()[i - 1].GetIsAlive())
-                    {
-                        myRooms[aRoomIndex].GetSkeletons().Remove(myRooms[aRoomIndex].GetSkeletons()[i - 1]);
-                    }
-                    else
-                    {
-                        myRooms[aRoomIndex].GetSkeletons()[i - 1].DealDamage(myPlayer);
-                    }
-                }
+                Managers.EnemyManager.BattleUpdate(myPlayer);
             }
             if(myPlayer.GetHealth() <= 0)
             {

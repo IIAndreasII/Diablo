@@ -196,8 +196,7 @@ namespace Diablo.Player
             {
                 myStamina = 10;
             }
-            myMaxHealth = 100 * myStamina / 100;
-            if(myHealth > myMaxHealth * myStamina / 100)
+            if(myHealth > myStamina)
             {
                 myHealth = myMaxHealth;
             }

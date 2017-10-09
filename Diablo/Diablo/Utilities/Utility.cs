@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Diablo.Utilities
 {
-    class Utility
+    static class Utility
     {
         public static Random myRNG = new Random();
 
