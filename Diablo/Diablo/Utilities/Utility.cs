@@ -209,6 +209,5 @@ namespace Diablo.Utilities
             Console.Write(aStringToPrint);
             Console.ForegroundColor = Program.StandardTextColour;
         }
-
     }
 }

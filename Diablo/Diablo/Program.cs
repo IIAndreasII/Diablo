@@ -263,6 +263,6 @@ namespace Diablo.Utilities
         {
             myRooms.Clear();
             myRooms.Add(new Room(Utility.myRNG.Next(1, myPlayer.GetLevel() + 2), 2));
-        } // Far from finished
+        } 
     }
 }
