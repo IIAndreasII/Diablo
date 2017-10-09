@@ -15,7 +15,7 @@ namespace Diablo.Enemies
             myDamage,
             myHealth;
         protected bool
-            myIsAlive;
+            myIsAlive = true;
 
         public void TakeDamage(int aDamageToTake, int aStrength)
         {

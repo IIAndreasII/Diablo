@@ -10,7 +10,19 @@ namespace Diablo.Enemies
     {
         public Archer(int aLevel, Type aType)
         {
-            
+            myLevel = aLevel;
+            if (myLevel == 1)
+            {
+                myArmourRating = 0;
+            }
+            else
+            {
+                myArmourRating = 4 * myLevel;
+            }
+            myDamage = 5 * myLevel;
+            myAgility = myLevel;
+            myStamina = 100 + myLevel * 5;
+            myHealth = 20 * myLevel * (float)myStamina / 100;
         }
     }
 }

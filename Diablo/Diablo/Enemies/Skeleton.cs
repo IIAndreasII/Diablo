@@ -6,7 +6,6 @@ namespace Diablo.Enemies
     { 
         public Skeleton(int aLevel)
         {
-            myIsAlive = true;
             myLevel = aLevel;
             if (aLevel == 1)
             {
