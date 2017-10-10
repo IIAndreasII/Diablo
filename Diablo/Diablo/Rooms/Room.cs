@@ -29,9 +29,9 @@ namespace Diablo
                 {
                     mySkeletons.Add(new Enemies.Skeleton(1));
                 }
-                myGold = Utilities.Utility.myRNG.Next(5, 20 * aNumberOfSkeletons + 1);
-                myHPPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons / 2);
-                myManaPotions = Utilities.Utility.myRNG.Next(0, aNumberOfSkeletons / 2);
+                myGold = Utilities.Utility.GetRNG().Next(5, 20 * aNumberOfSkeletons + 1);
+                myHPPotions = Utilities.Utility.GetRNG().Next(0, aNumberOfSkeletons / 2);
+                myManaPotions = Utilities.Utility.GetRNG().Next(0, aNumberOfSkeletons / 2);
             }
             else
             {

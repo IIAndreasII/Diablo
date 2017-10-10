@@ -22,8 +22,10 @@ namespace Diablo.Player
             myMaxMana,
 
             myDamage,
+            myTempDamage = 0,
             mySpellDamage,
             myArmourRating,
+            myTempArmourRating = 0,
 
             myGold,
             myHPPotionAmount,
@@ -43,8 +45,9 @@ namespace Diablo.Player
             myMaxStamina,
 
             myHealth,
+            myTempHealth = 0,
             myMaxHealth;
-
+        
         private bool
             myIsDefending;
 
@@ -91,8 +94,6 @@ namespace Diablo.Player
 
         public void Rest()
         {
-            
-
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
@@ -320,7 +321,7 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
 
-            #region Doodle Inventory
+            #region Doodle Sequence
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
             Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
@@ -377,7 +378,7 @@ namespace Diablo.Player
             #endregion
 
             Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < -1 || tempChoice > 7))
+            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < -1 || tempChoice > 8))
             {
                 Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
                 Console.Write(" \b");
@@ -391,6 +392,9 @@ namespace Diablo.Player
                 case 2:
                     DrinkManaPotion();
                     OpenInventory();
+                    break;
+                case 3:
+                    ViewScrolls();
                     break;
                 default:
                     break;
@@ -408,6 +412,24 @@ namespace Diablo.Player
                 }
             }
             anItemList.Clear(); /// Temporary line
+        }
+
+        private void ViewScrolls()
+        {
+            int
+               tempChoice,
+               tempWWD2 = Console.WindowWidth / 2,
+               tempWHD2 = Console.WindowHeight / 2,
+               tempTextOffset = tempWHD2 - 10;
+
+            PrintUI();
+            for (int i = 0; i < myInventory.Count + 5; i++)
+            {
+                /// TODO: MAke it sort out the scrolls from the inventory!
+                Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
+                Console.Write("[" + (i + 1) + "] ");
+            }
+            Console.ReadKey();
         }
 
         private void DrinkHPPotion()
@@ -510,7 +532,7 @@ namespace Diablo.Player
             {
                 tempAgility += 20;
             }
-            if (Utilities.Utility.myRNG.Next(1, 101) > tempAgility)
+            if (Utilities.Utility.GetRNG().Next(1, 101) > tempAgility)
             {
                 if (!myIsDefending)
                 {
@@ -654,6 +676,21 @@ namespace Diablo.Player
         public void SetIsDefending(bool aNewValue)
         {
             myIsDefending = aNewValue;
+        }
+
+        public void SetTempHealth(float aHealth)
+        {
+            myTempHealth = aHealth;
+        }
+
+        public void SetTempDamage(int aDamage)
+        {
+            myTempDamage = aDamage;
+        }
+
+        public void SetTempArmourRating(int anArmourRating)
+        {
+            myTempArmourRating = anArmourRating;
         }
 
         #endregion

@@ -27,7 +27,7 @@ namespace Diablo.Enemies
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 11);
             Console.Write("You swing your sword!");
             System.Threading.Thread.Sleep(1000);
-            if (Utilities.Utility.myRNG.Next(1, 101) > myAgility)
+            if (Utilities.Utility.GetRNG().Next(1, 101) > myAgility)
             {
                 myHealth -= tempDamageDealt;
                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);

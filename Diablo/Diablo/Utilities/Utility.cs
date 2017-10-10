@@ -7,7 +7,12 @@ namespace Diablo.Utilities
 {
     static class Utility
     {
-        public static Random myRNG = new Random();
+        private static Random myRNG = new Random();
+
+        public static Random GetRNG()
+        {
+            return myRNG;
+        }
 
         /// <summary>
         /// Generates all suffixes for items 

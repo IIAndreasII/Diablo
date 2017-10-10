@@ -12,26 +12,34 @@ namespace Diablo.Items
         TROUSERS,
         BOOTS,
         WEAPON,
-        SCROLL
+        SCROLL,
+        ERROR
     }
 
     public enum ScrollEffect
     {
         DMGBUFF,
-        HPBOOST,
-        ARMBUFF
+        HPBUFF,
+        ARMBUFF,
+        ERROR
     }
    
     class Item
     {
         Type 
             myType;
+        ScrollEffect
+            myScrollEffect;
         string 
             myPrefix,
             mySuffix;
         int
             myArmourRating,
-            myDamage;
+            myDamage,
+            myDamageBuff,
+            myArmourBuff;
+        float
+            myHealthBuff;
 
         #region Constructors
         public Item()
@@ -39,7 +47,20 @@ namespace Diablo.Items
             myType = GetRandomType();
             SetPrefix();
             SetSuffix();
-            SetArmourAndDamage();
+            SetRatings();
+        }
+
+        public Item(bool isScroll)
+        {
+            if (isScroll)
+            {
+                myType = Type.SCROLL;
+            }
+            else
+            {
+                myType = GetRandomType();
+            }
+            SetRatings();
         }
 
         public Item(Type aType)
@@ -47,7 +68,7 @@ namespace Diablo.Items
             myType = aType;
             SetPrefix();
             SetSuffix();
-            SetArmourAndDamage();
+            SetRatings();
         }
 
         public Item(Type aType, string aSuffix, int anArmourRating)
@@ -67,14 +88,13 @@ namespace Diablo.Items
         }
         #endregion
 
-
         /// <summary>
         /// Gets a random item-type
         /// </summary>
         /// <returns>A random type</returns>
         private Type GetRandomType()
         {
-            switch(Utilities.Utility.myRNG.Next(0, 6))
+            switch(Utilities.Utility.GetRNG().Next(0, 6))
             {
                 case 0:
                     return Type.HELMET;
@@ -89,7 +109,26 @@ namespace Diablo.Items
                 case 5:
                     return Type.SCROLL;
                 default:
-                    return Type.WEAPON;
+                    return Type.ERROR;
+            }
+        }
+
+        /// <summary>
+        /// Gets a random Scrolleffect
+        /// </summary>
+        /// <returns>A random scrolleffect</returns>
+        private ScrollEffect GetRandomEffect()
+        {
+            switch (Utilities.Utility.GetRNG().Next(0, 3))
+            {
+                case 0:
+                    return ScrollEffect.ARMBUFF;
+                case 1:
+                    return ScrollEffect.HPBUFF;
+                case 2:
+                    return ScrollEffect.DMGBUFF;
+                default:
+                    return ScrollEffect.ERROR;
             }
         }
 
@@ -136,28 +175,41 @@ namespace Diablo.Items
         /// <summary>
         /// Sets armour/damage based on type
         /// </summary>
-        private void SetArmourAndDamage()
+        private void SetRatings()
         {
             switch (myType)
             {
                 case Type.HELMET:
-                    myArmourRating = Utilities.Utility.myRNG.Next(1, 21);
+                    myArmourRating = Utilities.Utility.GetRNG().Next(1, 21);
                     break;
                 case Type.CHESTPLATE:
-                    myArmourRating = Utilities.Utility.myRNG.Next(1, 31);
+                    myArmourRating = Utilities.Utility.GetRNG().Next(1, 31);
                     break;
                 case Type.TROUSERS:
-                    myArmourRating = Utilities.Utility.myRNG.Next(1, 26);
+                    myArmourRating = Utilities.Utility.GetRNG().Next(1, 26);
                     break;
                 case Type.BOOTS:
-                    myArmourRating = Utilities.Utility.myRNG.Next(1, 16);
+                    myArmourRating = Utilities.Utility.GetRNG().Next(1, 16);
                     break;
                 case Type.WEAPON:
-                    myDamage = Utilities.Utility.myRNG.Next(1, 51);
+                    myDamage = Utilities.Utility.GetRNG().Next(1, 51);
+                    break;
+                case Type.SCROLL:
+                    myScrollEffect = GetRandomEffect();
+                    switch (myScrollEffect)
+                    {
+                        case ScrollEffect.ARMBUFF:
+                            myArmourBuff = 25;
+                            break;
+                        case ScrollEffect.HPBUFF:
+                            myHealthBuff = 50;
+                            break;
+                        case ScrollEffect.DMGBUFF:
+                            myDamageBuff = 20;
+                            break;
+                    }
                     break;
                 default:
-                    myDamage = 0;
-                    myArmourRating = 0;
                     break;
             }
         }
@@ -211,6 +263,21 @@ namespace Diablo.Items
         public int GetDamage()
         {
             return myDamage;
+        }
+
+        public int GetDamageBuff()
+        {
+            return myDamageBuff;
+        }
+
+        public int GetArmourBuff()
+        {
+            return myArmourBuff;
+        }
+
+        public float GetHealthBuff()
+        {
+            return myHealthBuff;
         }
         #endregion
     }
