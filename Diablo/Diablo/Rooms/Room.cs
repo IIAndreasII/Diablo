@@ -111,7 +111,8 @@ namespace Diablo
                         System.Threading.Thread.Sleep(1500);
                         break;
                     case 2:
-                        aPlayer.EquipBestItems(myLoot);
+                        aPlayer.AddItemsToInventory(myLoot);
+                        aPlayer.EquipBestItems();
                         aPlayer.AddGold(myGold);
                         aPlayer.AddHealthPotions(myHPPotions);
                         aPlayer.AddManaPotions(myManaPotions);

@@ -64,7 +64,7 @@ namespace Diablo.Utilities
             while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
             {
                 Console.SetCursorPosition(Console.WindowWidth / 2, 6);
-                Console.Write(" \b");
+                Console.Write(" ]\b\b");
             }
             switch (tempChoice)
             {
@@ -105,7 +105,7 @@ namespace Diablo.Utilities
             while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
             {
                 Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
-                Console.Write(" \b");
+                Console.Write(" ]\b\b");
             }
             switch (tempChoice)
             {
@@ -233,7 +233,6 @@ namespace Diablo.Utilities
                 }
                 Managers.EnemyManager.BattleUpdate(myPlayer);
                 myPlayer.UpdateScrollEffects();
-                Console.ReadKey();
             }
             if(myPlayer.GetHealth() <= 0)
             {

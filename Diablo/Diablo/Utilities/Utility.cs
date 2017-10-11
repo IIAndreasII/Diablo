@@ -9,6 +9,10 @@ namespace Diablo.Utilities
     {
         private static Random myRNG = new Random();
 
+        /// <summary>
+        /// Gets the random number generator
+        /// </summary>
+        /// <returns>An instance of the class 'Random'</returns>
         public static Random GetRNG()
         {
             return myRNG;

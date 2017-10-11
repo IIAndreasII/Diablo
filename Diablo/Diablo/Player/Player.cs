@@ -225,9 +225,9 @@ namespace Diablo.Player
             {
                 myStamina = 10;
             }
-            if(myHealth > myStamina)
+            if(myHealth > (float)myStamina / 100 * myMaxHealth)
             {
-                myHealth = myMaxHealth;
+                myHealth = (float)myStamina / 100 * myMaxHealth;
             }
         }
 
@@ -296,40 +296,40 @@ namespace Diablo.Player
         /// Equips all the best items in the list
         /// </summary>
         /// <param name="anItemList">List with items to equip</param>
-        public void EquipBestItems(List<Items.Item> anItemList)
+        public void EquipBestItems()
         {
-            for (int i = 0; i < anItemList.Count; i++)
+            for (int i = 0; i < myInventory.Count; i++)
             {
-                switch (anItemList[i].GetItemType())
+                switch (myInventory[i].GetItemType())
                 {
                     case Items.Type.HELMET:
-                        if(anItemList[i].GetArmourRating() > myEquippedHelmet.GetArmourRating())
+                        if(myInventory[i].GetArmourRating() > myEquippedHelmet.GetArmourRating())
                         {
-                            Equip(anItemList[i]);
+                            Equip(myInventory[i]);
                         }
                         break;
                     case Items.Type.CHESTPLATE:
-                        if(anItemList[i].GetArmourRating() > myEquippedChestplate.GetArmourRating())
+                        if(myInventory[i].GetArmourRating() > myEquippedChestplate.GetArmourRating())
                         {
-                            Equip(anItemList[i]);
+                            Equip(myInventory[i]);
                         }
                         break;
                     case Items.Type.TROUSERS:
-                        if (anItemList[i].GetArmourRating() > myEquippedTrousers.GetArmourRating())
+                        if (myInventory[i].GetArmourRating() > myEquippedTrousers.GetArmourRating())
                         {
-                            Equip(anItemList[i]);
+                            Equip(myInventory[i]);
                         }
                         break;
                     case Items.Type.BOOTS:
-                        if(anItemList[i].GetArmourRating() > myEquippedBoots.GetArmourRating())
+                        if(myInventory[i].GetArmourRating() > myEquippedBoots.GetArmourRating())
                         {
-                            Equip(anItemList[i]);
+                            Equip(myInventory[i]);
                         }
                         break;
                     case Items.Type.WEAPON:
-                        if (anItemList[i].GetDamage() > myEquippedWeapon.GetDamage())
+                        if (myInventory[i].GetDamage() > myEquippedWeapon.GetDamage())
                         {
-                            Equip(anItemList[i]);
+                            Equip(myInventory[i]);
                         }
                         break;
                     default:
@@ -399,6 +399,8 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("][", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2);
             Utilities.Utility.PrintInColour("()", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 1);
+            Console.Write("[9] Equip best gear");
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
             Console.Write("[0] Close inventory");
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 3);
@@ -406,10 +408,10 @@ namespace Diablo.Player
             #endregion
 
             Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < -1 || tempChoice > 8))
+            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < -1 || tempChoice > 9))
             {
                 Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-                Console.Write(" \b");
+                Console.Write(" ]\b\b");
             }
             switch (tempChoice)
             {
@@ -424,11 +426,15 @@ namespace Diablo.Player
                 case 3:
                     ViewScrolls();
                     break;
+                case 9:
+                    EquipBestItems();
+                    OpenInventory();
+                    break;
                 default:
                     break;
             }
             
-        }
+        } /// TODO: Add ability to equip best gear
 
         /// <summary>
         /// Adds items in the parameter-list to the inventory and clears the parameter-list
@@ -480,7 +486,7 @@ namespace Diablo.Player
             while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > myScrollList.Count))
             {
                 Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                Console.Write(" \b");
+                Console.Write(" ]\b\b");
             }
             if(tempChoice != 0)
             {
@@ -535,13 +541,15 @@ namespace Diablo.Player
         /// </summary>
         public void UpdateScrollEffects()
         {
-            foreach (Items.Item aScroll in myAppliedScrolls)
+            for (int i = myAppliedScrolls.Count; i > 0; i--)
             {
-                if (aScroll.Decay(this))
+                if (myAppliedScrolls[i - 1].Decay(this))
                 {
-                    myAppliedScrolls.Remove(aScroll);
+                    myAppliedScrolls.Remove(myAppliedScrolls[i - 1]);
                 }        
+
             }
+            
         }
 
         /// <summary>
@@ -759,7 +767,7 @@ namespace Diablo.Player
             while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
             {
                 Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
-                Console.Write(" \b");
+                Console.Write(" ]\b\b");
             }
             switch (tempChoice)
             {
@@ -865,17 +873,21 @@ namespace Diablo.Player
 
         public void SetTempHealth(float aHealth)
         {
-            myTempHealth = aHealth;
+            myTempHealth += aHealth;
+            if (myTempHealth < 0)
+            {
+                myTempHealth = 0;
+            }
         }
 
         public void SetTempStrength(int aDamage)
         {
-            myTempStrength = aDamage;
+            myTempStrength += aDamage;
         }
 
         public void SetTempArmourRating(int anArmourRating)
         {
-            myTempArmourRating = anArmourRating;
+            myTempArmourRating += anArmourRating;
         }
 
         #endregion

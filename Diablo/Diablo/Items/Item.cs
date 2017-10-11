@@ -192,13 +192,13 @@ namespace Diablo.Items
                 switch (myScrollEffect)
                 {
                     case ScrollEffect.ARMBUFF:
-                        aPlayer.SetTempArmourRating(0);
+                        aPlayer.SetTempArmourRating(-myArmourBuff);
                         break;
                     case ScrollEffect.HPBUFF:
-                        aPlayer.SetTempHealth(0);
+                        aPlayer.SetTempHealth(-myHealthBuff);
                         break;
                     case ScrollEffect.STRBUFF:
-                        aPlayer.SetTempStrength(0);
+                        aPlayer.SetTempStrength(-myStrengthBuff);
                         break;
                     case ScrollEffect.ERROR:
                         Console.WriteLine("Errors wore off");
