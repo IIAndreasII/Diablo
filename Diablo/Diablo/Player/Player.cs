@@ -469,7 +469,8 @@ namespace Diablo.Player
             for (int i = 0; i < myScrollList.Count; i++)
             {              
                 Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                Console.Write("[" + (i + 1) + "] " + myScrollList[i].GetFullName());
+                Console.Write("[" + (i + 1) + "] ");
+                Utilities.Utility.PrintInColour(myScrollList[i].GetFullName(), ConsoleColor.DarkMagenta);
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
             Console.Write("[0] Back");
