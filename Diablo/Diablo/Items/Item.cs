@@ -18,7 +18,7 @@ namespace Diablo.Items
 
     public enum ScrollEffect
     {
-        DMGBUFF,
+        STRBUFF,
         HPBUFF,
         ARMBUFF,
         ERROR
@@ -36,9 +36,8 @@ namespace Diablo.Items
         int
             myArmourRating,
             myDamage,
-            myDamageBuff,
-            myArmourBuff;
-        float
+            myStrengthBuff,
+            myArmourBuff,
             myHealthBuff;
 
         #region Constructors
@@ -55,12 +54,15 @@ namespace Diablo.Items
             if (isScroll)
             {
                 myType = Type.SCROLL;
+                myScrollEffect = GetRandomEffect();
             }
             else
             {
                 myType = GetRandomType();
             }
             SetRatings();
+            SetPrefix();
+            SetSuffix();
         }
 
         public Item(Type aType)
@@ -126,7 +128,7 @@ namespace Diablo.Items
                 case 1:
                     return ScrollEffect.HPBUFF;
                 case 2:
-                    return ScrollEffect.DMGBUFF;
+                    return ScrollEffect.STRBUFF;
                 default:
                     return ScrollEffect.ERROR;
             }
@@ -204,8 +206,8 @@ namespace Diablo.Items
                         case ScrollEffect.HPBUFF:
                             myHealthBuff = 50;
                             break;
-                        case ScrollEffect.DMGBUFF:
-                            myDamageBuff = 20;
+                        case ScrollEffect.STRBUFF:
+                            myStrengthBuff = 20;
                             break;
                     }
                     break;
@@ -215,6 +217,11 @@ namespace Diablo.Items
         }
 
         #region Get
+        public ScrollEffect GetScrollEffect()
+        {
+            return myScrollEffect;
+        }
+
         public Type GetItemType()
         {
             return myType;
@@ -265,9 +272,9 @@ namespace Diablo.Items
             return myDamage;
         }
 
-        public int GetDamageBuff()
+        public int GetStrengthBuff()
         {
-            return myDamageBuff;
+            return myStrengthBuff;
         }
 
         public int GetArmourBuff()
@@ -275,7 +282,7 @@ namespace Diablo.Items
             return myArmourBuff;
         }
 
-        public float GetHealthBuff()
+        public int GetHealthBuff()
         {
             return myHealthBuff;
         }

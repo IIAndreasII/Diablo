@@ -22,7 +22,7 @@ namespace Diablo.Player
             myMaxMana,
 
             myDamage,
-            myTempDamage = 0,
+            myTempStrength = 0,
             mySpellDamage,
             myArmourRating,
             myTempArmourRating = 0,
@@ -34,12 +34,14 @@ namespace Diablo.Player
 
             myLevel,
             myEXP,
-            
+
             myStrength,
             myAgility,
             myIntelligence,
             myWisdom,
-            myLuck;
+            myLuck,
+
+            myScrollDuration = 0;
         private float
             myStamina,
             myMaxStamina,
@@ -90,6 +92,8 @@ namespace Diablo.Player
             myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
             myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
             myEquippedWeapon = new Items.Item(Items.Type.WEAPON, 15, "Basicness");
+
+            myInventory.Add(new Items.Item(true));
         }
 
         public void Rest()
@@ -127,7 +131,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour("  " + myHealth + @"/" + myMaxHealth, ConsoleColor.Red);
+            Utilities.Utility.PrintInColour("  " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 5);
@@ -139,7 +143,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  Arm: " + (myEquippedHelmet.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedBoots.GetArmourRating()).ToString(), ConsoleColor.Gray);
+            Utilities.Utility.PrintInColour(@"  Arm: " + (myEquippedHelmet.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedBoots.GetArmourRating() + myTempArmourRating).ToString(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 5);
@@ -151,7 +155,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 8);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 9);
-            Utilities.Utility.PrintInColour(@"  Str: " + myStrength.ToString(), ConsoleColor.DarkRed);
+            Utilities.Utility.PrintInColour(@"  Str: " + (myStrength + myTempStrength), ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 10);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 8);
@@ -422,14 +426,85 @@ namespace Diablo.Player
                tempWHD2 = Console.WindowHeight / 2,
                tempTextOffset = tempWHD2 - 10;
 
-            PrintUI();
-            for (int i = 0; i < myInventory.Count + 5; i++)
+            List<Items.Item> tempScrollList = new List<Items.Item>();
+            foreach (Items.Item item in myInventory)
             {
-                /// TODO: MAke it sort out the scrolls from the inventory!
-                Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                Console.Write("[" + (i + 1) + "] ");
+                if (item.GetItemType() == Items.Type.SCROLL)
+                {
+                    tempScrollList.Add(item);
+                }
             }
-            Console.ReadKey();
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
+            Console.Write("Available scrolls:");
+            for (int i = 0; i < tempScrollList.Count; i++)
+            {              
+                Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
+                Console.Write("[" + (i + 1) + "] " + tempScrollList[i].GetFullName());
+            }
+
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
+            Console.Write("[0] Back");
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > tempScrollList.Count))
+            {
+                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+                Console.Write(" \b");
+            }
+            if(tempChoice != 0)
+            {
+                ApplyScrollEffect(tempScrollList[tempChoice - 1]);
+                PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
+                Console.Write("Effect applied!");
+                string tempEffect = string.Empty;
+                int tempEffectAmount = 0;
+                switch(tempScrollList[tempChoice - 1].GetScrollEffect())
+                {
+                    case Items.ScrollEffect.ARMBUFF:
+                        tempEffect = "temporary armour!";
+                        tempEffectAmount = tempScrollList[tempChoice - 1].GetArmourBuff();
+                        break;
+                    case Items.ScrollEffect.HPBUFF:
+                        tempEffect = "temporary health!";
+                        tempEffectAmount = tempScrollList[tempChoice - 1].GetHealthBuff();
+                        break;
+                    case Items.ScrollEffect.STRBUFF:
+                        tempEffect = "temporary strength!";
+                        tempEffectAmount = tempScrollList[tempChoice - 1].GetStrengthBuff();
+                        break;
+                    case Items.ScrollEffect.ERROR:
+                        tempEffect = "temporary errors!";
+                        tempEffectAmount = 5000;
+                        break;
+                }
+                Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
+                Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
+                Console.Write(tempEffect);
+                System.Threading.Thread.Sleep(2000);
+            }
+        }
+
+        private void ApplyScrollEffect(Items.Item aScroll)
+        {
+            switch (aScroll.GetScrollEffect())
+            {
+                case Items.ScrollEffect.ARMBUFF:
+                    myTempArmourRating = aScroll.GetArmourBuff();
+                    break;
+                case Items.ScrollEffect.STRBUFF:
+                    myTempStrength = aScroll.GetStrengthBuff();
+                    break;
+                case Items.ScrollEffect.HPBUFF:
+                    myTempHealth = aScroll.GetHealthBuff();
+                    break;
+                case Items.ScrollEffect.ERROR:
+                    Console.WriteLine("ERROR!");
+                    break;      
+            }
+            myScrollDuration = 2;
         }
 
         private void DrinkHPPotion()
@@ -685,7 +760,7 @@ namespace Diablo.Player
 
         public void SetTempDamage(int aDamage)
         {
-            myTempDamage = aDamage;
+            myTempStrength = aDamage;
         }
 
         public void SetTempArmourRating(int anArmourRating)
