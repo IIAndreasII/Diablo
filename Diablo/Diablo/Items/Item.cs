@@ -38,7 +38,8 @@ namespace Diablo.Items
             myDamage,
             myStrengthBuff,
             myArmourBuff,
-            myHealthBuff;
+            myHealthBuff,
+            myScrollDuration = 2;
 
         #region Constructors
         public Item()
@@ -175,7 +176,46 @@ namespace Diablo.Items
         }
 
         /// <summary>
-        /// Sets armour/damage based on type
+        /// Decays the scroll-effect, returns true if the effect has decayed
+        /// </summary>
+        /// <param name="aPlayer">The player to affect</param>
+        /// <returns>Returns true if the scroll-effect has decayed</returns>
+        public bool Decay(Player.Player aPlayer)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+
+            myScrollDuration -= 1;
+            if (myScrollDuration <= 0)
+            {
+                switch (myScrollEffect)
+                {
+                    case ScrollEffect.ARMBUFF:
+                        aPlayer.SetTempArmourRating(0);
+                        break;
+                    case ScrollEffect.HPBUFF:
+                        aPlayer.SetTempHealth(0);
+                        break;
+                    case ScrollEffect.STRBUFF:
+                        aPlayer.SetTempStrength(0);
+                        break;
+                    case ScrollEffect.ERROR:
+                        Console.WriteLine("Errors wore off");
+                        break;
+                }
+                aPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                Console.Write("Scroll-effect wore off!");
+                System.Threading.Thread.Sleep(1500);
+                return true;
+            }
+            return false;
+        }
+
+        #region Set
+        /// <summary>
+        /// Sets armour/damage/effect based on type
         /// </summary>
         private void SetRatings()
         {
@@ -216,7 +256,18 @@ namespace Diablo.Items
             }
         }
 
+        public void SetScrollDuration(int aDuration)
+        {
+            myScrollDuration = aDuration;
+        }
+        #endregion
+
         #region Get
+        public int GetScrollDuration()
+        {
+            return myScrollDuration;
+        }
+
         public ScrollEffect GetScrollEffect()
         {
             return myScrollEffect;

@@ -58,14 +58,19 @@ namespace Diablo
                 {
                     Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
                     Console.Write("[" + (i + 3) + "] ");
-                    if (myLoot[i].GetArmourRating() > 0)
+                    switch (myLoot[i].GetItemType())
                     {
-                        Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                        case Items.Type.SCROLL:
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
+                            break;
+                        case Items.Type.WEAPON:
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetDamage() + "]", ConsoleColor.Gray);
+                            break;
+                        default:
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                            break;
                     }
-                    else
-                    {
-                        Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetDamage() + "]", ConsoleColor.Gray);
-                    }
+
                     if(i == myLoot.Count - 1)
                     {
                         Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);

@@ -126,6 +126,7 @@ namespace Diablo.Utilities
             Play();
         }
 
+        // Move this to Room.cs when procedural generation is a thing
         static void EnterRoom(int aRoomIndex)
         {
             Console.Clear();
@@ -158,6 +159,7 @@ namespace Diablo.Utilities
             
         }
 
+        // Move this as well
         static void BattleSequence(int aRoomIndex)
         {
             int
@@ -199,9 +201,9 @@ namespace Diablo.Utilities
                     case Player.BattleActions.DEFEND:
 
                         myPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
+                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                         Console.Write("You raise your defences and");
-                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
                         Console.Write("brace for a strike!");
                         myPlayer.SetIsDefending(true);
                         System.Threading.Thread.Sleep(2000);
@@ -230,6 +232,8 @@ namespace Diablo.Utilities
                         break;
                 }
                 Managers.EnemyManager.BattleUpdate(myPlayer);
+                myPlayer.UpdateScrollEffects();
+                Console.ReadKey();
             }
             if(myPlayer.GetHealth() <= 0)
             {
@@ -244,7 +248,7 @@ namespace Diablo.Utilities
                 myPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                 Console.Write("All enemies were defeated!");
-                myPlayer.SubtractStamina(20);
+                myPlayer.SubtractStamina(10);
                 System.Threading.Thread.Sleep(2000);
                 myPlayer.PrintUI();
                 myRooms[aRoomIndex].LootSequence(myPlayer);

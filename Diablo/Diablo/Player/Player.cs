@@ -14,7 +14,7 @@ namespace Diablo.Player
         ABSTAIN
     }
 
-    class Player /// TODO: Add summaries
+    class Player
     {
         #region Variables
         private int
@@ -39,9 +39,8 @@ namespace Diablo.Player
             myAgility,
             myIntelligence,
             myWisdom,
-            myLuck,
+            myLuck;
 
-            myScrollDuration = 0;
         private float
             myStamina,
             myMaxStamina,
@@ -54,7 +53,9 @@ namespace Diablo.Player
             myIsDefending;
 
         private List<Items.Item> 
-            myInventory;
+            myInventory,
+            myScrollList,
+            myAppliedScrolls;
 
         private Items.Item
             myEquippedHelmet,
@@ -87,15 +88,20 @@ namespace Diablo.Player
             myManaPotionAmount = 1;
             myInventoryCapacity = 50;
             myInventory = new List<Items.Item>();
+            myScrollList = new List<Items.Item>();
+            myAppliedScrolls = new List<Items.Item>();
             myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
             myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4);
             myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
             myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
             myEquippedWeapon = new Items.Item(Items.Type.WEAPON, 15, "Basicness");
 
-            myInventory.Add(new Items.Item(true));
+            myScrollList.Add(new Items.Item(true));
         }
 
+        /// <summary>
+        /// Recharges stamina
+        /// </summary>
         public void Rest()
         {
             int
@@ -103,8 +109,9 @@ namespace Diablo.Player
                 tempWHD2 = Console.WindowHeight / 2;
             if (myGold - 10 < 0)
             {
-                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 5);
+                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 3);
                 Console.Write("Insufficient funds!");
+                System.Threading.Thread.Sleep(750);
             }
             else
             {
@@ -112,14 +119,19 @@ namespace Diablo.Player
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                 Console.Write("You light a fire and rest.");
                 System.Threading.Thread.Sleep(2000);
-                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                Console.Write("You re-gained 20 stamina!");
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
+                Console.Write("You re-gained ");
+                Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
+                Console.Write(" stamina!");
                 System.Threading.Thread.Sleep(1500);
                 AddStamina(20);
                 SubtractGold(10);
             }
         }
 
+        /// <summary>
+        /// Prints UI
+        /// </summary>
         public void PrintUI()
         {
             int
@@ -131,7 +143,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour("  " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
+            Utilities.Utility.PrintInColour(" " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 5);
@@ -184,6 +196,10 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
         }
 
+        /// <summary>
+        /// Adds given amount of stamina
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
         public void AddStamina(int anAmountToAdd)
         {
             myStamina += anAmountToAdd;
@@ -192,8 +208,16 @@ namespace Diablo.Player
                 myStamina = myMaxStamina;
             }
             myHealth += anAmountToAdd * 0.2f;
+            if(myHealth > ((float)myMaxStamina / 100) * myMaxHealth)
+            {
+                myHealth = myMaxHealth * (float)myMaxStamina / 100;
+            }
         }
 
+        /// <summary>
+        /// Subtracts stamina with a lower threshold of 10
+        /// </summary>
+        /// <param name="anAmountToSubtract">The amount to subtract</param>
         public void SubtractStamina(int anAmountToSubtract)
         {
             myStamina -= anAmountToSubtract;
@@ -406,18 +430,32 @@ namespace Diablo.Player
             
         }
 
+        /// <summary>
+        /// Adds items in the parameter-list to the inventory and clears the parameter-list
+        /// </summary>
+        /// <param name="anItemList">Items to add</param>
         public void AddItemsToInventory(List<Items.Item> anItemList)
         {
             for (int i = 0; i < anItemList.Count; i++)
             {
                 if (myInventory.Count < myInventoryCapacity)
                 {
-                    myInventory.Add(anItemList[i]);
+                    if (anItemList[i].GetItemType() != Items.Type.SCROLL)
+                    {
+                        myInventory.Add(anItemList[i]);
+                    }
+                    else
+                    {
+                        myScrollList.Add(anItemList[i]);
+                    }
                 }
             }
-            anItemList.Clear(); /// Temporary line
+            anItemList.Clear();
         }
 
+        /// <summary>
+        /// Displays all available scrolls
+        /// </summary>
         private void ViewScrolls()
         {
             int
@@ -425,60 +463,33 @@ namespace Diablo.Player
                tempWWD2 = Console.WindowWidth / 2,
                tempWHD2 = Console.WindowHeight / 2,
                tempTextOffset = tempWHD2 - 10;
-            List<Items.Item> 
-                tempScrollList = new List<Items.Item>();
-            foreach (Items.Item item in myInventory)
-            {
-                if (item.GetItemType() == Items.Type.SCROLL)
-                {
-                    tempScrollList.Add(item);
-                }
-            }
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
             Console.Write("Available scrolls:");
-            for (int i = 0; i < tempScrollList.Count; i++)
+            for (int i = 0; i < myScrollList.Count; i++)
             {              
                 Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                Console.Write("[" + (i + 1) + "] " + tempScrollList[i].GetFullName());
+                Console.Write("[" + (i + 1) + "] " + myScrollList[i].GetFullName());
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
             Console.Write("[0] Back");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > tempScrollList.Count))
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > myScrollList.Count))
             {
                 Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
                 Console.Write(" \b");
             }
             if(tempChoice != 0)
             {
-                ApplyScrollEffect(tempScrollList[tempChoice - 1]);
+                string tempEffect;
+                int tempEffectAmount;
+                ApplyScrollEffect(myScrollList[tempChoice - 1], out tempEffect, out tempEffectAmount);
                 PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
                 Console.Write("Effect applied!");
-                string tempEffect = string.Empty;
-                int tempEffectAmount = 0;
-                switch(tempScrollList[tempChoice - 1].GetScrollEffect())
-                {
-                    case Items.ScrollEffect.ARMBUFF:
-                        tempEffect = "temporary armour!";
-                        tempEffectAmount = tempScrollList[tempChoice - 1].GetArmourBuff();
-                        break;
-                    case Items.ScrollEffect.HPBUFF:
-                        tempEffect = "temporary health!";
-                        tempEffectAmount = tempScrollList[tempChoice - 1].GetHealthBuff();
-                        break;
-                    case Items.ScrollEffect.STRBUFF:
-                        tempEffect = "temporary strength!";
-                        tempEffectAmount = tempScrollList[tempChoice - 1].GetStrengthBuff();
-                        break;
-                    case Items.ScrollEffect.ERROR:
-                        tempEffect = "temporary errors!";
-                        tempEffectAmount = 5000;
-                        break;
-                }
+                myScrollList.RemoveAt(tempChoice - 1);
                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
                 Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
                 Console.Write(tempEffect);
@@ -486,37 +497,55 @@ namespace Diablo.Player
             }
         }
 
-        private void ApplyScrollEffect(Items.Item aScroll)
+        /// <summary>
+        /// Applies the scrolleffect to the player
+        /// </summary>
+        /// <param name="aScroll">A scroll which's effect shall be applied</param>
+        private void ApplyScrollEffect(Items.Item aScroll, out string anEffect, out int anEffectAmount)
         {
+            myAppliedScrolls.Add(aScroll);
+            anEffectAmount = 0;
+            anEffect = string.Empty;
             switch (aScroll.GetScrollEffect())
             {
                 case Items.ScrollEffect.ARMBUFF:
                     myTempArmourRating = aScroll.GetArmourBuff();
+                    anEffectAmount = aScroll.GetArmourBuff();
+                    anEffect = "temporary armour!";
                     break;
                 case Items.ScrollEffect.STRBUFF:
                     myTempStrength = aScroll.GetStrengthBuff();
+                    anEffectAmount = aScroll.GetStrengthBuff();
+                    anEffect = "temporary strength!";
                     break;
                 case Items.ScrollEffect.HPBUFF:
                     myTempHealth = aScroll.GetHealthBuff();
+                    anEffectAmount = aScroll.GetHealthBuff();
+                    anEffect = "temporary health!";
                     break;
                 case Items.ScrollEffect.ERROR:
                     Console.WriteLine("ERROR!");
-                    break;      
+                    break;
             }
-            myScrollDuration = 2;
         }
 
+        /// <summary>
+        /// Updates the applied scrolleffects
+        /// </summary>
         public void UpdateScrollEffects()
         {
-            myScrollDuration -= 1;
-            if(myScrollDuration <= 0)
+            foreach (Items.Item aScroll in myAppliedScrolls)
             {
-                myTempArmourRating = 0;
-                myTempHealth = 0;
-                myTempStrength = 0;
+                if (aScroll.Decay(this))
+                {
+                    myAppliedScrolls.Remove(aScroll);
+                }        
             }
         }
 
+        /// <summary>
+        /// Consumes 1 hp-potion if the player has one or more
+        /// </summary>
         private void DrinkHPPotion()
         {
             int
@@ -544,6 +573,9 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1500);
         }
 
+        /// <summary>
+        /// Consumes 1 mana-potion if the player has one or more
+        /// </summary>
         private void DrinkManaPotion()
         {
             int
@@ -571,6 +603,10 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1500);
         }
 
+        /// <summary>
+        /// Adds the given amount of hp-potions
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
         public void AddHealthPotions(int anAmountToAdd)
         {
             if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
@@ -579,6 +615,10 @@ namespace Diablo.Player
             }
         }
 
+        /// <summary>
+        /// Adds the given amount of mana-potions
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
         public void AddManaPotions(int anAmountToAdd)
         {
             if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
@@ -587,28 +627,74 @@ namespace Diablo.Player
             }
         }
 
+        /// <summary>
+        /// Adds the given amount of gold
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
         public void AddGold(int anAmountToAdd)
         {
             myGold += anAmountToAdd;
         }
 
-        public void SubtractGold(int anAmountToSubtract)
+        /// <summary>
+        /// Subtracts the given amount of gold if the player has at least that amount
+        /// </summary>
+        /// <param name="anAmountToSubtract">The amount to subtract</param>
+        /// <returns>Returns true if the operation was successful</returns>
+        public bool SubtractGold(int anAmountToSubtract)
         {
-            myGold -= anAmountToSubtract;
+            if (myGold >= anAmountToSubtract)
+            {
+                myGold -= anAmountToSubtract;
+                return true;
+            }
+            return false;
         }
         #endregion
 
         #region Battle
+        /// <summary>
+        /// Deals damage to given enemy
+        /// </summary>
+        /// <param name="aSkeleton">A skeleton to damage</param>
         public void DealDamage(Enemies.Skeleton aSkeleton)
         {
             aSkeleton.TakeDamage(myDamage, myStrength + myTempStrength);
         }
 
+        /// <summary>
+        /// Deals damage to given enemy
+        /// </summary>
+        /// <param name="aSkeleton">A skeleton to damage</param>
         public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
         {
             aSkeleton.TakeDamage(aDamage, myStrength + myTempStrength);     
         }
 
+        /// <summary>
+        /// Deals damage to given enemy
+        /// </summary>
+        /// <param name="anArcher">A skeleton to damage</param>
+        public void DealDamage(Enemies.Archer anArcher)
+        {
+            anArcher.TakeDamage(myDamage, myStrength + myTempStrength);
+        }
+
+        /// <summary>
+        /// Deals damage to given enemy
+        /// </summary>
+        /// <param name="anArcher">A skeleton to damage</param>
+        public void DealDamage(Enemies.Archer anArcher, int aDamage)
+        {
+            anArcher.TakeDamage(aDamage, myStrength + myTempStrength);
+        }
+
+        /// <summary>
+        /// Makes the player take damage
+        /// </summary>
+        /// <param name="aDamage">A damage to take</param>
+        /// <param name="DamageTaken">When the method returns, a value on given parameter is set and spat out</param>
+        /// <returns>Returns false if no damage was taken</returns>
         public bool TakeDamage(float aDamage, out float DamageTaken)
         {
             int tempAgility = myAgility;
@@ -647,6 +733,10 @@ namespace Diablo.Player
             }
         }
 
+        /// <summary>
+        /// Let's the player choose what to do during a battle
+        /// </summary>
+        /// <returns>Returns chosen action</returns>
         public BattleActions ChooseBattleAction()
         {
             int 
@@ -777,7 +867,7 @@ namespace Diablo.Player
             myTempHealth = aHealth;
         }
 
-        public void SetTempDamage(int aDamage)
+        public void SetTempStrength(int aDamage)
         {
             myTempStrength = aDamage;
         }
