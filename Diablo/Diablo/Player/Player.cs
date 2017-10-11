@@ -404,7 +404,7 @@ namespace Diablo.Player
                     break;
             }
             
-        } /// TODO: Finish this
+        }
 
         public void AddItemsToInventory(List<Items.Item> anItemList)
         {
@@ -425,8 +425,8 @@ namespace Diablo.Player
                tempWWD2 = Console.WindowWidth / 2,
                tempWHD2 = Console.WindowHeight / 2,
                tempTextOffset = tempWHD2 - 10;
-
-            List<Items.Item> tempScrollList = new List<Items.Item>();
+            List<Items.Item> 
+                tempScrollList = new List<Items.Item>();
             foreach (Items.Item item in myInventory)
             {
                 if (item.GetItemType() == Items.Type.SCROLL)
@@ -442,7 +442,6 @@ namespace Diablo.Player
                 Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
                 Console.Write("[" + (i + 1) + "] " + tempScrollList[i].GetFullName());
             }
-
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
             Console.Write("[0] Back");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
@@ -505,6 +504,17 @@ namespace Diablo.Player
                     break;      
             }
             myScrollDuration = 2;
+        }
+
+        public void UpdateScrollEffects()
+        {
+            myScrollDuration -= 1;
+            if(myScrollDuration <= 0)
+            {
+                myTempArmourRating = 0;
+                myTempHealth = 0;
+                myTempStrength = 0;
+            }
         }
 
         private void DrinkHPPotion()
@@ -591,13 +601,12 @@ namespace Diablo.Player
         #region Battle
         public void DealDamage(Enemies.Skeleton aSkeleton)
         {
-            aSkeleton.TakeDamage(myDamage, myStrength);
+            aSkeleton.TakeDamage(myDamage, myStrength + myTempStrength);
         }
 
         public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
         {
-            aSkeleton.TakeDamage(aDamage, myStrength);
-            
+            aSkeleton.TakeDamage(aDamage, myStrength + myTempStrength);     
         }
 
         public bool TakeDamage(float aDamage, out float DamageTaken)
@@ -611,12 +620,22 @@ namespace Diablo.Player
             {
                 if (!myIsDefending)
                 {
-                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f;
-                    myHealth -= DamageTaken;
+                    DamageTaken = aDamage - aDamage * ((float)myArmourRating + (float)myTempArmourRating) / 100f;       
                 }
                 else
                 {
-                    DamageTaken = aDamage - aDamage * (float)myArmourRating / 100f - aDamage * 0.6f;
+                    DamageTaken = aDamage - aDamage * ((float)myArmourRating + (float)myTempArmourRating) / 100f - aDamage * 0.6f;
+                }
+                if(myTempHealth > 0)
+                {
+                    myTempHealth -= DamageTaken;
+                    if(myTempHealth < 0)
+                    {
+                        myHealth += myTempHealth;
+                    }
+                }
+                else
+                {
                     myHealth -= DamageTaken;
                 }
                 return true;
