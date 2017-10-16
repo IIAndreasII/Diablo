@@ -5,12 +5,22 @@ using System.Threading.Tasks;
 
 namespace Diablo
 {
+    public enum Doors
+    {
+        RIGHT,
+        LEFT,
+        UP,
+        DOWN
+    }
+
     class Room
     {
         List<Enemies.Skeleton> 
             mySkeletons;
         List<Items.Item> 
             myLoot;
+        Doors[]
+            myDoors= new Doors[4];
         int
             myGold,
             myHPPotions,
@@ -145,11 +155,21 @@ namespace Diablo
         {
             return myAreHostilesPresent;
         }
+        public Doors[] GetDoors()
+        {
+            return myDoors;
+        }
 
+        #endregion
+
+        #region Set
         public void SetIsHostilesPresent(bool aNewValue)
         {
             myAreHostilesPresent = aNewValue;
         }
+
+
+
         #endregion
     }
 }

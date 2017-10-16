@@ -295,7 +295,6 @@ namespace Diablo.Player
         /// <summary>
         /// Equips all the best items in the list
         /// </summary>
-        /// <param name="anItemList">List with items to equip</param>
         public void EquipBestItems()
         {
             for (int i = 0; i < myInventory.Count; i++)
@@ -547,9 +546,7 @@ namespace Diablo.Player
                 {
                     myAppliedScrolls.Remove(myAppliedScrolls[i - 1]);
                 }        
-
-            }
-            
+            }        
         }
 
         /// <summary>
@@ -675,6 +672,7 @@ namespace Diablo.Player
         /// Deals damage to given enemy
         /// </summary>
         /// <param name="aSkeleton">A skeleton to damage</param>
+        /// <param name="aDamage">The damage the skeleton shall take</param>
         public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
         {
             aSkeleton.TakeDamage(aDamage, myStrength + myTempStrength);     
@@ -693,13 +691,14 @@ namespace Diablo.Player
         /// Deals damage to given enemy
         /// </summary>
         /// <param name="anArcher">A skeleton to damage</param>
+        /// <param name="aDamage">The damage the archer shall take</param>
         public void DealDamage(Enemies.Archer anArcher, int aDamage)
         {
             anArcher.TakeDamage(aDamage, myStrength + myTempStrength);
         }
 
         /// <summary>
-        /// Makes the player take damage
+        /// Makes the player take damage. Returns false if no damage was taken
         /// </summary>
         /// <param name="aDamage">A damage to take</param>
         /// <param name="DamageTaken">When the method returns, a value on given parameter is set and spat out</param>
@@ -743,7 +742,7 @@ namespace Diablo.Player
         }
 
         /// <summary>
-        /// Let's the player choose what to do during a battle
+        /// Let's the player choose what to do during a battle. Returns chosen action
         /// </summary>
         /// <returns>Returns chosen action</returns>
         public BattleActions ChooseBattleAction()
@@ -889,7 +888,6 @@ namespace Diablo.Player
         {
             myTempArmourRating += anArmourRating;
         }
-
         #endregion
     }  
 }

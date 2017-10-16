@@ -8,7 +8,7 @@ namespace Diablo.Enemies
 {
     class Archer : Enemy
     {
-        public Archer(int aLevel, Type aType)
+        public Archer(int aLevel)
         {
             myLevel = aLevel;
             if (myLevel == 1)
@@ -17,10 +17,10 @@ namespace Diablo.Enemies
             }
             else
             {
-                myArmourRating = 4 * myLevel;
+                myArmourRating = 3 * myLevel;
             }
             myDamage = 5 * myLevel;
-            myAgility = myLevel;
+            myAgility = 3 * myLevel;
             myStamina = 100 + myLevel * 5;
             myHealth = 20 * myLevel * (float)myStamina / 100;
         }

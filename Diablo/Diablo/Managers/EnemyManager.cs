@@ -80,5 +80,11 @@ namespace Diablo.Managers
                 return false;
             }
         }
+
+        public static void Reset()
+        {
+            mySkeletons.Clear();
+            myArchers.Clear();
+        }
     }
 }
