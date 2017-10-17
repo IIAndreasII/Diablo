@@ -10,7 +10,8 @@ namespace Diablo
         RIGHT,
         LEFT,
         UP,
-        DOWN
+        DOWN,
+        FAULTYDOOR
     }
 
     class Room
@@ -19,18 +20,25 @@ namespace Diablo
             mySkeletons;
         List<Items.Item> 
             myLoot;
-        Doors[]
-            myDoors= new Doors[4];
+        List<Doors>
+            myDoors= new List<Doors>();
+        Room
+            myRoomToLeft,
+            myRoomToRight,
+            myRoomUpward,
+            myRoomDownward;
         int
             myGold,
             myHPPotions,
-            myManaPotions;
+            myManaPotions,
+            myXPos,
+            myYPos;
         bool 
             myAreHostilesPresent;
 
         public Room(int aNumberOfSkeletons, int anAmountOfItems)
         {
-            mySkeletons = new List<Enemies.Skeleton>();
+            mySkeletons = new List<Enemies.Skeleton>();   /// Change all this!!!!!
             myLoot = new List<Items.Item>();
             if (aNumberOfSkeletons > 0)
             {
@@ -155,9 +163,20 @@ namespace Diablo
         {
             return myAreHostilesPresent;
         }
-        public Doors[] GetDoors()
+
+        public List<Doors> GetDoors()
         {
             return myDoors;
+        }
+
+        public int GetXPosition()
+        {
+            return myXPos;
+        }
+
+        public int GetYPosition()
+        {
+            return myYPos;
         }
 
         #endregion
@@ -168,7 +187,24 @@ namespace Diablo
             myAreHostilesPresent = aNewValue;
         }
 
+        public void SetDoors(List<Doors> someDoors)
+        {
+            myDoors = someDoors;
+        }
 
+        public void AddDoor(Doors aDoor)
+        {
+            if (!myDoors.Contains(aDoor))
+            {
+                myDoors.Add(aDoor);
+            }
+        }
+
+        public void SetPosition(int anXValue, int aYValue)
+        {
+            myXPos = anXValue;
+            myYPos = aYValue;
+        }
 
         #endregion
     }
