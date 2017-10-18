@@ -50,6 +50,7 @@ namespace Diablo.Dungeon
                 {
                     case Doors.UP:
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1] = new Room(2, 3);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1].AddDoor(Doors.DOWN);
                         break;
                     case Doors.DOWN:
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(2, 3);
@@ -116,7 +117,10 @@ namespace Diablo.Dungeon
 
                 foreach (Doors item in myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY].GetDoors())
                 {
-                    Generate(myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY], item, aNumberOfRooms);
+                    if (tempPrevDoor != item)
+                    {
+                        Generate(myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY], item, aNumberOfRooms);
+                    }
                 }
             }
 
