@@ -54,12 +54,15 @@ namespace Diablo.Dungeon
                         break;
                     case Doors.DOWN:
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(2, 3);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1].AddDoor(Doors.UP);
                         break;
                     case Doors.RIGHT:
                         myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()] = new Room(2, 3);
+                        myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()].AddDoor(Doors.LEFT);
                         break;
                     case Doors.LEFT:
                         myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()] = new Room(2, 3);
+                        myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()].AddDoor(Doors.RIGHT);
                         break;
                 }
                 return;
