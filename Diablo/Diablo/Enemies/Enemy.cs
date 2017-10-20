@@ -17,6 +17,11 @@ namespace Diablo.Enemies
         protected bool
             myIsAlive = true;
 
+        /// <summary>
+        /// As the name suggests, it makes the enemy take damage
+        /// </summary>
+        /// <param name="aDamageToTake">The damage that will be taken</param>
+        /// <param name="aStrength">A strength modifier, increasing the damage a bit</param>
         public void TakeDamage(int aDamageToTake, int aStrength)
         {
             int
@@ -50,6 +55,10 @@ namespace Diablo.Enemies
             System.Threading.Thread.Sleep(2000);
         }
 
+        /// <summary>
+        /// Deals dmage to given player
+        /// </summary>
+        /// <param name="aPlayer">The player the damage will be dealt upon</param>
         public void DealDamage(Player.Player aPlayer)
         {
             int

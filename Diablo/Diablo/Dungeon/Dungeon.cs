@@ -35,15 +35,25 @@ namespace Diablo.Dungeon
             }
             foreach (Doors item in myRooms[tempX, tempY].GetDoors())
             {
-                Generate(myRooms[tempX, tempY], item, aNumberOfRooms);
+                Generate(myRooms[tempX, tempY], item, aNumberOfRooms - 1);
             }
         }
 
+        /// <summary>
+        /// Recursively generates a dungeon
+        /// </summary>
+        /// <param name="prevRoom">The previous room of the dungeon</param>
+        /// <param name="prevDoor">the previous door</param>
+        /// <param name="aNumberOfRooms">How many rooms there will be in the dungeon</param>
         private void Generate(Room prevRoom, Doors prevDoor, int aNumberOfRooms)
         {
             int
                 tempNumberOfDoors = Utilities.Utility.GetRNG().Next(0, (aNumberOfRooms > 2 ? 2 : aNumberOfRooms));
 
+            if (aNumberOfRooms <= 0)
+            {
+                return;
+            }
             if(tempNumberOfDoors <= 0)
             {
                 switch (prevDoor)
@@ -77,6 +87,7 @@ namespace Diablo.Dungeon
                 switch (prevDoor)
                 {
                     case Doors.UP:
+
                         tempY = -1;
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(2, 3);
                         tempPrevDoor = Doors.DOWN;
@@ -84,6 +95,7 @@ namespace Diablo.Dungeon
 
                         break;
                     case Doors.DOWN:
+
                         tempY = 1;
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(2, 3);
                         tempPrevDoor = Doors.UP;
@@ -91,6 +103,7 @@ namespace Diablo.Dungeon
 
                         break;
                     case Doors.RIGHT:
+
                         tempX = 1;
                         myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(2, 3);
                         tempPrevDoor = Doors.LEFT;
@@ -98,6 +111,7 @@ namespace Diablo.Dungeon
 
                         break;
                     case Doors.LEFT:
+
                         tempX = -1;
                         myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(2, 3);
                         tempPrevDoor = Doors.RIGHT;
@@ -122,7 +136,7 @@ namespace Diablo.Dungeon
                 {
                     if (tempPrevDoor != item)
                     {
-                        Generate(myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY], item, aNumberOfRooms);
+                        Generate(myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY], item, aNumberOfRooms - 1);
                     }
                 }
             }

@@ -31,7 +31,7 @@ namespace Diablo
             myGold,
             myHPPotions,
             myManaPotions,
-            myXPos,
+            myXPos, /// Used for positions in a dungeon
             myYPos;
         bool 
             myAreHostilesPresent;
@@ -61,6 +61,10 @@ namespace Diablo
             }
         }
 
+        /// <summary>
+        /// The sequence where the player will receive loot
+        /// </summary>
+        /// <param name="aPlayer">Active player</param>
         public void LootSequence(Player.Player aPlayer)
         {
             int
