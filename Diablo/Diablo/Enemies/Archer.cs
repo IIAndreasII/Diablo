@@ -19,10 +19,10 @@ namespace Diablo.Enemies
             {
                 myArmourRating = 3 * myLevel;
             }
-            myDamage = 5 * myLevel;
+            myDamage = 7 * myLevel;
             myAgility = 3 * myLevel;
             myStamina = 100 + myLevel * 5;
-            myHealth = 20 * myLevel * (float)myStamina / 100;
+            myHealth = 17 * myLevel * (float)myStamina / 100;
         }
     }
 }

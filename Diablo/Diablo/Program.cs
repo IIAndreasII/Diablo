@@ -23,7 +23,7 @@ namespace Diablo.Utilities
 
         static void Main(string[] args)
         {
-            Dungeon.Dungeon tempDungeon = new Dungeon.Dungeon(8);
+            Dungeon.Dungeon tempDungeon = new Dungeon.Dungeon(15);
             tempDungeon.DrawMatrix();
 
 
@@ -31,7 +31,7 @@ namespace Diablo.Utilities
             MainMenu();
         }
 
-        static void MainMenu()
+        public static void MainMenu()
         {
             Console.Clear();
             int tempChoice = 0;
@@ -115,7 +115,7 @@ namespace Diablo.Utilities
             {
                 case 1:
                     GenerateRooms();
-                    EnterRoom(0);                 
+                    myRooms[0].EnterRoom(myPlayer);                 
                     break;
                 case 2:
                     myPlayer.OpenInventory();
@@ -131,37 +131,7 @@ namespace Diablo.Utilities
         }
 
         // Move this to Room.cs when procedural generation is a thing
-        static void EnterRoom(int aRoomIndex)
-        {
-            Console.Clear();
-            myPlayer.PrintUI();
-            int
-                tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2;
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write("You enter the room and look around");
-            if (myRooms[aRoomIndex].GetSkeletonCount() > 0)
-            {
-                if(myRooms[aRoomIndex].GetSkeletonCount() == 1)
-                {
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
-                    Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemy!");
-                }
-                else
-                {
-                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
-                    Console.Write("You have spotted " + myRooms[aRoomIndex].GetSkeletonCount().ToString() + " enemies!");
-                }
-                System.Threading.Thread.Sleep(2000);
-                BattleSequence(aRoomIndex);
-            }
-            else
-            {
-                Console.Write("The room is empty");
-            }
-            
-            
-        }
+        
 
         // Move this as well
         static void BattleSequence(int aRoomIndex)
@@ -269,7 +239,7 @@ namespace Diablo.Utilities
         static void GenerateRooms()
         {
             myRooms.Clear();
-            myRooms.Add(new Room(Utility.GetRNG().Next(1, myPlayer.GetLevel() + 2), 2));
+            myRooms.Add(new Room(Utility.GetRNG().Next(1, myPlayer.GetLevel() + 2), 2, 2));
         } // Far from finished
     }
 }

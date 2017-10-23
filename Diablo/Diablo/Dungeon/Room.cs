@@ -18,15 +18,12 @@ namespace Diablo
     {
         List<Enemies.Skeleton> 
             mySkeletons;
+        List<Enemies.Archer>
+            myArchers;
         List<Items.Item> 
             myLoot;
         List<Doors>
             myDoors= new List<Doors>();
-        Room
-            myRoomToLeft,
-            myRoomToRight,
-            myRoomUpward,
-            myRoomDownward;
         int
             myGold,
             myHPPotions,
@@ -36,20 +33,31 @@ namespace Diablo
         bool 
             myAreHostilesPresent;
 
-        public Room(int aNumberOfSkeletons, int anAmountOfItems)
+        public Room(int aNumberOfSkeletons, int aNumberOfArchers, int anAmountOfItems)
         {
-            mySkeletons = new List<Enemies.Skeleton>();   /// Change all this!!!!!
+            mySkeletons = new List<Enemies.Skeleton>();
+            myArchers = new List<Enemies.Archer>();
             myLoot = new List<Items.Item>();
-            if (aNumberOfSkeletons > 0)
+            if (aNumberOfSkeletons + aNumberOfArchers > 0)
             {
                 myAreHostilesPresent = true;
-                for (int i = 0; i < aNumberOfSkeletons; i++)
+                if (aNumberOfSkeletons > 0)
                 {
-                    mySkeletons.Add(new Enemies.Skeleton(1));
+                    for (int i = 0; i < aNumberOfSkeletons; i++)
+                    {
+                        mySkeletons.Add(new Enemies.Skeleton(1));
+                    }
                 }
-                myGold = Utilities.Utility.GetRNG().Next(5, 20 * aNumberOfSkeletons + 1);
-                myHPPotions = Utilities.Utility.GetRNG().Next(0, aNumberOfSkeletons / 2);
-                myManaPotions = Utilities.Utility.GetRNG().Next(0, aNumberOfSkeletons / 2);
+                if(aNumberOfArchers > 0)
+                {
+                    for (int i = 0; i < aNumberOfArchers; i++)
+                    {
+                        myArchers.Add(new Enemies.Archer(1));
+                    }
+                }
+                myGold = Utilities.Utility.GetRNG().Next(5, 20 * (aNumberOfSkeletons + aNumberOfArchers) + 1);
+                myHPPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2);
+                myManaPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2);
             }
             else
             {
@@ -62,9 +70,160 @@ namespace Diablo
         }
 
         /// <summary>
+        /// Enters the room
+        /// </summary>
+        /// <param name="aPlayer">The player which will enter</param>
+        public void EnterRoom(Player.Player aPlayer)
+        {
+            Console.Clear();
+            aPlayer.PrintUI();
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
+            Console.Write("You enter the room and look around");
+            if (mySkeletons.Count + myArchers.Count > 0)
+            {
+                if (mySkeletons.Count + myArchers.Count == 1)
+                {
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
+                    Console.Write("You have spotted 1 enemy!");
+                }
+                else
+                {
+                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
+                    Console.Write("You have spotted " + (mySkeletons.Count + myArchers.Count) + " enemies!");
+                }
+                System.Threading.Thread.Sleep(2000);
+                BattleSequence(aPlayer);
+            }
+            else
+            {
+                Console.Write("The room is empty");
+            }
+        }
+
+        /// <summary>
+        /// Battlesequence
+        /// </summary>
+        /// <param name="aPlayer">The player which will enter the sequence</param>
+        public void BattleSequence(Player.Player aPlayer)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            bool
+                tempHasFled = false;
+            Managers.EnemyManager.SetEnemies(mySkeletons, myArchers);
+            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled)
+            {
+                Console.Clear();
+                switch (aPlayer.ChooseBattleAction())
+                {
+                    case Player.BattleActions.ATTACK:
+
+                        Console.Clear();
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                        Console.WriteLine("Choose an enemy to attack");
+                        for (int i = 0; i < mySkeletons.Count; i++)
+                        {
+                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
+                            Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + mySkeletons[i].GetHealth() + "; Armour - " + mySkeletons[i].GetArmourRating().ToString());
+                        }
+                        for (int i = 0; i < myArchers.Count; i++)
+                        {
+                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i + mySkeletons.Count);
+                            Console.Write("[" + (i + 1 + mySkeletons.Count).ToString() + @"] 'Archer'; Health - " + myArchers[i].GetHealth() + "; Armour - " + myArchers[i].GetArmourRating().ToString());
+                        }
+                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                        Console.Write("[ ]");
+                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                        int tempChoice = 0;
+                        while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > mySkeletons.Count + myArchers.Count))
+                        {
+                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                            Console.Write(" \b");
+                        }
+                        Console.Clear();
+                        aPlayer.PrintUI();
+                        if (tempChoice <= mySkeletons.Count)
+                        {
+                            aPlayer.DealDamage(mySkeletons[tempChoice - 1]);
+                        }
+                        else if(tempChoice > mySkeletons.Count)
+                        {
+                            aPlayer.DealDamage(myArchers[tempChoice - mySkeletons.Count - 1]);
+                        }
+                        break;
+                    case Player.BattleActions.DEFEND:
+
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                        Console.Write("You raise your defences and");
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
+                        Console.Write("brace for a strike!");
+                        aPlayer.SetIsDefending(true);
+                        System.Threading.Thread.Sleep(2000);
+
+                        break;
+                    case Player.BattleActions.USEITEM:
+
+                        aPlayer.OpenInventory();
+                        BattleSequence(aPlayer);
+
+                        break;
+                    case Player.BattleActions.FLEE:
+
+                        tempHasFled = true;
+
+                        break;
+                    case Player.BattleActions.ABSTAIN:
+
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
+                        Console.Write("You do not wish to attack");
+                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
+                        Console.Write("and lower your arms.");
+                        System.Threading.Thread.Sleep(2000);
+
+                        break;
+                }
+                Managers.EnemyManager.BattleUpdate(aPlayer);
+                aPlayer.UpdateScrollEffects();
+            }
+            if (aPlayer.GetHealth() <= 0)
+            {
+                aPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
+                Console.Write("YOU DIED!");
+                Console.ReadKey();
+                Utilities.Program.MainMenu();
+            }
+            else if (!tempHasFled)
+            {
+                aPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.Write("All enemies were defeated!");
+                aPlayer.SubtractStamina(10);
+                System.Threading.Thread.Sleep(2000);
+                aPlayer.PrintUI();
+                LootSequence(aPlayer);
+            }
+            else
+            {
+                aPlayer.PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
+                Console.Write("You have fled the battle, coward...");
+                aPlayer.SubtractStamina(30);
+                System.Threading.Thread.Sleep(2000);
+            }
+        }
+
+        /// <summary>
         /// The sequence where the player will receive loot
         /// </summary>
-        /// <param name="aPlayer">Active player</param>
+        /// <param name="aPlayer">The player which will receive loot</param>
         public void LootSequence(Player.Player aPlayer)
         {
             int
