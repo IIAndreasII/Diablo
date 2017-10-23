@@ -9,12 +9,13 @@ namespace Diablo.Dungeon
     class Dungeon
     {
         Room[,] myRooms = new Room[10, 10];
+        Room myCurrentRoom;
 
         public Dungeon(int aNumberOfRooms)
         {
             int 
                 tempX = 4,
-                tempY = 0;
+                tempY = 4;
             myRooms[tempX, tempY] = new Room(2, 2);
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
 
@@ -144,35 +145,20 @@ namespace Diablo.Dungeon
             
         }
 
-        private List<Doors> GetRandomDoors(Room aPreviousRoom) /// Do I need this?
+        public void DrawMatrix()
         {
-            List<Doors>
-                tempListToReturn = new List<Doors>();
-            int
-                tempAmountOfDoors = Utilities.Utility.GetRNG().Next(1, 5);
-
-
-
-
-            for (int i = 0; i < tempAmountOfDoors; i++)
+            for (int i = 0; i < 10; i++)
             {
-                bool
-                    tempIsDoorAssigned = false;
-
-                while (!tempIsDoorAssigned)
+                for (int j = 0; j < 10; j++)
                 {
-
-
-
-
-
+                    Console.SetCursorPosition(i, j);
+                    if(myRooms[i, j] != null)
+                    {
+                        Console.Write("X");
+                    }
                 }
-
-
-
             }
-
-            return null;
+            Console.ReadLine();
         }
 
         private Doors GetRandomDoor()
