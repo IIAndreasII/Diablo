@@ -6,6 +6,7 @@ namespace Diablo.Enemies
     { 
         public Skeleton(int aLevel)
         {
+            myType = Type.SKELETON;
             myLevel = aLevel;
             if (aLevel == 1)
             {

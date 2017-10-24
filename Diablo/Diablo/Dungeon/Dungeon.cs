@@ -56,7 +56,11 @@ namespace Diablo.Dungeon
             {
                 return;
             }
-            if(tempNumberOfDoors <= 0)
+            if((prevRoom.GetYPosition() - 1 < 0 || prevRoom.GetYPosition() + 1 > 9) || (prevRoom.GetXPosition() + 1 > 9 || prevRoom.GetXPosition() - 1 < 0))
+            {
+                return;
+            }
+            if (tempNumberOfDoors <= 0)
             {
                 switch (prevDoor)
                 {
@@ -185,6 +189,16 @@ namespace Diablo.Dungeon
                 default:
                     return Doors.FAULTYDOOR;
             }
+        }
+
+        public Room[,] GetRooms()
+        {
+            return myRooms;
+        }
+
+        public Room GetCurrentRoom()
+        {
+            return myCurrentRoom;
         }
     }
 }

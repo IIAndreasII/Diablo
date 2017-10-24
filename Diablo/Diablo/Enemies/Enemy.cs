@@ -4,6 +4,12 @@ using System.Text;
 
 namespace Diablo.Enemies
 {
+    public enum Type
+    {
+        SKELETON,
+        ARCHER
+    }
+
     class Enemy
     {
         protected int
@@ -16,6 +22,8 @@ namespace Diablo.Enemies
             myHealth;
         protected bool
             myIsAlive = true;
+        protected Type
+            myType;
 
         /// <summary>
         /// As the name suggests, it makes the enemy take damage
@@ -67,8 +75,17 @@ namespace Diablo.Enemies
             float 
                 tempDamageDealt;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-            Console.WriteLine("The enemy swings his sword!");
+            switch (myType)
+            {
+                case Type.SKELETON:
+                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                    Console.WriteLine("The enemy swings his sword!");
+                    break;
+                case Type.ARCHER:
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
+                    Console.WriteLine("The enemy draws his bow");
+                    break;
+            }
             System.Threading.Thread.Sleep(1000);
             if(aPlayer.TakeDamage(myDamage, out tempDamageDealt))
             {

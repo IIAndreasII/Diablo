@@ -10,6 +10,7 @@ namespace Diablo.Enemies
     {
         public Archer(int aLevel)
         {
+            myType = Type.ARCHER;
             myLevel = aLevel;
             if (myLevel == 1)
             {

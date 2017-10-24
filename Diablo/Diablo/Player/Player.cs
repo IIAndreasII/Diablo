@@ -124,6 +124,10 @@ namespace Diablo.Player
                 Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
                 Console.Write(" stamina!");
                 System.Threading.Thread.Sleep(1500);
+                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 8);
+                Utilities.Utility.PrintInColour("-10 ", ConsoleColor.Red);
+                Console.Write("gold!");
+                System.Threading.Thread.Sleep(1000);
                 AddStamina(20);
                 SubtractGold(10);
             }
