@@ -162,6 +162,10 @@ namespace Diablo.Dungeon
                     Console.SetCursorPosition(i, j);
                     if (myRooms[i, j] != null)
                     {
+                        if (i == 4 && j == 4)
+                        {
+                            Console.Write("O");
+                        }
                         Console.Write("X");
                     }
                     else
