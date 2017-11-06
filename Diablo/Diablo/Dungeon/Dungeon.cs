@@ -20,7 +20,7 @@ namespace Diablo.Dungeon
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
             myCurrentRoom = myRooms[tempX, tempY];
 
-            switch (Utilities.Utility.GetRNG().Next(0, 3))
+            switch (Utilities.Utility.GetRNG().Next(0, 4))
             {
                 case 0:
                     myRooms[tempX, tempY].AddDoor(Doors.LEFT);
@@ -34,6 +34,11 @@ namespace Diablo.Dungeon
                     myRooms[tempX, tempY].AddDoor(Doors.DOWN);
                     myRooms[tempX, tempY].AddDoor(Doors.RIGHT);
                     break;
+                case 3:
+                    myRooms[tempX, tempY].AddDoor(Doors.UP);
+                    myRooms[tempX, tempY].AddDoor(Doors.RIGHT);
+                    break;
+
             }
             foreach (Doors item in myRooms[tempX, tempY].GetDoors())
             {
@@ -203,6 +208,62 @@ namespace Diablo.Dungeon
         public Room GetCurrentRoom()
         {
             return myCurrentRoom;
+        }
+
+        public void EnterNewRoom(Player.Player aPlayer)
+        {
+            Console.Clear();
+            aPlayer.PrintUI();
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
+            Console.Write("There are/is " + myCurrentRoom.GetDoors().Count + " doors in this room.");
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
+            Console.Write("Which one do you enter?");
+            if (myCurrentRoom.GetDoors().Contains(Doors.UP))
+            {
+                Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 8);
+                Console.Write("[U]");
+            }
+            if (myCurrentRoom.GetDoors().Contains(Doors.DOWN))
+            {
+                Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 4);
+                Console.Write("[D]");
+            }
+            if (myCurrentRoom.GetDoors().Contains(Doors.RIGHT))
+            {
+                Console.SetCursorPosition(tempWWD2 + 3, tempWHD2 - 6);
+                Console.Write("[R]");
+            }
+            if (myCurrentRoom.GetDoors().Contains(Doors.LEFT))
+            {
+                Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 6);
+                Console.Write("[L]");
+            }
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            Console.Write("?");
+
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 2);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 2);
+            string tempChoice = Console.ReadLine();
+            
+            while(tempChoice != "R" && tempChoice != "r" && tempChoice != "U" && tempChoice != "u" && tempChoice != "D" && tempChoice != "d" && tempChoice != "L" && tempChoice != "l")
+            {
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 2);
+                Console.Write(" ]\b\b");
+                tempChoice = Console.ReadLine();
+            }
+            
+            if(tempChoice == "U" || tempChoice == "u")
+            {
+                myCurrentRoom = myRooms[myCurrentRoom.GetXPosition(), myCurrentRoom.GetYPosition() - 1];
+                myRooms[myCurrentRoom.GetXPosition(), myCurrentRoom.GetYPosition() - 1].EnterRoom(aPlayer);
+            }
+
+
+            Console.ReadKey();
         }
     }
 }

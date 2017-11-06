@@ -23,10 +23,10 @@ namespace Diablo.Utilities
 
         static void Main(string[] args)
         {
+            Initialize();
             Dungeon.Dungeon tempDungeon = new Dungeon.Dungeon(15);
             tempDungeon.DrawMatrix();
-
-            Initialize();
+            tempDungeon.EnterNewRoom(myPlayer);
             MainMenu();
         }
 
