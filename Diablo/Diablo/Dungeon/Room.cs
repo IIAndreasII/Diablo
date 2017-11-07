@@ -309,6 +309,49 @@ namespace Diablo
                 Console.Write("Looking around the room, you found no loot");
                 System.Threading.Thread.Sleep(1500);
             }
+            PostMeridiem(aPlayer);
+        }
+
+        /// <summary>
+        /// Lets the player choose what to do after clearing a room from loot and/or enemies
+        /// </summary>
+        /// <param name="aPlayer"></param>
+        public void PostMeridiem(Player.Player aPlayer)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempChoice = 0;
+            aPlayer.PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
+            Console.Write("Possible actions");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 10);
+            Console.Write("[1] Continue adventure");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
+            Console.Write("[2] Open inventory");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
+            Console.Write("[3] Rest (-10 gold)");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
+            {
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+                Console.Write(" ]\b\b");
+            }
+            switch (tempChoice)
+            {
+                case 2:
+                    aPlayer.OpenInventory();
+                    PostMeridiem(aPlayer);
+                    break;
+                case 3:
+                    aPlayer.Rest();
+                    break;
+                default:
+                    Console.WriteLine("Error");
+                    break;
+            }
         }
 
         #region Get

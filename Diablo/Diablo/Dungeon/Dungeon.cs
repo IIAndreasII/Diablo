@@ -8,8 +8,11 @@ namespace Diablo.Dungeon
 {
     public class Dungeon
     {
-        Room[,] myRooms = new Room[10, 10];
-        Room myCurrentRoom;
+        Room[,] 
+            myRooms = new Room[10, 10];
+        Room 
+            myCurrentRoom,
+            myInitialRoom;
 
         public Dungeon(int aNumberOfRooms)
         {
@@ -19,6 +22,7 @@ namespace Diablo.Dungeon
             myRooms[tempX, tempY] = new Room(2, 2, 2);
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
             myCurrentRoom = myRooms[tempX, tempY];
+            myInitialRoom = myRooms[tempX, tempY];
 
             switch (Utilities.Utility.GetRNG().Next(0, 4))
             {
@@ -224,6 +228,25 @@ namespace Diablo.Dungeon
         public Room GetCurrentRoom()
         {
             return myCurrentRoom;
+        }
+
+        /// <summary>
+        /// Gets the first room of the dungeon
+        /// </summary>
+        /// <returns>A room</returns>
+        public Room GetInitialRoom()
+        {
+            return myInitialRoom;
+        }
+
+        /// <summary>
+        /// Enters a dungeon
+        /// </summary>
+        /// <param name="aPlayer">The player who enters</param>
+        public void EnterDungeon(Player.Player aPlayer)
+        {
+            myInitialRoom.EnterRoom(aPlayer);
+            EnterNewRoom(aPlayer);
         }
 
         /// <summary>

@@ -88,7 +88,6 @@ namespace Diablo.Utilities
 
         static void Play()
         {
-            Console.Clear();
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2,

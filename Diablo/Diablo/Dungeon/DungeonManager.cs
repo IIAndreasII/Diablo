@@ -30,10 +30,9 @@ namespace Diablo.Dungeon
             return myDungeon;
         }
 
-        public static void EnterDungeon()
+        public static void EnterDungeon(Player.Player aPlayer)
         {
-
+            myDungeon.EnterDungeon(aPlayer);
         }
-
     }
 }
