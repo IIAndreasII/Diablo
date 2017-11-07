@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Diablo.Utilities
 {
@@ -10,23 +6,18 @@ namespace Diablo.Utilities
     {
         public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
         static Player.Player myPlayer;
-        static List<Room> myRooms;
-        
 
         static void Initialize()
         {
             Console.ForegroundColor = StandardTextColour;
             myPlayer = new Player.Player();
-            myRooms = new List<Room>();
+            Managers.DungeonManager.Init(myPlayer);
             Managers.EnemyManager.Init();
         }
 
         static void Main(string[] args)
         {
             Initialize();
-            Dungeon.Dungeon tempDungeon = new Dungeon.Dungeon(15);
-            tempDungeon.DrawMatrix();
-            tempDungeon.EnterNewRoom(myPlayer);
             MainMenu();
         }
 
@@ -112,8 +103,7 @@ namespace Diablo.Utilities
             switch (tempChoice)
             {
                 case 1:
-                    GenerateRooms();
-                    myRooms[0].EnterRoom(myPlayer);                 
+                    Managers.DungeonManager.EnterDungeon(myPlayer);                
                     break;
                 case 2:
                     myPlayer.OpenInventory();
@@ -127,11 +117,5 @@ namespace Diablo.Utilities
             }
             Play();
         }
-
-        static void GenerateRooms()
-        {
-            myRooms.Clear();
-            myRooms.Add(new Room(Utility.GetRNG().Next(1, myPlayer.GetLevel() + 2), 2, 2));
-        }  // This will be irrelevant when the dungeons are implemented
     }
 }

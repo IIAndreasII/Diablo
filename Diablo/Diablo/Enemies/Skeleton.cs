@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Diablo.Enemies
+﻿namespace Diablo.Enemies
 {
     public class Skeleton : Enemy 
     { 

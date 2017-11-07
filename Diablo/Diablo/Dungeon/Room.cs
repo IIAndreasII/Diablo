@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo
 {
@@ -20,7 +18,7 @@ namespace Diablo
             mySkeletons;
         List<Enemies.Archer>
             myArchers;
-        List<Items.Item> 
+        List<Loot.Item> 
             myLoot;
         List<Doors>
             myDoors= new List<Doors>();
@@ -28,7 +26,7 @@ namespace Diablo
             myGold,
             myHPPotions,
             myManaPotions,
-            myXPos, /// Used for positions in a dungeon
+            myXPos,
             myYPos;
         bool 
             myAreHostilesPresent;
@@ -37,7 +35,7 @@ namespace Diablo
         {
             mySkeletons = new List<Enemies.Skeleton>();
             myArchers = new List<Enemies.Archer>();
-            myLoot = new List<Items.Item>();
+            myLoot = new List<Loot.Item>();
             if (aNumberOfSkeletons + aNumberOfArchers > 0)
             {
                 myAreHostilesPresent = true;
@@ -65,7 +63,7 @@ namespace Diablo
             }
             for (int i = 0; i < anAmountOfItems; i++)
             {
-                myLoot.Add(new Items.Item());
+                myLoot.Add(new Loot.Item());
             }
         }
 
@@ -99,7 +97,9 @@ namespace Diablo
             }
             else
             {
-                Console.Write("The room is empty");
+                Console.Write("The are no enemies present");
+                System.Threading.Thread.Sleep(2000);
+                LootSequence(aPlayer);
             }
         }
 
@@ -241,10 +241,10 @@ namespace Diablo
                     Console.Write("[" + (i + 3) + "] ");
                     switch (myLoot[i].GetItemType())
                     {
-                        case Items.Type.SCROLL:
+                        case Loot.Type.SCROLL:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
                             break;
-                        case Items.Type.WEAPON:
+                        case Loot.Type.WEAPON:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetDamage() + "]", ConsoleColor.Gray);
                             break;
                         default:
@@ -309,14 +309,14 @@ namespace Diablo
                 Console.Write("Looking around the room, you found no loot");
                 System.Threading.Thread.Sleep(1500);
             }
-            PostMeridiem(aPlayer);
+            PostActio(aPlayer);
         }
 
         /// <summary>
         /// Lets the player choose what to do after clearing a room from loot and/or enemies
         /// </summary>
         /// <param name="aPlayer"></param>
-        public void PostMeridiem(Player.Player aPlayer)
+        public void PostActio(Player.Player aPlayer)
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
@@ -343,7 +343,7 @@ namespace Diablo
             {
                 case 2:
                     aPlayer.OpenInventory();
-                    PostMeridiem(aPlayer);
+                    PostActio(aPlayer);
                     break;
                 case 3:
                     aPlayer.Rest();

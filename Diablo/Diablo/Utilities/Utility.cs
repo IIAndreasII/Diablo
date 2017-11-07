@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Utilities
 {
@@ -211,7 +209,7 @@ namespace Diablo.Utilities
         /// Prints the given string in the given colour using Console.Write()
         /// </summary>
         /// <param name="aStringToPrint">The string to print</param>
-        /// <param name="aConsoleColour">The colour to print in</param>
+        /// <param name="aConsoleColour">The colour to print the string in</param>
         public static void PrintInColour(string aStringToPrint, ConsoleColor aConsoleColour)
         {
             Console.ForegroundColor = aConsoleColour;

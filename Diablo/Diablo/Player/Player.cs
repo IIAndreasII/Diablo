@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Player
-{ 
+{
     public enum BattleActions
     {
         ATTACK,
@@ -33,13 +31,21 @@ namespace Diablo.Player
             myInventoryCapacity,
 
             myLevel,
+#pragma warning disable CS0169 // The field 'Player.myEXP' is never used
             myEXP,
+#pragma warning restore CS0169 // The field 'Player.myEXP' is never used
 
             myStrength,
             myAgility,
+#pragma warning disable CS0649 // Field 'Player.myIntelligence' is never assigned to, and will always have its default value 0
             myIntelligence,
+#pragma warning restore CS0649 // Field 'Player.myIntelligence' is never assigned to, and will always have its default value 0
+#pragma warning disable CS0649 // Field 'Player.myWisdom' is never assigned to, and will always have its default value 0
             myWisdom,
+#pragma warning restore CS0649 // Field 'Player.myWisdom' is never assigned to, and will always have its default value 0
+#pragma warning disable CS0414 // The field 'Player.myLuck' is assigned but its value is never used
             myLuck;
+#pragma warning restore CS0414 // The field 'Player.myLuck' is assigned but its value is never used
 
         private float
             myStamina,
@@ -52,12 +58,12 @@ namespace Diablo.Player
         private bool
             myIsDefending;
 
-        private List<Items.Item> 
+        private List<Loot.Item> 
             myInventory,
             myScrollList,
             myAppliedScrolls;
 
-        private Items.Item
+        private Loot.Item
             myEquippedHelmet,
             myEquippedChestplate,
             myEquippedTrousers,
@@ -74,8 +80,7 @@ namespace Diablo.Player
             myMaxStamina = 120; // Antal procent av maxHP
             myStamina = myMaxStamina;
             myLuck = 10; // Antal procent chans för att hitta extra loot
-            /// TODO: Set base Intelligence and Wisdom
-
+        /// TODO: Set base Intelligence and Wisdom
             myArmourRating = 10;
             myMaxHealth = 100;
             myHealth = myMaxHealth * myStamina / 100;
@@ -87,50 +92,17 @@ namespace Diablo.Player
             myHPPotionAmount = 1;
             myManaPotionAmount = 1;
             myInventoryCapacity = 50;
-            myInventory = new List<Items.Item>();
-            myScrollList = new List<Items.Item>();
-            myAppliedScrolls = new List<Items.Item>();
-            myEquippedHelmet = new Items.Item(Items.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
-            myEquippedChestplate = new Items.Item(Items.Type.CHESTPLATE, "Basicness", 4);
-            myEquippedTrousers = new Items.Item(Items.Type.TROUSERS, "Basicness", 3);
-            myEquippedBoots = new Items.Item(Items.Type.BOOTS, "Basicness", 1);
-            myEquippedWeapon = new Items.Item(Items.Type.WEAPON, 15, "Basicness");
 
-            myScrollList.Add(new Items.Item(true));
-        }
+            myInventory = new List<Loot.Item>();
+            myScrollList = new List<Loot.Item>();
+            myAppliedScrolls = new List<Loot.Item>();
+            myEquippedHelmet = new Loot.Item(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
+            myEquippedChestplate = new Loot.Item(Loot.Type.CHESTPLATE, "Basicness", 4);
+            myEquippedTrousers = new Loot.Item(Loot.Type.TROUSERS, "Basicness", 3);
+            myEquippedBoots = new Loot.Item(Loot.Type.BOOTS, "Basicness", 1);
+            myEquippedWeapon = new Loot.Item(Loot.Type.WEAPON, 15, "Basicness");
 
-        /// <summary>
-        /// Recharges stamina
-        /// </summary>
-        public void Rest()
-        {
-            int
-                tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2;
-            if (myGold - 10 < 0)
-            {
-                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 3);
-                Console.Write("Insufficient funds!");
-                System.Threading.Thread.Sleep(750);
-            }
-            else
-            {
-                PrintUI();
-                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                Console.Write("You light a fire and rest.");
-                System.Threading.Thread.Sleep(2000);
-                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                Console.Write("You re-gained ");
-                Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
-                Console.Write(" stamina!");
-                System.Threading.Thread.Sleep(1500);
-                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 8);
-                Utilities.Utility.PrintInColour("-10 ", ConsoleColor.Red);
-                Console.Write("gold!");
-                System.Threading.Thread.Sleep(1000);
-                AddStamina(20);
-                SubtractGold(10);
-            }
+            myScrollList.Add(new Loot.Item(true));
         }
 
         /// <summary>
@@ -200,6 +172,42 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
         }
 
+        #region Stats
+
+        /// <summary>
+        /// Recharges stamina
+        /// </summary>
+        public void Rest()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            if (myGold - 10 < 0)
+            {
+                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 3);
+                Console.Write("Insufficient funds!");
+                System.Threading.Thread.Sleep(750);
+            }
+            else
+            {
+                PrintUI();
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.Write("You light a fire and rest.");
+                System.Threading.Thread.Sleep(2000);
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
+                Console.Write("You re-gained ");
+                Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
+                Console.Write(" stamina!");
+                System.Threading.Thread.Sleep(1500);
+                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 8);
+                Utilities.Utility.PrintInColour("-10 ", ConsoleColor.Red);
+                Console.Write("gold!");
+                System.Threading.Thread.Sleep(1000);
+                AddStamina(20);
+                SubtractGold(10);
+            }
+        }
+
         /// <summary>
         /// Adds given amount of stamina
         /// </summary>
@@ -234,19 +242,20 @@ namespace Diablo.Player
                 myHealth = (float)myStamina / 100 * myMaxHealth;
             }
         }
+        #endregion
 
         #region Inventory     
-        
+
         /// <summary>
         /// Equips the player with given item
         /// </summary>
         /// <param name="anItem">Item to equip</param>      
-        public void Equip(Items.Item anItem)
+        public void Equip(Loot.Item anItem)
         {
-            Items.Item tempItem;
+            Loot.Item tempItem;
             switch (anItem.GetItemType())
             {
-                case Items.Type.HELMET:
+                case Loot.Type.HELMET:
                     tempItem = myEquippedHelmet;
                     myEquippedHelmet = anItem;
                     if (myInventory.Contains(anItem))
@@ -255,7 +264,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Items.Type.CHESTPLATE:
+                case Loot.Type.CHESTPLATE:
                     tempItem = myEquippedChestplate;
                     myEquippedChestplate = anItem;
                     if (myInventory.Contains(anItem))
@@ -264,7 +273,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Items.Type.TROUSERS:
+                case Loot.Type.TROUSERS:
                     tempItem = myEquippedTrousers;
                     myEquippedTrousers = anItem;
                     if (myInventory.Contains(anItem))
@@ -273,7 +282,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Items.Type.BOOTS:
+                case Loot.Type.BOOTS:
                     tempItem = myEquippedBoots;
                     myEquippedBoots = anItem;
                     if (myInventory.Contains(anItem))
@@ -282,7 +291,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Items.Type.WEAPON:
+                case Loot.Type.WEAPON:
                     tempItem = myEquippedWeapon;
                     myEquippedWeapon = anItem;
                     if (myInventory.Contains(anItem))
@@ -305,31 +314,31 @@ namespace Diablo.Player
             {
                 switch (myInventory[i].GetItemType())
                 {
-                    case Items.Type.HELMET:
+                    case Loot.Type.HELMET:
                         if(myInventory[i].GetArmourRating() > myEquippedHelmet.GetArmourRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Items.Type.CHESTPLATE:
+                    case Loot.Type.CHESTPLATE:
                         if(myInventory[i].GetArmourRating() > myEquippedChestplate.GetArmourRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Items.Type.TROUSERS:
+                    case Loot.Type.TROUSERS:
                         if (myInventory[i].GetArmourRating() > myEquippedTrousers.GetArmourRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Items.Type.BOOTS:
+                    case Loot.Type.BOOTS:
                         if(myInventory[i].GetArmourRating() > myEquippedBoots.GetArmourRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Items.Type.WEAPON:
+                    case Loot.Type.WEAPON:
                         if (myInventory[i].GetDamage() > myEquippedWeapon.GetDamage())
                         {
                             Equip(myInventory[i]);
@@ -443,13 +452,13 @@ namespace Diablo.Player
         /// Adds items in the parameter-list to the inventory and clears the parameter-list
         /// </summary>
         /// <param name="anItemList">Items to add</param>
-        public void AddItemsToInventory(List<Items.Item> anItemList)
+        public void AddItemsToInventory(List<Loot.Item> anItemList)
         {
             for (int i = 0; i < anItemList.Count; i++)
             {
                 if (myInventory.Count < myInventoryCapacity)
                 {
-                    if (anItemList[i].GetItemType() != Items.Type.SCROLL)
+                    if (anItemList[i].GetItemType() != Loot.Type.SCROLL)
                     {
                         myInventory.Add(anItemList[i]);
                     }
@@ -511,29 +520,29 @@ namespace Diablo.Player
         /// Applies the scrolleffect to the player
         /// </summary>
         /// <param name="aScroll">A scroll which's effect shall be applied</param>
-        private void ApplyScrollEffect(Items.Item aScroll, out string anEffect, out int anEffectAmount)
+        private void ApplyScrollEffect(Loot.Item aScroll, out string anEffect, out int anEffectAmount)
         {
             myAppliedScrolls.Add(aScroll);
             anEffectAmount = 0;
             anEffect = string.Empty;
             switch (aScroll.GetScrollEffect())
             {
-                case Items.ScrollEffect.ARMBUFF:
+                case Loot.ScrollEffect.ARMBUFF:
                     myTempArmourRating = aScroll.GetArmourBuff();
                     anEffectAmount = aScroll.GetArmourBuff();
                     anEffect = "temporary armour!";
                     break;
-                case Items.ScrollEffect.STRBUFF:
+                case Loot.ScrollEffect.STRBUFF:
                     myTempStrength = aScroll.GetStrengthBuff();
                     anEffectAmount = aScroll.GetStrengthBuff();
                     anEffect = "temporary strength!";
                     break;
-                case Items.ScrollEffect.HPBUFF:
+                case Loot.ScrollEffect.HPBUFF:
                     myTempHealth = aScroll.GetHealthBuff();
                     anEffectAmount = aScroll.GetHealthBuff();
                     anEffect = "temporary health!";
                     break;
-                case Items.ScrollEffect.ERROR:
+                case Loot.ScrollEffect.ERROR:
                     Console.WriteLine("ERROR!");
                     break;
             }
@@ -736,6 +745,7 @@ namespace Diablo.Player
                 {
                     myHealth -= DamageTaken;
                 }
+                myHealth = (float)Math.Round(myHealth, 2);
                 return true;
             }
             else

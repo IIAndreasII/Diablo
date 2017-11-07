@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Dungeon
 {
@@ -13,12 +9,15 @@ namespace Diablo.Dungeon
         Room 
             myCurrentRoom,
             myInitialRoom;
+        Player.Player
+            myPlayer;
 
-        public Dungeon(int aNumberOfRooms)
+        public Dungeon(int aNumberOfRooms, Player.Player aPlayer)
         {
             int 
                 tempX = 4,
                 tempY = 4;
+            myPlayer = aPlayer;
             myRooms[tempX, tempY] = new Room(2, 2, 2);
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
             myCurrentRoom = myRooms[tempX, tempY];
@@ -74,22 +73,22 @@ namespace Diablo.Dungeon
                 switch (prevDoor)
                 {
                     case Doors.UP:
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1] = new Room(2, 2, 3);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0,3));
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1].AddDoor(Doors.DOWN);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1].SetPosition(prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1);
                         break;
                     case Doors.DOWN:
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(2, 2, 3);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1].AddDoor(Doors.UP);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1].SetPosition(prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1);
                         break;
                     case Doors.RIGHT:
-                        myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()] = new Room(2, 2, 3);
+                        myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()].AddDoor(Doors.LEFT);
                         myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()].SetPosition(prevRoom.GetXPosition() + 1, prevRoom.GetYPosition());
                         break;
                     case Doors.LEFT:
-                        myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()] = new Room(2, 2, 3);
+                        myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()].AddDoor(Doors.RIGHT);
                         myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()].SetPosition(prevRoom.GetXPosition() - 1, prevRoom.GetYPosition());
                         break;
@@ -106,36 +105,28 @@ namespace Diablo.Dungeon
                 switch (prevDoor)
                 {
                     case Doors.UP:
-
                         tempY = -1;
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(2, 2, 3);
                         tempPrevDoor = Doors.DOWN;
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY].AddDoor(tempPrevDoor);
-
                         break;
                     case Doors.DOWN:
-
                         tempY = 1;
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(2, 2, 3);
                         tempPrevDoor = Doors.UP;
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + tempY].AddDoor(tempPrevDoor);
-
                         break;
                     case Doors.RIGHT:
-
                         tempX = 1;
-                        myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(2, 2, 3);
                         tempPrevDoor = Doors.LEFT;
+                        myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()].AddDoor(tempPrevDoor);
-
                         break;
                     case Doors.LEFT:
-
                         tempX = -1;
-                        myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(2, 2, 3);
                         tempPrevDoor = Doors.RIGHT;
+                        myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel()), Utilities.Utility.GetRNG().Next(0, 3));
                         myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition()].AddDoor(tempPrevDoor);
-
                         break;
                 }
 
@@ -158,13 +149,11 @@ namespace Diablo.Dungeon
                         Generate(myRooms[prevRoom.GetXPosition() + tempX, prevRoom.GetYPosition() + tempY], door, aNumberOfRooms - 1);
                     }
                 }
-            }
-
-            
+            }        
         }
 
         /// <summary>
-        /// Debug feature
+        /// Visual representaition of the dungeon for debugging purposes
         /// </summary>
         public void DrawMatrix()
         {
@@ -213,38 +202,18 @@ namespace Diablo.Dungeon
         }
 
         /// <summary>
-        /// Gets the rooms within the dungeon
-        /// </summary>
-        /// <returns>A two-dimensional array</returns>
-        public Room[,] GetRooms()
-        {
-            return myRooms;
-        }
-
-        /// <summary>
-        /// Gets the room of which the player is currently in
-        /// </summary>
-        /// <returns>A room</returns>
-        public Room GetCurrentRoom()
-        {
-            return myCurrentRoom;
-        }
-
-        /// <summary>
-        /// Gets the first room of the dungeon
-        /// </summary>
-        /// <returns>A room</returns>
-        public Room GetInitialRoom()
-        {
-            return myInitialRoom;
-        }
-
-        /// <summary>
         /// Enters a dungeon
         /// </summary>
         /// <param name="aPlayer">The player who enters</param>
         public void EnterDungeon(Player.Player aPlayer)
         {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            aPlayer.PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
+            Console.Write("You delve into the nearest dungeon");
+            System.Threading.Thread.Sleep(1500);
             myInitialRoom.EnterRoom(aPlayer);
             EnterNewRoom(aPlayer);
         }
@@ -253,7 +222,7 @@ namespace Diablo.Dungeon
         /// Lets the player choose what room to enter based on the current room's doors
         /// </summary>
         /// <param name="aPlayer">Active player</param>
-        public void EnterNewRoom(Player.Player aPlayer)
+        private void EnterNewRoom(Player.Player aPlayer)
         {
             aPlayer.PrintUI();
             int

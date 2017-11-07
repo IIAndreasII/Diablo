@@ -59,13 +59,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dungeon\DungeonManager.cs" />
+    <Compile Include="Loot\Chest.cs" />
+    <Compile Include="Managers\DungeonManager.cs" />
     <Compile Include="Enemies\Archer.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Enemies\Skeleton.cs" />
     <Compile Include="Dungeon\Dungeon.cs" />
     <Compile Include="Factories\EnemyFactory.cs" />
-    <Compile Include="Items\Item.cs" />
+    <Compile Include="Loot\Item.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Player\Player.cs" />
     <Compile Include="Program.cs" />
