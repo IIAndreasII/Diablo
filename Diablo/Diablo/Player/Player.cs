@@ -31,21 +31,13 @@ namespace Diablo.Player
             myInventoryCapacity,
 
             myLevel,
-#pragma warning disable CS0169 // The field 'Player.myEXP' is never used
             myEXP,
-#pragma warning restore CS0169 // The field 'Player.myEXP' is never used
 
             myStrength,
             myAgility,
-#pragma warning disable CS0649 // Field 'Player.myIntelligence' is never assigned to, and will always have its default value 0
             myIntelligence,
-#pragma warning restore CS0649 // Field 'Player.myIntelligence' is never assigned to, and will always have its default value 0
-#pragma warning disable CS0649 // Field 'Player.myWisdom' is never assigned to, and will always have its default value 0
             myWisdom,
-#pragma warning restore CS0649 // Field 'Player.myWisdom' is never assigned to, and will always have its default value 0
-#pragma warning disable CS0414 // The field 'Player.myLuck' is assigned but its value is never used
             myLuck;
-#pragma warning restore CS0414 // The field 'Player.myLuck' is assigned but its value is never used
 
         private float
             myStamina,

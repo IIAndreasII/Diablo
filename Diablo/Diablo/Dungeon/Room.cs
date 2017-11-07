@@ -73,7 +73,6 @@ namespace Diablo
         /// <param name="aPlayer">The player which will enter</param>
         public void EnterRoom(Player.Player aPlayer)
         {
-            Console.Clear();
             aPlayer.PrintUI();
             int
                 tempWWD2 = Console.WindowWidth / 2,
@@ -97,6 +96,7 @@ namespace Diablo
             }
             else
             {
+                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
                 Console.Write("The are no enemies present");
                 System.Threading.Thread.Sleep(2000);
                 LootSequence(aPlayer);
@@ -230,6 +230,7 @@ namespace Diablo
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2,
                 tempTextOffset = tempWHD2 - 10;
+            aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
             if(myLoot.Count > 0)
             {
@@ -315,7 +316,7 @@ namespace Diablo
         /// <summary>
         /// Lets the player choose what to do after clearing a room from loot and/or enemies
         /// </summary>
-        /// <param name="aPlayer"></param>
+        /// <param name="aPlayer">Active player</param>
         public void PostActio(Player.Player aPlayer)
         {
             int
