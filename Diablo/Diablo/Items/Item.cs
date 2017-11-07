@@ -24,7 +24,7 @@ namespace Diablo.Items
         ERROR
     }
    
-    class Item
+    public class Item
     {
         Type 
             myType;

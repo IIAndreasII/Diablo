@@ -14,7 +14,7 @@ namespace Diablo
         FAULTYDOOR
     }
 
-    class Room
+    public class Room
     {
         List<Enemies.Skeleton> 
             mySkeletons;

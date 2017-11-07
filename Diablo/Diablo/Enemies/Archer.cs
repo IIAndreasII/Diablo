@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Diablo.Enemies
 {
-    class Archer : Enemy
+    public class Archer : Enemy
     {
         public Archer(int aLevel)
         {

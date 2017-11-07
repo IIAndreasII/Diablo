@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dungeon\DungeonManager.cs" />
     <Compile Include="Enemies\Archer.cs" />
     <Compile Include="Enemies\Enemy.cs" />
     <Compile Include="Enemies\Skeleton.cs" />

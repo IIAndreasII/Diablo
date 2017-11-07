@@ -14,7 +14,7 @@ namespace Diablo.Player
         ABSTAIN
     }
 
-    class Player
+    public class Player
     {
         #region Variables
         private int

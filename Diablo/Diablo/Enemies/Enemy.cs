@@ -10,7 +10,7 @@ namespace Diablo.Enemies
         ARCHER
     }
 
-    class Enemy
+    public class Enemy
     {
         protected int
             myLevel,

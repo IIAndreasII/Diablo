@@ -2,7 +2,7 @@
 
 namespace Diablo.Enemies
 {
-    class Skeleton : Enemy 
+    public class Skeleton : Enemy 
     { 
         public Skeleton(int aLevel)
         {
