@@ -23,7 +23,7 @@ namespace Diablo.Utilities
 
         public static void MainMenu()
         {
-            Console.Clear();
+            Utility.PrintTitle();
             int tempChoice = 0;
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
@@ -49,15 +49,15 @@ namespace Diablo.Utilities
                         tempPrintValue = "Error";
                         break;
                 }
-                Console.SetCursorPosition(Console.WindowWidth / 2 - tempPrintValue.Length / 2, i + 2);
-                Utility.PrintInColour(tempPrintValue, ConsoleColor.Yellow);
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
+                Console.Write(tempPrintValue);
             }
-            Utility.PrintPentagram(Console.WindowWidth / 2 - 17, 8, ConsoleColor.Red);
+            Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(Console.WindowWidth / 2, 6);
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
             while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2, 6);
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
                 Console.Write(" ]\b\b");
             }
             switch (tempChoice)

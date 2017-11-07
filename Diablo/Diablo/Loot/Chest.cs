@@ -17,7 +17,9 @@ namespace Diablo.Loot
 
         public Chest()
         {
-
+            myGold = Utilities.Utility.GetRNG().Next(0, 50);
+            myHPPotions = Utilities.Utility.GetRNG().Next(0, 2);
+            myManaPotions = Utilities.Utility.GetRNG().Next(0, 2);
         }
     }
 }

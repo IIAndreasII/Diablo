@@ -216,5 +216,56 @@ namespace Diablo.Utilities
             Console.Write(aStringToPrint);
             Console.ForegroundColor = Program.StandardTextColour;
         }
+
+
+        public static void PrintTitle()
+        {
+            Console.Clear();
+            string tempPrintValue;
+            for (int i = 0; i < 11; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        tempPrintValue = "╔══╗                   ╦══╗                   ╦╗  ╦        ╦";
+                        break;
+                    case 1:
+                        tempPrintValue = "║  ║                   ║  ║                   ║╚╗ ║        ║     ╦";
+                        break;
+                    case 2:
+                        tempPrintValue = "║  ║  ╦══╗  ╔══╦       ╬══╝  ╦══╗  ╔══╗       ║ ╚╗║  ╔══╗  ╠══╗  ╦  ╦═╗";
+                        break;
+                    case 3:
+                        tempPrintValue = "║  ║  ║     ║  ║       ║     ║     ║  ║       ║  ╚╣  ║  ║  ║  ║  ║  ╚═╗";
+                        break;
+                    case 4:
+                        tempPrintValue = "╚══╝  ╩     ╚══╚       ╩     ╩     ╚══╝       ╩   ╩  ╚══╝  ╩══╝  ╩  ╚═╩ ╦";
+                        break;
+                    case 5:
+                        tempPrintValue = "                                                                        ╝";
+                        break;
+                    case 6:
+                        tempPrintValue = "  ╦                      ╔══╗";
+                        break;
+                    case 7:
+                        tempPrintValue = "  ║                   ╦  ║  ╩";
+                        break;
+                    case 8:
+                        tempPrintValue = "  ║      ╦   ╦  ╦══╗  ╦  ╬══  ╦══╗  ╦══╗";
+                        break;
+                    case 9:
+                        tempPrintValue = "  ║      ║   ║  ║     ║  ║    ╬══╝  ║";
+                        break;
+                    case 10:
+                        tempPrintValue = "  ╩═══╝  ╚═══╝  ╩══╝  ╩  ╩    ╩══╝  ╩";
+                        break;
+                    default:
+                        tempPrintValue = "Error";
+                        break;
+                }
+                Console.SetCursorPosition(Console.WindowWidth - 100 , i + 2);
+                PrintInColour(tempPrintValue, ConsoleColor.Red);
+            }
+        }
     }
 }

@@ -356,7 +356,7 @@ namespace Diablo.Player
             #region Doodle Sequence
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
+            Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count + myScrollList.Count) + "/" + myInventoryCapacity + ")");
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
             Utilities.Utility.PrintInColour(" ▓ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
@@ -448,7 +448,7 @@ namespace Diablo.Player
         {
             for (int i = 0; i < anItemList.Count; i++)
             {
-                if (myInventory.Count < myInventoryCapacity)
+                if (myInventory.Count + myManaPotionAmount + myHPPotionAmount < myInventoryCapacity)
                 {
                     if (anItemList[i].GetItemType() != Loot.Type.SCROLL)
                     {
