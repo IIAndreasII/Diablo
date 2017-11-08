@@ -63,7 +63,7 @@
     <Compile Include="Loot\Chest.cs" />
     <Compile Include="Managers\DungeonManager.cs" />
     <Compile Include="Enemies\Archer.cs" />
-    <Compile Include="Enemies\Enemy.cs" />
+    <Compile Include="Enemies\Base\Enemy.cs" />
     <Compile Include="Enemies\Skeleton.cs" />
     <Compile Include="Dungeon\Dungeon.cs" />
     <Compile Include="Factories\EnemyFactory.cs" />
