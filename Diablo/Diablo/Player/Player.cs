@@ -108,8 +108,8 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             Console.Clear();
-            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.DarkRed);
-            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(tempWWD2 - 57, tempWHD2 - 12, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(tempWWD2 + 22, tempWHD2 - 12, ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
@@ -169,23 +169,52 @@ namespace Diablo.Player
 
         public void DeathSequence()
         {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempTextOffset = 31,
+                tempChoice = 0;
             Console.Clear();
-            Console.Write("  ╦   ╦               ");
-            Console.Write("  ║   ║          ");
-            Console.Write("  ║   ║   ╔════╗    ");
-            Console.Write("  ╚═╦═╝   ║    ║   ");
-            Console.Write("    ║     ║    ║   ");
-            Console.Write("    ║     ║    ║    ");
-            Console.Write("    ║     ║    ║   ");
-            Console.Write("    ╩     ╚════╝    ");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.ReadKey();
+            Utilities.Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(tempWWD2 +23, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 14);
+            Utilities.Utility.PrintInColour("╦   ╦   ╔════╗   ╦    ╦      ╦════╗    ═╦═   ╦═════╗   ╦════╗", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 13);
+            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 12);
+            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 11);
+            Utilities.Utility.PrintInColour("╚═╦═╝   ║    ║   ║    ║      ║     ║    ║    ╬════     ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 10);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 9);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 8);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
+            Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
+
+            Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
+            Console.Write("[1] Menu");
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
+            Console.Write("[2] Exit game");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 3);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
+            while(!int.TryParse(Console.ReadLine(), out tempChoice) || (tempChoice != 1 && tempChoice != 2))
+            {
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
+                Console.Write(" ]\b\b");
+            }
+            switch (tempChoice)
+            {
+                case 1:
+                    Program.Reboot();
+                    break;
+                case 2:
+                    Environment.Exit(0);
+                    break;
+            }
             Program.Reboot();
         }
 
