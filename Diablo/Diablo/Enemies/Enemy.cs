@@ -5,7 +5,8 @@ namespace Diablo.Enemies
     public enum Type
     {
         SKELETON,
-        ARCHER
+        ARCHER,
+        MIMIC
     }
 
     public class Enemy
