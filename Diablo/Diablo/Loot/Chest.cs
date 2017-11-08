@@ -155,7 +155,7 @@ namespace Diablo.Loot
             else
             {
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                Console.Write("Oh no, it's a mimic. What a shame...now");
+                Console.Write("Oh no, it's a mimic. What a shame...");
             }
         }
     }

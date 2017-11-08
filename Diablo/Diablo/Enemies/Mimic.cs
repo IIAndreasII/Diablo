@@ -8,8 +8,11 @@ namespace Diablo.Enemies
 {
     class Mimic : Enemy
     {
-        public Mimic()
+        public Mimic(int aLvl)
         {
+            myDamage = 10 * aLvl;
+            myArmourRating = 10 * aLvl;
+            myHealth = 20 + 5 * aLvl;
 
         }
     }
