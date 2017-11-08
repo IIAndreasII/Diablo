@@ -27,6 +27,10 @@ namespace Diablo.Loot
             {
                 myItems.Add(new Item());
             }
+            if (Utilities.Utility.GetRNG().Next(0, 100) < 10)
+            {
+                myIsMimic = true;
+            }
         }
 
         public void Open(Player.Player aPlayer)
