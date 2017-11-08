@@ -20,7 +20,7 @@
         /// </summary>
         public static void GenerateNewDungeon()
         {
-            myDungeon = new Dungeon.Dungeon(Utilities.Utility.GetRNG().Next(2, 15), myPlayer);
+            myDungeon = new Dungeon.Dungeon(Utilities.Utility.GetRNG().Next(2, 20), myPlayer);
         }
 
         /// <summary>

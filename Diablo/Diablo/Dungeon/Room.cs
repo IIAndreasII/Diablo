@@ -316,12 +316,14 @@ namespace Diablo
             Console.Write("[2] Open inventory");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
             Console.Write("[3] Rest (-10 gold)");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 7);
+            Console.Write("[4] Commit suicide");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 5);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
             while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
                 Console.Write(" ]\b\b");
             }
             switch (tempChoice)
@@ -332,6 +334,9 @@ namespace Diablo
                     break;
                 case 3:
                     aPlayer.Rest();
+                    break;
+                case 4:
+                    aPlayer.DeathSequence();
                     break;
                 default:
                     Console.WriteLine("Error");

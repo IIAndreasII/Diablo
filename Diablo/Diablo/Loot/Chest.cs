@@ -42,7 +42,6 @@ namespace Diablo.Loot
             System.Threading.Thread.Sleep(1500);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 10);
             Console.Write("It is locked...");
-
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 8);
             Console.Write("Do wish to unlock it?");
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 6);
@@ -154,7 +153,26 @@ namespace Diablo.Loot
             else
             {
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                Console.Write("Oh no, it's a mimic. What a shame...");
+                Console.Write("As you try to open the chest, you notice");
+                Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
+                Console.Write("that it is breathing. This is no ordinary chest");
+                System.Threading.Thread.Sleep(3000);
+                Console.SetCursorPosition(tempWWD2 - 25, tempWHD2 - 9);
+                Console.Write("The mimic immediately tries to bite your neck off!");
+                System.Threading.Thread.Sleep(1500);
+                if((float)aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 100))
+                {
+                    aPlayer.PrintUI();
+                    Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
+                    Console.Write("You managed to escape its fangs!");
+                }
+                else
+                {
+                    aPlayer.PrintUI();
+                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
+                    Console.Write("The mimic bites you and rips your head off!");
+                    aPlayer.DeathSequence();
+                }
             }
         }
     }

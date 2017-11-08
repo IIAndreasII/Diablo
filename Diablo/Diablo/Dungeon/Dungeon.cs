@@ -4,8 +4,8 @@ namespace Diablo.Dungeon
 {
     public class Dungeon
     {
-        Room[,] 
-            myRooms = new Room[10, 10];
+        Room[,]
+            myRooms;
         Room 
             myCurrentRoom,
             myInitialRoom;
@@ -15,8 +15,9 @@ namespace Diablo.Dungeon
         public Dungeon(int aNumberOfRooms, Player.Player aPlayer)
         {
             int 
-                tempX = 4,
-                tempY = 4;
+                tempX = 7,
+                tempY = 7;
+            myRooms = new Room[15, 15];
             myPlayer = aPlayer;
             myRooms[tempX, tempY] = new Room(Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel() * 2), Utilities.Utility.GetRNG().Next(0, myPlayer.GetLevel() * 2), Utilities.Utility.GetRNG().Next(0, 3));
             myRooms[tempX, tempY] = new Room(0, 0, 0);
@@ -157,14 +158,14 @@ namespace Diablo.Dungeon
         /// </summary>
         public void DrawMatrix()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 15; j++)
                 {
                     Console.SetCursorPosition(i, j);
                     if (myRooms[i, j] != null)
                     {
-                        if (i == 4 && j == 4)
+                        if (i == 7 && j == 7)
                         {
                             Console.Write("O");
                         }

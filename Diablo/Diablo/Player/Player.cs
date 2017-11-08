@@ -108,8 +108,8 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             Console.Clear();
-            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.Red);
-            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.Red);
+            Utilities.Utility.PrintPentagram(3, 3, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(Console.WindowWidth - 38, 3, ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
@@ -170,14 +170,14 @@ namespace Diablo.Player
         public void DeathSequence()
         {
             Console.Clear();
-            Console.Write("he, u ded");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
-            Console.Write("");
+            Console.Write("  ╦   ╦               ");
+            Console.Write("  ║   ║          ");
+            Console.Write("  ║   ║   ╔════╗    ");
+            Console.Write("  ╚═╦═╝   ║    ║   ");
+            Console.Write("    ║     ║    ║   ");
+            Console.Write("    ║     ║    ║    ");
+            Console.Write("    ║     ║    ║   ");
+            Console.Write("    ╩     ╚════╝    ");
             Console.Write("");
             Console.Write("");
             Console.Write("");
