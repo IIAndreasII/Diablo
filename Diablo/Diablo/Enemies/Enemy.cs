@@ -85,6 +85,9 @@ namespace Diablo.Enemies
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
                     Console.WriteLine("The enemy draws his bow");
                     break;
+                case Type.MIMIC:
+
+                    break;
             }
             System.Threading.Thread.Sleep(1000);
             if (aPlayer.TakeDamage(myDamage, out tempDamageDealt))
