@@ -64,7 +64,6 @@ namespace Diablo.Loot
                 {
                     case 1:
                         aPlayer.SubtractGold(25);
-
                         if (myItems.Count > 0)
                         {
                             Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);

@@ -115,7 +115,7 @@ namespace Diablo
             bool
                 tempHasFled = false;
             Managers.EnemyManager.SetEnemies(mySkeletons, myArchers);
-            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled)
+            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled && aPlayer.GetHealth() > 0)
             {
                 Console.Clear();
                 switch (aPlayer.ChooseBattleAction())
@@ -157,7 +157,6 @@ namespace Diablo
                         }
                         break;
                     case Player.BattleActions.DEFEND:
-
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                         Console.Write("You raise your defences and");
@@ -165,42 +164,27 @@ namespace Diablo
                         Console.Write("brace for a strike!");
                         aPlayer.SetIsDefending(true);
                         System.Threading.Thread.Sleep(2000);
-
                         break;
                     case Player.BattleActions.USEITEM:
-
                         aPlayer.OpenInventory();
                         BattleSequence(aPlayer);
-
                         break;
                     case Player.BattleActions.FLEE:
-
                         tempHasFled = true;
-
                         break;
                     case Player.BattleActions.ABSTAIN:
-
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                        Console.Write("You do not wish to attack");
-                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
-                        Console.Write("and lower your arms.");
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
+                        Console.Write("You do not wish to attack,");
+                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
+                        Console.Write("thus lowering your arms.");
                         System.Threading.Thread.Sleep(2000);
-
                         break;
                 }
                 Managers.EnemyManager.BattleUpdate(aPlayer);
                 aPlayer.UpdateScrollEffects();
             }
-            if (aPlayer.GetHealth() <= 0)
-            {
-                aPlayer.PrintUI();
-                Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
-                Console.Write("YOU DIED!");
-                Console.ReadKey();
-                Utilities.Program.MainMenu();
-            }
-            else if (!tempHasFled)
+            if (!tempHasFled)
             {
                 aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);

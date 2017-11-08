@@ -34,8 +34,8 @@ namespace Diablo.Enemies
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            float 
-                tempDamageDealt = aDamageToTake * (1 + (float)aStrength / 100) * (1f - (float)myArmourRating / 100f);          
+            float
+                tempDamageDealt = aDamageToTake * (1 + (float)aStrength / 100) * (1f - (float)myArmourRating / 100f);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 11);
             Console.Write("You swing your sword!");
             System.Threading.Thread.Sleep(1000);
@@ -58,7 +58,7 @@ namespace Diablo.Enemies
             {
                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
                 Console.Write("You missed the enemy!");
-            }           
+            }
             System.Threading.Thread.Sleep(2000);
         }
 
@@ -71,9 +71,10 @@ namespace Diablo.Enemies
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            float 
+            float
                 tempDamageDealt;
             aPlayer.PrintUI();
+
             switch (myType)
             {
                 case Type.SKELETON:
@@ -86,7 +87,7 @@ namespace Diablo.Enemies
                     break;
             }
             System.Threading.Thread.Sleep(1000);
-            if(aPlayer.TakeDamage(myDamage, out tempDamageDealt))
+            if (aPlayer.TakeDamage(myDamage, out tempDamageDealt))
             {
                 Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
                 Console.Write("You took ");
@@ -99,6 +100,10 @@ namespace Diablo.Enemies
                 Console.Write("You evaded the strike!");
             }
             System.Threading.Thread.Sleep(2000);
+            if (aPlayer.GetHealth() <= 0)
+            {
+                aPlayer.DeathSequence();
+            }
         }
 
         #region Gets

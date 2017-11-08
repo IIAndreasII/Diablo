@@ -48,7 +48,8 @@ namespace Diablo.Player
             myMaxHealth;
         
         private bool
-            myIsDefending;
+            myIsDefending,
+            myIsAlive;
 
         private List<Loot.Item> 
             myInventory,
@@ -66,6 +67,7 @@ namespace Diablo.Player
 
         public Player()
         {
+            myIsAlive = true;
             myLevel = 1;
             myStrength = 5; //Antal procent mer skada
             myAgility = 5; // Antal procent chans det är att undvika en attack
@@ -162,6 +164,29 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 13);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
+        }
+
+
+        public void DeathSequence()
+        {
+            Console.Clear();
+            Console.Write("he, u ded");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.Write("");
+            Console.ReadKey();
+            Program.Reboot();
         }
 
         #region Stats
@@ -799,6 +824,11 @@ namespace Diablo.Player
         #endregion
 
         #region Get
+        public bool GetIsAlive()
+        {
+            return myIsAlive;
+        }
+
         public int GetLevel()
         {
             return myLevel;
@@ -893,6 +923,11 @@ namespace Diablo.Player
         public void SetTempArmourRating(int anArmourRating)
         {
             myTempArmourRating += anArmourRating;
+        }
+
+        public void SetIsAlive(bool aValue)
+        {
+            myIsAlive = aValue;
         }
         #endregion
     }  

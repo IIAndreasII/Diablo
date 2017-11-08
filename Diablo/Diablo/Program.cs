@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Diablo.Utilities
+namespace Diablo
 {
     class Program
     {
@@ -23,7 +23,7 @@ namespace Diablo.Utilities
 
         public static void MainMenu()
         {
-            Utility.PrintTitle();
+            Utilities.Utility.PrintTitle();
             int tempChoice = 0;
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
@@ -52,10 +52,10 @@ namespace Diablo.Utilities
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
                 Console.Write(tempPrintValue);
             }
-            Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
-            while (!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
             {
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
                 Console.Write(" ]\b\b");
@@ -95,7 +95,7 @@ namespace Diablo.Utilities
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
-            while(!int.TryParse(Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
+            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
             {
                 Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
                 Console.Write(" ]\b\b");
@@ -116,6 +116,12 @@ namespace Diablo.Utilities
                     break;
             }
             Play();
+        }
+
+        public static void Reboot()
+        {
+            Initialize();
+            MainMenu();
         }
     }
 }
