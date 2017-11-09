@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diablo.Loot
 {
@@ -62,98 +59,92 @@ namespace Diablo.Loot
                 Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 3);
                 Console.Write(" ]\b\b");
             }
-            if (!myIsMimic)
-            {
-                switch (tempChoice)
+            if (!myIsMimic && tempChoice == 1)
+            {                
+                aPlayer.PrintUI();
+                aPlayer.SubtractGold(25);
+                if (myItems.Count > 0)
                 {
-                    case 1:
-                        aPlayer.PrintUI();
-                        aPlayer.SubtractGold(25);
-                        if (myItems.Count > 0)
+                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
+                    Console.Write("You peek inside the chest, there is loot!");
+                    System.Threading.Thread.Sleep(1500);
+                    for (int i = 0; i < myItems.Count; i++)
+                    {
+                        Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
+                        Console.Write("[" + (i + 3) + "] ");
+                        switch (myItems[i].GetItemType())
                         {
-                            Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                            Console.Write("You peek inside the chest, there is loot!");
-                            System.Threading.Thread.Sleep(1500);
-                            for (int i = 0; i < myItems.Count; i++)
-                            {
-                                Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                                Console.Write("[" + (i + 3) + "] ");
-                                switch (myItems[i].GetItemType())
-                                {
-                                    case Type.SCROLL:
-                                        Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.DarkMagenta);
-                                        break;
-                                    case Type.WEAPON:
-                                        Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetDamage() + "]", ConsoleColor.Gray);
-                                        break;
-                                    default:
-                                        Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetArmourRating() + "]", ConsoleColor.Gray);
-                                        break;
-                                }
-
-                                if (i == myItems.Count - 1)
-                                {
-                                    Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
-                                    Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
-                                    Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
-                                    Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
-                                    Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
-                                    Console.Write("Gold: " + myGold);
-                                }
-                            }
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-                            Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                            Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
-                            Console.Write("[ ]");
-                            Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                            tempChoice = -1;
-                            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(myItems.Count / 2 + 1), out tempChoice) || (tempChoice < 0 || tempChoice > myItems.Count + 1))
-                            {
-                                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                                Console.Write(" \b");
-                            }
-
-                            switch (tempChoice)
-                            {
-                                case 0:
-                                    myItems.Clear();
-                                    break;
-                                case 1:
-                                    aPlayer.AddItemsToInventory(myItems);
-                                    aPlayer.AddGold(myGold);
-                                    aPlayer.AddHealthPotions(myHPPotions);
-                                    aPlayer.AddManaPotions(myManaPotions);
-                                    aPlayer.PrintUI();
-                                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                                    Console.Write("Loot added to inventory!");
-                                    System.Threading.Thread.Sleep(1500);
-                                    break;
-                                case 2:
-                                    aPlayer.AddItemsToInventory(myItems);
-                                    aPlayer.EquipBestItems();
-                                    aPlayer.AddGold(myGold);
-                                    aPlayer.AddHealthPotions(myHPPotions);
-                                    aPlayer.AddManaPotions(myManaPotions);
-                                    aPlayer.PrintUI();
-                                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                                    Console.Write("Loot added to inventory!");
-                                    System.Threading.Thread.Sleep(1500);
-                                    break;
-                            }
+                            case Type.SCROLL:
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.DarkMagenta);
+                                break;
+                            case Type.WEAPON:
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetDamage() + "]", ConsoleColor.Gray);
+                                break;
+                            default:
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                                break;
                         }
-                        else
+                        if (i == myItems.Count - 1)
                         {
-                            Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                            Console.Write("You peek inside the chest, there is no loot");
-                            System.Threading.Thread.Sleep(1500);
+                            Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
+                            Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
+                            Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
+                            Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
+                            Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
+                            Console.Write("Gold: " + myGold);
                         }
-                        break;
+                    }
+                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
+                    Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
+                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
+                    Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
+                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
+                    Console.Write("[ ]");
+                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+                    tempChoice = -1;
+                    while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(myItems.Count / 2 + 1), out tempChoice) || (tempChoice < 0 || tempChoice > myItems.Count + 1))
+                    {
+                        Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
+                        Console.Write(" \b");
+                    }
+                    switch (tempChoice)
+                    {
+                        case 0:
+                            myItems.Clear();
+                            break;
+                        case 1:
+                            aPlayer.AddItemsToInventory(myItems);
+                            aPlayer.AddGold(myGold);
+                            aPlayer.AddHealthPotions(myHPPotions);
+                            aPlayer.AddManaPotions(myManaPotions);
+                            aPlayer.PrintUI();
+                            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                            Console.Write("Loot added to inventory!");
+                            System.Threading.Thread.Sleep(1500);
+                            break;
+                        case 2:
+                            aPlayer.AddItemsToInventory(myItems);
+                            aPlayer.EquipBestItems();
+                            aPlayer.AddGold(myGold);
+                            aPlayer.AddHealthPotions(myHPPotions);
+                            aPlayer.AddManaPotions(myManaPotions);
+                            aPlayer.PrintUI();
+                            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                            Console.Write("Loot added to inventory!");
+                            System.Threading.Thread.Sleep(1500);
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
+                    Console.Write("You peek inside the chest, there is no loot");
+                    System.Threading.Thread.Sleep(1500);
                 }
             }
             else
             {
+                aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
                 Console.Write("As you try to open the chest, you notice");
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
@@ -175,6 +166,7 @@ namespace Diablo.Loot
                     Console.Write("The mimic bites you and rips your head off!");
                     aPlayer.DeathSequence();
                 }
+                System.Threading.Thread.Sleep(1500);
             }
         }
     }

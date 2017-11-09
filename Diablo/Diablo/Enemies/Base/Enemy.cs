@@ -15,7 +15,8 @@ namespace Diablo.Enemies
             myLevel,
             myArmourRating,
             myAgility,
-            myStamina;
+            myStamina,
+            myEXPToGive;
         protected float
             myDamage,
             myHealth;
@@ -51,6 +52,9 @@ namespace Diablo.Enemies
                     System.Threading.Thread.Sleep(1000);
                     Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 7);
                     Console.Write("Enemy defeated!");
+                    Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
+                    Utilities.Utility.PrintInColour("+" + myEXPToGive.ToString(), ConsoleColor.Green);
+                    Console.Write(" experience!");
                     myIsAlive = false;
                 }
             }

@@ -32,6 +32,7 @@ namespace Diablo.Player
 
             myLevel,
             myEXP,
+            myRequiredEXP,
 
             myStrength,
             myAgility,
@@ -69,12 +70,16 @@ namespace Diablo.Player
         {
             myIsAlive = true;
             myLevel = 1;
-            myStrength = 5; //Antal procent mer skada
-            myAgility = 5; // Antal procent chans det är att undvika en attack
-            myMaxStamina = 120; // Antal procent av maxHP
+            myEXP = 0;
+            myRequiredEXP = 100;
+            myStrength = Utilities.Utility.GetRNG().Next(5, 11);                  // Antal procent mer skada
+            myAgility = Utilities.Utility.GetRNG().Next(5, 11);                   // Antal procent chans det är att undvika en attack
+            myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121); // Antal procent av maxHP
             myStamina = myMaxStamina;
-            myLuck = 10; // Antal procent chans för att hitta extra loot
-        /// TODO: Set base Intelligence and Wisdom
+            myIntelligence = Utilities.Utility.GetRNG().Next(5, 11);
+            myWisdom = Utilities.Utility.GetRNG().Next(5, 11);
+            myLuck = Utilities.Utility.GetRNG().Next(5, 11); // Antal procent chans för att hitta extra loot                                                           
+
             myArmourRating = 10;
             myMaxHealth = 100;
             myHealth = myMaxHealth * myStamina / 100;
@@ -110,63 +115,74 @@ namespace Diablo.Player
             Console.Clear();
             Utilities.Utility.PrintPentagram(tempWWD2 - 57, tempWHD2 - 12, ConsoleColor.DarkRed);
             Utilities.Utility.PrintPentagram(tempWWD2 + 22, tempWHD2 - 12, ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 5);
+
+            Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 6);
+            Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 6);
             Utilities.Utility.PrintInColour(" " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
-            Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);            
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 5);
+            Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 7);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);   
+                     
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 +  6);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 +  6);
             Utilities.Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 + 7);
+            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 5);
+
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 6);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 6);
             Utilities.Utility.PrintInColour(@"  Arm: " + (myEquippedHelmet.GetArmourRating() + myEquippedChestplate.GetArmourRating() + myEquippedTrousers.GetArmourRating() + myEquippedBoots.GetArmourRating() + myTempArmourRating).ToString(), ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2, tempWHD2 + 7);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 5);
+
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 5);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 6);
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 6);
             Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
-            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 + 7);
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 7);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 8);
+
+            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 8);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 9);
+            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 9);
             Utilities.Utility.PrintInColour(@"  Str: " + (myStrength + myTempStrength), ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 + 10);
+            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 10);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 8);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkBlue);
-            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 9);
-            Utilities.Utility.PrintInColour(@"  Agi: " + myAgility.ToString(), ConsoleColor.DarkBlue);
-            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 + 10);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkBlue);
-            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 8);
+
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 8);
+            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Magenta);
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 9);
+            Utilities.Utility.PrintInColour(@"  Agi: " + myAgility.ToString(), ConsoleColor.Magenta);
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 10);
+            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Magenta);
+
+            Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 8);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Cyan);
-            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 9);
+            Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 9);
             Utilities.Utility.PrintInColour(@"  Int: " + myIntelligence.ToString(), ConsoleColor.Cyan);
-            Console.SetCursorPosition(tempWWD2 + 5, tempWHD2 + 10);
+            Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 10);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Cyan);
-            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 11);
+
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 11);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Green);
-            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 12);
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 12);
             Utilities.Utility.PrintInColour(@"Sta:" + myStamina.ToString() + "/" + myMaxStamina.ToString(), ConsoleColor.Green);
-            Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 13);
+            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 13);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Green);
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 11);
+
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 11);
             Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkMagenta);
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 12);
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 12);
             Utilities.Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 13);
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 13);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
         }
 
-
+        /// <summary>
+        /// Deathsequence
+        /// </summary>
         public void DeathSequence()
         {
             int
@@ -219,6 +235,26 @@ namespace Diablo.Player
         }
 
         #region Stats
+
+        public void UpdateEXP()
+        {
+            if (myRequiredEXP >= myEXP)
+            {
+                myLevel++;
+                myEXP -= myRequiredEXP;
+                myRequiredEXP *= 2;
+                myMaxHealth *= 1.2f;
+                myHealth = myMaxHealth;
+                myMaxMana += 20;
+                myMana = myMaxMana;
+                myStrength++;
+                myAgility += 2;
+                myMaxStamina *= 1.2f;
+                myLuck++;
+                myWisdom++;
+                myIntelligence++;
+            }
+        }
 
         /// <summary>
         /// Recharges stamina

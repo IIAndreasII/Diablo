@@ -17,7 +17,6 @@ namespace Diablo.Dungeon
                 tempY = 7;
             myRooms = new Room[15, 15];
             myRooms[tempX, tempY] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 2 + 1), Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 2 + 1), Utilities.Utility.GetRNG().Next(0, 4), aPlayer);
-            myRooms[tempX, tempY] = new Room(0, 0, 0, aPlayer);
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
             myCurrentRoom = myRooms[tempX, tempY];
             myInitialRoom = myRooms[tempX, tempY];
@@ -230,41 +229,58 @@ namespace Diablo.Dungeon
             Console.Write("Which one do you enter?");
             if (myCurrentRoom.GetDoors().Contains(Doors.UP))
             {
-                Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 8);
-                Console.Write("[U]");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 9);
+                Console.Write("╔═══╗");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 8);
+                Console.Write("║[U]║");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 7);
+                Console.Write("║   ║");
+
             }
             if (myCurrentRoom.GetDoors().Contains(Doors.DOWN))
             {
-                Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 4);
-                Console.Write("[D]");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 3);
+                Console.Write("╔═══╗");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 2);
+                Console.Write("║[D]║");
+                Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 1);
+                Console.Write("║   ║");
             }
             if (myCurrentRoom.GetDoors().Contains(Doors.RIGHT))
             {
-                Console.SetCursorPosition(tempWWD2 + 3, tempWHD2 - 6);
-                Console.Write("[R]");
+                Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 - 6);
+                Console.Write("╔═══╗");
+                Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 - 5);
+                Console.Write("║[R]║");
+                Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 - 4);
+                Console.Write("║   ║");
             }
             if (myCurrentRoom.GetDoors().Contains(Doors.LEFT))
             {
-                Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 6);
-                Console.Write("[L]");
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 6);
+                Console.Write("╔═══╗");
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
+                Console.Write("║[L]║");
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 4);
+                Console.Write("║   ║");
             }
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
             Console.Write("?");
 
             if (myCurrentRoom == myInitialRoom)
             {
-                Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 2);
+                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 2);
                 Console.Write("[E] Exit dungeon");
             }
 
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2);
+            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 3);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2);
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
             string tempChoice = Console.ReadLine();
             
             while(tempChoice != "R" && tempChoice != "r" && tempChoice != "U" && tempChoice != "u" && tempChoice != "D" && tempChoice != "d" && tempChoice != "L" && tempChoice != "l" && tempChoice != "E" && tempChoice != "e")
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 2);
+                Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
                 Console.Write(" ]\b\b");
                 tempChoice = Console.ReadLine();
             }
