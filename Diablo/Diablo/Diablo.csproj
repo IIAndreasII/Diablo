@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemies\Mimic.cs" />
+    <Compile Include="Factories\DungeonFactory.cs" />
     <Compile Include="Loot\Chest.cs" />
     <Compile Include="Managers\DungeonManager.cs" />
     <Compile Include="Enemies\Archer.cs" />

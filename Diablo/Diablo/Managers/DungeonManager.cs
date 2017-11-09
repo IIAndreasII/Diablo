@@ -12,25 +12,7 @@
         public static void Init(Player.Player aPlayer)
         {
             myPlayer = aPlayer;
-            myDungeon = new Dungeon.Dungeon(Utilities.Utility.GetRNG().Next(2, 15), myPlayer);
-        }
-
-        /// <summary>
-        /// Generates a new dungeon
-        /// </summary>
-        public static void GenerateNewDungeon()
-        {
-            myDungeon = new Dungeon.Dungeon(Utilities.Utility.GetRNG().Next(2, 20), myPlayer);
-        }
-
-        /// <summary>
-        /// Generates a new dungeon with a specified maximum number of rooms
-        /// </summary>
-        /// <param name="aNumberOfRooms">Maximum number of rooms in the dungeon</param>
-        public static void GenerateNewDungeon(int aNumberOfRooms)
-        {
-            myDungeon = new Dungeon.Dungeon(aNumberOfRooms, myPlayer);
-        }
+        }   
 
         /// <summary>
         /// Gets the active dungeon
@@ -47,13 +29,14 @@
         /// <param name="aPlayer">Active player</param>
         public static void EnterDungeon(Player.Player aPlayer)
         {
+            myDungeon = Factories.DungeonFactory.GenerateNewDungeon(aPlayer);
             if (myDungeon != null)
             {
                 myDungeon.EnterDungeon(aPlayer);
             }
             else
             {
-                GenerateNewDungeon();
+                myDungeon = Factories.DungeonFactory.GenerateNewDungeon(aPlayer);
                 myDungeon.EnterDungeon(aPlayer);
             }
         }

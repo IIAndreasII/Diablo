@@ -20,22 +20,34 @@ namespace Diablo
             myArchers;
         List<Loot.Item> 
             myLoot;
+        List<Loot.Chest>
+            myChests;
         List<Doors>
             myDoors= new List<Doors>();
         int
             myGold,
             myHPPotions,
             myManaPotions,
+            myChestCount,
             myXPos,
             myYPos;
         bool 
             myAreHostilesPresent;
 
-        public Room(int aNumberOfSkeletons, int aNumberOfArchers, int anAmountOfItems)
+        public Room(int aNumberOfSkeletons, int aNumberOfArchers, int anAmountOfItems, Player.Player aPlayer)
         {
             mySkeletons = new List<Enemies.Skeleton>();
             myArchers = new List<Enemies.Archer>();
             myLoot = new List<Loot.Item>();
+            myChests = new List<Loot.Chest>();
+            if (Utilities.Utility.GetRNG().Next(0,100) < aPlayer.GetLuck())
+            {
+                myChestCount = Utilities.Utility.GetRNG().Next(0, 3);
+                for (int i = 0; i < myChestCount; i++)
+                {
+                    myChests.Add(new Loot.Chest());
+                }
+            }
             if (aNumberOfSkeletons + aNumberOfArchers > 0)
             {
                 myAreHostilesPresent = true;

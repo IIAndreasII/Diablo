@@ -853,6 +853,11 @@ namespace Diablo.Player
         #endregion
 
         #region Get
+        public int GetLuck()
+        {
+            return myLuck;
+        }
+
         public bool GetIsAlive()
         {
             return myIsAlive;
