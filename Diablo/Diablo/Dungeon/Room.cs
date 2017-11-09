@@ -42,7 +42,7 @@ namespace Diablo
             myChests = new List<Loot.Chest>();
             if (Utilities.Utility.GetRNG().Next(0,100) < aPlayer.GetLuck())
             {
-                myChestCount = Utilities.Utility.GetRNG().Next(0, 3);
+                myChestCount = 2;//Utilities.Utility.GetRNG().Next(0, 3);
                 for (int i = 0; i < myChestCount; i++)
                 {
                     myChests.Add(new Loot.Chest());
@@ -306,6 +306,32 @@ namespace Diablo
                 Console.Write("Looking around the room, you found no loot");
                 System.Threading.Thread.Sleep(1500);
             }
+            if (myChests.Count > 0)
+            {
+                aPlayer.PrintUI();
+                if (myChests.Count == 1)
+                {
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
+                    Console.Write("You have found a chest!");
+                }
+                else
+                {
+                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 12);
+                    Console.Write("You have found some chests!");
+                }
+                System.Threading.Thread.Sleep(1500);
+                for (int i = 0; i < myChestCount; i++)
+                {
+                    myChests[i].Open(aPlayer);
+                    if(myChestCount > 1)
+                    {
+                        aPlayer.PrintUI();
+                        Console.SetCursorPosition(tempWWD2 - 15, tempWHD2 - 12);
+                        Console.Write("You have found another chest!");
+                        System.Threading.Thread.Sleep(1500);
+                    }
+                }
+            }
             PostActio(aPlayer);
         }
 
@@ -328,12 +354,12 @@ namespace Diablo
             Console.Write("[2] Open inventory");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
             Console.Write("[3] Rest (-10 gold)");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 7);
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
             Console.Write("[4] Commit suicide");
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 5);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3))
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 4))
             {
                 Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
                 Console.Write(" ]\b\b");

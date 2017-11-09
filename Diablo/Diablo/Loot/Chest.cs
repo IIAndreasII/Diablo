@@ -19,6 +19,7 @@ namespace Diablo.Loot
 
         public Chest()
         {
+            myItems = new List<Item>();
             myGold = Utilities.Utility.GetRNG().Next(0, 51);
             myHPPotions = Utilities.Utility.GetRNG().Next(0, 3);
             myManaPotions = Utilities.Utility.GetRNG().Next(0, 3);
@@ -41,8 +42,8 @@ namespace Diablo.Loot
                 tempChoice = 0,
                 tempTextOffset = tempWHD2 - 10;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("You approach the chest and try to open it.");
+            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
+            Console.Write("You approach the chest and inspect it.");
             System.Threading.Thread.Sleep(1500);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 10);
             Console.Write("It is locked...");
@@ -50,7 +51,7 @@ namespace Diablo.Loot
             Console.Write("Do wish to unlock it?");
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 6);
             Console.Write("[1] Yes ");
-            Utilities.Utility.PrintInColour("(-25 gold)", ConsoleColor.DarkRed);
+            Utilities.Utility.PrintInColour("(-25 gold)", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
             Console.Write("[2] No");
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 3);
@@ -66,6 +67,7 @@ namespace Diablo.Loot
                 switch (tempChoice)
                 {
                     case 1:
+                        aPlayer.PrintUI();
                         aPlayer.SubtractGold(25);
                         if (myItems.Count > 0)
                         {
@@ -147,10 +149,6 @@ namespace Diablo.Loot
                             Console.Write("You peek inside the chest, there is no loot");
                             System.Threading.Thread.Sleep(1500);
                         }
-
-                        break;
-                    case 2:
-
                         break;
                 }
             }
