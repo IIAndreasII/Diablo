@@ -290,6 +290,24 @@ namespace Diablo.Player
             }
         }
 
+
+        public void LongRest()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            myStamina = myMaxStamina;
+            myHealth = myMaxHealth * (myStamina / 100);
+            myMana = myMaxMana;
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
+            Console.Write("You pitch a tent and light a fire");
+            System.Threading.Thread.Sleep(2000);
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 10);
+            Console.Write("Full recovery!");
+            System.Threading.Thread.Sleep(1500);
+        }
+
         /// <summary>
         /// Adds given amount of stamina
         /// </summary>

@@ -66,8 +66,8 @@ namespace Diablo
                     }
                 }
                 myGold = Utilities.Utility.GetRNG().Next(5, 20 * (aNumberOfSkeletons + aNumberOfArchers) + 1);
-                myHPPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2);
-                myManaPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2);
+                myHPPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2 + 1);
+                myManaPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2 + 1);
             }
             else
             {

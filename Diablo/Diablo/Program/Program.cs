@@ -93,13 +93,15 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
             Console.Write("[3] Rest (-10 gold)");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
-            Console.Write("[4] Commit suicide");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 4);
+            Console.Write("[4] Long rest");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
+            Console.Write("[5] Commit suicide");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 3);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 4))
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 3);
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 3);
                 Console.Write(" ]\b\b");
             }
             switch (tempChoice)
@@ -114,6 +116,9 @@ namespace Diablo
                     myPlayer.Rest();
                     break;
                 case 4:
+                    myPlayer.LongRest();
+                    break;
+                case 5:
                     myPlayer.DeathSequence();
                     break;
                 default:
