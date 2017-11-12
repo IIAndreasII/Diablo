@@ -52,6 +52,7 @@ namespace Diablo.Dungeon
         /// <param name="prevRoom">The previous room of the dungeon</param>
         /// <param name="prevDoor">the previous door</param>
         /// <param name="aNumberOfRooms">How many rooms there will be in the dungeon</param>
+        /// <param name="aPlayer">Active player</param>
         private void Generate(Room prevRoom, Doors prevDoor, int aNumberOfRooms, Player.Player aPlayer)
         {
             int
@@ -276,13 +277,13 @@ namespace Diablo.Dungeon
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 3);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
-            string tempChoice = Console.ReadLine();
+            string tempChoice = Utilities.Utility.ReadOnlyLetters(1);
             
             while(tempChoice != "R" && tempChoice != "r" && tempChoice != "U" && tempChoice != "u" && tempChoice != "D" && tempChoice != "d" && tempChoice != "L" && tempChoice != "l" && tempChoice != "E" && tempChoice != "e")
             {
                 Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
                 Console.Write(" ]\b\b");
-                tempChoice = Console.ReadLine();
+                tempChoice = Utilities.Utility.ReadOnlyLetters(1);
             }
             if (tempChoice != "E" && tempChoice != "e")
             {

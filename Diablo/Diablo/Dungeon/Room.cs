@@ -141,12 +141,12 @@ namespace Diablo
                         for (int i = 0; i < mySkeletons.Count; i++)
                         {
                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
-                            Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + mySkeletons[i].GetHealth() + "; Armour - " + mySkeletons[i].GetArmourRating().ToString());
+                            Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + Math.Round(mySkeletons[i].GetHealth(), 2) + "; Armour - " + mySkeletons[i].GetArmourRating().ToString());
                         }
                         for (int i = 0; i < myArchers.Count; i++)
                         {
                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i + mySkeletons.Count);
-                            Console.Write("[" + (i + 1 + mySkeletons.Count).ToString() + @"] 'Archer'; Health - " + myArchers[i].GetHealth() + "; Armour - " + myArchers[i].GetArmourRating().ToString());
+                            Console.Write("[" + (i + 1 + mySkeletons.Count).ToString() + @"] 'Archer'; Health - " + Math.Round(myArchers[i].GetHealth(), 2) + "; Armour - " + myArchers[i].GetArmourRating().ToString());
                         }
                         Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
                         Console.Write("[ ]");

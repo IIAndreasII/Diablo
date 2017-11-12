@@ -31,6 +31,10 @@ namespace Diablo.Loot
             }
         }
 
+        /// <summary>
+        /// Opens the chest
+        /// </summary>
+        /// <param name="aPlayer">Active player</param>
         public void Open(Player.Player aPlayer)
         {
             int
