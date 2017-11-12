@@ -194,7 +194,7 @@ namespace Diablo
                         break;
                 }
                 Managers.EnemyManager.BattleUpdate(aPlayer);
-                aPlayer.UpdateScrollEffects();
+                aPlayer.Update();
             }
             if (!tempHasFled)
             {

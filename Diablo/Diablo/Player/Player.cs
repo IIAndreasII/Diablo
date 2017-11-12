@@ -236,24 +236,27 @@ namespace Diablo.Player
 
         #region Stats
 
-        public void UpdateEXP()
+
+        /// TODO: Add visual stuff
+        /// <summary>
+        /// Levels up the player
+        /// </summary>
+        private void LevelUp()
         {
-            if (myRequiredEXP >= myEXP)
-            {
-                myLevel++;
-                myEXP -= myRequiredEXP;
-                myRequiredEXP *= 2;
-                myMaxHealth *= 1.2f;
-                myHealth = myMaxHealth;
-                myMaxMana += 20;
-                myMana = myMaxMana;
-                myStrength++;
-                myAgility += 2;
-                myMaxStamina *= 1.2f;
-                myLuck++;
-                myWisdom++;
-                myIntelligence++;
-            }
+            myLevel++;
+            myEXP -= myRequiredEXP;
+            myRequiredEXP *= 2;
+            myMaxHealth *= 1.2f;
+            myHealth = myMaxHealth;
+            myMaxMana += 20;
+            myMana = myMaxMana;
+            myStrength++;
+            myAgility += 2;
+            myMaxStamina *= 1.2f;
+            myLuck++;
+            myWisdom++;
+            myIntelligence++;
+
         }
 
         /// <summary>
@@ -290,7 +293,9 @@ namespace Diablo.Player
             }
         }
 
-
+        /// <summary>
+        /// Resets all stats to their default value (damage and armour is not affected)
+        /// </summary>
         public void LongRest()
         {
             int
@@ -342,6 +347,49 @@ namespace Diablo.Player
                 myHealth = (float)myStamina / 100 * myMaxHealth;
             }
         }
+
+        public void AddEXP(int anAmountToAdd)
+        {
+            myEXP += anAmountToAdd;
+            UpdateEXP();
+        }
+        #endregion
+
+        #region Updates
+        /// <summary>
+        /// Updates the player in all ways
+        /// </summary>
+        public void Update()
+        {
+            UpdateEXP();
+            UpdateScrollEffects();   
+        }
+
+        /// <summary>
+        /// Updates the applied scrolleffects
+        /// </summary>
+        private void UpdateScrollEffects()
+        {
+            for (int i = myAppliedScrolls.Count; i > 0; i--)
+            {
+                if (myAppliedScrolls[i - 1].Decay(this))
+                {
+                    myAppliedScrolls.Remove(myAppliedScrolls[i - 1]);
+                }        
+            }        
+        }
+
+        /// <summary>
+        /// Checks whether the player levels up
+        /// </summary>
+        private void UpdateEXP()
+        {
+            if (myRequiredEXP >= myEXP)
+            {
+                LevelUp();
+            }
+        }
+
         #endregion
 
         #region Inventory     
@@ -648,19 +696,6 @@ namespace Diablo.Player
             }
         }
 
-        /// <summary>
-        /// Updates the applied scrolleffects
-        /// </summary>
-        public void UpdateScrollEffects()
-        {
-            for (int i = myAppliedScrolls.Count; i > 0; i--)
-            {
-                if (myAppliedScrolls[i - 1].Decay(this))
-                {
-                    myAppliedScrolls.Remove(myAppliedScrolls[i - 1]);
-                }        
-            }        
-        }
 
         /// <summary>
         /// Consumes 1 hp-potion if the player has one or more
