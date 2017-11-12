@@ -1006,11 +1006,19 @@ namespace Diablo.Player
         public void SetTempStrength(int aDamage)
         {
             myTempStrength += aDamage;
+            if(myTempStrength < 0)
+            {
+                myTempStrength = 0;
+            }
         }
 
         public void SetTempArmourRating(int anArmourRating)
         {
             myTempArmourRating += anArmourRating;
+            if(myTempArmourRating < 0)
+            {
+                myTempArmourRating = 0;
+            }
         }
 
         public void SetIsAlive(bool aValue)

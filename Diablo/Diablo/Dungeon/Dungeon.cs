@@ -321,12 +321,16 @@ namespace Diablo.Dungeon
                     EnterNewRoom(aPlayer);
                 }
             }
-            else
+            else if (myCurrentRoom == myInitialRoom)
             {
                 aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 12);
                 Console.Write("Safely, you exit the dungeon");
                 System.Threading.Thread.Sleep(1500);
+            }
+            else
+            {
+                EnterNewRoom(aPlayer);
             }
         }
     }

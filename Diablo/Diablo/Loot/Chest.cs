@@ -146,7 +146,7 @@ namespace Diablo.Loot
                     System.Threading.Thread.Sleep(1500);
                 }
             }
-            else
+            else if (myIsMimic)
             {
                 aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
