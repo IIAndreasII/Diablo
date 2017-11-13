@@ -217,7 +217,9 @@ namespace Diablo.Utilities
             Console.ForegroundColor = Program.StandardTextColour;
         }
 
-
+        /// <summary>
+        /// Prints the title
+        /// </summary>
         public static void PrintTitle()
         {
             Console.Clear();

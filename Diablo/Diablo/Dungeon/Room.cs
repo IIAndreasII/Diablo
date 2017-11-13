@@ -14,10 +14,8 @@ namespace Diablo
 
     public class Room
     {
-        List<Enemies.Skeleton> 
-            mySkeletons;
-        List<Enemies.Archer>
-            myArchers;
+        List<Enemies.Enemy>
+            myEnemies;
         List<Loot.Item> 
             myLoot;
         List<Loot.Chest>
@@ -36,8 +34,7 @@ namespace Diablo
 
         public Room(int aNumberOfSkeletons, int aNumberOfArchers, int anAmountOfItems, Player.Player aPlayer)
         {
-            mySkeletons = new List<Enemies.Skeleton>();
-            myArchers = new List<Enemies.Archer>();
+            myEnemies = new List<Enemies.Enemy>();
             myLoot = new List<Loot.Item>();
             myChests = new List<Loot.Chest>();
             if (Utilities.Utility.GetRNG().Next(0,100) < aPlayer.GetLuck())
@@ -55,14 +52,14 @@ namespace Diablo
                 {
                     for (int i = 0; i < aNumberOfSkeletons; i++)
                     {
-                        mySkeletons.Add(new Enemies.Skeleton(1));
+                        myEnemies.Add(new Enemies.Skeleton(Utilities.Utility.GetRNG().Next(1, aPlayer.GetLevel())));
                     }
                 }
                 if(aNumberOfArchers > 0)
                 {
                     for (int i = 0; i < aNumberOfArchers; i++)
                     {
-                        myArchers.Add(new Enemies.Archer(1));
+                        myEnemies.Add(new Enemies.Archer(Utilities.Utility.GetRNG().Next(1, aPlayer.GetLevel())));
                     }
                 }
                 myGold = Utilities.Utility.GetRNG().Next(5, 20 * (aNumberOfSkeletons + aNumberOfArchers) + 1);
@@ -91,9 +88,9 @@ namespace Diablo
                 tempWHD2 = Console.WindowHeight / 2;
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
             Console.Write("You enter the room and look around");
-            if (mySkeletons.Count + myArchers.Count > 0)
+            if (myEnemies.Count > 0)
             {
-                if (mySkeletons.Count + myArchers.Count == 1)
+                if (myEnemies.Count == 1)
                 {
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
                     Console.Write("You have spotted 1 enemy!");
@@ -101,7 +98,7 @@ namespace Diablo
                 else
                 {
                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
-                    Console.Write("You have spotted " + (mySkeletons.Count + myArchers.Count) + " enemies!");
+                    Console.Write("You have spotted " + myEnemies.Count.ToString() + " enemies!");
                 }
                 System.Threading.Thread.Sleep(2000);
                 BattleSequence(aPlayer);
@@ -126,7 +123,7 @@ namespace Diablo
                 tempWHD2 = Console.WindowHeight / 2;
             bool
                 tempHasFled = false;
-            Managers.EnemyManager.SetEnemies(mySkeletons, myArchers);
+            Managers.EnemyManager.SetEnemies(myEnemies);
             while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled && aPlayer.GetHealth() > 0)
             {
                 Console.Clear();
@@ -138,34 +135,34 @@ namespace Diablo
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                         Console.WriteLine("Choose an enemy to attack");
-                        for (int i = 0; i < mySkeletons.Count; i++)
+                        for (int i = 0; i < myEnemies.Count; i++)
                         {
+                            string tempTypeString = string.Empty;
+                            if(myEnemies[i].GetEnemyType() == Enemies.Type.ARCHER)
+                            {
+                                tempTypeString = "Archer";
+                            }
+                            else if(myEnemies[i].GetEnemyType() == Enemies.Type.SKELETON)
+                            {
+                                tempTypeString = "Skeleton";
+                            }
                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
-                            Console.Write("[" + (i + 1).ToString() + @"] 'Skeleton'; Health - " + Math.Round(mySkeletons[i].GetHealth(), 2) + "; Armour - " + mySkeletons[i].GetArmourRating().ToString());
+                            Console.Write("[" + (i + 1).ToString() + @"] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2) + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
                         }
-                        for (int i = 0; i < myArchers.Count; i++)
-                        {
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i + mySkeletons.Count);
-                            Console.Write("[" + (i + 1 + mySkeletons.Count).ToString() + @"] 'Archer'; Health - " + Math.Round(myArchers[i].GetHealth(), 2) + "; Armour - " + myArchers[i].GetArmourRating().ToString());
-                        }
-                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + myEnemies.Count);
                         Console.Write("[ ]");
-                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myEnemies.Count);
                         int tempChoice = 0;
-                        while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > mySkeletons.Count + myArchers.Count))
+                        while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myEnemies.Count))
                         {
-                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + mySkeletons.Count + myArchers.Count);
+                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myEnemies.Count);
                             Console.Write(" \b");
                         }
                         Console.Clear();
                         aPlayer.PrintUI();
-                        if (tempChoice <= mySkeletons.Count)
+                        if (tempChoice <= myEnemies.Count)
                         {
-                            aPlayer.DealDamage(mySkeletons[tempChoice - 1]);
-                        }
-                        else if(tempChoice > mySkeletons.Count)
-                        {
-                            aPlayer.DealDamage(myArchers[tempChoice - mySkeletons.Count - 1]);
+                            aPlayer.DealDamage(myEnemies[tempChoice - 1]);
                         }
                         break;
                     case Player.BattleActions.DEFEND:
@@ -383,14 +380,9 @@ namespace Diablo
         }
 
         #region Get
-        public List<Enemies.Skeleton> GetSkeletons()
+        public int GetEnemyCount()
         {
-            return mySkeletons;
-        }
-
-        public int GetSkeletonCount()
-        {
-            return mySkeletons.Count;
+            return myEnemies.Count;
         }
 
         public bool IsHostilesPresent()

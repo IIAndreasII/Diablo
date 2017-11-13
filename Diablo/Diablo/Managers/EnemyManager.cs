@@ -4,16 +4,14 @@ namespace Diablo.Managers
 {
     static class EnemyManager
     {
-        static List<Enemies.Skeleton> mySkeletons;
-        static List<Enemies.Archer> myArchers;
+        static List<Enemies.Enemy> myEnemies;
 
         /// <summary>
         /// Initializes the manager
         /// </summary>
         public static void Init()
         {
-            mySkeletons = new List<Enemies.Skeleton>();
-            myArchers = new List<Enemies.Archer>();
+            myEnemies = new List<Enemies.Enemy>();
         }
 
         /// <summary>
@@ -22,7 +20,7 @@ namespace Diablo.Managers
         /// <param name="aSkeleton">Skeleton to add</param>
         public static void AddSkeleton(Enemies.Skeleton aSkeleton)
         {
-            mySkeletons.Add(aSkeleton);
+            myEnemies.Add(aSkeleton);
         }
 
         /// <summary>
@@ -31,36 +29,16 @@ namespace Diablo.Managers
         /// <param name="anArcher">Archer to add</param>
         public static void AddArcher(Enemies.Archer anArcher)
         {
-            myArchers.Add(anArcher);
+            myEnemies.Add(anArcher);
         }
         
         /// <summary>
-        /// Sets active enemies
+        /// Sets enemies
         /// </summary>
-        /// <param name="someSkeletons">New active Skeletons</param>
-        /// <param name="someArchers">New active Archers</param>
-        public static void SetEnemies(List<Enemies.Skeleton> someSkeletons, List<Enemies.Archer> someArchers)
+        /// <param name="someEnemies"></param>
+        public static void SetEnemies(List<Enemies.Enemy> someEnemies)
         {
-            mySkeletons = someSkeletons;
-            myArchers = someArchers;
-        }
-
-        /// <summary>
-        /// Sets active skeletons
-        /// </summary>
-        /// <param name="someSkeletons">New active Skeletons</param>
-        public static void SetEnemies(List<Enemies.Skeleton> someSkeletons)
-        {
-            mySkeletons = someSkeletons;
-        }
-
-        /// <summary>
-        /// Sets active Archers
-        /// </summary>
-        /// <param name="someArchers">New active Archers</param>
-        public static void SetEnemies(List<Enemies.Archer> someArchers)
-        {
-            myArchers = someArchers;
+            myEnemies = someEnemies;
         }
 
         /// <summary>
@@ -69,26 +47,16 @@ namespace Diablo.Managers
         /// <param name="aPlayer">Active player</param>
         public static void BattleUpdate(Player.Player aPlayer)
         {
-            for (int i = mySkeletons.Count; i > 0; i--)
+            for (int i = myEnemies.Count; i > 0; i--)
             {
-                if(mySkeletons[i - 1].GetHealth() <= 0)
+                if(myEnemies[i - 1].GetHealth() <= 0)
                 {
-                    mySkeletons.RemoveAt(i - 1);
+                    aPlayer.AddEXP(myEnemies[i - 1].GetEXPToGive());
+                    myEnemies.RemoveAt(i - 1);
                 }
                 else
                 {
-                    mySkeletons[i - 1].DealDamage(aPlayer);
-                }
-            }
-            for (int i = myArchers.Count; i > 0; i--)
-            {
-                if (myArchers[i - 1].GetHealth() <= 0)
-                {
-                    myArchers.RemoveAt(i - 1);
-                }
-                else
-                {
-                    myArchers[i - 1].DealDamage(aPlayer);
+                    myEnemies[i - 1].DealDamage(aPlayer);
                 }
             }
         }
@@ -99,7 +67,7 @@ namespace Diablo.Managers
         /// <returns>Returns true if enemies are defeated</returns>
         public static bool AreEnemiesDefeated()
         {
-            if(myArchers.Count + mySkeletons.Count <= 0)
+            if(myEnemies.Count <= 0)
             {
                 return true;
             }
@@ -114,8 +82,7 @@ namespace Diablo.Managers
         /// </summary>
         public static void Reset()
         {
-            mySkeletons.Clear();
-            myArchers.Clear();
+            myEnemies.Clear();
         }
     }
 }

@@ -55,6 +55,7 @@ namespace Diablo.Enemies
                     Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
                     Utilities.Utility.PrintInColour("+" + myEXPToGive.ToString(), ConsoleColor.Green);
                     Console.Write(" experience!");
+                    
                     myIsAlive = false;
                 }
             }
@@ -137,6 +138,16 @@ namespace Diablo.Enemies
         public bool GetIsAlive()
         {
             return myIsAlive;
+        }
+
+        public int GetEXPToGive()
+        {
+            return myEXPToGive;
+        }
+
+        public Type GetEnemyType()
+        {
+            return myType;
         }
         #endregion
     }

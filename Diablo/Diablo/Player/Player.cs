@@ -71,7 +71,7 @@ namespace Diablo.Player
             myIsAlive = true;
             myLevel = 1;
             myEXP = 0;
-            myRequiredEXP = 100;
+            myRequiredEXP = 20;
             myStrength = Utilities.Utility.GetRNG().Next(5, 11);                  // Antal procent mer skada
             myAgility = Utilities.Utility.GetRNG().Next(5, 11);                   // Antal procent chans det är att undvika en attack
             myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121); // Antal procent av maxHP
@@ -243,6 +243,9 @@ namespace Diablo.Player
         /// </summary>
         private void LevelUp()
         {
+            int
+               tempWWD2 = Console.WindowWidth / 2,
+               tempWHD2 = Console.WindowHeight / 2;
             myLevel++;
             myEXP -= myRequiredEXP;
             myRequiredEXP *= 2;
@@ -256,7 +259,34 @@ namespace Diablo.Player
             myLuck++;
             myWisdom++;
             myIntelligence++;
-
+            PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
+            Console.Write("Level up!");
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 10);
+            Console.Write("Max health");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 9);
+            Console.Write("Max mana");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
+            Console.Write("Max stamina");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 7);
+            Console.Write("Strength");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 6);
+            Console.Write("Agility");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 5);
+            Console.Write("Wisdom");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 4);
+            Console.Write("Intelligence");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 3);
+            Console.Write("Luck");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            System.Threading.Thread.Sleep(3000);
         }
 
         /// <summary>
@@ -384,7 +414,7 @@ namespace Diablo.Player
         /// </summary>
         private void UpdateEXP()
         {
-            if (myRequiredEXP >= myEXP)
+            if (myRequiredEXP <= myEXP)
             {
                 LevelUp();
             }
@@ -810,39 +840,10 @@ namespace Diablo.Player
         /// <summary>
         /// Deals damage to given enemy
         /// </summary>
-        /// <param name="aSkeleton">A skeleton to damage</param>
-        public void DealDamage(Enemies.Skeleton aSkeleton)
+        /// <param name="anEnemy"></param>
+        public void DealDamage(Enemies.Enemy anEnemy)
         {
-            aSkeleton.TakeDamage(myDamage, myStrength + myTempStrength);
-        }
-
-        /// <summary>
-        /// Deals damage to given enemy
-        /// </summary>
-        /// <param name="aSkeleton">A skeleton to damage</param>
-        /// <param name="aDamage">The damage the skeleton shall take</param>
-        public void DealDamage(Enemies.Skeleton aSkeleton, int aDamage)
-        {
-            aSkeleton.TakeDamage(aDamage, myStrength + myTempStrength);     
-        }
-
-        /// <summary>
-        /// Deals damage to given enemy
-        /// </summary>
-        /// <param name="anArcher">A skeleton to damage</param>
-        public void DealDamage(Enemies.Archer anArcher)
-        {
-            anArcher.TakeDamage(myDamage, myStrength + myTempStrength);
-        }
-
-        /// <summary>
-        /// Deals damage to given enemy
-        /// </summary>
-        /// <param name="anArcher">A skeleton to damage</param>
-        /// <param name="aDamage">The damage the archer shall take</param>
-        public void DealDamage(Enemies.Archer anArcher, int aDamage)
-        {
-            anArcher.TakeDamage(aDamage, myStrength + myTempStrength);
+            anEnemy.TakeDamage(myDamage, myStrength + myTempStrength);
         }
 
         /// <summary>
