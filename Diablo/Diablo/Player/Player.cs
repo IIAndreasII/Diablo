@@ -531,6 +531,24 @@ namespace Diablo.Player
             }
         }
 
+
+        public void BrowseItem(Loot.Type aType)
+        {
+            PrintUI();
+            int
+                tempChoice,
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            switch (aType)
+            {
+                case Loot.Type.HELMET:
+
+
+
+                    break;
+            }
+        }
+
         /// <summary>
         /// Opens the inventory and let's the player equip or use items
         /// </summary>
@@ -594,31 +612,18 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("][", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2);
             Utilities.Utility.PrintInColour("()", ConsoleColor.Gray);
-
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 4);
             Console.Write("[10]");
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 4);
+            Utilities.Utility.PrintInColour(@"/---\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 3);
+            Utilities.Utility.PrintInColour(@"| o |", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 2);
+            Utilities.Utility.PrintInColour(@"\---/", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 8, tempWHD2);
             Utilities.Utility.PrintInColour("[" + myEquippedShield.GetArmourRating().ToString() + "]Shield", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 3);
+            Console.SetCursorPosition(tempWWD2 + 8, tempWHD2 + 1);
             Utilities.Utility.PrintInColour("of " + myEquippedShield.GetSuffix(), ConsoleColor.Gray);
-
-
-
-
-            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 - 2);
-            Utilities.Utility.PrintInColour(@" /---\", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 - 1);
-            Utilities.Utility.PrintInColour(@" | o |", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2);
-            Utilities.Utility.PrintInColour(@" \---/", ConsoleColor.Gray);
-
-
-
-
-
-
-
-
-
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
             Console.Write("[0] Close inventory");
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 3);
@@ -626,7 +631,7 @@ namespace Diablo.Player
             #endregion
 
             Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < -1 || tempChoice > 9))
+            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < -1 || tempChoice > 10))
             {
                 Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
                 Console.Write(" ]\b\b");
@@ -652,7 +657,7 @@ namespace Diablo.Player
                     break;
             }
             
-        } /// TODO: Add ability to equip best gear
+        }
 
         /// <summary>
         /// Adds items in the parameter-list to the inventory and clears the parameter-list
