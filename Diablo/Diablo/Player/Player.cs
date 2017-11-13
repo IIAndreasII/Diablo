@@ -237,8 +237,6 @@ namespace Diablo.Player
         }
 
         #region Stats
-
-
         /// TODO: Add visual stuff
         /// <summary>
         /// Levels up the player
@@ -380,6 +378,10 @@ namespace Diablo.Player
             }
         }
 
+        /// <summary>
+        /// Adds given amount of exp to the player and checks if the player levels up
+        /// </summary>
+        /// <param name="anAmountToAdd">EXP to add</param>
         public void AddEXP(int anAmountToAdd)
         {
             myEXP += anAmountToAdd;
@@ -758,7 +760,6 @@ namespace Diablo.Player
                     break;
             }
         }
-
 
         /// <summary>
         /// Consumes 1 hp-potion if the player has one or more
