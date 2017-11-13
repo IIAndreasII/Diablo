@@ -18,6 +18,8 @@ namespace Diablo
             myEnemies;
         List<Loot.Item> 
             myLoot;
+        List<Loot.Scroll>
+            myScrolls;
         List<Loot.Chest>
             myChests;
         List<Doors>
@@ -36,10 +38,11 @@ namespace Diablo
         {
             myEnemies = new List<Enemies.Enemy>();
             myLoot = new List<Loot.Item>();
+            myScrolls = new List<Loot.Scroll>();
             myChests = new List<Loot.Chest>();
-            if (Utilities.Utility.GetRNG().Next(0,100) < aPlayer.GetLuck())
+            if (Utilities.Utility.GetRNG().Next(0, 100) < aPlayer.GetLuck())
             {
-                myChestCount = 2;//Utilities.Utility.GetRNG().Next(0, 3);
+                myChestCount = Utilities.Utility.GetRNG().Next(0, 3);
                 for (int i = 0; i < myChestCount; i++)
                 {
                     myChests.Add(new Loot.Chest());
@@ -72,7 +75,14 @@ namespace Diablo
             }
             for (int i = 0; i < anAmountOfItems; i++)
             {
-                myLoot.Add(new Loot.Item());
+                if (Utilities.Utility.GetRNG().Next(0, 3) < 1)
+                {
+                    myScrolls.Add(Factories.LootFactory.CreateScroll());
+                }
+                else
+                {
+                    myLoot.Add(Factories.LootFactory.CreateItem());
+                }
             }
         }
 
@@ -239,10 +249,10 @@ namespace Diablo
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
                             break;
                         case Loot.Type.WEAPON:
-                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetDamage() + "]", ConsoleColor.Gray);
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetRating() + "]", ConsoleColor.Gray);
                             break;
                         default:
-                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetRating() + "]", ConsoleColor.Gray);
                             break;
                     }
 
@@ -277,6 +287,7 @@ namespace Diablo
                         break;
                     case 1:
                         aPlayer.AddItemsToInventory(myLoot);
+                        aPlayer.AddScrollsToInventory(myScrolls);
                         aPlayer.AddGold(myGold);
                         aPlayer.AddHealthPotions(myHPPotions);
                         aPlayer.AddManaPotions(myManaPotions);
@@ -431,7 +442,6 @@ namespace Diablo
             myXPos = anXValue;
             myYPos = aYValue;
         }
-
         #endregion
     }
 }

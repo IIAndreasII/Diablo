@@ -82,10 +82,10 @@ namespace Diablo.Loot
                                 Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.DarkMagenta);
                                 break;
                             case Type.WEAPON:
-                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetDamage() + "]", ConsoleColor.Gray);
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetRating() + "]", ConsoleColor.Gray);
                                 break;
                             default:
-                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetArmourRating() + "]", ConsoleColor.Gray);
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetRating() + "]", ConsoleColor.Gray);
                                 break;
                         }
                         if (i == myItems.Count - 1)

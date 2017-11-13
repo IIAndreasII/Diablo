@@ -55,14 +55,5 @@ namespace Diablo.Factories
             }
             return tempListToReturn;
         }
-
-        /// <summary>
-        /// Generates a Mimic
-        /// </summary>
-        /// <returns>A Mimic</returns>
-        public static Enemies.Mimic GenerateMimic(int aLvl)
-        {
-            return new Enemies.Mimic(aLvl);
-        }
     }
 }
