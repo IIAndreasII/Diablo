@@ -63,6 +63,7 @@ namespace Diablo.Player
             myEquippedTrousers,
             myEquippedBoots,
 
+            myEquippedShield,
             myEquippedWeapon;
         #endregion
 
@@ -95,11 +96,12 @@ namespace Diablo.Player
             myInventory = new List<Loot.Item>();
             myScrollList = new List<Loot.Item>();
             myAppliedScrolls = new List<Loot.Item>();
-            myEquippedHelmet = new Loot.Item(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därav läggs dem inte in i inventory:t
+            myEquippedHelmet = new Loot.Item(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
             myEquippedChestplate = new Loot.Item(Loot.Type.CHESTPLATE, "Basicness", 4);
             myEquippedTrousers = new Loot.Item(Loot.Type.TROUSERS, "Basicness", 3);
             myEquippedBoots = new Loot.Item(Loot.Type.BOOTS, "Basicness", 1);
             myEquippedWeapon = new Loot.Item(Loot.Type.WEAPON, 15, "Basicness");
+            myEquippedShield = new Loot.Item(Loot.Type.SHIELD, "Basicness", 5);
 
             myScrollList.Add(new Loot.Item(true));
         }
@@ -549,31 +551,34 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 10);
             Console.Write("[3]");
             Utilities.Utility.PrintInColour(" ▓ Scrolls", ConsoleColor.DarkMagenta);
+            Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 9);
+            Console.Write("[4]");
+            Utilities.Utility.PrintInColour(" ▓ Trinkets", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
             Utilities.Utility.PrintInColour(" ▓ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 7);
-            Console.Write("[4] ");
+            Console.Write("[5] ");
             Utilities.Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetArmourRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 6);
             Utilities.Utility.PrintInColour("╚═╝ " + myEquippedHelmet.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 4);
-            Console.Write("[5]");
+            Console.Write("[6]");
             Utilities.Utility.PrintInColour("╔╦═╦╗[" + myEquippedChestplate.GetArmourRating() + "]" + myEquippedChestplate.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 3);
             Utilities.Utility.PrintInColour("╚═╝ " + myEquippedChestplate.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 1);
-            Console.Write("[6] ");
+            Console.Write("[7] ");
             Utilities.Utility.PrintInColour("╔═╗ [" + myEquippedTrousers.GetArmourRating() + "]" + myEquippedTrousers.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2);
             Utilities.Utility.PrintInColour("║ ║ " + myEquippedTrousers.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 2);
-            Console.Write("[7] ");
+            Console.Write("[8] ");
             Utilities.Utility.PrintInColour("    [" + myEquippedBoots.GetArmourRating() + "]" + myEquippedBoots.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 3);
             Utilities.Utility.PrintInColour("╝ ╚ " + myEquippedBoots.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 7);
-            Console.Write("[8]");
+            Console.Write("[9]");
             Utilities.Utility.PrintInColour(@"/\  [" + myEquippedWeapon.GetDamage() + "]" + myEquippedWeapon.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 6);
             Utilities.Utility.PrintInColour(@"||  " + myEquippedWeapon.GetSuffix(), ConsoleColor.Gray);
@@ -589,8 +594,31 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("][", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2);
             Utilities.Utility.PrintInColour("()", ConsoleColor.Gray);
-            Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 1);
-            Console.Write("[9] Equip best gear");
+
+            Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 4);
+            Console.Write("[10]");
+            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetArmourRating().ToString() + "]Shield", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 3);
+            Utilities.Utility.PrintInColour("of " + myEquippedShield.GetSuffix(), ConsoleColor.Gray);
+
+
+
+
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 - 2);
+            Utilities.Utility.PrintInColour(@" /---\", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 - 1);
+            Utilities.Utility.PrintInColour(@" | o |", ConsoleColor.Gray);
+            Console.SetCursorPosition(tempWWD2 + 10, tempWHD2);
+            Utilities.Utility.PrintInColour(@" \---/", ConsoleColor.Gray);
+
+
+
+
+
+
+
+
+
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
             Console.Write("[0] Close inventory");
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 3);

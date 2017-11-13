@@ -9,6 +9,8 @@ namespace Diablo.Loot
         TROUSERS,
         BOOTS,
         WEAPON,
+        SHIELD,
+        TRINKET,
         SCROLL,
         ERROR
     }
