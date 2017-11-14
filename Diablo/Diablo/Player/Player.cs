@@ -56,6 +56,8 @@ namespace Diablo.Player
         private List<Loot.Scroll>
             myScrollList,
             myAppliedScrolls;
+        private List<Loot.Trinket>
+            myTrinkets;
 
         private Loot.Item
             myEquippedHelmet,
@@ -63,7 +65,8 @@ namespace Diablo.Player
             myEquippedTrousers,
             myEquippedBoots,
             myEquippedShield,
-            myEquippedWeapon;
+            myEquippedWeapon,
+            myEquippedTrinket;
         #endregion
 
         public Player()

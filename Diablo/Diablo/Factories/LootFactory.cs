@@ -35,12 +35,14 @@
         /// <returns>An item</returns>
         public static Loot.Item CreateItem()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 2))
+            switch (Utilities.Utility.GetRNG().Next(0, 3))
             {
                 case 0:
                     return new Loot.Armour();
                 case 1:
                     return new Loot.Weapon();
+                case 2:
+                    return new Loot.Trinket();
                 default:
                     return new Loot.Armour();
             }
