@@ -76,8 +76,6 @@ namespace Diablo.Enemies
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            float
-                tempDamageDealt;
             aPlayer.PrintUI();
 
             switch (myType)
@@ -95,7 +93,7 @@ namespace Diablo.Enemies
                     break;
             }
             System.Threading.Thread.Sleep(1000);
-            if (aPlayer.TakeDamage(myDamage, out tempDamageDealt))
+            if (aPlayer.TakeDamage(myDamage, out float tempDamageDealt))
             {
                 Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
                 Console.Write("You took ");

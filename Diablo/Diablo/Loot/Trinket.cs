@@ -8,11 +8,11 @@ namespace Diablo.Loot
 {
     public enum Buff
     {
-        HEALTH,
-        ARMOUR,
-        STAMINA,
-        AGILITY,
-        LUCK
+        Health,
+        Armour,
+        Stamina,
+        Agility,
+        Luck
     }
 
     class Trinket : Item
@@ -26,6 +26,7 @@ namespace Diablo.Loot
         {
             myType = Type.TRINKET;
             SetBuff();
+            SetName();
         }
 
         private void SetBuff()
@@ -33,21 +34,40 @@ namespace Diablo.Loot
             switch (Utilities.Utility.GetRNG().Next(0, 5))
             {
                 case 0:
-                    myBuffType = Buff.HEALTH;
+                    myBuffType = Buff.Health;
                     break;
                 case 1:
-                    myBuffType = Buff.ARMOUR;
+                    myBuffType = Buff.Armour;
                     break;
                 case 2:
-                    myBuffType = Buff.STAMINA;
+                    myBuffType = Buff.Stamina;
                     break;
                 case 3:
-                    myBuffType = Buff.AGILITY;
+                    myBuffType = Buff.Agility;
                     break;
                 case 4:
-                    myBuffType = Buff.LUCK;
+                    myBuffType = Buff.Luck;
                     break;
             }
+        }
+
+        public void ApplyBuff(Player.Player aPlayer)
+        {
+            switch (myBuffType)
+            {
+
+            }
+        }
+
+        public Buff GetBuffType()
+        {
+            return myBuffType;
+        }
+
+        private void SetName()
+        {
+            myPrefix = "Trinket of";
+            mySuffix = Utilities.Utility.GetRandomSuffix();
         }
     }
 }

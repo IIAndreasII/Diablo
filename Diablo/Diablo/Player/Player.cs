@@ -65,7 +65,8 @@ namespace Diablo.Player
             myEquippedTrousers,
             myEquippedBoots,
             myEquippedShield,
-            myEquippedWeapon,
+            myEquippedWeapon;
+        private Loot.Trinket
             myEquippedTrinket;
         #endregion
 
@@ -96,6 +97,8 @@ namespace Diablo.Player
             myInventory = new List<Loot.Item>();
             myScrollList = new List<Loot.Scroll>();
             myAppliedScrolls = new List<Loot.Scroll>();
+            myTrinkets = new List<Loot.Trinket>();
+            myEquippedTrinket = new Loot.Trinket();
             myEquippedHelmet = new Loot.Armour(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
             myEquippedChestplate = new Loot.Armour(Loot.Type.CHESTPLATE, "Basicness", 4);
             myEquippedTrousers = new Loot.Armour(Loot.Type.TROUSERS, "Basicness", 3);
@@ -589,6 +592,10 @@ namespace Diablo.Player
                 case Loot.Type.SCROLL:
                     Console.Write("Available scrolls:");
                     break;
+                case Loot.Type.TRINKET:
+                    Console.Write("Equipped: ");
+                    Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
+                    break;
             }
             if (aType != Loot.Type.SCROLL)
             {
@@ -648,9 +655,7 @@ namespace Diablo.Player
                         case 1:
                             if (aType == Loot.Type.SCROLL)
                             {
-                                string tempEffect;
-                                int tempEffectAmount;
-                                ApplyScrollEffect(myScrollList[tempChoice - 1], out tempEffect, out tempEffectAmount);
+                                ApplyScrollEffect(myScrollList[tempChoice - 1], out string tempEffect, out int tempEffectAmount);
                                 PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
                                 Console.Write("Effect applied!");
@@ -676,7 +681,6 @@ namespace Diablo.Player
                     break;
             }    
         }
-
      
         /// <summary>
         /// Opens the inventory and let's the player equip or use items
@@ -779,7 +783,7 @@ namespace Diablo.Player
                     BrowseItems(Loot.Type.SCROLL);
                     break;
                 case 4:
-                    //BrowseItems(Loot.Type.TRINKET);
+                    BrowseItems(Loot.Type.TRINKET);
                     break;
                 case 5:
                     BrowseItems(Loot.Type.HELMET);
@@ -821,7 +825,10 @@ namespace Diablo.Player
             anItemList.Clear();
         }
 
-
+        /// <summary>
+        /// Add given scrolls to the player's scroll-list
+        /// </summary>
+        /// <param name="aScrollList">Scrolls to add</param>
         public void AddScrollsToInventory(List<Loot.Scroll> aScrollList)
         {
             foreach (Loot.Scroll tempScroll in aScrollList)
@@ -831,7 +838,9 @@ namespace Diablo.Player
                     myScrollList.Add(tempScroll);
                 }
             }
+            aScrollList.Clear();
         }
+
         /// <summary>
         /// Displays all available scrolls
         /// </summary>
