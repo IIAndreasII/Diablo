@@ -64,6 +64,7 @@
     <Compile Include="Loot\Armour.cs" />
     <Compile Include="Loot\Chest.cs" />
     <Compile Include="Loot\Scroll.cs" />
+    <Compile Include="Loot\Trinket.cs" />
     <Compile Include="Loot\Weapon.cs" />
     <Compile Include="Managers\DungeonManager.cs" />
     <Compile Include="Enemies\Archer.cs" />
