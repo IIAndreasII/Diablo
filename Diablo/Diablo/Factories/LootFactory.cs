@@ -29,6 +29,12 @@
             return new Loot.Scroll();
         }
 
+
+        public static Loot.Trinket CreateTrinket()
+        {
+            return new Loot.Trinket();
+        }
+
         /// <summary>
         /// Returns a random item (excluding scrolls)
         /// </summary>

@@ -19,6 +19,7 @@ namespace Diablo
         static void Initialize()
         {
             Console.ForegroundColor = StandardTextColour;
+            Utilities.Utility.SetSuffixes();
             myPlayer = new Player.Player();
             Managers.DungeonManager.Init(myPlayer);
             Managers.EnemyManager.Init();

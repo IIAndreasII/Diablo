@@ -206,6 +206,7 @@ namespace Diablo.Dungeon
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
+           // DrawMatrix();
             aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
             Console.Write("You delve into the nearest dungeon");

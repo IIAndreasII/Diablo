@@ -17,3 +17,4 @@ C:\Users\Andreas Bartilson\Source\Repos\Diablo\Diablo\Diablo\bin\Debug\Diablo.ex
 C:\Users\Andreas Bartilson\Source\Repos\Diablo\Diablo\Diablo\bin\Debug\Diablo.pdb
 C:\Users\Andreas Bartilson\Source\Repos\Diablo\Diablo\Diablo\obj\Debug\Diablo.csprojResolveAssemblyReference.cache
 C:\Users\Andreas Bartilson\Source\Repos\Diablo\Diablo\Diablo\obj\Debug\Diablo.csproj.CoreCompileInputs.cache
+C:\Users\andreas.bartilson\Source\Repos\Diablo\Diablo\Diablo\obj\Debug\Diablo.csproj.CoreCompileInputs.cache

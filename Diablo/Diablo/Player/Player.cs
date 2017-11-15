@@ -24,6 +24,7 @@ namespace Diablo.Player
             mySpellDamage,
             myArmourRating,
             myTempArmourRating = 0,
+            myArmourBuff = 0,
 
             myGold,
             myHPPotionAmount,
@@ -38,7 +39,12 @@ namespace Diablo.Player
             myAgility,
             myIntelligence,
             myWisdom,
-            myLuck;
+            myLuck,
+            
+            myStrBuff = 0,
+            myAgilityBuff = 0,
+            myLuckBuff = 0,
+            myStaminaBuff = 0;
 
         private float
             myStamina,
@@ -46,6 +52,7 @@ namespace Diablo.Player
 
             myHealth,
             myTempHealth = 0,
+            myHealthBuff,
             myMaxHealth;
 
         private bool
@@ -56,8 +63,6 @@ namespace Diablo.Player
         private List<Loot.Scroll>
             myScrollList,
             myAppliedScrolls;
-        private List<Loot.Trinket>
-            myTrinkets;
 
         private Loot.Item
             myEquippedHelmet,
@@ -74,14 +79,14 @@ namespace Diablo.Player
         {
             myLevel = 1;
             myEXP = 0;
-            myRequiredEXP = 20;
+            myRequiredEXP = 50;
             myStrength = Utilities.Utility.GetRNG().Next(5, 11);                  // Antal procent mer skada
             myAgility = Utilities.Utility.GetRNG().Next(5, 11);                   // Antal procent chans det är att undvika en attack
-            myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121); // Antal procent av maxHP
+            myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121);             // Antal procent av maxHP
             myStamina = myMaxStamina;
             myIntelligence = Utilities.Utility.GetRNG().Next(5, 11);
             myWisdom = Utilities.Utility.GetRNG().Next(5, 11);
-            myLuck = Utilities.Utility.GetRNG().Next(5, 11); // Antal procent chans för att hitta extra loot                                                           
+            myLuck = Utilities.Utility.GetRNG().Next(5, 11);                      // Antal procent chans för att hitta extra loot                                                           
 
             myMaxHealth = 100;
             myHealth = myMaxHealth * myStamina / 100;
@@ -97,15 +102,15 @@ namespace Diablo.Player
             myInventory = new List<Loot.Item>();
             myScrollList = new List<Loot.Scroll>();
             myAppliedScrolls = new List<Loot.Scroll>();
-            myTrinkets = new List<Loot.Trinket>();
-            myEquippedTrinket = new Loot.Trinket();
+            myEquippedTrinket = new Loot.Trinket("Basicness");
+            myEquippedTrinket.ApplyBuff(this);
             myEquippedHelmet = new Loot.Armour(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
             myEquippedChestplate = new Loot.Armour(Loot.Type.CHESTPLATE, "Basicness", 4);
             myEquippedTrousers = new Loot.Armour(Loot.Type.TROUSERS, "Basicness", 3);
             myEquippedBoots = new Loot.Armour(Loot.Type.BOOTS, "Basicness", 1);
             myEquippedWeapon = new Loot.Weapon("Basicness", 15);
             myEquippedShield = new Loot.Armour(Loot.Type.SHIELD, "Basicness", 5);
-            myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating();
+            myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
 
             myScrollList.Add(new Loot.Scroll());
         }
@@ -430,7 +435,6 @@ namespace Diablo.Player
         #endregion
 
         #region Inventory     
-
         /// <summary>
         /// Equips the player with given item
         /// </summary>
@@ -494,9 +498,18 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
+                case Loot.Type.TRINKET:
+                    tempItem = myEquippedTrinket;
+                    myEquippedTrinket = (Loot.Trinket)anItem;
+                    if (myInventory.Contains(anItem))
+                    {
+                        myInventory.Remove(anItem);
+                    }
+                    myInventory.Add(tempItem);
+                    break;
             }
             myDamage = myEquippedWeapon.GetRating();
-            myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating();
+            myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
         }
 
         /// <summary>
@@ -1264,6 +1277,80 @@ namespace Diablo.Player
             if(myTempArmourRating < 0)
             {
                 myTempArmourRating = 0;
+            }
+        }
+
+        public void SetStrengthBuff(int aStrengthBuff)
+        {
+            myStrBuff = aStrengthBuff;
+            myStrength += aStrengthBuff;
+        }
+
+        public void SetArmourBuff(int anArmourBuff)
+        {
+            myArmourBuff = anArmourBuff;
+            myArmourRating += myArmourBuff;
+        }
+
+        /// <summary>
+        /// Sets player's healthbuff
+        /// </summary>
+        /// <param name="aHealthBuff">Healthbuff represented in percent</param>
+        public void SetHealthBuff(float aHealthBuff)
+        {
+            myHealthBuff = myMaxHealth * (aHealthBuff / 100);
+            myMaxHealth += myHealthBuff;
+        }
+
+        public void SetAgilityBuff(int anAgilityBuff)
+        {
+            myAgilityBuff = anAgilityBuff;
+            myAgility += myAgilityBuff;
+        }
+
+        public void SetLuckBuff(int aLuckBuff)
+        {
+            myLuckBuff = aLuckBuff;
+            myLuck += myLuckBuff;
+        }
+
+        public void SetStaminaBuff(int aStaminabuff)
+        {
+            myStaminaBuff = aStaminabuff;
+            myMaxStamina += myStaminaBuff;
+        }
+
+        public void ResetBuffs()
+        {
+            if (myHealthBuff > 0)
+            {
+                myMaxHealth -= myHealthBuff;
+                myHealthBuff = 0;
+            }
+            if (myStrBuff > 0)
+            {
+                myStrength -= myStrBuff;
+                myStrBuff = 0;
+            }
+            if(myArmourBuff > 0)
+            {
+                myArmourRating -= myArmourBuff;
+                myArmourBuff = 0;
+            }
+            if(myLuckBuff > 0)
+            {
+                myLuck -= myLuckBuff;
+                myLuckBuff = 0;
+            }
+            if (myAgilityBuff > 0)
+            {
+                myAgility -= myAgilityBuff;
+                myAgilityBuff = 0;
+            }
+            if(myStaminaBuff > 0)
+            {
+                myMaxStamina -= myStaminaBuff;
+                myStaminaBuff = 0;
             }
         }
         #endregion

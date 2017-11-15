@@ -6,6 +6,7 @@ namespace Diablo.Utilities
     static class Utility
     {
         private static Random myRNG = new Random();
+        private static string[] mySuffixes;
 
         /// <summary>
         /// Gets the random number generator
@@ -19,49 +20,54 @@ namespace Diablo.Utilities
         /// <summary>
         /// Generates all suffixes for items 
         /// </summary>
-        private static string[] GetSuffixes()
+        public static void SetSuffixes()
         {
-            string[] tempSuffixes = new string[11];
-            for (int i = 0; i < tempSuffixes.Length; i++)
+            mySuffixes = new string[13];
+            for (int i = 0; i < mySuffixes.Length; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        tempSuffixes[i] = "Divinity";
+                        mySuffixes[i] = "Divinity";
                         break;
                     case 1:
-                        tempSuffixes[i] = "Corruption";
+                        mySuffixes[i] = "Corruption";
                         break;
                     case 2:
-                        tempSuffixes[i] = "Fräsighet";
+                        mySuffixes[i] = "Fräsighet";
                         break;
                     case 3:
-                        tempSuffixes[i] = "Deceit";
+                        mySuffixes[i] = "Deceit";
                         break;
                     case 4:
-                        tempSuffixes[i] = "Peasants";
+                        mySuffixes[i] = "Peasants";
                         break;
                     case 5:
-                        tempSuffixes[i] = "Odin";
+                        mySuffixes[i] = "Odin";
                         break;
                     case 6:
-                        tempSuffixes[i] = "Despair";
+                        mySuffixes[i] = "Despair";
                         break;
                     case 7:
-                        tempSuffixes[i] = "Clumpsiness";
+                        mySuffixes[i] = "Clumpsiness";
                         break;
                     case 8:
-                        tempSuffixes[i] = "Stupidity";
+                        mySuffixes[i] = "Stupidity";
                         break;
                     case 9:
-                        tempSuffixes[i] = "Saltiness";
+                        mySuffixes[i] = "Saltiness";
                         break;
                     case 10:
-                        tempSuffixes[i] = "Wisdom";
+                        mySuffixes[i] = "Wisdom";
+                        break;
+                    case 11:
+                        mySuffixes[i] = "Might";
+                        break;
+                    case 12:
+                        mySuffixes[i] = "Tyrants";
                         break;
                 }
             }
-            return tempSuffixes;
         }
 
         /// <summary>
@@ -70,8 +76,7 @@ namespace Diablo.Utilities
         /// <returns>String containing a random suffix</returns>
         public static string GetRandomSuffix()
         {
-            string[] tempSuffixArray = GetSuffixes();
-            return tempSuffixArray[myRNG.Next(0, tempSuffixArray.Length)];
+            return mySuffixes[myRNG.Next(0, mySuffixes.Length)];
         }
 
         /// <summary>
