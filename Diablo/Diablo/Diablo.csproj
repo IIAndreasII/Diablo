@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Factories\DungeonFactory.cs" />
     <Compile Include="Factories\LootFactory.cs" />
     <Compile Include="Loot\Armour.cs" />

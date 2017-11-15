@@ -6,7 +6,7 @@ namespace Diablo.Enemies
     {
         SKELETON,
         ARCHER,
-        MIMIC
+        BOSS
     }
 
     public class Enemy
@@ -20,8 +20,6 @@ namespace Diablo.Enemies
         protected float
             myDamage,
             myHealth;
-        protected bool
-            myIsAlive = true;
         protected Type
             myType;
 
@@ -55,8 +53,6 @@ namespace Diablo.Enemies
                     Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
                     Utilities.Utility.PrintInColour("+" + myEXPToGive.ToString(), ConsoleColor.Green);
                     Console.Write(" experience!");
-                    
-                    myIsAlive = false;
                 }
             }
             else
@@ -87,9 +83,6 @@ namespace Diablo.Enemies
                 case Type.ARCHER:
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
                     Console.WriteLine("The enemy draws his bow");
-                    break;
-                case Type.MIMIC:
-
                     break;
             }
             System.Threading.Thread.Sleep(1000);
@@ -131,11 +124,6 @@ namespace Diablo.Enemies
         public int GetLevel()
         {
             return myLevel;
-        }
-
-        public bool GetIsAlive()
-        {
-            return myIsAlive;
         }
 
         public int GetEXPToGive()

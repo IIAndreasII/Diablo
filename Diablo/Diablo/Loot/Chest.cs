@@ -23,9 +23,9 @@ namespace Diablo.Loot
             int tempNumberOfItems = Utilities.Utility.GetRNG().Next(0, 6);
             for (int i = 0; i < tempNumberOfItems; i++)
             {
-                myItems.Add(new Item());
+                myItems.Add(Factories.LootFactory.CreateItem());
             }
-            if (Utilities.Utility.GetRNG().Next(0, 100) < 10)
+            if (Utilities.Utility.GetRNG().Next(0, 100) < 5)
             {
                 myIsMimic = true;
             }
