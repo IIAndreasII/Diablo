@@ -29,19 +29,22 @@
             return new Loot.Scroll();
         }
 
-
+        /// <summary>
+        /// Creates a trinket
+        /// </summary>
+        /// <returns>A trinket</returns>
         public static Loot.Trinket CreateTrinket()
         {
             return new Loot.Trinket();
         }
 
         /// <summary>
-        /// Returns a random item (excluding scrolls)
+        /// Creates a random item
         /// </summary>
         /// <returns>An item</returns>
         public static Loot.Item CreateItem()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 3))
+            switch (Utilities.Utility.GetRNG().Next(0, 4))
             {
                 case 0:
                     return new Loot.Armour();
@@ -49,6 +52,8 @@
                     return new Loot.Weapon();
                 case 2:
                     return new Loot.Trinket();
+                case 3:
+                    return new Loot.Scroll();
                 default:
                     return new Loot.Armour();
             }

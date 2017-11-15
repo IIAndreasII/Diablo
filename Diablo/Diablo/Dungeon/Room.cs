@@ -18,8 +18,6 @@ namespace Diablo
             myEnemies;
         List<Loot.Item> 
             myLoot;
-        List<Loot.Scroll>
-            myScrolls;
         List<Loot.Chest>
             myChests;
         List<Doors>
@@ -38,7 +36,6 @@ namespace Diablo
         {
             myEnemies = new List<Enemies.Enemy>();
             myLoot = new List<Loot.Item>();
-            myScrolls = new List<Loot.Scroll>();
             myChests = new List<Loot.Chest>();
             if (Utilities.Utility.GetRNG().Next(0, 100) < aPlayer.GetLuck())
             {
@@ -75,15 +72,9 @@ namespace Diablo
             }
             for (int i = 0; i < anAmountOfItems; i++)
             {
-                if (Utilities.Utility.GetRNG().Next(0, 3) < 1)
-                {
-                    myScrolls.Add(Factories.LootFactory.CreateScroll());
-                }
-                else
-                {
-                    myLoot.Add(Factories.LootFactory.CreateItem());
-                }
+                myLoot.Add(Factories.LootFactory.CreateItem());
             }
+            myLoot.Add(Factories.LootFactory.CreateTrinket());
         }
 
         /// <summary>
@@ -248,11 +239,11 @@ namespace Diablo
                         case Loot.Type.SCROLL:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
                             break;
-                        case Loot.Type.WEAPON:
-                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetRating() + "]", ConsoleColor.Gray);
+                        case Loot.Type.TRINKET:
+                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.Green);
                             break;
                         default:
-                            Utilities.Utility.PrintInColour(myLoot[i].GetFullName() + " [" + myLoot[i].GetRating() + "]", ConsoleColor.Gray);
+                            Utilities.Utility.PrintInColour("[" + myLoot[i].GetRating() + "]" + myLoot[i].GetFullName(), ConsoleColor.Gray);
                             break;
                     }
 
@@ -266,9 +257,9 @@ namespace Diablo
                         Console.Write("Gold: " + myGold);                      
                     }
                 }
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-                Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
+                Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
                 Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
                 Console.Write("[ ]");
@@ -287,7 +278,6 @@ namespace Diablo
                         break;
                     case 1:
                         aPlayer.AddItemsToInventory(myLoot);
-                        aPlayer.AddScrollsToInventory(myScrolls);
                         aPlayer.AddGold(myGold);
                         aPlayer.AddHealthPotions(myHPPotions);
                         aPlayer.AddManaPotions(myManaPotions);

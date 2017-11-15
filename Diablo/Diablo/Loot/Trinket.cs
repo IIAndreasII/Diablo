@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diablo.Loot
+﻿namespace Diablo.Loot
 {
     public enum Buff
     {
@@ -38,6 +32,9 @@ namespace Diablo.Loot
             mySuffix = "Basicness";
         }
 
+        /// <summary>
+        /// Sets the trinket's bufftype
+        /// </summary>
         private void SetBuff()
         {
             switch (Utilities.Utility.GetRNG().Next(0, 6))
@@ -69,6 +66,10 @@ namespace Diablo.Loot
             }
         }
 
+        /// <summary>
+        /// Applies buff to given player
+        /// </summary>
+        /// <param name="aPlayer">Active player</param>
         public void ApplyBuff(Player.Player aPlayer)
         {
             switch (myBuffType)
@@ -94,16 +95,27 @@ namespace Diablo.Loot
             }
         }
 
+        /// <summary>
+        /// Gets buff type
+        /// </summary>
+        /// <returns>Trinkets bufftype</returns>
         public Buff GetBuffType()
         {
             return myBuffType;
         }
 
+        /// <summary>
+        /// Gets effect amount
+        /// </summary>
+        /// <returns>Effectamount</returns>
         public int GetEffectAmount()
         {
             return myEffectAmount;
         }
 
+        /// <summary>
+        /// Sets item's name
+        /// </summary>
         private void SetName()
         {
             myPrefix = "Trinket of";

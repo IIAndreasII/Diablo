@@ -61,7 +61,6 @@ namespace Diablo.Player
         private List<Loot.Item>
             myInventory;
         private List<Loot.Scroll>
-            myScrollList,
             myAppliedScrolls;
 
         private Loot.Item
@@ -100,7 +99,6 @@ namespace Diablo.Player
             myInventoryCapacity = 50;
 
             myInventory = new List<Loot.Item>();
-            myScrollList = new List<Loot.Scroll>();
             myAppliedScrolls = new List<Loot.Scroll>();
             myEquippedTrinket = new Loot.Trinket("Basicness");
             myEquippedTrinket.ApplyBuff(this);
@@ -112,7 +110,7 @@ namespace Diablo.Player
             myEquippedShield = new Loot.Armour(Loot.Type.SHIELD, "Basicness", 5);
             myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
 
-            myScrollList.Add(new Loot.Scroll());
+            myInventory.Add(new Loot.Scroll());
         }
 
         /// <summary>
@@ -189,60 +187,6 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 13);
             Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
-        }
-
-        /// <summary>
-        /// Deathsequence
-        /// </summary>
-        public void DeathSequence()
-        {
-            int
-                tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2,
-                tempTextOffset = 31,
-                tempChoice = 0;
-            Console.Clear();
-            Utilities.Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
-            Utilities.Utility.PrintPentagram(tempWWD2 +23, tempWHD2 - 5, ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 14);
-            Utilities.Utility.PrintInColour("╦   ╦   ╔════╗   ╦    ╦      ╦════╗    ═╦═   ╦═════╗   ╦════╗", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 13);
-            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 12);
-            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 11);
-            Utilities.Utility.PrintInColour("╚═╦═╝   ║    ║   ║    ║      ║     ║    ║    ╬════     ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 10);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 9);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 8);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
-            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
-            Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
-
-            Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
-            Console.Write("[1] Menu");
-            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
-            Console.Write("[2] Exit game");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 3);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
-            while(!int.TryParse(Console.ReadLine(), out tempChoice) || (tempChoice != 1 && tempChoice != 2))
-            {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
-            {
-                case 1:
-                    Program.Reboot();
-                    break;
-                case 2:
-                    Environment.Exit(0);
-                    break;
-            }
-            Program.Reboot();
         }
 
         #region Stats
@@ -501,6 +445,8 @@ namespace Diablo.Player
                 case Loot.Type.TRINKET:
                     tempItem = myEquippedTrinket;
                     myEquippedTrinket = (Loot.Trinket)anItem;
+                    ResetBuffs();
+                    myEquippedTrinket.ApplyBuff(this);
                     if (myInventory.Contains(anItem))
                     {
                         myInventory.Remove(anItem);
@@ -571,6 +517,8 @@ namespace Diablo.Player
                 tempItemCount = 0,
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
+            ConsoleColor
+                tempPrintColour = ConsoleColor.Gray;
             List<int>
                 tempIndexes = new List<int>();
             PrintUI();
@@ -604,42 +552,34 @@ namespace Diablo.Player
                     break;
                 case Loot.Type.SCROLL:
                     Console.Write("Available scrolls:");
+                    tempPrintColour = ConsoleColor.DarkMagenta;
                     break;
                 case Loot.Type.TRINKET:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
+                    tempPrintColour = ConsoleColor.Green;
                     break;
             }
-            if (aType != Loot.Type.SCROLL)
+
+            for (int i = 0; i < myInventory.Count; i++)
             {
-                for (int i = 0; i < myInventory.Count; i++)
+                if (myInventory[i].GetItemType() == aType)
                 {
-                    if (myInventory[i].GetItemType() == aType)
-                    {
-                        tempItemCount++;
-                        Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + tempOffset);
-                        Console.Write("[" + (tempItemCount) + "]");
-                        Utilities.Utility.PrintInColour(myInventory[i].GetItemType() == Loot.Type.SCROLL ? "" : "[" + (myInventory[i].GetItemType() == Loot.Type.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]" + myInventory[i].GetFullName(), ConsoleColor.Gray);
-                        tempIndexes.Add(i);
-                        tempOffset++;
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < myScrollList.Count; i++)
-                {
+                    tempItemCount++;
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + tempOffset);
-                    Console.Write("[" + (i + 1) + "] ");
-                    Utilities.Utility.PrintInColour(myScrollList[i].GetFullName(), ConsoleColor.DarkMagenta);
+                    Console.Write("[" + (tempItemCount) + "]");
+                    Utilities.Utility.PrintInColour((myInventory[i].GetItemType() == Loot.Type.SCROLL || myInventory[i].GetItemType() == Loot.Type.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == Loot.Type.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
+                    tempIndexes.Add(i);
+                    tempOffset++;
                 }
             }
+            
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
             Console.Write("[0] Back");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > (aType == Loot.Type.SCROLL ? myScrollList.Count : tempItemCount)))
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > tempItemCount))
             {
                 Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
                 Console.Write(" ]\b\b");
@@ -668,11 +608,11 @@ namespace Diablo.Player
                         case 1:
                             if (aType == Loot.Type.SCROLL)
                             {
-                                ApplyScrollEffect(myScrollList[tempChoice - 1], out string tempEffect, out int tempEffectAmount);
+                                ApplyScrollEffect((Loot.Scroll)myInventory[tempIndexes[tempChoice - 1]], out string tempEffect, out int tempEffectAmount);
                                 PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
                                 Console.Write("Effect applied!");
-                                myScrollList.RemoveAt(tempChoice - 1);
+                                myInventory.RemoveAt(tempIndexes[tempChoice - 1]);
                                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
                                 Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
                                 Console.Write(tempEffect);
@@ -708,7 +648,7 @@ namespace Diablo.Player
             #region Doodle Sequence
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count + myScrollList.Count) + "/" + myInventoryCapacity + ")");
+            Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
             Utilities.Utility.PrintInColour(" ▓ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
@@ -836,91 +776,6 @@ namespace Diablo.Player
                 }
             }
             anItemList.Clear();
-        }
-
-        /// <summary>
-        /// Add given scrolls to the player's scroll-list
-        /// </summary>
-        /// <param name="aScrollList">Scrolls to add</param>
-        public void AddScrollsToInventory(List<Loot.Scroll> aScrollList)
-        {
-            foreach (Loot.Scroll tempScroll in aScrollList)
-            {
-                if (myInventory.Count + myManaPotionAmount + myHPPotionAmount < myInventoryCapacity)
-                {
-                    myScrollList.Add(tempScroll);
-                }
-            }
-            aScrollList.Clear();
-        }
-
-        /// <summary>
-        /// Displays all available scrolls
-        /// </summary>
-        private void ViewScrolls()
-        {
-            int
-               tempChoice,
-               tempSecondChoice,
-               tempWWD2 = Console.WindowWidth / 2,
-               tempWHD2 = Console.WindowHeight / 2,
-               tempTextOffset = tempWHD2 - 10;
-            PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
-            Console.Write("Available scrolls:");
-            for (int i = 0; i < myScrollList.Count; i++)
-            {              
-                Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i);
-                Console.Write("[" + (i + 1) + "] ");
-                Utilities.Utility.PrintInColour(myScrollList[i].GetFullName(), ConsoleColor.DarkMagenta);
-            }
-            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-            Console.Write("[0] Back");
-            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > 2))
-            {
-                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
-                Console.Write(" ]\b\b");
-            }
-            if (tempChoice != 0)
-            {
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                Console.Write("[1] Apply  [2] Throw away [0] Back");
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
-                Console.Write("[ ]");
-                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempSecondChoice))
-                {
-                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                    Console.Write(" ]\b\b");
-                }
-                switch (tempSecondChoice)
-                {
-                    case 1:
-                        string tempEffect;
-                        int tempEffectAmount;
-                        ApplyScrollEffect(myScrollList[tempChoice - 1], out tempEffect, out tempEffectAmount);
-                        PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
-                        Console.Write("Effect applied!");
-                        myScrollList.RemoveAt(tempChoice - 1);
-                        Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
-                        Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
-                        Console.Write(tempEffect);
-                        System.Threading.Thread.Sleep(2000);
-                        break;
-                    case 2:
-                        myScrollList.RemoveAt(tempChoice - 1);
-                        break;
-                }
-                OpenInventory();
-            }
-            else
-            {
-                OpenInventory();
-            }
         }
 
         /// <summary>
@@ -1065,6 +920,60 @@ namespace Diablo.Player
         #endregion
 
         #region Battle
+        /// <summary>
+        /// Deathsequence
+        /// </summary>
+        public void DeathSequence()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempTextOffset = 31,
+                tempChoice = 0;
+            Console.Clear();
+            Utilities.Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(tempWWD2 +23, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 14);
+            Utilities.Utility.PrintInColour("╦   ╦   ╔════╗   ╦    ╦      ╦════╗    ═╦═   ╦═════╗   ╦════╗", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 13);
+            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 12);
+            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 11);
+            Utilities.Utility.PrintInColour("╚═╦═╝   ║    ║   ║    ║      ║     ║    ║    ╬════     ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 10);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 9);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 8);
+            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
+            Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
+
+            Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
+            Console.Write("[1] Menu");
+            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
+            Console.Write("[2] Exit game");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 3);
+            Console.Write("[ ]");
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
+            while(!int.TryParse(Console.ReadLine(), out tempChoice) || (tempChoice != 1 && tempChoice != 2))
+            {
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
+                Console.Write(" ]\b\b");
+            }
+            switch (tempChoice)
+            {
+                case 1:
+                    Program.Reboot();
+                    break;
+                case 2:
+                    Environment.Exit(0);
+                    break;
+            }
+            Program.Reboot();
+        }
+
         /// <summary>
         /// Deals damage to given enemy
         /// </summary>
