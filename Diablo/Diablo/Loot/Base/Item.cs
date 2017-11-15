@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Loot
 {
-    public enum Type
+    public enum ItemType
     {
         HELMET,
         CHESTPLATE,
@@ -15,7 +15,7 @@
 
     public class Item
     {
-        protected Type 
+        protected ItemType
             myType;
         protected string 
             myPrefix,
@@ -47,7 +47,7 @@
         /// Gets the type of the item
         /// </summary>
         /// <returns>an Item type</returns>
-        public Type GetItemType()
+        public ItemType GetItemType()
         {
             return myType;
         }

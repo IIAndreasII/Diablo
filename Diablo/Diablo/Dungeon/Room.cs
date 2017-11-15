@@ -21,22 +21,30 @@ namespace Diablo
         List<Loot.Chest>
             myChests;
         List<Doors>
-            myDoors= new List<Doors>();
+            myDoors;
+        Enemies.Boss
+            myBoss;
         int
             myGold,
             myHPPotions,
             myManaPotions,
             myChestCount,
             myXPos,
-            myYPos;
+            myYPos,
+            myNumberOfEnemies;
         bool 
-            myAreHostilesPresent;
+            myAreHostilesPresent,
+            myIsBossRoom;
 
-        public Room(int aNumberOfSkeletons, int aNumberOfArchers, int anAmountOfItems, Player.Player aPlayer)
+        public Room(int aNumberOfEnemies, int anAmountOfItems, bool isBossRoom, Player.Player aPlayer)
         {
+            myDoors = new List<Doors>();
             myEnemies = new List<Enemies.Enemy>();
             myLoot = new List<Loot.Item>();
             myChests = new List<Loot.Chest>();
+            myNumberOfEnemies = aNumberOfEnemies;
+            myIsBossRoom = isBossRoom;
+            myEnemies = Factories.EnemyFactory.CreateEnemies(myNumberOfEnemies, Utilities.Utility.GetRNG().Next(1, aPlayer.GetLevel() + 1));
             if (Utilities.Utility.GetRNG().Next(0, 100) < aPlayer.GetLuck())
             {
                 myChestCount = Utilities.Utility.GetRNG().Next(0, 3);
@@ -45,36 +53,29 @@ namespace Diablo
                     myChests.Add(new Loot.Chest());
                 }
             }
-            if (aNumberOfSkeletons + aNumberOfArchers > 0)
-            {
-                myAreHostilesPresent = true;
-                if (aNumberOfSkeletons > 0)
-                {
-                    for (int i = 0; i < aNumberOfSkeletons; i++)
-                    {
-                        myEnemies.Add(new Enemies.Skeleton(Utilities.Utility.GetRNG().Next(1, aPlayer.GetLevel())));
-                    }
-                }
-                if(aNumberOfArchers > 0)
-                {
-                    for (int i = 0; i < aNumberOfArchers; i++)
-                    {
-                        myEnemies.Add(new Enemies.Archer(Utilities.Utility.GetRNG().Next(1, aPlayer.GetLevel())));
-                    }
-                }
-                myGold = Utilities.Utility.GetRNG().Next(5, 20 * (aNumberOfSkeletons + aNumberOfArchers) + 1);
-                myHPPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2 + 1);
-                myManaPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfSkeletons + aNumberOfArchers) / 2 + 1);
-            }
-            else
-            {
-                myAreHostilesPresent = false;
-            }
             for (int i = 0; i < anAmountOfItems; i++)
             {
                 myLoot.Add(Factories.LootFactory.CreateItem());
             }
-            myLoot.Add(Factories.LootFactory.CreateTrinket());
+            if (!myIsBossRoom)
+            {
+                if (aNumberOfEnemies > 0)
+                {
+                    myAreHostilesPresent = true;
+                    myGold = Utilities.Utility.GetRNG().Next(5, 20 * (aNumberOfEnemies) + 1);
+                    myHPPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfEnemies) / 2 + 1);
+                    myManaPotions = Utilities.Utility.GetRNG().Next(0, (aNumberOfEnemies) / 2 + 1);
+                }
+                else
+                {
+                    myAreHostilesPresent = false;
+                }
+            }
+            else
+            {
+                myAreHostilesPresent = true;
+                myBoss = Factories.EnemyFactory.CreateBoss(aPlayer.GetLevel());
+            }
         }
 
         /// <summary>
@@ -83,13 +84,13 @@ namespace Diablo
         /// <param name="aPlayer">The player which will enter</param>
         public void EnterRoom(Player.Player aPlayer)
         {
-            aPlayer.PrintUI();
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
+            aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
             Console.Write("You enter the room and look around");
-            if (myEnemies.Count > 0)
+            if (myEnemies.Count > 0 && !myIsBossRoom)
             {
                 if (myEnemies.Count == 1)
                 {
@@ -101,6 +102,13 @@ namespace Diablo
                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
                     Console.Write("You have spotted " + myEnemies.Count.ToString() + " enemies!");
                 }
+                System.Threading.Thread.Sleep(2000);
+                BattleSequence(aPlayer);
+            }
+            else if (myIsBossRoom)
+            {
+                Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
+                Console.Write("You have spotted " + myBoss.GetName() + "!");
                 System.Threading.Thread.Sleep(2000);
                 BattleSequence(aPlayer);
             }
@@ -124,46 +132,56 @@ namespace Diablo
                 tempWHD2 = Console.WindowHeight / 2;
             bool
                 tempHasFled = false;
-            Managers.EnemyManager.SetEnemies(myEnemies);
+            Managers.EnemyManager.Reset();
+            if (!myIsBossRoom)
+            {
+                Managers.EnemyManager.SetEnemies(myEnemies);
+            }
+            else
+            {
+                Managers.EnemyManager.AddEnemy(myBoss);
+            }
             while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled && aPlayer.GetHealth() > 0)
             {
                 Console.Clear();
                 switch (aPlayer.ChooseBattleAction())
                 {
                     case Player.BattleActions.ATTACK:
-
                         Console.Clear();
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                         Console.WriteLine("Choose an enemy to attack");
-                        for (int i = 0; i < myEnemies.Count; i++)
+                        if (!myIsBossRoom)
                         {
-                            string tempTypeString = string.Empty;
-                            if(myEnemies[i].GetEnemyType() == Enemies.Type.ARCHER)
+                            for (int i = 0; i < myEnemies.Count; i++)
                             {
-                                tempTypeString = "Archer";
+                                string tempTypeString = string.Empty;
+                                if (myEnemies[i].GetEnemyType() == Enemies.Type.ARCHER)
+                                {
+                                    tempTypeString = "Archer";
+                                }
+                                else if (myEnemies[i].GetEnemyType() == Enemies.Type.SKELETON)
+                                {
+                                    tempTypeString = "Skeleton";
+                                }
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
+                                Console.Write("[" + (i + 1).ToString() + "] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2).ToString() + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
                             }
-                            else if(myEnemies[i].GetEnemyType() == Enemies.Type.SKELETON)
-                            {
-                                tempTypeString = "Skeleton";
-                            }
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
-                            Console.Write("[" + (i + 1).ToString() + @"] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2) + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
                         }
-                        Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 9 + myEnemies.Count);
-                        Console.Write("[ ]");
-                        Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myEnemies.Count);
-                        int tempChoice = 0;
-                        while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 0 || tempChoice > myEnemies.Count))
+                        else
                         {
-                            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 9 + myEnemies.Count);
-                            Console.Write(" \b");
+                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+                            Console.Write("[1] '" + myBoss.GetName() + "'; Health - " + Math.Round(myBoss.GetHealth(), 2).ToString() + "; Armour - " + myBoss.GetArmourRating().ToString());
                         }
-                        Console.Clear();
-                        aPlayer.PrintUI();
-                        if (tempChoice <= myEnemies.Count)
+                        if (Utilities.Utility.GetDigitInput(-2, -9 + myEnemies.Count, (myIsBossRoom ? 1 : myEnemies.Count), out int tempInputValue) <= myEnemies.Count && !myIsBossRoom)
                         {
-                            aPlayer.DealDamage(myEnemies[tempChoice - 1]);
+                            aPlayer.PrintUI();
+                            aPlayer.DealDamage(myEnemies[tempInputValue - 1]);
+                        }
+                        else
+                        {
+                            aPlayer.PrintUI();
+                            aPlayer.DealDamage(myBoss);
                         }
                         break;
                     case Player.BattleActions.DEFEND:
@@ -177,10 +195,19 @@ namespace Diablo
                         break;
                     case Player.BattleActions.USEITEM:
                         aPlayer.OpenInventory();
-                        BattleSequence(aPlayer);
                         break;
                     case Player.BattleActions.FLEE:
-                        tempHasFled = true;
+                        if (myIsBossRoom)
+                        {
+                            aPlayer.PrintUI();
+                            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
+                            Console.Write("You cannot flee from a boss-fight!");
+                            System.Threading.Thread.Sleep(1500);
+                        }
+                        else
+                        {
+                            tempHasFled = true;
+                        }
                         break;
                     case Player.BattleActions.ABSTAIN:
                         aPlayer.PrintUI();
@@ -198,7 +225,14 @@ namespace Diablo
             {
                 aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                Console.Write("All enemies were defeated!");
+                if (myIsBossRoom)
+                {
+                    Console.Write(myBoss.GetName() + " was defeated!");
+                }
+                else
+                {
+                    Console.Write("All enemies were defeated!");
+                }
                 aPlayer.SubtractStamina(10);
                 System.Threading.Thread.Sleep(2000);
                 aPlayer.PrintUI();
@@ -236,10 +270,10 @@ namespace Diablo
                     Console.Write("[" + (i + 3) + "] ");
                     switch (myLoot[i].GetItemType())
                     {
-                        case Loot.Type.SCROLL:
+                        case Loot.ItemType.SCROLL:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
                             break;
-                        case Loot.Type.TRINKET:
+                        case Loot.ItemType.TRINKET:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.Green);
                             break;
                         default:
@@ -258,20 +292,11 @@ namespace Diablo
                     }
                 }
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
+                Console.Write("[1] Pick up all    [0] Discard all");
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
-                Console.Write("[ ]");
-                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                int tempChoice = -1;
-                while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(myLoot.Count / 2 + 1), out tempChoice) || (tempChoice < 0 || tempChoice > myLoot.Count + 1))
-                {
-                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                    Console.Write(" \b");
-                }
+                Console.Write("[2] Pick up all & equip best");
 
-                switch (tempChoice)
+                switch (Utilities.Utility.GetDigitInput(-19, 3, 2))
                 {
                     case 0:
                         myLoot.Clear();
@@ -351,15 +376,18 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
             Console.Write("[2] Open inventory");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
-            Console.Write("[3] Rest (-10 gold)");
+            Console.Write("[3] Rest ");
+            Utilities.Utility.PrintInColour("(-10 gold)", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
-            Console.Write("[4] Commit suicide");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 5);
+            Console.Write("[4] View map");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
+            Console.Write("[5] Commit suicide");
+            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 4);
             Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 4))
+            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
+            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
             {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
+                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
                 Console.Write(" ]\b\b");
             }
             switch (tempChoice)
@@ -372,6 +400,10 @@ namespace Diablo
                     aPlayer.Rest();
                     break;
                 case 4:
+                    Managers.DungeonManager.GetActiveDungeon().ShowMap(aPlayer);
+                    PostActio(aPlayer);
+                    break;
+                case 5:
                     aPlayer.DeathSequence();
                     break;
                 default:

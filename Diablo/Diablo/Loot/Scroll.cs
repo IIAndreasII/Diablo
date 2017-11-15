@@ -22,7 +22,7 @@ namespace Diablo.Loot
 
         public Scroll()
         {
-            myType = Type.SCROLL;
+            myType = ItemType.SCROLL;
             myScrollEffect = GetRandomEffect();
             switch (myScrollEffect)
             {

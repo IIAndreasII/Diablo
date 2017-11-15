@@ -7,26 +7,26 @@
             SetType();
             switch (myType)
             {
-                case Type.HELMET:
+                case ItemType.HELMET:
                     myRating = Utilities.Utility.GetRNG().Next(1, 16);
                     break;
-                case Type.CHESTPLATE:
+                case ItemType.CHESTPLATE:
                     myRating = Utilities.Utility.GetRNG().Next(1, 26);
                     break;
-                case Type.TROUSERS:
+                case ItemType.TROUSERS:
                     myRating = Utilities.Utility.GetRNG().Next(1, 16);
                     break;
-                case Type.BOOTS:
+                case ItemType.BOOTS:
                     myRating = Utilities.Utility.GetRNG().Next(1, 11);
                     break;
-                case Type.SHIELD:
+                case ItemType.SHIELD:
                     myRating = Utilities.Utility.GetRNG().Next(1, 36);
                     break;
             }
             SetName();
         }
 
-        public Armour(Type aType, string aSuffix, int aRating)
+        public Armour(ItemType aType, string aSuffix, int aRating)
         {
             myType = aType;
             SetName();
@@ -42,22 +42,22 @@
             switch (Utilities.Utility.GetRNG().Next(0, 5))
             {
                 case 0:
-                    myType = Type.HELMET;
+                    myType = ItemType.HELMET;
                     break;
                 case 1:
-                    myType = Type.CHESTPLATE;
+                    myType = ItemType.CHESTPLATE;
                     break;
                 case 2:
-                    myType = Type.TROUSERS;
+                    myType = ItemType.TROUSERS;
                     break;
                 case 3:
-                    myType = Type.BOOTS;
+                    myType = ItemType.BOOTS;
                     break;
                 case 4:
-                    myType = Type.SHIELD;
+                    myType = ItemType.SHIELD;
                     break;
                 default:
-                    myType = Type.ERROR;
+                    myType = ItemType.ERROR;
                     break;
             }
         }
@@ -69,19 +69,19 @@
         {
             switch (myType)
             {
-                case Type.HELMET:
+                case ItemType.HELMET:
                     myPrefix = "Helmet of";
                     break;
-                case Type.CHESTPLATE:
+                case ItemType.CHESTPLATE:
                     myPrefix = "Chestplate of";
                     break;
-                case Type.TROUSERS:
+                case ItemType.TROUSERS:
                     myPrefix = "Trousers of";
                     break;
-                case Type.BOOTS:
+                case ItemType.BOOTS:
                     myPrefix = "Boots of";
                     break;
-                case Type.SHIELD:
+                case ItemType.SHIELD:
                     myPrefix = "Shield of";
                     break;
                 default:
@@ -91,7 +91,7 @@
             mySuffix = Utilities.Utility.GetRandomSuffix();
         }
 
-        public Type GetArmourType()
+        public ItemType GetArmourType()
         {
             return myType;
         }

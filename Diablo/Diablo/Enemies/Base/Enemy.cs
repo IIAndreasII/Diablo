@@ -22,6 +22,8 @@ namespace Diablo.Enemies
             myHealth;
         protected Type
             myType;
+        protected string
+            myName;
 
         /// <summary>
         /// As the name suggests, it makes the enemy take damage
@@ -73,16 +75,19 @@ namespace Diablo.Enemies
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-
             switch (myType)
             {
                 case Type.SKELETON:
                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                    Console.WriteLine("The enemy swings his sword!");
+                    Console.Write("The enemy swings his sword!");
                     break;
                 case Type.ARCHER:
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
-                    Console.WriteLine("The enemy draws his bow");
+                    Console.Write("The enemy draws his bow!");
+                    break;
+                case Type.BOSS:
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
+                    Console.Write(myName + " swings his weapon!");
                     break;
             }
             System.Threading.Thread.Sleep(1000);
@@ -98,7 +103,7 @@ namespace Diablo.Enemies
                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
                 Console.Write("You evaded the strike!");
             }
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1500);
             if (aPlayer.GetHealth() <= 0)
             {
                 aPlayer.DeathSequence();

@@ -274,5 +274,124 @@ namespace Diablo.Utilities
                 PrintInColour(tempPrintValue, ConsoleColor.Red);
             }
         }
+
+        /// <summary>
+        /// Reads input in digits at a specified location
+        /// </summary>
+        /// <param name="anXOffset">X offset relative to the center</param>
+        /// <param name="aYOffset">Y offset relative to the center</param>
+        /// <param name="aMaxValue">Max value of input digit</param>
+        /// <returns>Input</returns>
+        public static int GetDigitInput(int anXOffset, int aYOffset, int aMaxValue)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempInput,
+                tempMaxLength = aMaxValue > 9 ? 2 : 1;
+            Console.SetCursorPosition(tempWWD2 + anXOffset - 1, tempWHD2 + aYOffset);
+            if (tempMaxLength >= 2)
+            {
+                Console.Write("[  ]");
+            }
+            else
+            {
+                Console.Write("[ ]");
+            }
+            Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+            while (!int.TryParse(ReadOnlyNumbers(tempMaxLength), out tempInput) || (tempInput < 0 || tempInput > aMaxValue))
+            {
+                Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+                if (tempMaxLength >= 2)
+                {
+                    Console.Write("  ]\b\b\b");
+                }
+                else
+                {
+                    Console.Write(" ]\b\b");
+                }
+            }
+            return tempInput;
+        }
+
+        /// <summary>
+        /// Reads input in digits at a specified location
+        /// </summary>
+        /// <param name="anXOffset">X offset relative to the center</param>
+        /// <param name="aYOffset">Y offset relative to the center</param>
+        /// <param name="aMaxValue">Max value of input digit</param>
+        /// <param name="aMinValue">Min value of input digit</param>
+        /// <returns>Input</returns>
+        public static int GetDigitInput(int anXOffset, int aYOffset, int aMaxValue, int aMinValue)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempInput,
+                tempMaxLength = aMaxValue > 9 ? 2 : 1;
+            Console.SetCursorPosition(tempWWD2 + anXOffset - 1, tempWHD2 + aYOffset);
+            if (tempMaxLength >= 2)
+            {
+                Console.Write("[  ]");
+            }
+            else
+            {
+                Console.Write("[ ]");
+            }
+            Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+            while (!int.TryParse(ReadOnlyNumbers(tempMaxLength), out tempInput) || (tempInput < aMinValue || tempInput > aMaxValue))
+            {
+                Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+                if (tempMaxLength >= 2)
+                {
+                    Console.Write("  ]\b\b\b");
+                }
+                else
+                {
+                    Console.Write(" ]\b\b");
+                }
+            }
+            return tempInput;
+        }
+
+        /// <summary>
+        /// Reads input in digits at a specified location at spits it out for other uses
+        /// </summary>
+        /// <param name="anXOffset">X offset relative to the center</param>
+        /// <param name="aYOffset">Y offset relative to the center</param>
+        /// <param name="aMaxValue">Max value of input digit</param>
+        /// <returns>Input</returns>
+        public static int GetDigitInput(int anXOffset, int aYOffset, int aMaxValue, out int anInputValue)
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2,
+                tempInput,
+                tempMaxLength = aMaxValue > 9 ? 2 : 1;
+            Console.SetCursorPosition(tempWWD2 + anXOffset - 1, tempWHD2 + aYOffset);
+            if (tempMaxLength >= 2)
+            {
+                Console.Write("[  ]");
+            }
+            else
+            {
+                Console.Write("[ ]");
+            }
+            Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+            while (!int.TryParse(ReadOnlyNumbers(tempMaxLength), out tempInput) || (tempInput < 0 || tempInput > aMaxValue))
+            {
+                Console.SetCursorPosition(tempWWD2 + anXOffset, tempWHD2 + aYOffset);
+                if (tempMaxLength >= 2)
+                {
+                    Console.Write("  ]\b\b\b");
+                }
+                else
+                {
+                    Console.Write(" ]\b\b");
+                }
+            }
+            anInputValue = tempInput;
+            return tempInput;
+        }
     }
 }

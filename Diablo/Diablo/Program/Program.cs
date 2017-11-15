@@ -32,8 +32,7 @@ namespace Diablo
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2,
-                tempChoice = 0;
+                tempWHD2 = Console.WindowHeight / 2;
             myPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
             Console.Write("Possible actions");
@@ -48,14 +47,8 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
             Console.Write("[5] Commit suicide");
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 3);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 3);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
-            {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 3);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+
+            switch (Utilities.Utility.GetDigitInput(-2, -3, 5))
             {
                 case 1:
                     Managers.DungeonManager.EnterDungeon(myPlayer);                
@@ -85,7 +78,6 @@ namespace Diablo
         public static void MainMenu()
         {
             Utilities.Utility.PrintTitle();
-            int tempChoice = 0;
             string tempPrintValue;
             for (int i = 0; i < 5; i++)
             {
@@ -114,14 +106,7 @@ namespace Diablo
                 Console.Write(tempPrintValue);
             }
             Utilities.Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 3 ))
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 2 - 29, 20);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(-29, 5, 3))
             {
                 case 1:
                     Initialize();

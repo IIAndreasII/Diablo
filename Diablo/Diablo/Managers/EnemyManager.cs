@@ -13,24 +13,6 @@ namespace Diablo.Managers
         {
             myEnemies = new List<Enemies.Enemy>();
         }
-
-        /// <summary>
-        /// Adds a Skeleton to the manager
-        /// </summary>
-        /// <param name="aSkeleton">Skeleton to add</param>
-        public static void AddSkeleton(Enemies.Skeleton aSkeleton)
-        {
-            myEnemies.Add(aSkeleton);
-        }
-
-        /// <summary>
-        /// Adds an Archer to the manager
-        /// </summary>
-        /// <param name="anArcher">Archer to add</param>
-        public static void AddArcher(Enemies.Archer anArcher)
-        {
-            myEnemies.Add(anArcher);
-        }
         
         /// <summary>
         /// Sets enemies
@@ -39,6 +21,15 @@ namespace Diablo.Managers
         public static void SetEnemies(List<Enemies.Enemy> someEnemies)
         {
             myEnemies = someEnemies;
+        }
+
+        /// <summary>
+        /// Adds an enemy
+        /// </summary>
+        /// <param name="anEnemy">Enemy to add</param>
+        public static void AddEnemy(Enemies.Enemy anEnemy)
+        {
+            myEnemies.Add(anEnemy);
         }
 
         /// <summary>

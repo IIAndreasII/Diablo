@@ -16,18 +16,21 @@ namespace Diablo.Loot
 
         public Chest()
         {
-            myItems = new List<Item>();
-            myGold = Utilities.Utility.GetRNG().Next(0, 51);
-            myHPPotions = Utilities.Utility.GetRNG().Next(0, 3);
-            myManaPotions = Utilities.Utility.GetRNG().Next(0, 3);
-            int tempNumberOfItems = Utilities.Utility.GetRNG().Next(0, 6);
-            for (int i = 0; i < tempNumberOfItems; i++)
-            {
-                myItems.Add(Factories.LootFactory.CreateItem());
-            }
             if (Utilities.Utility.GetRNG().Next(0, 100) < 5)
             {
                 myIsMimic = true;
+            }
+            else
+            {
+                myItems = new List<Item>();
+                myGold = Utilities.Utility.GetRNG().Next(0, 51);
+                myHPPotions = Utilities.Utility.GetRNG().Next(0, 3);
+                myManaPotions = Utilities.Utility.GetRNG().Next(0, 3);
+                int tempNumberOfItems = Utilities.Utility.GetRNG().Next(0, 6);
+                for (int i = 0; i < tempNumberOfItems; i++)
+                {
+                    myItems.Add(Factories.LootFactory.CreateItem());
+                }
             }
         }
 
@@ -40,7 +43,6 @@ namespace Diablo.Loot
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2,
-                tempChoice = 0,
                 tempTextOffset = tempWHD2 - 10;
             aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
@@ -55,15 +57,7 @@ namespace Diablo.Loot
             Utilities.Utility.PrintInColour("(-25 gold)", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
             Console.Write("[2] No");
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 3);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 3);
-            while (!int.TryParse(Console.ReadLine(), out tempChoice) || (tempChoice < 1 || tempChoice > 2))
-            {
-                Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 3);
-                Console.Write(" ]\b\b");
-            }
-            if (!myIsMimic && tempChoice == 1)
+            if (!myIsMimic && Utilities.Utility.GetDigitInput(-7, -3, 2, 1) == 1)
             {                
                 aPlayer.PrintUI();
                 aPlayer.SubtractGold(25);
@@ -78,14 +72,14 @@ namespace Diablo.Loot
                         Console.Write("[" + (i + 3) + "] ");
                         switch (myItems[i].GetItemType())
                         {
-                            case Type.SCROLL:
+                            case ItemType.SCROLL:
                                 Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.DarkMagenta);
                                 break;
-                            case Type.WEAPON:
-                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetRating() + "]", ConsoleColor.Gray);
+                            case ItemType.TRINKET:
+                                Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.Green);
                                 break;
                             default:
-                                Utilities.Utility.PrintInColour(myItems[i].GetFullName() + " [" + myItems[i].GetRating() + "]", ConsoleColor.Gray);
+                                Utilities.Utility.PrintInColour("[" + myItems[i].GetRating() + "]" + myItems[i].GetFullName(), ConsoleColor.Gray);
                                 break;
                         }
                         if (i == myItems.Count - 1)
@@ -99,19 +93,10 @@ namespace Diablo.Loot
                         }
                     }
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-                    Console.Write("[" + 1.ToString() + "] Pick up all    [0] Discard all");
+                    Console.Write("[1] Pick up all    [0] Discard all");
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                    Console.Write("[" + 2.ToString() + "] Pick up all and equip best");
-                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
-                    Console.Write("[ ]");
-                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                    tempChoice = -1;
-                    while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(myItems.Count / 2 + 1), out tempChoice) || (tempChoice < 0 || tempChoice > myItems.Count + 1))
-                    {
-                        Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                        Console.Write(" \b");
-                    }
-                    switch (tempChoice)
+                    Console.Write("[2] Pick up all & equip best");
+                    switch (Utilities.Utility.GetDigitInput(-19, 3, 2))
                     {
                         case 0:
                             myItems.Clear();
@@ -154,23 +139,21 @@ namespace Diablo.Loot
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
                 Console.Write("that it is breathing. This is no ordinary chest");
                 System.Threading.Thread.Sleep(3000);
-                Console.SetCursorPosition(tempWWD2 - 25, tempWHD2 - 9);
-                Console.Write("The mimic immediately tries to bite your neck off!");
-                System.Threading.Thread.Sleep(1500);
-                if((float)aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 100))
+                if(aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 101))
                 {
                     aPlayer.PrintUI();
                     Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
                     Console.Write("You managed to escape its fangs!");
+                    System.Threading.Thread.Sleep(1500);
                 }
                 else
                 {
                     aPlayer.PrintUI();
-                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                    Console.Write("The mimic bites you and rips your head off!");
+                    Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 - 12);
+                    Console.Write("The chest-mimic bites you and rips your head off!");
+                    System.Threading.Thread.Sleep(1500);
                     aPlayer.DeathSequence();
                 }
-                System.Threading.Thread.Sleep(1500);
             }
         }
     }

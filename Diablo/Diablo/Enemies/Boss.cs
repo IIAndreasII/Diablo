@@ -8,9 +8,6 @@ namespace Diablo.Enemies
 {
     class Boss : Enemy
     {
-        protected string
-            myName;
-
         public Boss(int aLvl)
         {
             myType = Type.BOSS;
@@ -21,6 +18,34 @@ namespace Diablo.Enemies
             myEXPToGive = 50 * aLvl;
             myStamina = 150;
             myAgility = 15;
+            SetName();
+        }
+
+        public void SetName()
+        {
+            switch (Utilities.Utility.GetRNG().Next(0, 5))
+            {
+                case 0:
+                    myName = "Zendurr";
+                    break;
+                case 1:
+                    myName = "Apollyon";
+                    break;
+                case 2:
+                    myName = "Månegarm";
+                    break;
+                case 3:
+                    myName = "Calcifer";
+                    break;
+                case 4:
+                    myName = "Apocalypsis";
+                    break;
+            }
+        }
+
+        public string GetName()
+        {
+            return myName;
         }
     }
 }

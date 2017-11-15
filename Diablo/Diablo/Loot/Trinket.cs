@@ -19,17 +19,17 @@
 
         public Trinket()
         {
-            myType = Type.TRINKET;
+            myType = ItemType.TRINKET;
             SetBuff();
             SetName();
         }
 
         public Trinket(string aSuffix)
         {
-            myType = Type.TRINKET;
+            myType = ItemType.TRINKET;
             SetBuff();
             SetName();
-            mySuffix = "Basicness";
+            mySuffix = aSuffix;
         }
 
         /// <summary>

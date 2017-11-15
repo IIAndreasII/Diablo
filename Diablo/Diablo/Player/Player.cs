@@ -102,15 +102,15 @@ namespace Diablo.Player
             myAppliedScrolls = new List<Loot.Scroll>();
             myEquippedTrinket = new Loot.Trinket("Basicness");
             myEquippedTrinket.ApplyBuff(this);
-            myEquippedHelmet = new Loot.Armour(Loot.Type.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
-            myEquippedChestplate = new Loot.Armour(Loot.Type.CHESTPLATE, "Basicness", 4);
-            myEquippedTrousers = new Loot.Armour(Loot.Type.TROUSERS, "Basicness", 3);
-            myEquippedBoots = new Loot.Armour(Loot.Type.BOOTS, "Basicness", 1);
+            myEquippedHelmet = new Loot.Armour(Loot.ItemType.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
+            myEquippedChestplate = new Loot.Armour(Loot.ItemType.CHESTPLATE, "Basicness", 4);
+            myEquippedTrousers = new Loot.Armour(Loot.ItemType.TROUSERS, "Basicness", 3);
+            myEquippedBoots = new Loot.Armour(Loot.ItemType.BOOTS, "Basicness", 1);
             myEquippedWeapon = new Loot.Weapon("Basicness", 15);
-            myEquippedShield = new Loot.Armour(Loot.Type.SHIELD, "Basicness", 5);
+            myEquippedShield = new Loot.Armour(Loot.ItemType.SHIELD, "Basicness", 5);
             myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
 
-            myInventory.Add(new Loot.Scroll());
+            myInventory.Add(Factories.LootFactory.CreateScroll());
         }
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace Diablo.Player
             Loot.Item tempItem;
             switch (anItem.GetItemType())
             {
-                case Loot.Type.HELMET:
+                case Loot.ItemType.HELMET:
                     tempItem = myEquippedHelmet;
                     myEquippedHelmet = anItem;
                     if (myInventory.Contains(anItem))
@@ -397,7 +397,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.CHESTPLATE:
+                case Loot.ItemType.CHESTPLATE:
                     tempItem = myEquippedChestplate;
                     myEquippedChestplate = anItem;
                     if (myInventory.Contains(anItem))
@@ -406,7 +406,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.TROUSERS:
+                case Loot.ItemType.TROUSERS:
                     tempItem = myEquippedTrousers;
                     myEquippedTrousers = anItem;
                     if (myInventory.Contains(anItem))
@@ -415,7 +415,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.BOOTS:
+                case Loot.ItemType.BOOTS:
                     tempItem = myEquippedBoots;
                     myEquippedBoots = anItem;
                     if (myInventory.Contains(anItem))
@@ -424,7 +424,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.WEAPON:
+                case Loot.ItemType.WEAPON:
                     tempItem = myEquippedWeapon;
                     myEquippedWeapon = anItem;
                     if (myInventory.Contains(anItem))
@@ -433,7 +433,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.SHIELD:
+                case Loot.ItemType.SHIELD:
                     tempItem = myEquippedShield;
                     myEquippedShield = anItem;
                     if (myInventory.Contains(anItem))
@@ -442,7 +442,7 @@ namespace Diablo.Player
                     }
                     myInventory.Add(tempItem);
                     break;
-                case Loot.Type.TRINKET:
+                case Loot.ItemType.TRINKET:
                     tempItem = myEquippedTrinket;
                     myEquippedTrinket = (Loot.Trinket)anItem;
                     ResetBuffs();
@@ -467,32 +467,38 @@ namespace Diablo.Player
             {
                 switch (myInventory[i].GetItemType())
                 {
-                    case Loot.Type.HELMET:
+                    case Loot.ItemType.HELMET:
                         if(myInventory[i].GetRating() > myEquippedHelmet.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Loot.Type.CHESTPLATE:
+                    case Loot.ItemType.CHESTPLATE:
                         if(myInventory[i].GetRating() > myEquippedChestplate.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Loot.Type.TROUSERS:
+                    case Loot.ItemType.TROUSERS:
                         if (myInventory[i].GetRating() > myEquippedTrousers.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Loot.Type.BOOTS:
+                    case Loot.ItemType.BOOTS:
                         if(myInventory[i].GetRating() > myEquippedBoots.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
-                    case Loot.Type.WEAPON:
+                    case Loot.ItemType.WEAPON:
                         if (myInventory[i].GetRating() > myEquippedWeapon.GetRating())
+                        {
+                            Equip(myInventory[i]);
+                        }
+                        break;
+                    case Loot.ItemType.SHIELD:
+                        if (myInventory[i].GetRating() > myEquippedShield.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
@@ -508,12 +514,9 @@ namespace Diablo.Player
         /// 
         /// </summary>
         /// <param name="aType"></param>
-        public void BrowseItems(Loot.Type aType)
+        public void BrowseItems(Loot.ItemType aType)
         {
-            int
-                tempChoice,
-                tempSecondChoice,
-                tempOffset = -10,
+            int tempOffset = -10,
                 tempItemCount = 0,
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
@@ -523,38 +526,37 @@ namespace Diablo.Player
                 tempIndexes = new List<int>();
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-
             switch (aType)
             {
-                case Loot.Type.HELMET:
+                case Loot.ItemType.HELMET:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.CHESTPLATE:
+                case Loot.ItemType.CHESTPLATE:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.TROUSERS:
+                case Loot.ItemType.TROUSERS:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.BOOTS:
+                case Loot.ItemType.BOOTS:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.WEAPON:
+                case Loot.ItemType.WEAPON:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.SHIELD:
+                case Loot.ItemType.SHIELD:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating() + "]" + myEquippedShield.GetFullName(), ConsoleColor.Gray);
                     break;
-                case Loot.Type.SCROLL:
+                case Loot.ItemType.SCROLL:
                     Console.Write("Available scrolls:");
                     tempPrintColour = ConsoleColor.DarkMagenta;
                     break;
-                case Loot.Type.TRINKET:
+                case Loot.ItemType.TRINKET:
                     Console.Write("Equipped: ");
                     Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
                     tempPrintColour = ConsoleColor.Green;
@@ -567,8 +569,8 @@ namespace Diablo.Player
                 {
                     tempItemCount++;
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + tempOffset);
-                    Console.Write("[" + (tempItemCount) + "]");
-                    Utilities.Utility.PrintInColour((myInventory[i].GetItemType() == Loot.Type.SCROLL || myInventory[i].GetItemType() == Loot.Type.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == Loot.Type.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
+                    Console.Write(" [" + (tempItemCount) + "]");
+                    Utilities.Utility.PrintInColour((myInventory[i].GetItemType() == Loot.ItemType.SCROLL || myInventory[i].GetItemType() == Loot.ItemType.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == Loot.ItemType.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
                     tempIndexes.Add(i);
                     tempOffset++;
                 }
@@ -576,37 +578,21 @@ namespace Diablo.Player
             
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
             Console.Write("[0] Back");
-            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < 0 || tempChoice > tempItemCount))
-            {
-                Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 1);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(-19, 1, tempItemCount, out int tempChoice))
             {
                 case 0:
                     OpenInventory();
                     break;
                 default:
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                    Console.Write("[1] " + (aType == Loot.Type.SCROLL ? "Apply" : "Equip") + " [2] Throw away [0] Back");
-                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 3);
-                    Console.Write("[ ]");
-                    Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                    while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempSecondChoice))
-                    {
-                        Console.SetCursorPosition(tempWWD2 - 19, tempWHD2 + 3);
-                        Console.Write(" ]\b\b");
-                    }
-                    switch (tempSecondChoice)
+                    Console.Write("[1] " + (aType == Loot.ItemType.SCROLL ? "Apply" : "Equip") + " [2] Throw away [0] Back");
+                    switch (Utilities.Utility.GetDigitInput(-19, 3, 2, out int tempSecondChoice))
                     {
                         case 0:
                             OpenInventory();
                             break;
                         case 1:
-                            if (aType == Loot.Type.SCROLL)
+                            if (aType == Loot.ItemType.SCROLL)
                             {
                                 ApplyScrollEffect((Loot.Scroll)myInventory[tempIndexes[tempChoice - 1]], out string tempEffect, out int tempEffectAmount);
                                 PrintUI();
@@ -641,7 +627,6 @@ namespace Diablo.Player
         public void OpenInventory()
         {
             int
-                tempChoice,
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
 
@@ -658,6 +643,8 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 9);
             Console.Write("[4]");
             Utilities.Utility.PrintInColour(" ▓ Trinkets", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 8);
+            Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
             Utilities.Utility.PrintInColour(" ▓ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
@@ -712,17 +699,8 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("of " + myEquippedShield.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
             Console.Write("[0] Close inventory");
-            Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 3);
-            Console.Write("[  ]");
             #endregion
-
-            Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-            while(!int.TryParse(Utilities.Utility.ReadOnlyNumbers(2), out tempChoice) || (tempChoice < -1 || tempChoice > 10))
-            {
-                Console.SetCursorPosition(tempWWD2 + 2, tempWHD2 + 3);
-                Console.Write("  ]\b\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(2, 3, 10))
             {
                 case 1:
                     DrinkHPPotion();
@@ -733,28 +711,28 @@ namespace Diablo.Player
                     OpenInventory();
                     break;
                 case 3:
-                    BrowseItems(Loot.Type.SCROLL);
+                    BrowseItems(Loot.ItemType.SCROLL);
                     break;
                 case 4:
-                    BrowseItems(Loot.Type.TRINKET);
+                    BrowseItems(Loot.ItemType.TRINKET);
                     break;
                 case 5:
-                    BrowseItems(Loot.Type.HELMET);
+                    BrowseItems(Loot.ItemType.HELMET);
                     break;
                 case 6:
-                    BrowseItems(Loot.Type.CHESTPLATE);
+                    BrowseItems(Loot.ItemType.CHESTPLATE);
                     break;
                 case 7:
-                    BrowseItems(Loot.Type.TROUSERS);
+                    BrowseItems(Loot.ItemType.TROUSERS);
                     break;
                 case 8:
-                    BrowseItems(Loot.Type.BOOTS);
+                    BrowseItems(Loot.ItemType.BOOTS);
                     break;
                 case 9:
-                    BrowseItems(Loot.Type.WEAPON);
+                    BrowseItems(Loot.ItemType.WEAPON);
                     break;
                 case 10:
-                    BrowseItems(Loot.Type.SHIELD);
+                    BrowseItems(Loot.ItemType.SHIELD);
                     break;
                 default:
                     break;
@@ -928,8 +906,7 @@ namespace Diablo.Player
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2,
-                tempTextOffset = 31,
-                tempChoice = 0;
+                tempTextOffset = 31;
             Console.Clear();
             Utilities.Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
             Utilities.Utility.PrintPentagram(tempWWD2 +23, tempWHD2 - 5, ConsoleColor.DarkRed);
@@ -954,15 +931,7 @@ namespace Diablo.Player
             Console.Write("[1] Menu");
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
             Console.Write("[2] Exit game");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 3);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
-            while(!int.TryParse(Console.ReadLine(), out tempChoice) || (tempChoice != 1 && tempChoice != 2))
-            {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 3);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(-2, 3, 2))
             {
                 case 1:
                     Program.Reboot();
@@ -1034,10 +1003,9 @@ namespace Diablo.Player
         /// <returns>Returns chosen action</returns>
         public BattleActions ChooseBattleAction()
         {
-            int 
+            int
                 tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2,
-                tempChoice = 0;
+                tempWHD2 = Console.WindowHeight / 2;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
             Console.Write("What will you do?");
@@ -1047,15 +1015,7 @@ namespace Diablo.Player
             Console.Write("[3] Use item  [4] Flee");
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
             Console.Write("[5] Abstain");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 6);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
-            {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 6);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(-1, -6, 5))
             {
                 case 1:
                     myIsDefending = false;
