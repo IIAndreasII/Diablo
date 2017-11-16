@@ -77,7 +77,7 @@ namespace Diablo
         {
             Utilities.Utility.PrintTitle();
             string tempPrintValue = string.Empty;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
@@ -85,35 +85,27 @@ namespace Diablo
                         tempPrintValue = "[1] Play";
                         break;
                     case 1:
-                        tempPrintValue = "[2] Settings";
+                        tempPrintValue = "[2] Exit";
                         break;
                     case 2:
-                        tempPrintValue = "[3] Exit";
+                        tempPrintValue = string.Empty;
                         break;
-                    case 3:
-                        tempPrintValue = "";
-                        break;
-                    case 4:
-                        tempPrintValue = "[ ]";
-                        break;      
                 }
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
                 Console.Write(tempPrintValue);
             }
             Utilities.Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
-            switch (Utilities.Utility.GetDigitInput(-29, 5, 3))
+            switch (Utilities.Utility.GetDigitInput(-29, 4, 3))
             {
                 case 1:
                     Initialize();
                     Play();
                     break;
                 case 2:
-                    /// TODO: Add Settings-method stuff
-                    break;
-                case 3:
                     Environment.Exit(0);
                     break;
                 default:
+                    MainMenu();
                     break;
             }
         }
