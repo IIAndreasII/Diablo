@@ -41,7 +41,8 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
             Console.Write("[2] Open inventory");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
-            Console.Write("[3] Rest (-10 gold)");
+            Console.Write("[3] Rest ");
+            Utilities.Utility.PrintInColour("(-10 gold)", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
             Console.Write("[4] Long rest");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);

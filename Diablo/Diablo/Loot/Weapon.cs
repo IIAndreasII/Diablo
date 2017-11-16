@@ -12,6 +12,7 @@
         public Weapon(string aSuffix, int aRating)
         {
             myType = ItemType.WEAPON;
+            SetName();
             mySuffix = aSuffix;
             myRating = aRating;
         }

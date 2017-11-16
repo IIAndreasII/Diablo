@@ -82,13 +82,11 @@ namespace Diablo.Player
             myStrength = Utilities.Utility.GetRNG().Next(5, 11);                  // Antal procent mer skada
             myAgility = Utilities.Utility.GetRNG().Next(5, 11);                   // Antal procent chans det är att undvika en attack
             myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121);             // Antal procent av maxHP
-            myStamina = myMaxStamina;
             myIntelligence = Utilities.Utility.GetRNG().Next(5, 11);
             myWisdom = Utilities.Utility.GetRNG().Next(5, 11);
             myLuck = Utilities.Utility.GetRNG().Next(5, 11);                      // Antal procent chans för att hitta extra loot                                                           
 
             myMaxHealth = 100;
-            myHealth = myMaxHealth * myStamina / 100;
             myMaxMana = 100;
             myMana = myMaxMana;
             myDamage = 15;
@@ -109,8 +107,9 @@ namespace Diablo.Player
             myEquippedWeapon = new Loot.Weapon("Basicness", 15);
             myEquippedShield = new Loot.Armour(Loot.ItemType.SHIELD, "Basicness", 5);
             myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
-
             myInventory.Add(Factories.LootFactory.CreateScroll());
+            myStamina = myMaxStamina;
+            myHealth = myMaxHealth * myStamina / 100;
         }
 
         /// <summary>
@@ -694,9 +693,9 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 2);
             Utilities.Utility.PrintInColour(@"\---/", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2);
-            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]Shield", ConsoleColor.Gray);
+            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]Shield of", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2 + 1);
-            Utilities.Utility.PrintInColour("of " + myEquippedShield.GetSuffix(), ConsoleColor.Gray);
+            Utilities.Utility.PrintInColour(myEquippedShield.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
             Console.Write("[0] Close inventory");
             #endregion
