@@ -502,17 +502,14 @@ namespace Diablo.Player
                             Equip(myInventory[i]);
                         }
                         break;
-                    default:
-                        Console.WriteLine("ERROR!");
-                        break;
                 }
             }
         }
 
         /// <summary>
-        /// 
+        /// Let's the player browse the given type of items in his inventory
         /// </summary>
-        /// <param name="aType"></param>
+        /// <param name="aType">Item type to browse</param>
         public void BrowseItems(Loot.ItemType aType)
         {
             int tempOffset = -10,
@@ -573,8 +570,7 @@ namespace Diablo.Player
                     tempIndexes.Add(i);
                     tempOffset++;
                 }
-            }
-            
+            }         
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
             Console.Write("[0] Back");
             switch (Utilities.Utility.GetDigitInput(-19, 1, tempItemCount, out int tempChoice))
@@ -628,25 +624,24 @@ namespace Diablo.Player
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-
             #region Doodle Sequence
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("Gold: " + myGold.ToString() + "        Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
+            Console.Write("Gold: " + myGold.ToString() + "■       Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
-            Utilities.Utility.PrintInColour(" ▓ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
+            Utilities.Utility.PrintInColour(" ■ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 10);
             Console.Write("[3]");
-            Utilities.Utility.PrintInColour(" ▓ Scrolls", ConsoleColor.DarkMagenta);
+            Utilities.Utility.PrintInColour(" ■ Scrolls", ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 9);
             Console.Write("[4]");
-            Utilities.Utility.PrintInColour(" ▓ Trinkets", ConsoleColor.Green);
+            Utilities.Utility.PrintInColour(" ■ Trinkets", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 8);
             Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
-            Utilities.Utility.PrintInColour(" ▓ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
+            Utilities.Utility.PrintInColour(" ■ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 7);
             Console.Write("[5] ");
             Utilities.Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
@@ -781,9 +776,6 @@ namespace Diablo.Player
                     anEffectAmount = aScroll.GetHealthBuff();
                     anEffect = "temporary health!";
                     break;
-                case Loot.ScrollEffect.ERROR:
-                    Console.WriteLine("ERROR!");
-                    break;
             }
         }
 
@@ -795,7 +787,6 @@ namespace Diablo.Player
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-
             if (myHPPotionAmount > 0)
             {
                 myHPPotionAmount -= 1;
@@ -805,7 +796,6 @@ namespace Diablo.Player
                     myHealth = myMaxHealth * myStamina / 100;
                 }
             }
-
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
             Console.Write("You have drunk a health-potion.");
@@ -825,7 +815,6 @@ namespace Diablo.Player
             int
                tempWWD2 = Console.WindowWidth / 2,
                tempWHD2 = Console.WindowHeight / 2;
-
             if (myManaPotionAmount > 0)
             {
                 myManaPotionAmount -= 1;
@@ -835,7 +824,6 @@ namespace Diablo.Player
                     myMana = myMaxMana;
                 }
             }
-
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
             Console.Write("You have drunk a mana-potion.");
@@ -925,7 +913,6 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
             Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
-
             Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
             Console.Write("[1] Menu");
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
@@ -1032,7 +1019,7 @@ namespace Diablo.Player
                     myIsDefending = false;
                     return BattleActions.ABSTAIN;
                 default:
-                    myIsDefending = true;
+                    myIsDefending = false;
                     return BattleActions.ABSTAIN;
                 }
             }

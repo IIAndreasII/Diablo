@@ -66,9 +66,6 @@ namespace Diablo
                 case 5:
                     myPlayer.DeathSequence();
                     break;
-                default:
-                    Console.WriteLine("Error");
-                    break;
             }
             Play();
         }
@@ -79,7 +76,7 @@ namespace Diablo
         public static void MainMenu()
         {
             Utilities.Utility.PrintTitle();
-            string tempPrintValue;
+            string tempPrintValue = string.Empty;
             for (int i = 0; i < 5; i++)
             {
                 switch (i)
@@ -99,9 +96,6 @@ namespace Diablo
                     case 4:
                         tempPrintValue = "[ ]";
                         break;      
-                    default:
-                        tempPrintValue = "Error";
-                        break;
                 }
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
                 Console.Write(tempPrintValue);

@@ -156,34 +156,6 @@ namespace Diablo.Dungeon
         }
 
         /// <summary>
-        /// Visual representaition of the dungeon for debugging purposes
-        /// </summary>
-        public void DrawMatrix()
-        {
-            for (int i = 0; i < 15; i++)
-            {
-                for (int j = 0; j < 15; j++)
-                {
-                    Console.SetCursorPosition(i, j);
-                    if (myRooms[i, j] != null)
-                    {
-                        if (i == 7 && j == 7)
-                        {
-                            Console.Write("O");
-                        }
-                        Console.Write("X");
-                    }
-                    else
-                    {
-                        Console.Write("-");
-                    }
-                }
-            }
-            Console.WriteLine("\n\nDungeon generation debug");
-            Console.ReadLine();
-        }
-
-        /// <summary>
         /// Gets a random door
         /// </summary>
         /// <returns>A random Door</returns>
@@ -274,18 +246,15 @@ namespace Diablo.Dungeon
             }
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 5);
             Console.Write("?");
-
             if (myCurrentRoom == myInitialRoom)
             {
                 Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 2);
                 Console.Write("[E] Exit dungeon");
             }
-
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 3);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
-            string tempChoice = Utilities.Utility.ReadOnlyLetters(1);
-            
+            string tempChoice = Utilities.Utility.ReadOnlyLetters(1);            
             while(tempChoice != "R" && tempChoice != "r" && tempChoice != "U" && tempChoice != "u" && tempChoice != "D" && tempChoice != "d" && tempChoice != "L" && tempChoice != "l" && tempChoice != "E" && tempChoice != "e")
             {
                 Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
@@ -341,7 +310,10 @@ namespace Diablo.Dungeon
             }
         }
 
-
+        /// <summary>
+        /// Let's the player view a map of the current dungeon
+        /// </summary>
+        /// <param name="aPlayer">Active player</param>
         public void ShowMap(Player.Player aPlayer)
         {
             int

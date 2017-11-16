@@ -366,8 +366,7 @@ namespace Diablo
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
-                tempWHD2 = Console.WindowHeight / 2,
-                tempChoice = 0;
+                tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
             Console.Write("Possible actions");
@@ -382,15 +381,7 @@ namespace Diablo
             Console.Write("[4] View map");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
             Console.Write("[5] Commit suicide");
-            Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 4);
-            Console.Write("[ ]");
-            Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
-            while (!int.TryParse(Utilities.Utility.ReadOnlyNumbers(1), out tempChoice) || (tempChoice < 1 || tempChoice > 5))
-            {
-                Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 - 4);
-                Console.Write(" ]\b\b");
-            }
-            switch (tempChoice)
+            switch (Utilities.Utility.GetDigitInput(-1, -4, 5))
             {
                 case 2:
                     aPlayer.OpenInventory();
@@ -405,9 +396,6 @@ namespace Diablo
                     break;
                 case 5:
                     aPlayer.DeathSequence();
-                    break;
-                default:
-                    Console.WriteLine("Error");
                     break;
             }
         }

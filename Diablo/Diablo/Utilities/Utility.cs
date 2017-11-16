@@ -87,7 +87,7 @@ namespace Diablo.Utilities
         /// <param name="aColour">Colour to print in</param>
         public static void PrintPentagram(int anXPosition, int aYPosition, ConsoleColor aColour)
         {
-            string tempPrintValue;
+            string tempPrintValue = string.Empty;
             for (int i = 0; i < 19; i++)
             {
                 switch (i)
@@ -148,9 +148,6 @@ namespace Diablo.Utilities
                         break;
                     case 18:
                         tempPrintValue = @"             '**$$$**''";
-                        break;
-                    default:
-                        tempPrintValue = "Error";
                         break;
                 }
                 Console.SetCursorPosition(anXPosition, aYPosition + i);
@@ -228,7 +225,7 @@ namespace Diablo.Utilities
         public static void PrintTitle()
         {
             Console.Clear();
-            string tempPrintValue;
+            string tempPrintValue = string.Empty;
             for (int i = 0; i < 11; i++)
             {
                 switch (i)
@@ -265,9 +262,6 @@ namespace Diablo.Utilities
                         break;
                     case 10:
                         tempPrintValue = "  ╩═══╝  ╚═══╝  ╩══╝  ╩  ╩    ╩══╝  ╩";
-                        break;
-                    default:
-                        tempPrintValue = "Error";
                         break;
                 }
                 Console.SetCursorPosition(Console.WindowWidth - 100 , i + 2);

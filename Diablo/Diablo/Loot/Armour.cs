@@ -56,9 +56,6 @@
                 case 4:
                     myType = ItemType.SHIELD;
                     break;
-                default:
-                    myType = ItemType.ERROR;
-                    break;
             }
         }
 
@@ -83,9 +80,6 @@
                     break;
                 case ItemType.SHIELD:
                     myPrefix = "Shield of";
-                    break;
-                default:
-                    myPrefix = "Error of";
                     break;
             }
             mySuffix = Utilities.Utility.GetRandomSuffix();

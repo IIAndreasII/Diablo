@@ -7,7 +7,6 @@ namespace Diablo.Loot
         STRBUFF,
         HPBUFF,
         ARMBUFF,
-        ERROR
     }
 
     public class Scroll : Item
@@ -62,9 +61,6 @@ namespace Diablo.Loot
                         break;
                     case ScrollEffect.STRBUFF:
                         aPlayer.SetTempStrength(-myStrengthBuff);
-                        break;
-                    case ScrollEffect.ERROR:
-                        Console.WriteLine("Errors wore off");
                         break;
                 }
                 aPlayer.PrintUI();

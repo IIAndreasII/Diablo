@@ -9,8 +9,7 @@
         WEAPON,
         SHIELD,
         TRINKET,
-        SCROLL,
-        ERROR
+        SCROLL
     }
 
     public class Item
@@ -39,7 +38,7 @@
                 case 2:
                     return ScrollEffect.STRBUFF;
                 default:
-                    return ScrollEffect.ERROR;
+                    return ScrollEffect.ARMBUFF;
             }
         }
        
