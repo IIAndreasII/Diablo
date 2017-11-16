@@ -14,6 +14,7 @@ namespace Diablo
 
     public class Room
     {
+        #region Variables
         List<Enemies.Enemy>
             myEnemies;
         List<Loot.Item> 
@@ -35,6 +36,7 @@ namespace Diablo
         bool 
             myAreHostilesPresent,
             myIsBossRoom;
+        #endregion
 
         public Room(int aNumberOfEnemies, int anAmountOfItems, bool isBossRoom, Player.Player aPlayer)
         {

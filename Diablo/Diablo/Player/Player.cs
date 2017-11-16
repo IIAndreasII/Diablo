@@ -1076,11 +1076,6 @@ namespace Diablo.Player
             return myArmourRating;
         }
 
-        public int GetInventoryCapacity()
-        {
-            return myInventoryCapacity;
-       }
-
         public float GetStamina()
         {
             return myStamina;
@@ -1147,10 +1142,6 @@ namespace Diablo.Player
             myArmourRating += myArmourBuff;
         }
 
-        /// <summary>
-        /// Sets player's healthbuff
-        /// </summary>
-        /// <param name="aHealthBuff">Healthbuff represented in percent</param>
         public void SetHealthBuff(float aHealthBuff)
         {
             myHealthBuff = myMaxHealth * (aHealthBuff / 100);
