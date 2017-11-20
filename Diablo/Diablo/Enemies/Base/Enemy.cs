@@ -45,7 +45,7 @@ namespace Diablo.Enemies
                 myHealth -= tempDamageDealt;
                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
                 Console.Write("You dealt ");
-                Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Green);
+                Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Green);
                 Console.Write(" damage!");
                 if (myHealth <= 0)
                 {
@@ -86,7 +86,7 @@ namespace Diablo.Enemies
                     Console.Write("The enemy draws his bow!");
                     break;
                 case EnemyType.BOSS:
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
+                    Console.SetCursorPosition(tempWWD2 - 10 - (myName.Length / 2), tempWHD2 - 11);
                     Console.Write(myName + " swings his weapon!");
                     break;
             }
@@ -95,7 +95,7 @@ namespace Diablo.Enemies
             {
                 Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
                 Console.Write("You took ");
-                Utilities.Utility.PrintInColour(tempDamageDealt.ToString(), ConsoleColor.Red);
+                Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Red);
                 Console.Write(" damage!");
             }
             else

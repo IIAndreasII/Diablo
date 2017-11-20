@@ -148,7 +148,7 @@ namespace Diablo.Dungeon
                 Console.Clear();
                 switch (aPlayer.ChooseBattleAction())
                 {
-                    case Player.BattleActions.ATTACK:
+                    case Player.BattleActions.OFFENSIVE:
                         Console.Clear();
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
@@ -186,7 +186,7 @@ namespace Diablo.Dungeon
                             aPlayer.DealDamage(myBoss);
                         }
                         break;
-                    case Player.BattleActions.DEFEND:
+                    case Player.BattleActions.DEFENSIVE:
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                         Console.Write("You raise your defences and");
@@ -427,7 +427,6 @@ namespace Diablo.Dungeon
         {
             return myYPos;
         }
-
         #endregion
 
         #region Set

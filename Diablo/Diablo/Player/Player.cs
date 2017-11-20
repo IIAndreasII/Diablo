@@ -5,8 +5,8 @@ namespace Diablo.Player
 {
     public enum BattleActions
     {
-        ATTACK,
-        DEFEND,
+        OFFENSIVE,
+        DEFENSIVE,
         USEITEM,
         FLEE,
         ABSTAIN
@@ -996,7 +996,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
             Console.Write("What will you do?");
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-            Console.Write("[1] Attack    [2] Defend");
+            Console.Write("[1] Offensive [2] Defensive");
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
             Console.Write("[3] Use item  [4] Flee");
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
@@ -1005,10 +1005,10 @@ namespace Diablo.Player
             {
                 case 1:
                     myIsDefending = false;
-                    return BattleActions.ATTACK;
+                    return BattleActions.OFFENSIVE;
                 case 2:
                     myIsDefending = true;
-                    return BattleActions.DEFEND;
+                    return BattleActions.DEFENSIVE;
                 case 3:
                     myIsDefending = false;
                     return BattleActions.USEITEM;
