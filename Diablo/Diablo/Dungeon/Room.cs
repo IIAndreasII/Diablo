@@ -158,11 +158,11 @@ namespace Diablo
                             for (int i = 0; i < myEnemies.Count; i++)
                             {
                                 string tempTypeString = string.Empty;
-                                if (myEnemies[i].GetEnemyType() == Enemies.Type.ARCHER)
+                                if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.ARCHER)
                                 {
                                     tempTypeString = "Archer";
                                 }
-                                else if (myEnemies[i].GetEnemyType() == Enemies.Type.SKELETON)
+                                else if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.SKELETON)
                                 {
                                     tempTypeString = "Skeleton";
                                 }
