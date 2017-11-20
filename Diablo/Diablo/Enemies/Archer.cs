@@ -4,7 +4,7 @@
     {
         public Archer(int aLevel = 1)
         {
-            myType = Type.ARCHER;
+            myType = EnemyType.ARCHER;
             myLevel = aLevel;
             if (myLevel == 1)
             {

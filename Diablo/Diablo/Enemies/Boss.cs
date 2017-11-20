@@ -10,7 +10,7 @@ namespace Diablo.Enemies
     {
         public Boss(int aLvl = 1)
         {
-            myType = Type.BOSS;
+            myType = EnemyType.BOSS;
             myLevel = aLvl;
             myHealth = 100 * aLvl;
             myDamage = 15 * aLvl;

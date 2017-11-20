@@ -4,7 +4,7 @@
     { 
         public Skeleton(int aLevel = 1)
         {
-            myType = Type.SKELETON;
+            myType = EnemyType.SKELETON;
             myLevel = aLevel;
             if (aLevel == 1)
             {

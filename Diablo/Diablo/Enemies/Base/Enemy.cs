@@ -2,7 +2,7 @@
 
 namespace Diablo.Enemies
 {
-    public enum Type
+    public enum EnemyType
     {
         SKELETON,
         ARCHER,
@@ -20,7 +20,7 @@ namespace Diablo.Enemies
         protected float
             myDamage,
             myHealth;
-        protected Type
+        protected EnemyType
             myType;
         protected string
             myName;
@@ -77,15 +77,15 @@ namespace Diablo.Enemies
             aPlayer.PrintUI();
             switch (myType)
             {
-                case Type.SKELETON:
+                case EnemyType.SKELETON:
                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                     Console.Write("The enemy swings his sword!");
                     break;
-                case Type.ARCHER:
+                case EnemyType.ARCHER:
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
                     Console.Write("The enemy draws his bow!");
                     break;
-                case Type.BOSS:
+                case EnemyType.BOSS:
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
                     Console.Write(myName + " swings his weapon!");
                     break;
@@ -136,7 +136,7 @@ namespace Diablo.Enemies
             return myEXPToGive;
         }
 
-        public Type GetEnemyType()
+        public EnemyType GetEnemyType()
         {
             return myType;
         }
