@@ -8,7 +8,7 @@ namespace Diablo.Enemies
 {
     class Boss : Enemy
     {
-        public Boss(int aLvl)
+        public Boss(int aLvl = 1)
         {
             myType = Type.BOSS;
             myLevel = aLvl;

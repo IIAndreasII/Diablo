@@ -2,7 +2,7 @@
 {
     public class Archer : Enemy
     {
-        public Archer(int aLevel)
+        public Archer(int aLevel = 1)
         {
             myType = Type.ARCHER;
             myLevel = aLevel;

@@ -2,7 +2,7 @@
 {
     public class Skeleton : Enemy 
     { 
-        public Skeleton(int aLevel)
+        public Skeleton(int aLevel = 1)
         {
             myType = Type.SKELETON;
             myLevel = aLevel;
