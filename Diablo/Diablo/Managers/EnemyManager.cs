@@ -36,7 +36,7 @@ namespace Diablo.Managers
         /// Updates all enemies
         /// </summary>
         /// <param name="aPlayer">Active player</param>
-        public static void BattleUpdate(Player.Player aPlayer)
+        public static void Update(Player.Player aPlayer)
         {
             for (int i = myEnemies.Count; i > 0; i--)
             {

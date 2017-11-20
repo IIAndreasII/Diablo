@@ -220,7 +220,7 @@ namespace Diablo.Dungeon
                         System.Threading.Thread.Sleep(2000);
                         break;
                 }
-                Managers.EnemyManager.BattleUpdate(aPlayer);
+                Managers.EnemyManager.Update(aPlayer);
                 aPlayer.Update();
             }
             if (!tempHasFled)
