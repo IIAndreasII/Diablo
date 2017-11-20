@@ -16,7 +16,8 @@ namespace Diablo.Enemies
             myArmourRating,
             myAgility,
             myStamina,
-            myEXPToGive;
+            myEXPToGive,
+            myStunDuration;
         protected float
             myDamage,
             myHealth;
@@ -24,19 +25,21 @@ namespace Diablo.Enemies
             myType;
         protected string
             myName;
+        protected bool
+            myCanBeStunned;
 
         /// <summary>
         /// As the name suggests, it makes the enemy take damage
         /// </summary>
         /// <param name="aDamageToTake">The damage that will be taken</param>
         /// <param name="aStrength">A strength modifier, increasing the damage a bit</param>
-        public void TakeDamage(int aDamageToTake, int aStrength)
+        public void TakeDamage(float aDamageToTake, int aStrength)
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             float
-                tempDamageDealt = aDamageToTake * (1 + (float)aStrength / 100) * (1f - (float)myArmourRating / 100f);
+                tempDamageDealt = aDamageToTake * (1 + (float)aStrength / 100) * (1f - myArmourRating / 100f);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 11);
             Console.Write("You swing your sword!");
             System.Threading.Thread.Sleep(1000);
@@ -75,41 +78,49 @@ namespace Diablo.Enemies
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-            switch (myType)
+            if (myStunDuration > 0)
             {
-                case EnemyType.SKELETON:
-                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                    Console.Write("The enemy swings his sword!");
-                    break;
-                case EnemyType.ARCHER:
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
-                    Console.Write("The enemy draws his bow!");
-                    break;
-                case EnemyType.BOSS:
-                    Console.SetCursorPosition(tempWWD2 - 10 - (myName.Length / 2), tempWHD2 - 11);
-                    Console.Write(myName + " swings his weapon!");
-                    break;
-            }
-            System.Threading.Thread.Sleep(1000);
-            if (aPlayer.TakeDamage(myDamage, out float tempDamageDealt))
-            {
-                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
-                Console.Write("You took ");
-                Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Red);
-                Console.Write(" damage!");
+                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 11);
+                Console.Write("The enemy is stunned and cannot attack");
+                myStunDuration--;
             }
             else
             {
-                Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
-                Console.Write("You evaded the strike!");
+                switch (myType)
+                {
+                    case EnemyType.SKELETON:
+                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                        Console.Write("The enemy swings his sword!");
+                        break;
+                    case EnemyType.ARCHER:
+                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
+                        Console.Write("The enemy draws his bow!");
+                        break;
+                    case EnemyType.BOSS:
+                        Console.SetCursorPosition(tempWWD2 - 10 - (myName.Length / 2), tempWHD2 - 11);
+                        Console.Write(myName + " swings his weapon!");
+                        break;
+                }
+                System.Threading.Thread.Sleep(1000);
+                if (aPlayer.TakeDamage(myDamage, out float tempDamageDealt))
+                {
+                    Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
+                    Console.Write("You took ");
+                    Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Red);
+                    Console.Write(" damage!");
+                }
+                else
+                {
+                    Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
+                    Console.Write("You evaded the strike!");
+                }
+                if (aPlayer.GetHealth() <= 0)
+                {
+                    aPlayer.DeathSequence();
+                }
             }
             System.Threading.Thread.Sleep(1500);
-            if (aPlayer.GetHealth() <= 0)
-            {
-                aPlayer.DeathSequence();
-            }
         }
-
         #region Gets
         public float GetHealth()
         {
@@ -139,6 +150,13 @@ namespace Diablo.Enemies
         public EnemyType GetEnemyType()
         {
             return myType;
+        }
+        #endregion
+
+        #region
+        public void SetStunDuration(int aDuration)
+        {
+            myStunDuration = aDuration;
         }
         #endregion
     }

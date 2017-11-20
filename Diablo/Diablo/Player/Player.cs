@@ -939,6 +939,15 @@ namespace Diablo.Player
         }
 
         /// <summary>
+        /// Deals given damage to given enemy
+        /// </summary>
+        /// <param name="anEnemy"></param>
+        public void DealDamage(Enemies.Enemy anEnemy, float aDamage)
+        {
+            anEnemy.TakeDamage(aDamage, myStrength + myTempStrength);
+        }
+
+        /// <summary>
         /// Makes the player take damage. Returns false if no damage was taken
         /// </summary>
         /// <param name="aDamage">A damage to take</param>

@@ -349,7 +349,7 @@ namespace Diablo.Utilities
         }
 
         /// <summary>
-        /// Reads input in digits at a specified location at spits it out for other uses
+        /// Reads input in digits at a specified location and spits it out for other uses
         /// </summary>
         /// <param name="anXOffset">X offset relative to the center</param>
         /// <param name="aYOffset">Y offset relative to the center</param>

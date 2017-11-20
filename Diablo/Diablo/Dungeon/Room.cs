@@ -145,45 +145,134 @@ namespace Diablo.Dungeon
             }
             while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled && aPlayer.GetHealth() > 0)
             {
-                Console.Clear();
+                float
+                    tempDamageToDeal = 0;
+                int
+                    tempAoECount = 0;
+                bool
+                    tempShouldBeStunned = false;
                 switch (aPlayer.ChooseBattleAction())
                 {
                     case Player.BattleActions.OFFENSIVE:
-                        Console.Clear();
                         aPlayer.PrintUI();
+
+                        ///TODO: Implement different attacks and spells
+
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                        Console.WriteLine("Choose an enemy to attack");
-                        if (!myIsBossRoom)
+                        Console.Write("Choose method of violence");
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
+                        Console.Write("[1] Attacks");
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
+                        Console.Write("[2] Spells");
+                        switch(Utilities.Utility.GetDigitInput(-12, -7, 2))
                         {
-                            for (int i = 0; i < myEnemies.Count; i++)
+                            case 1:
+                                aPlayer.PrintUI();
+                                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                                Console.Write("Choose attack");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+                                Console.Write("[1] Slash (hits chosen enemy)");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                                Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                                Console.Write("[3] Pounce (stuns chosen enemy -80% dmg )");
+                                switch(Utilities.Utility.GetDigitInput(-17, -7, 3))
+                                {
+                                    case 1:
+                                        tempDamageToDeal = aPlayer.GetDamage();
+                                        break;
+                                    case 2:
+                                        tempDamageToDeal = aPlayer.GetDamage() * 0.55f;
+                                        tempAoECount = 2;
+                                        break;
+                                    case 3:
+                                        tempDamageToDeal = aPlayer.GetDamage() * 0.2f;
+                                        tempShouldBeStunned = true;
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                aPlayer.PrintUI();
+                                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                                Console.Write("Choose attack");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+                                Console.Write("[1] Fire Bolt (hits chosen enemy, 20 mp)");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                                Console.Write("[2] Flamestrike (hits 3 at random, 60 mp)");
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                                Console.Write("[3] Fireball (might even kill you, 120 mp)");
+                                switch (Utilities.Utility.GetDigitInput(-17, -7, 3))
+                                {
+                                    case 1:
+                                        tempDamageToDeal = aPlayer.GetSpellDamage();
+                                        break;
+                                    case 2:
+                                        tempDamageToDeal = aPlayer.GetSpellDamage() * 0.55f;
+                                        tempAoECount = 2;
+                                        break;
+                                    case 3:
+                                        tempDamageToDeal = aPlayer.GetSpellDamage() * 5;
+                                        tempShouldBeStunned = true;
+                                        break;
+                                }
+                                break;
+                        }
+
+
+
+
+
+                        if (tempAoECount > 0)
+                        {
+                            Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                            Console.WriteLine("Choose an enemy to attack");
+                            if (!myIsBossRoom)
                             {
-                                string tempTypeString = string.Empty;
-                                if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.ARCHER)
+                                for (int i = 0; i < myEnemies.Count; i++)
                                 {
-                                    tempTypeString = "Archer";
+                                    string tempTypeString = string.Empty;
+                                    if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.ARCHER)
+                                    {
+                                        tempTypeString = "Archer";
+                                    }
+                                    else if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.SKELETON)
+                                    {
+                                        tempTypeString = "Skeleton";
+                                    }
+                                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
+                                    Console.Write("[" + (i + 1).ToString() + "] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2).ToString() + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
                                 }
-                                else if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.SKELETON)
-                                {
-                                    tempTypeString = "Skeleton";
-                                }
-                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
-                                Console.Write("[" + (i + 1).ToString() + "] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2).ToString() + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+                                Console.Write("[1] '" + myBoss.GetName() + "'; Health - " + Math.Round(myBoss.GetHealth(), 2).ToString() + "; Armour - " + myBoss.GetArmourRating().ToString());
+                            }
+                            if (Utilities.Utility.GetDigitInput(-2, -9 + myEnemies.Count, (myIsBossRoom ? 1 : myEnemies.Count), out int tempInputValue) <= myEnemies.Count && !myIsBossRoom)
+                            {
+                                aPlayer.PrintUI();
+                                aPlayer.DealDamage(myEnemies[tempInputValue - 1], tempDamageToDeal);
+                            }
+                            else
+                            {
+                                aPlayer.PrintUI();
+                                aPlayer.DealDamage(myBoss, tempDamageToDeal);
                             }
                         }
-                        else
+                        else ///TODO: Finish this
                         {
-                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-                            Console.Write("[1] '" + myBoss.GetName() + "'; Health - " + Math.Round(myBoss.GetHealth(), 2).ToString() + "; Armour - " + myBoss.GetArmourRating().ToString());
-                        }
-                        if (Utilities.Utility.GetDigitInput(-2, -9 + myEnemies.Count, (myIsBossRoom ? 1 : myEnemies.Count), out int tempInputValue) <= myEnemies.Count && !myIsBossRoom)
-                        {
-                            aPlayer.PrintUI();
-                            aPlayer.DealDamage(myEnemies[tempInputValue - 1]);
-                        }
-                        else
-                        {
-                            aPlayer.PrintUI();
-                            aPlayer.DealDamage(myBoss);
+                            List<int> tempHitEnemiesIndex = new List<int>();
+                            for (int i = 0; i < tempAoECount; i++)
+                            {
+                                int tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
+                                while (tempHitEnemiesIndex.Contains(tempRandomIndex))
+                                {
+                                    tempHitEnemiesIndex.Remove(tempRandomIndex);
+                                    tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
+                                }
+                                tempHitEnemiesIndex.Add(tempRandomIndex);
+                                aPlayer.DealDamage(myEnemies[tempRandomIndex], tempDamageToDeal);
+                            }
                         }
                         break;
                     case Player.BattleActions.DEFENSIVE:
@@ -403,16 +492,6 @@ namespace Diablo.Dungeon
         }
 
         #region Get
-        public int GetEnemyCount()
-        {
-            return myEnemies.Count;
-        }
-
-        public bool IsHostilesPresent()
-        {
-            return myAreHostilesPresent;
-        }
-
         public List<Doors> GetDoors()
         {
             return myDoors;
