@@ -33,7 +33,7 @@ namespace Diablo.Enemies
         /// </summary>
         /// <param name="aDamageToTake">The damage that will be taken</param>
         /// <param name="aStrength">A strength modifier, increasing the damage a bit</param>
-        public void TakeDamage(float aDamageToTake, int aStrength)
+        public void TakeDamage(float aDamageToTake, int aStrength, bool shouldBeStunned, int aSpellIndex = 0)
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
@@ -41,7 +41,22 @@ namespace Diablo.Enemies
             float
                 tempDamageDealt = aDamageToTake * (1 + (float)aStrength / 100) * (1f - myArmourRating / 100f);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 11);
-            Console.Write("You swing your sword!");
+            switch (aSpellIndex)
+            {
+                case 0:
+                    Console.Write("You swing your sword!");
+                    break;
+                case 1:
+                    Console.Write("You cast Fire Bolt!");
+                    break;
+                case 2:
+                    Console.Write("You cast Flamestrike");
+                    break;
+                case 3:
+                    Console.Write("You cast Fireball!");
+                    break;
+            }
+
             System.Threading.Thread.Sleep(1000);
             if (Utilities.Utility.GetRNG().Next(1, 101) > myAgility)
             {
@@ -58,6 +73,18 @@ namespace Diablo.Enemies
                     Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
                     Utilities.Utility.PrintInColour("+" + myEXPToGive.ToString(), ConsoleColor.Green);
                     Console.Write(" experience!");
+                }
+                else if (shouldBeStunned && myCanBeStunned)
+                {
+                    myStunDuration = 2;
+                    Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 7);
+                    Console.Write("Enemy stunned!");
+                }
+                else if (shouldBeStunned && !myCanBeStunned)
+                {
+                    myStunDuration = 2;
+                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 7);
+                    Console.Write("Enemy cannot be stunned!");
                 }
             }
             else

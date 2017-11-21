@@ -933,18 +933,18 @@ namespace Diablo.Player
         /// Deals damage to given enemy
         /// </summary>
         /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy)
+        public void DealDamage(Enemies.Enemy anEnemy, bool shouldBeStunned)
         {
-            anEnemy.TakeDamage(myDamage, myStrength + myTempStrength);
+            anEnemy.TakeDamage(myDamage, myStrength + myTempStrength, shouldBeStunned);
         }
 
         /// <summary>
         /// Deals given damage to given enemy
         /// </summary>
         /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy, float aDamage)
+        public void DealDamage(Enemies.Enemy anEnemy, float aDamage, bool ShouldBeStunned, int aSpellIndex = 0)
         {
-            anEnemy.TakeDamage(aDamage, myStrength + myTempStrength);
+            anEnemy.TakeDamage(aDamage, myStrength + myTempStrength, ShouldBeStunned, aSpellIndex);
         }
 
         /// <summary>
@@ -1173,6 +1173,11 @@ namespace Diablo.Player
         {
             myStaminaBuff = aStaminabuff;
             myMaxStamina += myStaminaBuff;
+        }
+
+        public void SetMana(int aValueToSubtract)
+        {
+            myMana -= aValueToSubtract;
         }
 
         public void ResetBuffs()

@@ -17,7 +17,8 @@ namespace Diablo.Enemies
             myArmourRating = 10 * aLvl;
             myEXPToGive = 50 * aLvl;
             myStamina = 150;
-            myAgility = 15;
+            myAgility = 10 + 5 * aLvl;
+            myCanBeStunned = false;
             SetName();
         }
 

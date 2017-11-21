@@ -148,7 +148,8 @@ namespace Diablo.Dungeon
                 float
                     tempDamageToDeal = 0;
                 int
-                    tempAoECount = 0;
+                    tempAoECount = 0,
+                    tempSpellChoice = 0;
                 bool
                     tempShouldBeStunned = false;
                 switch (aPlayer.ChooseBattleAction())
@@ -174,9 +175,9 @@ namespace Diablo.Dungeon
                                 Console.Write("[1] Slash (hits chosen enemy)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
                                 Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
-                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
-                                Console.Write("[3] Pounce (stuns chosen enemy -80% dmg )");
-                                switch(Utilities.Utility.GetDigitInput(-17, -7, 3))
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
+                                Console.Write("[3] Pounce (stuns chosen enemy -80% dmg)");
+                                switch(Utilities.Utility.GetDigitInput(-19, -6, 3))
                                 {
                                     case 1:
                                         tempDamageToDeal = aPlayer.GetDamage();
@@ -199,31 +200,61 @@ namespace Diablo.Dungeon
                                 Console.Write("[1] Fire Bolt (hits chosen enemy, 20 mp)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
                                 Console.Write("[2] Flamestrike (hits 3 at random, 60 mp)");
-                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
                                 Console.Write("[3] Fireball (might even kill you, 120 mp)");
-                                switch (Utilities.Utility.GetDigitInput(-17, -7, 3))
+                                switch (Utilities.Utility.GetDigitInput(-19, -6, 3))
                                 {
                                     case 1:
-                                        tempDamageToDeal = aPlayer.GetSpellDamage();
+                                        if (aPlayer.GetMana() - 20 >= 0)
+                                        {
+                                            tempDamageToDeal = aPlayer.GetSpellDamage();
+                                            tempSpellChoice = 1;
+                                            aPlayer.SetMana(20);
+                                        }
+                                        else
+                                        {
+                                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+                                            Console.Write("Insufficient mana!");
+                                            System.Threading.Thread.Sleep(1500);
+                                        }
                                         break;
                                     case 2:
-                                        tempDamageToDeal = aPlayer.GetSpellDamage() * 0.55f;
-                                        tempAoECount = 2;
+                                        if (aPlayer.GetMana() - 60 >= 0)
+                                        {
+                                            tempDamageToDeal = aPlayer.GetSpellDamage() * 0.55f;
+                                            tempAoECount = 2;
+                                            tempSpellChoice = 2;
+                                            aPlayer.SetMana(60);
+                                        }
+                                        else
+                                        {
+                                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+                                            Console.Write("Insufficient mana!");
+                                            System.Threading.Thread.Sleep(1500);
+                                        }
                                         break;
                                     case 3:
-                                        tempDamageToDeal = aPlayer.GetSpellDamage() * 5;
-                                        tempShouldBeStunned = true;
+                                        if (aPlayer.GetMana() - 120 >= 0)
+                                        {
+                                            tempDamageToDeal = aPlayer.GetSpellDamage() * 5;
+                                            tempShouldBeStunned = true;
+                                            tempSpellChoice = 3;
+                                            aPlayer.SetMana(120);
+                                        }
+                                        else
+                                        {
+                                            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+                                            Console.Write("Insufficient mana!");
+                                            System.Threading.Thread.Sleep(1500);
+                                        }
                                         break;
                                 }
                                 break;
                         }
 
-
-
-
-
-                        if (tempAoECount > 0)
+                        if (tempAoECount == 0 && tempDamageToDeal > 0)
                         {
+                            aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                             Console.WriteLine("Choose an enemy to attack");
                             if (!myIsBossRoom)
@@ -251,27 +282,36 @@ namespace Diablo.Dungeon
                             if (Utilities.Utility.GetDigitInput(-2, -9 + myEnemies.Count, (myIsBossRoom ? 1 : myEnemies.Count), out int tempInputValue) <= myEnemies.Count && !myIsBossRoom)
                             {
                                 aPlayer.PrintUI();
-                                aPlayer.DealDamage(myEnemies[tempInputValue - 1], tempDamageToDeal);
+                                aPlayer.DealDamage(myEnemies[tempInputValue - 1], tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                             }
                             else
                             {
                                 aPlayer.PrintUI();
-                                aPlayer.DealDamage(myBoss, tempDamageToDeal);
+                                aPlayer.DealDamage(myBoss, tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                             }
                         }
-                        else ///TODO: Finish this
+                        else
                         {
-                            List<int> tempHitEnemiesIndex = new List<int>();
-                            for (int i = 0; i < tempAoECount; i++)
+                            if (!myIsBossRoom && tempDamageToDeal > 0)
                             {
-                                int tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
-                                while (tempHitEnemiesIndex.Contains(tempRandomIndex))
+                                List<int> tempHitEnemiesIndex = new List<int>();
+                                for (int i = 0; i < tempAoECount; i++)
                                 {
-                                    tempHitEnemiesIndex.Remove(tempRandomIndex);
-                                    tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
+                                    int tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
+                                    while (tempHitEnemiesIndex.Contains(tempRandomIndex))
+                                    {
+                                        tempHitEnemiesIndex.Remove(tempRandomIndex);
+                                        tempRandomIndex = Utilities.Utility.GetRNG().Next(0, myEnemies.Count);
+                                    }
+                                    tempHitEnemiesIndex.Add(tempRandomIndex);
+                                    aPlayer.PrintUI();
+                                    aPlayer.DealDamage(myEnemies[tempRandomIndex], tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                                 }
-                                tempHitEnemiesIndex.Add(tempRandomIndex);
-                                aPlayer.DealDamage(myEnemies[tempRandomIndex], tempDamageToDeal);
+                            }
+                            else if(tempDamageToDeal > 0)
+                            {
+                                aPlayer.PrintUI();
+                                aPlayer.DealDamage(myBoss, tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                             }
                         }
                         break;

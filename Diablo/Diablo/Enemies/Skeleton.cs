@@ -19,6 +19,7 @@
             myStamina = 100 + myLevel * 5;
             myHealth = 25 * myLevel * (float)myStamina / 100;
             myEXPToGive = myLevel * 8;
+            myCanBeStunned = true;
         }
     }
 }
