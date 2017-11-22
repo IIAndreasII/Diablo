@@ -156,9 +156,6 @@ namespace Diablo.Dungeon
                 {
                     case Player.BattleActions.OFFENSIVE:
                         aPlayer.PrintUI();
-
-                        ///TODO: Implement different attacks and spells
-
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
                         Console.Write("Choose method of violence");
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
@@ -315,7 +312,7 @@ namespace Diablo.Dungeon
                             }
                         }
                         break;
-                    case Player.BattleActions.DEFENSIVE:
+                    case Player.BattleActions.DEFENSIVE:  /// TODO: Add defensive spells
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                         Console.Write("You raise your defences and");
