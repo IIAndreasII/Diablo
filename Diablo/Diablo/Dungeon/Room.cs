@@ -529,32 +529,17 @@ namespace Diablo.Dungeon
         }
 
         #region Get
-        public List<Doors> GetDoors()
-        {
-            return myDoors;
-        }
+        public List<Doors> GetDoors() => myDoors;
 
-        public int GetXPosition()
-        {
-            return myXPos;
-        }
+        public int GetXPosition() => myXPos;
 
-        public int GetYPosition()
-        {
-            return myYPos;
-        }
+        public int GetYPosition() => myYPos;
         #endregion
 
         #region Set
-        public void SetIsHostilesPresent(bool aNewValue)
-        {
-            myAreHostilesPresent = aNewValue;
-        }
+        public void SetIsHostilesPresent(bool aNewValue) => myAreHostilesPresent = aNewValue;
 
-        public void SetDoors(List<Doors> someDoors)
-        {
-            myDoors = someDoors;
-        }
+        public void SetDoors(List<Doors> someDoors) => myDoors = someDoors;
 
         public void AddDoor(Doors aDoor)
         {

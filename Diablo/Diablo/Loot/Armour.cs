@@ -58,36 +58,5 @@
                     break;
             }
         }
-
-        /// <summary>
-        /// Sets the item's name
-        /// </summary>
-        private void SetName()
-        {
-            switch (myType)
-            {
-                case ItemType.HELMET:
-                    myPrefix = "Helmet of";
-                    break;
-                case ItemType.CHESTPLATE:
-                    myPrefix = "Chestplate of";
-                    break;
-                case ItemType.TROUSERS:
-                    myPrefix = "Trousers of";
-                    break;
-                case ItemType.BOOTS:
-                    myPrefix = "Boots of";
-                    break;
-                case ItemType.SHIELD:
-                    myPrefix = "Shield of";
-                    break;
-            }
-            mySuffix = Utilities.Utility.GetRandomSuffix();
-        }
-
-        public ItemType GetArmourType()
-        {
-            return myType;
-        }
     }
 }

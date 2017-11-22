@@ -9,19 +9,13 @@
         /// Initializes the manager
         /// </summary>
         /// <param name="aPlayer">Active player</param>
-        public static void Init(Player.Player aPlayer)
-        {
-            myPlayer = aPlayer;
-        }   
+        public static void Init(Player.Player aPlayer) => myPlayer = aPlayer;
 
         /// <summary>
         /// Gets the active dungeon
         /// </summary>
         /// <returns>The active dungeon</returns>
-        public static Dungeon.Dungeon GetActiveDungeon()
-        {
-            return myDungeon;
-        }
+        public static Dungeon.Dungeon GetActiveDungeon() => myDungeon;
 
         /// <summary>
         /// Lets the player enter the dungeon

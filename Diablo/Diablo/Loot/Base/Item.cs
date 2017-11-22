@@ -41,50 +41,72 @@
                     return ScrollEffect.ARMBUFF;
             }
         }
-       
+
         /// <summary>
         /// Gets the type of the item
         /// </summary>
         /// <returns>an Item type</returns>
-        public ItemType GetItemType()
-        {
-            return myType;
-        }
+        public ItemType GetItemType() => myType;
 
         /// <summary>
         /// Gets the full name of the item
         /// </summary>
         /// <returns>String containing the full name of the item</returns>
-        public string GetFullName()
-        {
-            return myPrefix + " " + mySuffix;
-        }
+        public string GetFullName() => myPrefix + " " + mySuffix;
 
         /// <summary>
         /// Gets the item's prefix
         /// </summary>
         /// <returns>String containing the item's prefix</returns>
-        public string GetPrefix()
-        {
-            return myPrefix;
-        }
+        public string GetPrefix() => myPrefix;
 
         /// <summary>
         /// Gets the item's suffix
         /// </summary>
         /// <returns>String containing the item's suffix</returns>
-        public string GetSuffix()
-        {
-            return mySuffix;
-        }
+        public string GetSuffix() => mySuffix;
 
         /// <summary>
         /// Gets the item's rating (damage/armour)
         /// </summary>
         /// <returns>Item rating</returns>
-        public int GetRating()
+        public int GetRating() => myRating;
+        #endregion
+
+        #region Set
+        /// <summary>
+        /// Sets the item's name
+        /// </summary>
+        protected void SetName()
         {
-            return myRating;
+            switch (myType)
+            {
+                case ItemType.HELMET:
+                    myPrefix = "Helmet of";
+                    break;
+                case ItemType.CHESTPLATE:
+                    myPrefix = "Chestplate of";
+                    break;
+                case ItemType.TROUSERS:
+                    myPrefix = "Trousers of";
+                    break;
+                case ItemType.BOOTS:
+                    myPrefix = "Boots of";
+                    break;
+                case ItemType.SHIELD:
+                    myPrefix = "Shield of";
+                    break;
+                case ItemType.WEAPON:
+                    myPrefix = "Sword of";
+                    break;
+                case ItemType.TRINKET:
+                    myPrefix = "Trinket of";
+                    break;
+                case ItemType.SCROLL:
+                    myPrefix = "Scroll of";
+                    break;
+            }
+            mySuffix = Utilities.Utility.GetRandomSuffix();
         }
         #endregion
     }

@@ -6,37 +6,25 @@
         /// Creates an armour-item
         /// </summary>
         /// <returns>An armour-item</returns>
-        public static Loot.Armour CreateArmour()
-        {
-            return new Loot.Armour();
-        }
+        public static Loot.Armour CreateArmour() => new Loot.Armour();
 
         /// <summary>
         /// Creates a weapon-item
         /// </summary>
         /// <returns>A weaponn-item</returns>
-        public static Loot.Weapon CreateWeapon()
-        {
-            return new Loot.Weapon();
-        }
+        public static Loot.Weapon CreateWeapon() => new Loot.Weapon();
 
         /// <summary>
         /// Creates a scroll
         /// </summary>
         /// <returns>A scroll</returns>
-        public static Loot.Scroll CreateScroll()
-        {
-            return new Loot.Scroll();
-        }
+        public static Loot.Scroll CreateScroll() => new Loot.Scroll();
 
         /// <summary>
         /// Creates a trinket
         /// </summary>
         /// <returns>A trinket</returns>
-        public static Loot.Trinket CreateTrinket()
-        {
-            return new Loot.Trinket();
-        }
+        public static Loot.Trinket CreateTrinket() => new Loot.Trinket();
 
         /// <summary>
         /// Creates a random item

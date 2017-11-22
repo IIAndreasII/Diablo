@@ -72,59 +72,32 @@ namespace Diablo.Loot
             return false;
         }
 
-        #region Set
-        /// <summary>
-        /// Sets scroll's duration
-        /// </summary>
-        /// <param name="aDuration">Duration of the scroll represented in number of combat-rounds</param>
-        public void SetScrollDuration(int aDuration)
-        {
-            myScrollDuration = aDuration;
-        }
-
-        /// <summary>
-        /// Sets the item's name
-        /// </summary>
-        private void SetName()
-        {
-            myPrefix = "Scroll of";
-            mySuffix = Utilities.Utility.GetRandomSuffix();
-        }
-        #endregion
-
         #region Get
         /// <summary>
         /// Gets the scrolls duration
         /// </summary>
         /// <returns></returns>
-        public int GetScrollDuration()
-        {
-            return myScrollDuration;
-        }
+        public int GetScrollDuration() => myScrollDuration;
 
         /// <summary>
         /// Gets the items scroll-effect
         /// </summary>
         /// <returns></returns>
-        public ScrollEffect GetScrollEffect()
-        {
-            return myScrollEffect;
-        }
+        public ScrollEffect GetScrollEffect() => myScrollEffect;
 
-        public int GetStrengthBuff()
-        {
-            return myStrengthBuff;
-        }
+        public int GetStrengthBuff() => myStrengthBuff;
 
-        public int GetArmourBuff()
-        {
-            return myArmourBuff;
-        }
+        public int GetArmourBuff() => myArmourBuff;
 
-        public int GetHealthBuff()
-        {
-            return myHealthBuff;
-        }
+        public int GetHealthBuff() => myHealthBuff;
+        #endregion
+
+        #region Set
+        /// <summary>
+        /// Sets scroll's duration
+        /// </summary>
+        /// <param name="aDuration">Duration of the scroll represented in number of combat-rounds</param>
+        public void SetScrollDuration(int aDuration) => myScrollDuration = aDuration;
         #endregion
     }
 }

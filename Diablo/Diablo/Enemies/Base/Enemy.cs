@@ -148,43 +148,23 @@ namespace Diablo.Enemies
             }
             System.Threading.Thread.Sleep(1500);
         }
-        #region Gets
-        public float GetHealth()
-        {
-            return myHealth;
-        }
 
-        public float GetDamage()
-        {
-            return myDamage;
-        }
+        #region Get
+        public float GetHealth() => myHealth;
 
-        public int GetArmourRating()
-        {
-            return myArmourRating;
-        }
+        public float GetDamage() => myDamage;
 
-        public int GetLevel()
-        {
-            return myLevel;
-        }
+        public int GetArmourRating() => myArmourRating;
 
-        public int GetEXPToGive()
-        {
-            return myEXPToGive;
-        }
+        public int GetLevel() => myLevel;
 
-        public EnemyType GetEnemyType()
-        {
-            return myType;
-        }
+        public int GetEXPToGive() => myEXPToGive;
+
+        public EnemyType GetEnemyType() => myType;
         #endregion
 
         #region
-        public void SetStunDuration(int aDuration)
-        {
-            myStunDuration = aDuration;
-        }
+        public void SetStunDuration(int aDuration) => myStunDuration = aDuration;
         #endregion
     }
 }

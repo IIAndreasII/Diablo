@@ -307,9 +307,9 @@ namespace Diablo.Player
                 myStamina = myMaxStamina;
             }
             myHealth += anAmountToAdd * 0.2f;
-            if(myHealth > ((float)myMaxStamina / 100) * myMaxHealth)
+            if(myHealth > myMaxStamina / 100 * myMaxHealth)
             {
-                myHealth = myMaxHealth * (float)myMaxStamina / 100;
+                myHealth = myMaxHealth * myMaxStamina / 100;
             }
         }
 
@@ -324,9 +324,9 @@ namespace Diablo.Player
             {
                 myStamina = 10;
             }
-            if(myHealth > (float)myStamina / 100 * myMaxHealth)
+            if(myHealth > myStamina / 100 * myMaxHealth)
             {
-                myHealth = (float)myStamina / 100 * myMaxHealth;
+                myHealth = myStamina / 100 * myMaxHealth;
             }
         }
 
@@ -863,10 +863,7 @@ namespace Diablo.Player
         /// Adds the given amount of gold
         /// </summary>
         /// <param name="anAmountToAdd">The amount to add</param>
-        public void AddGold(int anAmountToAdd)
-        {
-            myGold += anAmountToAdd;
-        }
+        public void AddGold(int anAmountToAdd) => myGold += anAmountToAdd;
 
         /// <summary>
         /// Subtracts the given amount of gold if the player has at least that amount
@@ -933,19 +930,13 @@ namespace Diablo.Player
         /// Deals damage to given enemy
         /// </summary>
         /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy, bool shouldBeStunned)
-        {
-            anEnemy.TakeDamage(myDamage, myStrength + myTempStrength, shouldBeStunned);
-        }
+        public void DealDamage(Enemies.Enemy anEnemy, bool shouldBeStunned) => anEnemy.TakeDamage(myDamage, myStrength + myTempStrength, shouldBeStunned);
 
         /// <summary>
         /// Deals given damage to given enemy
         /// </summary>
         /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy, float aDamage, bool ShouldBeStunned, int aSpellIndex = 0)
-        {
-            anEnemy.TakeDamage(aDamage, myStrength + myTempStrength, ShouldBeStunned, aSpellIndex);
-        }
+        public void DealDamage(Enemies.Enemy anEnemy, float aDamage, bool ShouldBeStunned, int aSpellIndex = 0) => anEnemy.TakeDamage(aDamage, myStrength + myTempStrength, ShouldBeStunned, aSpellIndex);
 
         /// <summary>
         /// Makes the player take damage. Returns false if no damage was taken
@@ -964,11 +955,11 @@ namespace Diablo.Player
             {
                 if (!myIsDefending)
                 {
-                    DamageTaken = aDamage - aDamage * ((float)myArmourRating + (float)myTempArmourRating) / 100f;       
+                    DamageTaken = aDamage - aDamage * (myArmourRating + myTempArmourRating) / 100f;       
                 }
                 else
                 {
-                    DamageTaken = aDamage - aDamage * ((float)myArmourRating + (float)myTempArmourRating) / 100f - aDamage * 0.6f;
+                    DamageTaken = aDamage - aDamage * (myArmourRating + myTempArmourRating) / 100f - aDamage * 0.6f;
                 }
                 if(myTempHealth > 0)
                 {
@@ -1035,82 +1026,37 @@ namespace Diablo.Player
         #endregion
 
         #region Get
-        public int GetLuck()
-        {
-            return myLuck;
-        }
+        public int GetLuck() => myLuck;
 
-        public int GetLevel()
-        {
-            return myLevel;
-        }
+        public int GetLevel() => myLevel;
 
-        public int GetStrength()
-        {
-            return myStrength;
-        }
+        public int GetStrength() => myStrength;
 
-        public int GetAgility()
-        {
-            return myAgility;
-        }
+        public int GetAgility() => myAgility;
 
-        public int GetHPPotionAmount()
-        {
-            return myHPPotionAmount;
-        }
+        public int GetHPPotionAmount() => myHPPotionAmount;
 
-        public int GetManaPotionAmount()
-        {
-            return myManaPotionAmount;
-        }
+        public int GetManaPotionAmount() => myManaPotionAmount;
 
-        public int GetMana()
-        {
-            return myMana;
-        }
+        public int GetMana() => myMana;
 
-        public int GetDamage()
-        {
-            return myDamage;
-        }
+        public int GetDamage() => myDamage;
 
-        public int GetSpellDamage()
-        {
-            return mySpellDamage;
-        }
+        public int GetSpellDamage() => mySpellDamage;
 
-        public int GetArmourRating()
-        {
-            return myArmourRating;
-        }
+        public int GetArmourRating() => myArmourRating;
 
-        public float GetStamina()
-        {
-            return myStamina;
-        }
+        public float GetStamina() => myStamina;
 
-        public float GetHealth()
-        {
-            return myHealth;
-        }
+        public float GetHealth() => myHealth;
 
-        public bool GetIsDefending()
-        {
-            return myIsDefending;
-        }
+        public bool GetIsDefending() => myIsDefending;
         #endregion
 
         #region Set
-        public void SetInventoryCapacity(int aNewCapacity)
-        {
-            myInventoryCapacity = aNewCapacity;
-        }
+        public void SetInventoryCapacity(int aNewCapacity) => myInventoryCapacity = aNewCapacity;
 
-        public void SetIsDefending(bool aNewValue)
-        {
-            myIsDefending = aNewValue;
-        }
+        public void SetIsDefending(bool aNewValue) => myIsDefending = aNewValue;
 
         public void SetTempHealth(float aHealth)
         {
@@ -1175,10 +1121,7 @@ namespace Diablo.Player
             myMaxStamina += myStaminaBuff;
         }
 
-        public void SetMana(int aValueToSubtract)
-        {
-            myMana -= aValueToSubtract;
-        }
+        public void SetMana(int aValueToSubtract) => myMana -= aValueToSubtract;
 
         public void ResetBuffs()
         {

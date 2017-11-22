@@ -41,9 +41,6 @@ namespace Diablo.Factories
         /// </summary>
         /// <param name="aLvl">The boss' level</param>
         /// <returns>A boss</returns>
-        public static Enemies.Boss CreateBoss(int aLvl)
-        {
-            return new Enemies.Boss(aLvl);
-        }
+        public static Enemies.Boss CreateBoss(int aLvl) => new Enemies.Boss(aLvl);
     }
 }

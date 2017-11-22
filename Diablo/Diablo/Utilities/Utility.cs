@@ -12,15 +12,12 @@ namespace Diablo.Utilities
         /// Gets the random number generator
         /// </summary>
         /// <returns>An instance of the class 'Random'</returns>
-        public static Random GetRNG()
-        {
-            return myRNG;
-        }
+        public static Random GetRNG() => myRNG;
 
         /// <summary>
         /// Generates all suffixes for items 
         /// </summary>
-        public static void SetSuffixes()
+        public static void GenerateSuffixes()
         {
             mySuffixes = new string[13];
             for (int i = 0; i < mySuffixes.Length; i++)
@@ -74,10 +71,7 @@ namespace Diablo.Utilities
         /// Gets a random suffix from the suffix-array
         /// </summary>
         /// <returns>String containing a random suffix</returns>
-        public static string GetRandomSuffix()
-        {
-            return mySuffixes[myRNG.Next(0, mySuffixes.Length)];
-        }
+        public static string GetRandomSuffix() => mySuffixes[myRNG.Next(0, mySuffixes.Length)];
 
         /// <summary>
         /// Prints an ASCII-style pentagram at given position in given colour

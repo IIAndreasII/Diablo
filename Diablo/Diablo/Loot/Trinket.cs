@@ -112,14 +112,5 @@
         {
             return myEffectAmount;
         }
-
-        /// <summary>
-        /// Sets item's name
-        /// </summary>
-        private void SetName()
-        {
-            myPrefix = "Trinket of";
-            mySuffix = Utilities.Utility.GetRandomSuffix();
-        }
     }
 }

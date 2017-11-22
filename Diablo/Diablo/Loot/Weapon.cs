@@ -16,14 +16,5 @@
             mySuffix = aSuffix;
             myRating = aRating;
         }
-
-        /// <summary>
-        /// Sets the item's name
-        /// </summary>
-        public void SetName()
-        {
-            myPrefix = "Sword of";
-            mySuffix = Utilities.Utility.GetRandomSuffix();
-        }
     }
 }
