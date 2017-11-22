@@ -143,7 +143,7 @@ namespace Diablo.Dungeon
             {
                 Managers.EnemyManager.AddEnemy(myBoss);
             }
-            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled && aPlayer.GetHealth() > 0)
+            while (!Managers.EnemyManager.AreEnemiesDefeated() && !tempHasFled)
             {
                 float
                     tempDamageToDeal = 0;
