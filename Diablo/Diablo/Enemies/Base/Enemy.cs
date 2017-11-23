@@ -162,7 +162,7 @@ namespace Diablo.Enemies
         public EnemyType GetEnemyType() => myType;
         #endregion
 
-        #region
+        #region Set
         public void SetStunDuration(int aDuration) => myStunDuration = aDuration;
         #endregion
     }

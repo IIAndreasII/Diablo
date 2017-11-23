@@ -211,6 +211,7 @@ namespace Diablo.Player
             myLuck++;
             myWisdom++;
             myIntelligence++;
+            mySpellDamage += 10;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
             Console.Write("Level up!");
@@ -237,6 +238,9 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 3);
             Console.Write("Luck");
+            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 2);
+            Console.Write("SpellDmg");
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             System.Threading.Thread.Sleep(3000);
         }
@@ -927,16 +931,10 @@ namespace Diablo.Player
         }
 
         /// <summary>
-        /// Deals damage to given enemy
-        /// </summary>
-        /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy, bool shouldBeStunned) => anEnemy.TakeDamage(myDamage, myStrength + myTempStrength, shouldBeStunned);
-
-        /// <summary>
         /// Deals given damage to given enemy
         /// </summary>
         /// <param name="anEnemy"></param>
-        public void DealDamage(Enemies.Enemy anEnemy, float aDamage, bool ShouldBeStunned, int aSpellIndex = 0) => anEnemy.TakeDamage(aDamage, myStrength + myTempStrength, ShouldBeStunned, aSpellIndex);
+        public void DealDamage(Enemies.Enemy anEnemy, float aDamage, bool ShouldBeStunned, int aSpellIndex = 0) => anEnemy.TakeDamage(aDamage, aSpellIndex > 0 ? myIntelligence : myStrength + myTempStrength, ShouldBeStunned, aSpellIndex);
 
         /// <summary>
         /// Makes the player take damage. Returns false if no damage was taken
