@@ -82,7 +82,6 @@ namespace Diablo.Enemies
                 }
                 else if (shouldBeStunned && !myCanBeStunned)
                 {
-                    myStunDuration = 2;
                     Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 7);
                     Console.Write("Enemy cannot be stunned!");
                 }

@@ -1050,6 +1050,8 @@ namespace Diablo.Player
 
         public float GetHealth() => myHealth;
 
+        public float GetMaxHealth() => myMaxHealth;
+
         public bool GetIsDefending() => myIsDefending;
         #endregion
 

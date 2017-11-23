@@ -311,6 +311,18 @@ namespace Diablo.Dungeon
                                 aPlayer.DealDamage(myBoss, tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                             }
                         }
+                        if(tempSpellChoice == 3)
+                        {
+                            aPlayer.PrintUI();
+                            aPlayer.TakeDamage(aPlayer.GetMaxHealth() * 0.6f, out float tempDamageTaken);
+                            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
+                            Console.Write("The massive blast burns your skin!");
+                            Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
+                            Console.Write("You take ");
+                            Utilities.Utility.PrintInColour(tempDamageTaken.ToString(), ConsoleColor.DarkRed);
+                            Console.Write(" damage!");
+                            System.Threading.Thread.Sleep(2000);
+                        }
                         break;
                     case Player.BattleActions.DEFENSIVE:  /// TODO: Add defensive spells
                         aPlayer.PrintUI();
