@@ -174,7 +174,7 @@ namespace Diablo.Dungeon
                                 Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
                                 Console.Write("[3] Pounce (stuns chosen enemy -80% dmg)");
-                                switch(Utilities.Utility.GetDigitInput(-19, -6, 3))
+                                switch(Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:
                                         tempDamageToDeal = aPlayer.GetDamage();
@@ -199,7 +199,7 @@ namespace Diablo.Dungeon
                                 Console.Write("[2] Flamestrike (hits 3 at random, 60 mp)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
                                 Console.Write("[3] Fireball (might even kill you, 120 mp)");
-                                switch (Utilities.Utility.GetDigitInput(-19, -6, 3))
+                                switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:
                                         if (aPlayer.GetMana() - 20 >= 0)
@@ -324,13 +324,68 @@ namespace Diablo.Dungeon
                             System.Threading.Thread.Sleep(2000);
                         }
                         break;
-                    case Player.BattleActions.DEFENSIVE:  /// TODO: Add defensive spells
+                    case Player.BattleActions.DEFENSIVE:
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                        Console.Write("You raise your defences and");
-                        Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
-                        Console.Write("brace for a strike!");
-                        aPlayer.SetIsDefending(true);
+                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                        Console.Write("Choose defence");
+                        Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+                        Console.Write("[1] Raise shield");
+                        Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+                        Console.Write("[2] Healing Touch");
+                        Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
+                        Console.Write("[3] Super-stun (stuns all enemies)");
+                        switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
+                        {
+                            case 1:
+                                aPlayer.PrintUI();
+                                Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                                Console.Write("You raise your defences and");
+                                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
+                                Console.Write("brace for a strike!");
+                                aPlayer.SetIsDefending(true);
+                                break;
+                            case 2:
+                                aPlayer.PrintUI();
+                                if (aPlayer.GetMana() - 30 < aPlayer.GetMana())
+                                {
+                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                                    Console.Write("You begin touching yourself...");
+                                    System.Threading.Thread.Sleep(2000);
+                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
+                                    Console.Write("It magically heals you(?)");
+                                    float tempHealingAmount = 25 * (1 + aPlayer.GetWisdom() / 100f);
+                                    aPlayer.SetHealth(tempHealingAmount);
+                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 7);
+                                    Console.Write("You re-gain ");
+                                    Utilities.Utility.PrintInColour(tempHealingAmount.ToString(), ConsoleColor.Green);
+                                    Console.Write(" health!");
+                                }
+                                else
+                                {
+                                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+                                    Console.Write("Insufficient mana!");
+                                }
+                                break;
+                            case 3:
+                                aPlayer.PrintUI();
+                                if (aPlayer.GetMana() - 80 < aPlayer.GetMana())
+                                {
+                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                                    Console.Write("You throw some pebbles and somehow");
+                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
+                                    Console.Write("it stuns every enemy in sight");
+                                    foreach (Enemies.Enemy tempEnemy in myEnemies)
+                                    {
+                                        tempEnemy.SetStunDuration(2);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+                                    Console.Write("Insufficient mana!");
+                                }
+                                break;
+                        }
                         System.Threading.Thread.Sleep(2000);
                         break;
                     case Player.BattleActions.USEITEM:

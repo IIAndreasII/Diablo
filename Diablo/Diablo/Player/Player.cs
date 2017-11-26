@@ -110,6 +110,7 @@ namespace Diablo.Player
             myInventory.Add(Factories.LootFactory.CreateScroll());
             myStamina = myMaxStamina;
             myHealth = myMaxHealth * myStamina / 100;
+            myIsDefending = false;
         }
 
         /// <summary>
@@ -202,6 +203,7 @@ namespace Diablo.Player
             myEXP -= myRequiredEXP;
             myRequiredEXP *= 2;
             myMaxHealth *= 1.2f;
+            Math.Round(myMaxHealth, 2);
             myHealth = myMaxHealth;
             myMaxMana += 20;
             myMana = myMaxMana;
@@ -794,7 +796,7 @@ namespace Diablo.Player
             if (myHPPotionAmount > 0)
             {
                 myHPPotionAmount -= 1;
-                myHealth += 25;
+                myHealth += 40;
                 if(myHealth > myMaxHealth * myStamina / 100)
                 {
                     myHealth = myMaxHealth * myStamina / 100;
@@ -806,7 +808,7 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
             Console.Write("You re-gained ");
-            Utilities.Utility.PrintInColour("25", ConsoleColor.Green);
+            Utilities.Utility.PrintInColour("40", ConsoleColor.Green);
             Console.Write(" health!");
             System.Threading.Thread.Sleep(1500);
         }
@@ -822,7 +824,7 @@ namespace Diablo.Player
             if (myManaPotionAmount > 0)
             {
                 myManaPotionAmount -= 1;
-                myMaxMana += 25;
+                myMaxMana += 50;
                 if(myMana > myMaxMana)
                 {
                     myMana = myMaxMana;
@@ -834,7 +836,7 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
             Console.Write("You re-gained ");
-            Utilities.Utility.PrintInColour("25", ConsoleColor.Blue);
+            Utilities.Utility.PrintInColour("50", ConsoleColor.Blue);
             Console.Write(" mana!");
             System.Threading.Thread.Sleep(1500);
         }
@@ -991,6 +993,7 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             PrintUI();
+            myIsDefending = false;
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
             Console.Write("What will you do?");
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
@@ -1002,22 +1005,16 @@ namespace Diablo.Player
             switch (Utilities.Utility.GetDigitInput(-1, -6, 5))
             {
                 case 1:
-                    myIsDefending = false;
                     return BattleActions.OFFENSIVE;
                 case 2:
-                    myIsDefending = true;
                     return BattleActions.DEFENSIVE;
                 case 3:
-                    myIsDefending = false;
                     return BattleActions.USEITEM;
                 case 4:
-                    myIsDefending = false;
                     return BattleActions.FLEE;
                 case 5:
-                    myIsDefending = false;
                     return BattleActions.ABSTAIN;
                 default:
-                    myIsDefending = false;
                     return BattleActions.ABSTAIN;
                 }
             }
@@ -1051,6 +1048,8 @@ namespace Diablo.Player
         public float GetMaxHealth() => myMaxHealth;
 
         public bool GetIsDefending() => myIsDefending;
+
+        public int GetWisdom() => myWisdom;
         #endregion
 
         #region Set
@@ -1122,6 +1121,15 @@ namespace Diablo.Player
         }
 
         public void SetMana(int aValueToSubtract) => myMana -= aValueToSubtract;
+
+        public void SetHealth(float aValueToAdd)
+        {
+            myHealth += aValueToAdd;
+            if (myMaxHealth < myHealth)
+            {
+                myHealth = myMaxHealth * myStamina / 100;
+            }
+        }
 
         public void ResetBuffs()
         {
