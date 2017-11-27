@@ -1032,7 +1032,6 @@ namespace Diablo.Player
 
         #region Get
 
-
         public int GetLuck() => myLuck;
 
         public int GetLevel() => myLevel;
@@ -1059,7 +1058,6 @@ namespace Diablo.Player
 
         public int GetWisdom() => myWisdom;
 
-
         #endregion Get
 
         #region Set
@@ -1070,7 +1068,7 @@ namespace Diablo.Player
         /// <param name="anAmountToAdd">The amount to add</param>
         public bool SetGold(int aValueToAdd)
         {
-            if((aValueToAdd < 0 && myGold > -aValueToAdd) || aValueToAdd > 0)
+            if ((aValueToAdd < 0 && myGold > -aValueToAdd) || aValueToAdd > 0)
             {
                 myGold += aValueToAdd;
                 return true;

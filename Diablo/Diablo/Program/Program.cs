@@ -11,7 +11,6 @@ namespace Diablo
 
         private static void Main(string[] args)
         {
-            
             Initialize();
             MainMenu();
         }
@@ -21,7 +20,6 @@ namespace Diablo
         /// </summary>
         private static void Initialize()
         {
-            
             Console.ForegroundColor = StandardTextColour;
             Utilities.Utility.GenerateSuffixes();
             myPlayer = new Player.Player();
@@ -171,7 +169,6 @@ namespace Diablo
 
                 Console.Beep(330, 50); /// E
                 System.Threading.Thread.Sleep(tempNoteDelay);
-
 
                 if (!tempIsSecondLoop)
                 {
