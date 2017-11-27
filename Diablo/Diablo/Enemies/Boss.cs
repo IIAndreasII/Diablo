@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diablo.Enemies
+﻿namespace Diablo.Enemies
 {
-    class Boss : Enemy
+    internal class Boss : Enemy
     {
         public Boss(int aLvl = 1)
         {
@@ -29,15 +23,19 @@ namespace Diablo.Enemies
                 case 0:
                     myName = "Zendurr";
                     break;
+
                 case 1:
                     myName = "Apollyon";
                     break;
+
                 case 2:
                     myName = "Månegarm";
                     break;
+
                 case 3:
                     myName = "Calcifer";
                     break;
+
                 case 4:
                     myName = "Apocalypsis";
                     break;

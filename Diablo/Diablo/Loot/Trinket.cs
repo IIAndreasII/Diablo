@@ -10,11 +10,12 @@
         Luck
     }
 
-    class Trinket : Item
+    internal class Trinket : Item
     {
-        int
+        private int
             myEffectAmount;
-        Buff
+
+        private Buff
             myBuffType;
 
         public Trinket()
@@ -43,22 +44,27 @@
                     myBuffType = Buff.Health;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 31);
                     break;
+
                 case 1:
                     myBuffType = Buff.Armour;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
+
                 case 2:
                     myBuffType = Buff.Stamina;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 21);
                     break;
+
                 case 3:
                     myBuffType = Buff.Agility;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
                     break;
+
                 case 4:
                     myBuffType = Buff.Luck;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
+
                 case 5:
                     myBuffType = Buff.Strength;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
@@ -77,18 +83,23 @@
                 case Buff.Agility:
                     aPlayer.SetAgilityBuff(myEffectAmount);
                     break;
+
                 case Buff.Armour:
                     aPlayer.SetArmourBuff(myEffectAmount);
                     break;
+
                 case Buff.Health:
                     aPlayer.SetHealthBuff(myEffectAmount);
                     break;
+
                 case Buff.Luck:
                     aPlayer.SetLuckBuff(myEffectAmount);
                     break;
+
                 case Buff.Stamina:
                     aPlayer.SetStaminaBuff(myEffectAmount);
                     break;
+
                 case Buff.Strength:
                     aPlayer.SetStrengthBuff(myEffectAmount);
                     break;

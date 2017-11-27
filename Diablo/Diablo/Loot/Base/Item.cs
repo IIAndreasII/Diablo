@@ -16,13 +16,16 @@
     {
         protected ItemType
             myType;
-        protected string 
+
+        protected string
             myPrefix,
             mySuffix;
+
         protected int
             myRating;
 
         #region Get
+
         /// <summary>
         /// Gets a random Scrolleffect
         /// </summary>
@@ -33,10 +36,13 @@
             {
                 case 0:
                     return ScrollEffect.ARMBUFF;
+
                 case 1:
                     return ScrollEffect.HPBUFF;
+
                 case 2:
                     return ScrollEffect.STRBUFF;
+
                 default:
                     return ScrollEffect.ARMBUFF;
             }
@@ -71,9 +77,11 @@
         /// </summary>
         /// <returns>Item rating</returns>
         public int GetRating() => myRating;
-        #endregion
+
+        #endregion Get
 
         #region Set
+
         /// <summary>
         /// Sets the item's name
         /// </summary>
@@ -84,30 +92,38 @@
                 case ItemType.HELMET:
                     myPrefix = "Helmet of";
                     break;
+
                 case ItemType.CHESTPLATE:
                     myPrefix = "Chestplate of";
                     break;
+
                 case ItemType.TROUSERS:
                     myPrefix = "Trousers of";
                     break;
+
                 case ItemType.BOOTS:
                     myPrefix = "Boots of";
                     break;
+
                 case ItemType.SHIELD:
                     myPrefix = "Shield of";
                     break;
+
                 case ItemType.WEAPON:
                     myPrefix = "Sword of";
                     break;
+
                 case ItemType.TRINKET:
                     myPrefix = "Trinket of";
                     break;
+
                 case ItemType.SCROLL:
                     myPrefix = "Scroll of";
                     break;
             }
             mySuffix = Utilities.Utility.GetRandomSuffix();
         }
-        #endregion
+
+        #endregion Set
     }
 }

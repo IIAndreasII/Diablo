@@ -2,9 +2,9 @@
 
 namespace Diablo.Managers
 {
-    static class EnemyManager
+    internal static class EnemyManager
     {
-        static List<Enemies.Enemy> myEnemies;
+        private static List<Enemies.Enemy> myEnemies;
 
         /// <summary>
         /// Initializes the manager
@@ -31,7 +31,7 @@ namespace Diablo.Managers
         {
             for (int i = myEnemies.Count; i > 0; i--)
             {
-                if(myEnemies[i - 1].GetHealth() <= 0)
+                if (myEnemies[i - 1].GetHealth() <= 0)
                 {
                     aPlayer.AddEXP(myEnemies[i - 1].GetEXPToGive());
                     myEnemies.RemoveAt(i - 1);
@@ -49,7 +49,7 @@ namespace Diablo.Managers
         /// <returns>Returns true if enemies are defeated</returns>
         public static bool AreEnemiesDefeated()
         {
-            if(myEnemies.Count <= 0)
+            if (myEnemies.Count <= 0)
             {
                 return true;
             }

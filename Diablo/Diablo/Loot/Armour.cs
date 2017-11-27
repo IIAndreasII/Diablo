@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Loot
 {
-    class Armour : Item
+    internal class Armour : Item
     {
         public Armour()
         {
@@ -10,15 +10,19 @@
                 case ItemType.HELMET:
                     myRating = Utilities.Utility.GetRNG().Next(1, 16);
                     break;
+
                 case ItemType.CHESTPLATE:
                     myRating = Utilities.Utility.GetRNG().Next(1, 26);
                     break;
+
                 case ItemType.TROUSERS:
                     myRating = Utilities.Utility.GetRNG().Next(1, 16);
                     break;
+
                 case ItemType.BOOTS:
                     myRating = Utilities.Utility.GetRNG().Next(1, 11);
                     break;
+
                 case ItemType.SHIELD:
                     myRating = Utilities.Utility.GetRNG().Next(1, 36);
                     break;
@@ -44,15 +48,19 @@
                 case 0:
                     myType = ItemType.HELMET;
                     break;
+
                 case 1:
                     myType = ItemType.CHESTPLATE;
                     break;
+
                 case 2:
                     myType = ItemType.TROUSERS;
                     break;
+
                 case 3:
                     myType = ItemType.BOOTS;
                     break;
+
                 case 4:
                     myType = ItemType.SHIELD;
                     break;

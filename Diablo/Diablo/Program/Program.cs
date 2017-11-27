@@ -2,12 +2,12 @@
 
 namespace Diablo
 {
-    class Program
+    internal class Program
     {
         public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
-        static Player.Player myPlayer;
+        private static Player.Player myPlayer;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Initialize();
             MainMenu();
@@ -16,7 +16,7 @@ namespace Diablo
         /// <summary>
         /// Initializes important values
         /// </summary>
-        static void Initialize()
+        private static void Initialize()
         {
             Console.ForegroundColor = StandardTextColour;
             Utilities.Utility.GenerateSuffixes();
@@ -28,7 +28,7 @@ namespace Diablo
         /// <summary>
         /// Play menu when outside a dungeon
         /// </summary>
-        static void Play()
+        private static void Play()
         {
             int
                 tempWWD2 = Console.WindowWidth / 2,
@@ -52,17 +52,21 @@ namespace Diablo
             switch (Utilities.Utility.GetDigitInput(-2, -3, 5))
             {
                 case 1:
-                    Managers.DungeonManager.EnterDungeon(myPlayer);                
+                    Managers.DungeonManager.EnterDungeon(myPlayer);
                     break;
+
                 case 2:
                     myPlayer.OpenInventory();
                     break;
+
                 case 3:
                     myPlayer.Rest();
                     break;
+
                 case 4:
                     myPlayer.LongRest();
                     break;
+
                 case 5:
                     myPlayer.DeathSequence();
                     break;
@@ -84,9 +88,11 @@ namespace Diablo
                     case 0:
                         tempPrintValue = "[1] Play";
                         break;
+
                     case 1:
                         tempPrintValue = "[2] Exit";
                         break;
+
                     case 2:
                         tempPrintValue = string.Empty;
                         break;
@@ -94,16 +100,18 @@ namespace Diablo
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
                 Console.Write(tempPrintValue);
             }
-            Utilities.Utility.PrintPentagram(Console.WindowWidth / 2 , 9, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(Console.WindowWidth / 2, 9, ConsoleColor.DarkRed);
             switch (Utilities.Utility.GetDigitInput(-29, 4, 3))
             {
                 case 1:
                     Initialize();
                     Play();
                     break;
+
                 case 2:
                     Environment.Exit(0);
                     break;
+
                 default:
                     MainMenu();
                     break;

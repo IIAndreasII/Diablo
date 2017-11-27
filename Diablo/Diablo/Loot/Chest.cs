@@ -3,15 +3,17 @@ using System.Collections.Generic;
 
 namespace Diablo.Loot
 {
-    class Chest
+    internal class Chest
     {
-        int
+        private int
             myGold,
             myHPPotions,
             myManaPotions;
-        bool
+
+        private bool
             myIsMimic;
-        List<Item>
+
+        private List<Item>
             myItems;
 
         public Chest()
@@ -58,7 +60,7 @@ namespace Diablo.Loot
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
             Console.Write("[2] No");
             if (!myIsMimic && Utilities.Utility.GetDigitInput(-7, -3, 2, 1) == 1)
-            {                
+            {
                 aPlayer.PrintUI();
                 aPlayer.SubtractGold(25);
                 if (myItems.Count > 0)
@@ -75,9 +77,11 @@ namespace Diablo.Loot
                             case ItemType.SCROLL:
                                 Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.DarkMagenta);
                                 break;
+
                             case ItemType.TRINKET:
                                 Utilities.Utility.PrintInColour(myItems[i].GetFullName(), ConsoleColor.Green);
                                 break;
+
                             default:
                                 Utilities.Utility.PrintInColour("[" + myItems[i].GetRating() + "]" + myItems[i].GetFullName(), ConsoleColor.Gray);
                                 break;
@@ -101,6 +105,7 @@ namespace Diablo.Loot
                         case 0:
                             myItems.Clear();
                             break;
+
                         case 1:
                             aPlayer.AddItemsToInventory(myItems);
                             aPlayer.AddGold(myGold);
@@ -111,6 +116,7 @@ namespace Diablo.Loot
                             Console.Write("Loot added to inventory!");
                             System.Threading.Thread.Sleep(1500);
                             break;
+
                         case 2:
                             aPlayer.AddItemsToInventory(myItems);
                             aPlayer.EquipBestItems();
@@ -139,7 +145,7 @@ namespace Diablo.Loot
                 Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
                 Console.Write("that it is breathing. This is no ordinary chest");
                 System.Threading.Thread.Sleep(3000);
-                if(aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 101))
+                if (aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 101))
                 {
                     aPlayer.PrintUI();
                     Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);

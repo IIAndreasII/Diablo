@@ -11,9 +11,10 @@ namespace Diablo.Loot
 
     public class Scroll : Item
     {
-        ScrollEffect
+        private ScrollEffect
             myScrollEffect;
-        int
+
+        private int
             myStrengthBuff,
             myArmourBuff,
             myHealthBuff,
@@ -28,9 +29,11 @@ namespace Diablo.Loot
                 case ScrollEffect.ARMBUFF:
                     myArmourBuff = 25;
                     break;
+
                 case ScrollEffect.HPBUFF:
                     myHealthBuff = 50;
                     break;
+
                 case ScrollEffect.STRBUFF:
                     myStrengthBuff = 20;
                     break;
@@ -56,9 +59,11 @@ namespace Diablo.Loot
                     case ScrollEffect.ARMBUFF:
                         aPlayer.SetTempArmourRating(-myArmourBuff);
                         break;
+
                     case ScrollEffect.HPBUFF:
                         aPlayer.SetTempHealth(-myHealthBuff);
                         break;
+
                     case ScrollEffect.STRBUFF:
                         aPlayer.SetTempStrength(-myStrengthBuff);
                         break;
@@ -73,6 +78,7 @@ namespace Diablo.Loot
         }
 
         #region Get
+
         /// <summary>
         /// Gets the scrolls duration
         /// </summary>
@@ -90,14 +96,17 @@ namespace Diablo.Loot
         public int GetArmourBuff() => myArmourBuff;
 
         public int GetHealthBuff() => myHealthBuff;
-        #endregion
+
+        #endregion Get
 
         #region Set
+
         /// <summary>
         /// Sets scroll's duration
         /// </summary>
         /// <param name="aDuration">Duration of the scroll represented in number of combat-rounds</param>
         public void SetScrollDuration(int aDuration) => myScrollDuration = aDuration;
-        #endregion
+
+        #endregion Set
     }
 }

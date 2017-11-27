@@ -15,17 +15,23 @@ namespace Diablo.Dungeon
     public class Room
     {
         #region Variables
-        List<Enemies.Enemy>
+
+        private List<Enemies.Enemy>
             myEnemies;
-        List<Loot.Item> 
+
+        private List<Loot.Item>
             myLoot;
-        List<Loot.Chest>
+
+        private List<Loot.Chest>
             myChests;
-        List<Doors>
+
+        private List<Doors>
             myDoors;
-        Enemies.Boss
+
+        private Enemies.Boss
             myBoss;
-        int
+
+        private int
             myGold,
             myHPPotions,
             myManaPotions,
@@ -33,10 +39,12 @@ namespace Diablo.Dungeon
             myXPos,
             myYPos,
             myNumberOfEnemies;
-        bool 
+
+        private bool
             myAreHostilesPresent,
             myIsBossRoom;
-        #endregion
+
+        #endregion Variables
 
         public Room(int aNumberOfEnemies, int anAmountOfItems, bool isBossRoom, Player.Player aPlayer)
         {
@@ -162,7 +170,7 @@ namespace Diablo.Dungeon
                         Console.Write("[1] Attacks");
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
                         Console.Write("[2] Spells");
-                        switch(Utilities.Utility.GetDigitInput(-12, -7, 2))
+                        switch (Utilities.Utility.GetDigitInput(-12, -7, 2))
                         {
                             case 1:
                                 aPlayer.PrintUI();
@@ -174,21 +182,24 @@ namespace Diablo.Dungeon
                                 Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
                                 Console.Write("[3] Pounce (stuns chosen enemy -80% dmg)");
-                                switch(Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
+                                switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:
                                         tempDamageToDeal = aPlayer.GetDamage();
                                         break;
+
                                     case 2:
                                         tempDamageToDeal = aPlayer.GetDamage() * 0.55f;
                                         tempAoECount = 2;
                                         break;
+
                                     case 3:
                                         tempDamageToDeal = aPlayer.GetDamage() * 0.2f;
                                         tempShouldBeStunned = true;
                                         break;
                                 }
                                 break;
+
                             case 2:
                                 aPlayer.PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
@@ -215,6 +226,7 @@ namespace Diablo.Dungeon
                                             System.Threading.Thread.Sleep(1500);
                                         }
                                         break;
+
                                     case 2:
                                         if (aPlayer.GetMana() - 60 >= 0)
                                         {
@@ -230,6 +242,7 @@ namespace Diablo.Dungeon
                                             System.Threading.Thread.Sleep(1500);
                                         }
                                         break;
+
                                     case 3:
                                         if (aPlayer.GetMana() - 120 >= 0)
                                         {
@@ -305,13 +318,13 @@ namespace Diablo.Dungeon
                                     aPlayer.DealDamage(myEnemies[tempRandomIndex], tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                                 }
                             }
-                            else if(tempDamageToDeal > 0)
+                            else if (tempDamageToDeal > 0)
                             {
                                 aPlayer.PrintUI();
                                 aPlayer.DealDamage(myBoss, tempDamageToDeal, tempShouldBeStunned, tempSpellChoice);
                             }
                         }
-                        if(tempSpellChoice == 3)
+                        if (tempSpellChoice == 3)
                         {
                             aPlayer.PrintUI();
                             aPlayer.TakeDamage(aPlayer.GetMaxHealth() * 0.6f, out float tempDamageTaken);
@@ -324,6 +337,7 @@ namespace Diablo.Dungeon
                             System.Threading.Thread.Sleep(2000);
                         }
                         break;
+
                     case Player.BattleActions.DEFENSIVE:
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
@@ -344,6 +358,7 @@ namespace Diablo.Dungeon
                                 Console.Write("brace for a strike!");
                                 aPlayer.SetIsDefending(true);
                                 break;
+
                             case 2:
                                 aPlayer.PrintUI();
                                 if (aPlayer.GetMana() - 30 < aPlayer.GetMana())
@@ -367,6 +382,7 @@ namespace Diablo.Dungeon
                                     Console.Write("Insufficient mana!");
                                 }
                                 break;
+
                             case 3:
                                 aPlayer.PrintUI();
                                 if (aPlayer.GetMana() - 80 < aPlayer.GetMana())
@@ -390,9 +406,11 @@ namespace Diablo.Dungeon
                         }
                         System.Threading.Thread.Sleep(2000);
                         break;
+
                     case Player.BattleActions.USEITEM:
                         aPlayer.OpenInventory();
                         break;
+
                     case Player.BattleActions.FLEE:
                         if (myIsBossRoom)
                         {
@@ -406,6 +424,7 @@ namespace Diablo.Dungeon
                             tempHasFled = true;
                         }
                         break;
+
                     case Player.BattleActions.ABSTAIN:
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
@@ -457,7 +476,7 @@ namespace Diablo.Dungeon
                 tempTextOffset = tempWHD2 - 10;
             aPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-            if(myLoot.Count > 0)
+            if (myLoot.Count > 0)
             {
                 Console.Write("You have found some loot!");
                 System.Threading.Thread.Sleep(1500);
@@ -470,22 +489,24 @@ namespace Diablo.Dungeon
                         case Loot.ItemType.SCROLL:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.DarkMagenta);
                             break;
+
                         case Loot.ItemType.TRINKET:
                             Utilities.Utility.PrintInColour(myLoot[i].GetFullName(), ConsoleColor.Green);
                             break;
+
                         default:
                             Utilities.Utility.PrintInColour("[" + myLoot[i].GetRating() + "]" + myLoot[i].GetFullName(), ConsoleColor.Gray);
                             break;
                     }
 
-                    if(i == myLoot.Count - 1)
+                    if (i == myLoot.Count - 1)
                     {
                         Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
                         Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
                         Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
                         Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
                         Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
-                        Console.Write("Gold: " + myGold);                      
+                        Console.Write("Gold: " + myGold);
                     }
                 }
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
@@ -498,6 +519,7 @@ namespace Diablo.Dungeon
                     case 0:
                         myLoot.Clear();
                         break;
+
                     case 1:
                         aPlayer.AddItemsToInventory(myLoot);
                         aPlayer.AddGold(myGold);
@@ -508,6 +530,7 @@ namespace Diablo.Dungeon
                         Console.Write("Loot added to inventory!");
                         System.Threading.Thread.Sleep(1500);
                         break;
+
                     case 2:
                         aPlayer.AddItemsToInventory(myLoot);
                         aPlayer.EquipBestItems();
@@ -543,7 +566,7 @@ namespace Diablo.Dungeon
                 for (int i = 0; i < myChestCount; i++)
                 {
                     myChests[i].Open(aPlayer);
-                    if(myChestCount > 1)
+                    if (myChestCount > 1)
                     {
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 15, tempWHD2 - 12);
@@ -584,13 +607,16 @@ namespace Diablo.Dungeon
                     aPlayer.OpenInventory();
                     PostActio(aPlayer);
                     break;
+
                 case 3:
                     aPlayer.Rest();
                     break;
+
                 case 4:
                     Managers.DungeonManager.GetActiveDungeon().ShowMap(aPlayer);
                     PostActio(aPlayer);
                     break;
+
                 case 5:
                     aPlayer.DeathSequence();
                     break;
@@ -598,14 +624,17 @@ namespace Diablo.Dungeon
         }
 
         #region Get
+
         public List<Doors> GetDoors() => myDoors;
 
         public int GetXPosition() => myXPos;
 
         public int GetYPosition() => myYPos;
-        #endregion
+
+        #endregion Get
 
         #region Set
+
         public void SetIsHostilesPresent(bool aNewValue) => myAreHostilesPresent = aNewValue;
 
         public void SetDoors(List<Doors> someDoors) => myDoors = someDoors;
@@ -623,6 +652,7 @@ namespace Diablo.Dungeon
             myXPos = anXValue;
             myYPos = aYValue;
         }
-        #endregion
+
+        #endregion Set
     }
 }

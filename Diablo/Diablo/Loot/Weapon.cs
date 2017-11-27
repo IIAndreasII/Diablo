@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Loot
 {
-    class Weapon : Item
+    internal class Weapon : Item
     {
         public Weapon()
         {

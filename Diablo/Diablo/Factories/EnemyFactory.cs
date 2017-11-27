@@ -2,7 +2,7 @@
 
 namespace Diablo.Factories
 {
-    static class EnemyFactory
+    internal static class EnemyFactory
     {
         /// <summary>
         /// Creates a random enemy
@@ -15,6 +15,7 @@ namespace Diablo.Factories
             {
                 case 0:
                     return new Enemies.Archer(aLvl);
+
                 default:
                     return new Enemies.Skeleton(aLvl);
             }
