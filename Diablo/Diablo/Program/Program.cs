@@ -11,6 +11,8 @@ namespace Diablo
 
         private static void Main(string[] args)
         {
+            myMusicThread = new System.Threading.Thread(DoomTheme);
+            myMusicThread.Start();
             Initialize();
             MainMenu();
         }
@@ -32,8 +34,6 @@ namespace Diablo
         /// </summary>
         private static void Play()
         {
-            myMusicThread = new System.Threading.Thread(DoomTheme);
-            myMusicThread.Start();
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
@@ -51,9 +51,11 @@ namespace Diablo
             Console.Write("[4] Long rest");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
             Console.Write("[5] Commit suicide");
+            Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 5);
+            Console.Write("[6] Music: " + (myIsMusicPlaying == true ? "On" : "Off"));
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 3);
 
-            switch (Utilities.Utility.GetDigitInput(-2, -3, 5))
+            switch (Utilities.Utility.GetDigitInput(-2, -3, 6))
             {
                 case 1:
                     Managers.DungeonManager.EnterDungeon(myPlayer);
@@ -73,6 +75,33 @@ namespace Diablo
 
                 case 5:
                     myPlayer.DeathSequence();
+                    break;
+                case 6:
+                    if (myIsMusicPlaying)
+                    {
+                        myIsMusicPlaying = false;
+                        if (myMusicThread.IsAlive)
+                        {
+                            myMusicThread.Abort();
+                        }
+                        else
+                        {
+                            myMusicThread = new System.Threading.Thread(DoomTheme);
+                        }
+                    }
+                    else
+                    {
+                        myIsMusicPlaying = true;
+                        if (myMusicThread.IsAlive)
+                        {
+                            myMusicThread.Start();
+                        }
+                        else
+                        {
+                            myMusicThread = new System.Threading.Thread(DoomTheme);
+                            myMusicThread.Start();
+                        }
+                    }
                     break;
             }
             Play();
