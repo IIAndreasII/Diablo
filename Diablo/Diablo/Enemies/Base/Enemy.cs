@@ -18,13 +18,17 @@ namespace Diablo.Enemies
             myStamina,
             myEXPToGive,
             myStunDuration;
+
         protected float
             myDamage,
             myHealth;
+
         protected EnemyType
             myType;
+
         protected string
             myName;
+
         protected bool
             myCanBeStunned;
 
@@ -46,12 +50,15 @@ namespace Diablo.Enemies
                 case 0:
                     Console.Write("You swing your sword!");
                     break;
+
                 case 1:
                     Console.Write("You cast Fire Bolt!");
                     break;
+
                 case 2:
                     Console.Write("You cast Flamestrike");
                     break;
+
                 case 3:
                     Console.Write("You cast Fireball!");
                     break;
@@ -118,10 +125,12 @@ namespace Diablo.Enemies
                         Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
                         Console.Write("The enemy swings his sword!");
                         break;
+
                     case EnemyType.ARCHER:
                         Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
                         Console.Write("The enemy draws his bow!");
                         break;
+
                     case EnemyType.BOSS:
                         Console.SetCursorPosition(tempWWD2 - 10 - (myName.Length / 2), tempWHD2 - 11);
                         Console.Write(myName + " swings his weapon!");
@@ -149,6 +158,7 @@ namespace Diablo.Enemies
         }
 
         #region Get
+
         public float GetHealth() => myHealth;
 
         public float GetDamage() => myDamage;
@@ -160,10 +170,13 @@ namespace Diablo.Enemies
         public int GetEXPToGive() => myEXPToGive;
 
         public EnemyType GetEnemyType() => myType;
-        #endregion
+
+        #endregion Get
 
         #region Set
+
         public void SetStunDuration(int aDuration) => myStunDuration = aDuration;
-        #endregion
+
+        #endregion Set
     }
 }
