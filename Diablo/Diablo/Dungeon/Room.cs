@@ -359,6 +359,7 @@ namespace Diablo.Dungeon
                                     Console.Write("You re-gain ");
                                     Utilities.Utility.PrintInColour(tempHealingAmount.ToString(), ConsoleColor.Green);
                                     Console.Write(" health!");
+                                    aPlayer.SetMana(20);
                                 }
                                 else
                                 {
@@ -378,6 +379,7 @@ namespace Diablo.Dungeon
                                     {
                                         tempEnemy.SetStunDuration(2);
                                     }
+                                    aPlayer.SetMana(80);
                                 }
                                 else
                                 {
