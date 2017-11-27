@@ -391,9 +391,16 @@ namespace Diablo.Dungeon
                                     Console.Write("You throw some pebbles and somehow");
                                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
                                     Console.Write("it stuns every enemy in sight");
-                                    foreach (Enemies.Enemy tempEnemy in myEnemies)
+                                    if (myIsBossRoom)
                                     {
-                                        tempEnemy.SetStunDuration(2);
+                                        myBoss.SetStunDuration(2);
+                                    }
+                                    else
+                                    {
+                                        foreach (Enemies.Enemy tempEnemy in myEnemies)
+                                        {
+                                            tempEnemy.SetStunDuration(2);
+                                        }
                                     }
                                     aPlayer.SetMana(80);
                                 }
@@ -522,9 +529,9 @@ namespace Diablo.Dungeon
 
                     case 1:
                         aPlayer.AddItemsToInventory(myLoot);
-                        aPlayer.AddGold(myGold);
-                        aPlayer.AddHealthPotions(myHPPotions);
-                        aPlayer.AddManaPotions(myManaPotions);
+                        aPlayer.SetGold(myGold);
+                        aPlayer.SetHealthPotions(myHPPotions);
+                        aPlayer.SetManaPotions(myManaPotions);
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
                         Console.Write("Loot added to inventory!");
@@ -534,9 +541,9 @@ namespace Diablo.Dungeon
                     case 2:
                         aPlayer.AddItemsToInventory(myLoot);
                         aPlayer.EquipBestItems();
-                        aPlayer.AddGold(myGold);
-                        aPlayer.AddHealthPotions(myHPPotions);
-                        aPlayer.AddManaPotions(myManaPotions);
+                        aPlayer.SetGold(myGold);
+                        aPlayer.SetHealthPotions(myHPPotions);
+                        aPlayer.SetManaPotions(myManaPotions);
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
                         Console.Write("Loot added to inventory!");

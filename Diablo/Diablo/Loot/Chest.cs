@@ -62,7 +62,7 @@ namespace Diablo.Loot
             if (!myIsMimic && Utilities.Utility.GetDigitInput(-7, -3, 2, 1) == 1)
             {
                 aPlayer.PrintUI();
-                aPlayer.SubtractGold(25);
+                aPlayer.SetGold(-25);
                 if (myItems.Count > 0)
                 {
                     Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
@@ -108,9 +108,9 @@ namespace Diablo.Loot
 
                         case 1:
                             aPlayer.AddItemsToInventory(myItems);
-                            aPlayer.AddGold(myGold);
-                            aPlayer.AddHealthPotions(myHPPotions);
-                            aPlayer.AddManaPotions(myManaPotions);
+                            aPlayer.SetGold(myGold);
+                            aPlayer.SetHealthPotions(myHPPotions);
+                            aPlayer.SetManaPotions(myManaPotions);
                             aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
                             Console.Write("Loot added to inventory!");
@@ -120,9 +120,9 @@ namespace Diablo.Loot
                         case 2:
                             aPlayer.AddItemsToInventory(myItems);
                             aPlayer.EquipBestItems();
-                            aPlayer.AddGold(myGold);
-                            aPlayer.AddHealthPotions(myHPPotions);
-                            aPlayer.AddManaPotions(myManaPotions);
+                            aPlayer.SetGold(myGold);
+                            aPlayer.SetHealthPotions(myHPPotions);
+                            aPlayer.SetManaPotions(myManaPotions);
                             aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
                             Console.Write("Loot added to inventory!");

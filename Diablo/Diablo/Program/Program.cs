@@ -6,9 +6,12 @@ namespace Diablo
     {
         public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
         private static Player.Player myPlayer;
+        private static System.Threading.Thread myMusicThread;
+        private static bool myIsMusicPlaying = true;
 
         private static void Main(string[] args)
         {
+            
             Initialize();
             MainMenu();
         }
@@ -18,6 +21,7 @@ namespace Diablo
         /// </summary>
         private static void Initialize()
         {
+            
             Console.ForegroundColor = StandardTextColour;
             Utilities.Utility.GenerateSuffixes();
             myPlayer = new Player.Player();
@@ -30,6 +34,8 @@ namespace Diablo
         /// </summary>
         private static void Play()
         {
+            myMusicThread = new System.Threading.Thread(DoomTheme);
+            myMusicThread.Start();
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
@@ -125,6 +131,74 @@ namespace Diablo
         {
             Initialize();
             MainMenu();
+        }
+
+        public static void DoomTheme()
+        {
+            bool tempIsSecondLoop = false;
+            int tempNoteDelay = 100;
+            while (myIsMusicPlaying)
+            {
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(659, 50); /// E^
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(587, 50); /// D^
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(523, 50); /// C^
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+                Console.Beep(330, 50); /// E
+                System.Threading.Thread.Sleep(tempNoteDelay);
+
+
+                if (!tempIsSecondLoop)
+                {
+                    Console.Beep(466, 50); /// A#
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+
+                    Console.Beep(330, 50); /// E
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+
+                    Console.Beep(330, 50); /// E
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+
+                    Console.Beep(494, 50); /// B
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+
+                    Console.Beep(523, 50); /// C^
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+                    tempIsSecondLoop = true;
+                }
+                else
+                {
+                    Console.Beep(466, 750); /// A#
+                    System.Threading.Thread.Sleep(tempNoteDelay);
+
+                    tempIsSecondLoop = false;
+                }
+            }
         }
     }
 }

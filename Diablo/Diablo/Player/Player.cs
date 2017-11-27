@@ -282,7 +282,7 @@ namespace Diablo.Player
                 Console.Write("gold!");
                 System.Threading.Thread.Sleep(1000);
                 AddStamina(20);
-                SubtractGold(10);
+                SetGold(-10);
             }
         }
 
@@ -887,51 +887,6 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1500);
         }
 
-        /// <summary>
-        /// Adds the given amount of hp-potions
-        /// </summary>
-        /// <param name="anAmountToAdd">The amount to add</param>
-        public void AddHealthPotions(int anAmountToAdd)
-        {
-            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
-            {
-                myHPPotionAmount += anAmountToAdd;
-            }
-        }
-
-        /// <summary>
-        /// Adds the given amount of mana-potions
-        /// </summary>
-        /// <param name="anAmountToAdd">The amount to add</param>
-        public void AddManaPotions(int anAmountToAdd)
-        {
-            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
-            {
-                myManaPotionAmount += anAmountToAdd;
-            }
-        }
-
-        /// <summary>
-        /// Adds the given amount of gold
-        /// </summary>
-        /// <param name="anAmountToAdd">The amount to add</param>
-        public void AddGold(int anAmountToAdd) => myGold += anAmountToAdd;
-
-        /// <summary>
-        /// Subtracts the given amount of gold if the player has at least that amount
-        /// </summary>
-        /// <param name="anAmountToSubtract">The amount to subtract</param>
-        /// <returns>Returns true if the operation was successful</returns>
-        public bool SubtractGold(int anAmountToSubtract)
-        {
-            if (myGold >= anAmountToSubtract)
-            {
-                myGold -= anAmountToSubtract;
-                return true;
-            }
-            return false;
-        }
-
         #endregion Inventory
 
         #region Battle
@@ -1077,6 +1032,7 @@ namespace Diablo.Player
 
         #region Get
 
+
         public int GetLuck() => myLuck;
 
         public int GetLevel() => myLevel;
@@ -1085,15 +1041,11 @@ namespace Diablo.Player
 
         public int GetAgility() => myAgility;
 
-        public int GetHPPotionAmount() => myHPPotionAmount;
-
-        public int GetManaPotionAmount() => myManaPotionAmount;
-
         public int GetMana() => myMana;
 
         public int GetDamage() => myDamage;
 
-        public int GetSpellDamage() => mySpellDamage;
+        public int GetSpellDamage() => mySpellDamage * (int)(1 + myIntelligence / 100f);
 
         public int GetArmourRating() => myArmourRating;
 
@@ -1107,9 +1059,48 @@ namespace Diablo.Player
 
         public int GetWisdom() => myWisdom;
 
+
         #endregion Get
 
         #region Set
+
+        /// <summary>
+        /// Adds the given amount of gold
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
+        public bool SetGold(int aValueToAdd)
+        {
+            if((aValueToAdd < 0 && myGold > -aValueToAdd) || aValueToAdd > 0)
+            {
+                myGold += aValueToAdd;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Adds the given amount of hp-potions
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
+        public void SetHealthPotions(int aValueToAdd)
+        {
+            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
+            {
+                myHPPotionAmount += aValueToAdd;
+            }
+        }
+
+        /// <summary>
+        /// Adds the given amount of mana-potions
+        /// </summary>
+        /// <param name="anAmountToAdd">The amount to add</param>
+        public void SetManaPotions(int aValueToAdd)
+        {
+            if (myInventory.Count + myHPPotionAmount + myManaPotionAmount < myInventoryCapacity)
+            {
+                myManaPotionAmount += aValueToAdd;
+            }
+        }
 
         public void SetInventoryCapacity(int aNewCapacity) => myInventoryCapacity = aNewCapacity;
 
