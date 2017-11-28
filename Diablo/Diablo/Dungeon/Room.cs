@@ -203,7 +203,7 @@ namespace Diablo.Dungeon
                             case 2:
                                 aPlayer.PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                                Console.Write("Choose attack");
+                                Console.Write("Choose spell");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
                                 Console.Write("[1] Fire Bolt (hits chosen enemy, 20 mp)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
@@ -249,6 +249,7 @@ namespace Diablo.Dungeon
                                             tempDamageToDeal = aPlayer.GetSpellDamage() * 5;
                                             tempShouldBeStunned = true;
                                             tempSpellChoice = 3;
+                                            tempAoECount = myEnemies.Count;
                                             aPlayer.SetMana(120);
                                         }
                                         else
@@ -387,7 +388,7 @@ namespace Diablo.Dungeon
                                 aPlayer.PrintUI();
                                 if (aPlayer.GetMana() - 80 < aPlayer.GetMana())
                                 {
-                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
+                                    Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
                                     Console.Write("You throw some pebbles and somehow");
                                     Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
                                     Console.Write("it stuns every enemy in sight");

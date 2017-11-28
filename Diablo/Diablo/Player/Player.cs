@@ -1166,6 +1166,7 @@ namespace Diablo.Player
             myStaminaBuff = aStaminabuff;
             myMaxStamina += myStaminaBuff;
             myStamina += myStaminaBuff;
+            myHealth = myMaxHealth * myStamina / 100;
         }
 
         public void SetMana(int aValueToSubtract) => myMana -= aValueToSubtract;

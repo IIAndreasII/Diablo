@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 
 namespace Diablo
 {
@@ -6,13 +7,10 @@ namespace Diablo
     {
         public static ConsoleColor StandardTextColour = ConsoleColor.Yellow;
         private static Player.Player myPlayer;
-        private static System.Threading.Thread myMusicThread;
-        private static bool myIsMusicPlaying = true;
 
         private static void Main(string[] args)
         {
-            myMusicThread = new System.Threading.Thread(DoomTheme);
-            myMusicThread.Start();
+            Audio.Audio.Init();
             Initialize();
             MainMenu();
         }
@@ -52,7 +50,7 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
             Console.Write("[5] Commit suicide");
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 5);
-            Console.Write("[6] Music: " + (myIsMusicPlaying == true ? "On" : "Off"));
+            Console.Write("[6] Music settings");
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 3);
 
             switch (Utilities.Utility.GetDigitInput(-2, -3, 6))
@@ -76,32 +74,9 @@ namespace Diablo
                 case 5:
                     myPlayer.DeathSequence();
                     break;
+
                 case 6:
-                    if (myIsMusicPlaying)
-                    {
-                        myIsMusicPlaying = false;
-                        if (myMusicThread.IsAlive)
-                        {
-                            myMusicThread.Abort();
-                        }
-                        else
-                        {
-                            myMusicThread = new System.Threading.Thread(DoomTheme);
-                        }
-                    }
-                    else
-                    {
-                        myIsMusicPlaying = true;
-                        if (myMusicThread.IsAlive)
-                        {
-                            myMusicThread.Start();
-                        }
-                        else
-                        {
-                            myMusicThread = new System.Threading.Thread(DoomTheme);
-                            myMusicThread.Start();
-                        }
-                    }
+                    MusicSettings();
                     break;
             }
             Play();
@@ -160,71 +135,49 @@ namespace Diablo
             MainMenu();
         }
 
-        public static void DoomTheme()
+
+        public static void MusicSettings()
         {
-            bool tempIsSecondLoop = false;
-            int tempNoteDelay = 100;
-            while (myIsMusicPlaying)
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            myPlayer.PrintUI();
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
+            Console.Write("Choose song:");
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
+            Console.Write("[1] 'Cirice' - Ghost B.C");
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
+            Console.Write("[2] 'At doom's gate' - R. Prince");
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
+            Console.Write("[3] 'Ora Pro Nobis Lucifer' - Behemoth");
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 6);
+            Console.Write("[4] Toggle music: " + (Audio.Audio.GetIsMusicPlaying() == true ? "On" : "Off"));
+            Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
+            Console.Write("[0] Back");
+
+            switch (Utilities.Utility.GetDigitInput(-19, -3, 4))
             {
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
+                case 0:
+                    Play();
+                    break;
+                
+                case 1:
+                    Audio.Audio.PlayCirice();
+                    break;
 
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
+                case 2:
+                    Audio.Audio.PlayDoomTheme();
+                    break;
 
-                Console.Beep(659, 50); /// E^
-                System.Threading.Thread.Sleep(tempNoteDelay);
+                case 3:
+                    Audio.Audio.PlayOraProNobisLucifer();
+                    break;
 
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(587, 50); /// D^
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(523, 50); /// C^
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                Console.Beep(330, 50); /// E
-                System.Threading.Thread.Sleep(tempNoteDelay);
-
-                if (!tempIsSecondLoop)
-                {
-                    Console.Beep(466, 50); /// A#
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-
-                    Console.Beep(330, 50); /// E
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-
-                    Console.Beep(330, 50); /// E
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-
-                    Console.Beep(494, 50); /// B
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-
-                    Console.Beep(523, 50); /// C^
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-                    tempIsSecondLoop = true;
-                }
-                else
-                {
-                    Console.Beep(466, 750); /// A#
-                    System.Threading.Thread.Sleep(tempNoteDelay);
-
-                    tempIsSecondLoop = false;
-                }
+                case 4:
+                    Audio.Audio.ToggleMusic();
+                    break;
             }
+            MusicSettings();
         }
     }
 }
