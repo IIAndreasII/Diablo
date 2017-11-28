@@ -160,6 +160,9 @@ namespace Diablo
             MainMenu();
         }
 
+        /// <summary>
+        /// Plays the main theme of the game "Doom"
+        /// </summary>
         public static void DoomTheme()
         {
             bool tempIsSecondLoop = false;
