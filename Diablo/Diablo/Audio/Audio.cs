@@ -25,6 +25,9 @@ namespace Diablo.Audio
         private static ThreadStart
             myDoomThemeThreadStart = DoomTheme;
 
+        /// <summary>
+        /// Initializes needed variables
+        /// </summary>
         public static void Init()
         {
             myIsMusicPlaying = true;
@@ -33,6 +36,9 @@ namespace Diablo.Audio
             PlayOraProNobisLucifer();
         }
 
+        /// <summary>
+        /// Stops the music
+        /// </summary>
         public static void StopPlaying()
         {
             mySoundPlayer.Stop();
@@ -41,6 +47,9 @@ namespace Diablo.Audio
 
         public static bool GetIsMusicPlaying() => myIsMusicPlaying;
 
+        /// <summary>
+        /// Plays 'Cirice' by Ghost B.C
+        /// </summary>
         public static void PlayCirice()
         {
             mySoundPlayer.Stop();
@@ -49,6 +58,9 @@ namespace Diablo.Audio
             mySoundPlayer.PlayLooping();
         }
 
+        /// <summary>
+        /// Plays 'Ora Pro Nobis Lucifer' by Behemoth
+        /// </summary>
         public static void PlayOraProNobisLucifer()
         {
             mySoundPlayer.Stop();
@@ -57,6 +69,9 @@ namespace Diablo.Audio
             mySoundPlayer.PlayLooping();
         }
 
+        /// <summary>
+        /// Plays 'At doom's gate' by Robert Prince using Console.Bepp()
+        /// </summary>
         public static void PlayDoomTheme()
         {
             mySoundPlayer.Stop();
@@ -64,6 +79,9 @@ namespace Diablo.Audio
             myConsoleMusicThread.Start();
         }
 
+        /// <summary>
+        /// Toggles music on and off
+        /// </summary>
         public static void ToggleMusic()
         {
             if (myIsMusicPlaying)
@@ -79,6 +97,9 @@ namespace Diablo.Audio
             
         }
 
+        /// <summary>
+        /// 'At doom's gate' in Console.Beep()
+        /// </summary>
         private static void DoomTheme()
         {
             mySoundPlayer.Stop();
