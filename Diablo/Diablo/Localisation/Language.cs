@@ -280,7 +280,7 @@ namespace Diablo.Localisation
             myRoomEN = "Room";
         #endregion English
 
-        #region Active
+        #region Active Language
         private static string
             myPlay,
             myExit,
@@ -312,8 +312,6 @@ namespace Diablo.Localisation
             myApply,
             myEquip ,
             myThrowAway,
-
-
 
             myRest ,
             myLightFire,
@@ -413,7 +411,7 @@ namespace Diablo.Localisation
             myInitialRoom ,
             myCurrentRoom ,
             myRoom;
-        #endregion Active
+        #endregion Active Language
 
         /// <summary>
         /// Initializes values
