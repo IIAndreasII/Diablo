@@ -45,7 +45,9 @@ namespace Diablo.Player
             myStrBuff = 0,
             myAgilityBuff = 0,
             myLuckBuff = 0,
-            myStaminaBuff = 0;
+            myStaminaBuff = 0,
+            myIntelligenceBuff = 0,
+            myWisdomBuff = 0;
 
         private float
             myStamina,
@@ -215,6 +217,8 @@ namespace Diablo.Player
             myStrength++;
             myAgility += 2;
             myMaxStamina *= 1.2f;
+            Math.Round(myMaxStamina, 2);
+            myStamina = myMaxStamina;
             myLuck++;
             myWisdom++;
             myIntelligence++;
@@ -921,8 +925,8 @@ namespace Diablo.Player
             Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
             Console.Write("[1] Menu");
-            Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 1);
-            Console.Write("[2] Exit game");
+            Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 + 1);
+            Console.Write("[2] Exit");
             switch (Utilities.Utility.GetDigitInput(-2, 3, 2))
             {
                 case 1:
@@ -1161,12 +1165,24 @@ namespace Diablo.Player
             myLuck += myLuckBuff;
         }
 
-        public void SetStaminaBuff(int aStaminabuff)
+        public void SetStaminaBuff(int aStaminaBuff)
         {
-            myStaminaBuff = aStaminabuff;
+            myStaminaBuff = aStaminaBuff;
             myMaxStamina += myStaminaBuff;
             myStamina += myStaminaBuff;
             myHealth = myMaxHealth * myStamina / 100;
+        }
+
+        public void SetIntelligenceBuff(int anIntelligenceBuff)
+        {
+            myIntelligenceBuff = anIntelligenceBuff;
+            myIntelligence += myIntelligenceBuff;
+        }
+
+        public void SetWisdomBuff(int aWisdomBuff)
+        {
+            myWisdomBuff = aWisdomBuff;
+            myWisdom += myWisdomBuff;
         }
 
         public void SetMana(int aValueToSubtract) => myMana -= aValueToSubtract;
@@ -1211,6 +1227,16 @@ namespace Diablo.Player
             {
                 myMaxStamina -= myStaminaBuff;
                 myStaminaBuff = 0;
+            }
+            if (myWisdomBuff > 0)
+            {
+                myWisdom -= myWisdomBuff;
+                myWisdomBuff = 0;
+            }
+            if(myIntelligenceBuff > 0)
+            {
+                myIntelligence -= myIntelligenceBuff;
+                myIntelligenceBuff = 0;
             }
         }
 

@@ -63,6 +63,7 @@
     <Compile Include="Enemies\Boss.cs" />
     <Compile Include="Factories\DungeonFactory.cs" />
     <Compile Include="Factories\LootFactory.cs" />
+    <Compile Include="Localisation\Language.cs" />
     <Compile Include="Loot\Armour.cs" />
     <Compile Include="Loot\Chest.cs" />
     <Compile Include="Loot\Scroll.cs" />

@@ -11,6 +11,7 @@ namespace Diablo
         private static void Main(string[] args)
         {
             Audio.Audio.Init();
+            Localisation.Language.Init();
             Initialize();
             MainMenu();
         }

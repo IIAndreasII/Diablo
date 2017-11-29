@@ -181,7 +181,7 @@ namespace Diablo.Dungeon
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
                                 Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
-                                Console.Write("[3] Pounce (stuns chosen enemy -80% dmg)");
+                                Console.Write("[3] Slap (stuns chosen enemy -80% dmg)");
                                 switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:

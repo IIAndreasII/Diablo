@@ -7,7 +7,9 @@
         Stamina,
         Agility,
         Strength,
-        Luck
+        Luck,
+        Wisdom,
+        Intelligence
     }
 
     internal class Trinket : Item
@@ -38,7 +40,7 @@
         /// </summary>
         private void SetBuff()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 6))
+            switch (Utilities.Utility.GetRNG().Next(0, 8))
             {
                 case 0:
                     myBuffType = Buff.Health;
@@ -68,6 +70,16 @@
                 case 5:
                     myBuffType = Buff.Strength;
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
+                    break;
+
+                case 6:
+                    myBuffType = Buff.Wisdom;
+                    myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
+                    break;
+
+                case 7:
+                    myBuffType = Buff.Intelligence;
+                    myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
             }
         }
@@ -102,6 +114,14 @@
 
                 case Buff.Strength:
                     aPlayer.SetStrengthBuff(myEffectAmount);
+                    break;
+
+                case Buff.Wisdom:
+                    aPlayer.SetWisdomBuff(myEffectAmount);
+                    break;
+
+                case Buff.Intelligence:
+                    aPlayer.SetIntelligenceBuff(myEffectAmount);
                     break;
             }
         }
