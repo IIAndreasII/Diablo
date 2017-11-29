@@ -280,8 +280,235 @@ namespace Diablo.Localisation
             myRoomEN = "Room";
         #endregion English
 
+        #region Get
+        public static string GetPlay() => myPlay;
+
+        public static string GetExit() => myExit;
+
+        public static string GetBack() => myBack;
+
+        public static string GetInsufficientFunds() => myInsufficientFunds;
+
+        public static string GetLevelUp() => myLevelUp;
+
+        public static string GetMaxHealth() => myMaxHealth;
+
+        public static string GetMaxMana() => myMaxMana;
+
+        public static string GetMaxStamina() => myMaxStamina;
+
+        public static string GetStrength() => myStrength;
+
+        public static string GetAgility() => myAgility;
+
+        public static string GetWisdom() => myWisdom;
+
+        public static string GetIntelligence() => myIntelligence;
+
+        public static string GetLuck() => myLuck;
+
+        public static string GetSpellDamage() => mySpellDmg;
+
+        public static string GetPossibleActions() => myPossibleActions;
+
+        public static string GetEnterDungeon() => myEnterDungeon;
+
+        public static string GetOpenInventory() => myOpenInventory;
+
+        public static string GetInventory() => myInventory;
+
+        public static string GetGold() => myGold;
+
+        public static string GetHPPotions() => myHPPotions;
+
+        public static string GetManaPotions() => myManaPotions;
+
+        public static string GetTrinkets() => myTrinkets;
+
+        public static string GetScrolls() => myScrolls;
+
+        public static string GetEquipped() => myEquipped;
+
+        public static string GetApply() => myApply;
+
+        public static string GetEquip() => myEquip;
+
+        public static string GetThrowAway() => myThrowAway;
+
+        public static string GetRest() => myRest;
+
+        public static string GetLightFire() => myLightFire;
+
+        public static string GetRegain() => myRegain;
+
+        public static string GetRegainStamina() => myRegainStamina;
+
+        public static string GetLongRest() => myLongRest;
+
+        public static string GetPitchTent() => myPitchTent;
+
+        public static string GetFullRecovery() => myFullRecovery;
+
+        public static string GetCommitSuicide() => myCommitSuicide;
+
+        public static string GetMusicSettings() => myMusicSettings;
+
+        public static string GetChooseSong() => myChooseSong;
+
+        public static string GetWhatUDo() => myWhatUDo;
+
+        public static string GetOffensive() => myOffensive;
+
+        public static string GetAttack() => myAttack;
+
+        public static string GetChooseAttack() => myChooseAttack;
+
+        public static string GetSlash() => mySlash;
+
+        public static string GetSweep() => mySweep;
+
+        public static string GetSlap() => mySlap;
+
+        public static string GetSwingSword() => mySwingSword;
+
+        public static string GetSpells() => mySpells;
+
+        public static string GetChooseSpell() => myChooseSpell;
+
+        public static string GetFirebolt() => myFireBolt;
+
+        public static string GetFlamestrike() => myFlamestrike;
+
+        public static string GetFireball() => myFireball;
+
+        public static string GetCastFirebolt() => myCastFireBolt;
+
+        public static string GetCastFlamestrike() => myFlamestrike;
+
+        public static string GetCastFireball() => myFireball;
+
+        public static string GetBurnSkin() => myBurnSkin;
+
+        public static string GetTakeDamagePt1() => myTakeDamage1;
+
+        public static string GetTakeDamagePt2() => myTakeDamage2;
+
+        public static string GetInsufficientMana() => myInsufficientMana;
+
+        public static string GetChooseEnemy() => myChooseEnemy;
+
+        public static string GetArcher() => myArcher;
+
+        public static string GetSkeleton() => mySkeleton;
+
+        public static string GetHealth() => myHealth;
+
+        public static string GetHealthLowerCase() => myHealthSmall;
+
+        public static string GetArmour() => myArmour;
+
+        public static string GetEnemyDefeated() => myEnemyDefeated;
+
+        public static string GetExperience() => myExperience;
+
+        public static string GetEnemyStunned() => myEnemyStunned;
+
+        public static string GetEnemyNoStunned() => myEnemyNoStunned;
+
+        public static string GetMissedEnemy() => myMissedEnemy;
+
+        public static string GetEnemyCannotAttack() => myEnemyCannotAttack;
+
+        public static string GetEnemySwingSword() => myEnemySwingSword;
+
+        public static string GetEnemyDrawsBow() => myEnemyDrawsBow;
+
+        public static string GetBossWeapon() => myBossWeapon;
+
+        public static string GetEvadedStrike() => myEvadedStrike;
+
+        public static string GetDefensive() => myDefensive;
+
+        public static string GetChooseDefence() => myChooseDefence;
+
+        public static string GetRaiseShield() => myRaiseShield;
+
+        public static string GetRaiseDefencePt1() => myRaiseDefence1;
+
+        public static string GetRaiseDefencePt2() => myRaiseDefence2;
+
+        public static string GetHealingTouch() => myHealingTouch;
+
+        public static string GetBeginTouch() => myBeginTouch;
+
+        public static string GetMagicallyHeal() => myMagicallyHeal;
+
+        public static string GetSuperStun() => mySuperStun;
+
+        public static string GetThrowPebblesPt1() => myThrowPebbles1;
+
+        public static string GetThrowPebblesPt2() => myThrowPebbles2;
+
+        public static string GetUseItem() => myUseItem;
+
+        public static string GetFlee() => myFlee;
+
+        public static string GetHasFled() => myHasFled;
+
+        public static string GetBossFlee() => myBossFlee;
+
+        public static string GetAbstain() => myAbstain;
+
+        public static string GetNoAttackPt1() => myNoAttack1;
+
+        public static string GetNoAttackPt2() => myNoAttack2;
+
+        public static string GetAllDefeated() => myAllDefeated;
+
+        public static string GetBossDefeated() => myBossDefeated;
+
+        public static string GetFoundLoot() => myFoundLoot;
+
+        public static string GetPickup() => myPickUp;
+
+        public static string GetPickUpEquip() => myPickUpEquip;
+
+        public static string GetDiscard() => myDiscard;
+
+        public static string GetLootAdded() => myLootAdded;
+
+        public static string GetFoundNoLoot() => myFoundNoLoot;
+
+        public static string GetFoundChest() => myFoundChest;
+
+        public static string GetFoundChests() => myFoundChests;
+
+        public static string GetFoundAnotherChest() => myFoundAnotherChest;
+
+        public static string GetContinueAdventure() => myContinueAdventure;
+
+        public static string GetThereAreDoorsPt1() => myThereAreDoors1;
+
+        public static string GetThereAreDoorsPt2() => myThereAreDoors2;
+
+        public static string GetChooseDoor() => myChooseDoor;
+
+        public static string GetExitDungeon() => myExitDungeon;
+
+        public static string GetExitingDungeon() => myExitingDungeon;
+
+        public static string GetViewMap() => myViewMap;
+
+        public static string GetInitialRoom() => myInitialRoom;
+
+        public static string GetCurrentRoom() => myCurrentRoom;
+
+        public static string GetRoom() => myRoom;
+        #endregion Get
+
         #region Active Language
         private static string
+        #region temp
             myPlay,
             myExit,
             myBack,
@@ -326,7 +553,8 @@ namespace Diablo.Localisation
 
             myMusicSettings,
             myChooseSong,
-
+        #endregion temp
+        #region temptemp
             myWhatUDo,
             myOffensive,
             myMethodViolence ,
@@ -374,6 +602,7 @@ namespace Diablo.Localisation
             myHealingTouch,
             myBeginTouch,
             myMagicallyHeal,
+        #endregion temptemp
             mySuperStun ,
             myThrowPebbles1,
             myThrowPebbles2 ,
