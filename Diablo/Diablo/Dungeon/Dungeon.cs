@@ -199,8 +199,8 @@ namespace Diablo.Dungeon
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write("You delve into the nearest dungeon");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnteringDungeon().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetEnteringDungeon());
             System.Threading.Thread.Sleep(1500);
             myInitialRoom.EnterRoom(aPlayer);
             EnterNewRoom(aPlayer);
@@ -216,10 +216,10 @@ namespace Diablo.Dungeon
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write("There are/is " + myCurrentRoom.GetDoors().Count + " doors in this room.");
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
-            Console.Write("Which one do you enter?");
+            Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetThereAreDoorsPt1().Length + Localisation.Language.GetThereAreDoorsPt2().Length + 4) / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetThereAreDoorsPt1() + myCurrentRoom.GetDoors().Count + Localisation.Language.GetThereAreDoorsPt2());
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetChooseDoor().Length / 2, tempWHD2 - 11);
+            Console.Write(Localisation.Language.GetChooseDoor());
             if (myCurrentRoom.GetDoors().Contains(Doors.UP))
             {
                 Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 9);
@@ -260,8 +260,8 @@ namespace Diablo.Dungeon
             Console.Write("?");
             if (myCurrentRoom == myInitialRoom)
             {
-                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 2);
-                Console.Write("[E] Exit dungeon");
+                Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetExitDungeon().Length + 4) / 2, tempWHD2 + 2);
+                Console.Write("[E] " + Localisation.Language.GetExitDungeon());
             }
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 3);
             Console.Write("[ ]");
@@ -312,8 +312,8 @@ namespace Diablo.Dungeon
             else if (myCurrentRoom == myInitialRoom)
             {
                 aPlayer.PrintUI();
-                Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 12);
-                Console.Write("Safely, you exit the dungeon");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetExitingDungeon().Length / 2, tempWHD2 - 12);
+                Console.Write(Localisation.Language.GetExitingDungeon());
                 System.Threading.Thread.Sleep(1500);
             }
             else
@@ -358,13 +358,13 @@ namespace Diablo.Dungeon
                 }
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("[S]: Initial room and exit");
+            Console.Write("[S]: " + Localisation.Language.GetInitialRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 11);
-            Console.Write("[X]: Current room");
+            Console.Write("[X]: " + Localisation.Language.GetCurrentRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-            Console.Write("[■]: Room");
+            Console.Write("[■]: " + Localisation.Language.GetRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-            Console.Write("[0] Back");
+            Console.Write("[0] " + Localisation.Language.GetBack());
             Utilities.Utility.GetDigitInput(-19, 3, 0);
         }
     }

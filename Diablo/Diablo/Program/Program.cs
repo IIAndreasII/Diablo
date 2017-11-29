@@ -37,21 +37,21 @@ namespace Diablo
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             myPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
-            Console.Write("Possible actions");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetPossibleActions().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetPossibleActions());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 10);
-            Console.Write("[1] Enter dungeon");
+            Console.Write("[1] " + Localisation.Language.GetEnterDungeon());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
-            Console.Write("[2] Open inventory");
+            Console.Write("[2] " + Localisation.Language.GetOpenInventory());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
-            Console.Write("[3] Rest ");
-            Utilities.Utility.PrintInColour("(-10 gold)", ConsoleColor.DarkRed);
+            Console.Write("[3] " + Localisation.Language.GetRest());
+            Utilities.Utility.PrintInColour("(-10 " + Localisation.Language.GetGold() + ")", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
-            Console.Write("[4] Long rest");
+            Console.Write("[4] " + Localisation.Language.GetLongRest());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
-            Console.Write("[5] Commit suicide");
+            Console.Write("[5] " + Localisation.Language.GetCommitSuicide());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 5);
-            Console.Write("[6] Music settings");
+            Console.Write("[6] " + Localisation.Language.GetMusicSettings());
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 - 3);
 
             switch (Utilities.Utility.GetDigitInput(-2, -3, 6))
@@ -90,20 +90,16 @@ namespace Diablo
         {
             Utilities.Utility.PrintTitle();
             string tempPrintValue = string.Empty;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        tempPrintValue = "[1] Play";
+                        tempPrintValue = "[1] " + Localisation.Language.GetPlay();
                         break;
 
                     case 1:
-                        tempPrintValue = "[2] Exit";
-                        break;
-
-                    case 2:
-                        tempPrintValue = string.Empty;
+                        tempPrintValue = "[2] " + Localisation.Language.GetExit();
                         break;
                 }
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
@@ -144,7 +140,7 @@ namespace Diablo
                 tempWHD2 = Console.WindowHeight / 2;
             myPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("Choose song:");
+            Console.Write(Localisation.Language.GetChooseSong());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
             Console.Write("[1] 'Cirice' - Ghost B.C");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
@@ -152,9 +148,9 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
             Console.Write("[3] 'Ora Pro Nobis Lucifer' - Behemoth");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 6);
-            Console.Write("[4] Toggle music: " + (Audio.Audio.GetIsMusicPlaying() == true ? "On" : "Off"));
+            Console.Write("[4] " + Localisation.Language.GetToggleMusic() + ": " + (Audio.Audio.GetIsMusicPlaying() == true ? Localisation.Language.GetOn() : Localisation.Language.GetOff()));
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-            Console.Write("[0] Back");
+            Console.Write("[0] " + Localisation.Language.GetBack());
 
             switch (Utilities.Utility.GetDigitInput(-19, -3, 4))
             {

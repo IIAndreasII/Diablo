@@ -48,19 +48,19 @@ namespace Diablo.Enemies
             switch (aSpellIndex)
             {
                 case 0:
-                    Console.Write("You swing your sword!");
+                    Console.Write(Localisation.Language.GetSwingSword());
                     break;
 
                 case 1:
-                    Console.Write("You cast Fire Bolt!");
+                    Console.Write(Localisation.Language.GetCastFirebolt());
                     break;
 
                 case 2:
-                    Console.Write("You cast Flamestrike");
+                    Console.Write(Localisation.Language.GetCastFlamestrike());
                     break;
 
                 case 3:
-                    Console.Write("You cast Fireball!");
+                    Console.Write(Localisation.Language.GetCastFireball());
                     break;
             }
 
@@ -68,41 +68,41 @@ namespace Diablo.Enemies
             if (Utilities.Utility.GetRNG().Next(1, 101) > myAgility)
             {
                 myHealth -= tempDamageDealt;
-                Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
-                Console.Write("You dealt ");
+                Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetDealDamagePt1().Length + Localisation.Language.GetDealDamagePt2().Length + 5) / 2, tempWHD2 - 9);
+                Console.Write(Localisation.Language.GetDealDamagePt1());
                 Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Green);
-                Console.Write(" damage!");
+                Console.Write(Localisation.Language.GetDealDamagePt2());
                 if (myHealth <= 0)
                 {
                     System.Threading.Thread.Sleep(1000);
-                    Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 7);
-                    Console.Write("Enemy defeated!");
-                    Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyDefeated().Length / 2, tempWHD2 - 7);
+                    Console.Write(Localisation.Language.GetEnemyDefeated());
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyDefeated().Length / 2, tempWHD2 - 5);
                     Utilities.Utility.PrintInColour("+" + myEXPToGive.ToString(), ConsoleColor.Green);
-                    Console.Write(" experience!");
+                    Console.Write(" " + Localisation.Language.GetExperience());
                 }
                 else if (shouldBeStunned && myCanBeStunned)
                 {
                     myStunDuration = 2;
-                    Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 7);
-                    Console.Write("Enemy stunned!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyStunned().Length / 2, tempWHD2 - 7);
+                    Console.Write(Localisation.Language.GetEnemyStunned());
                 }
                 else if (shouldBeStunned && !myCanBeStunned)
                 {
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 7);
-                    Console.Write("Enemy cannot be stunned!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyNoStunned().Length / 2, tempWHD2 - 7);
+                    Console.Write(Localisation.Language.GetEnemyNoStunned());
                 }
             }
             else
             {
-                Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
-                Console.Write("You missed the enemy!");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetMissedEnemy().Length / 2, tempWHD2 - 9);
+                Console.Write(Localisation.Language.GetMissedEnemy());
             }
             System.Threading.Thread.Sleep(2000);
         }
 
         /// <summary>
-        /// Deals dmage to given player
+        /// Deals damage to given player
         /// </summary>
         /// <param name="aPlayer">The player the damage will be dealt upon</param>
         public void DealDamage(Player.Player aPlayer)
@@ -113,8 +113,8 @@ namespace Diablo.Enemies
             aPlayer.PrintUI();
             if (myStunDuration > 0)
             {
-                Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 11);
-                Console.Write("The enemy is stunned and cannot attack");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyCannotAttack().Length / 2, tempWHD2 - 11);
+                Console.Write(Localisation.Language.GetEnemyCannotAttack());
                 myStunDuration--;
             }
             else
@@ -122,32 +122,32 @@ namespace Diablo.Enemies
                 switch (myType)
                 {
                     case EnemyType.SKELETON:
-                        Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                        Console.Write("The enemy swings his sword!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemySwingSword().Length / 2, tempWHD2 - 11);
+                        Console.Write(Localisation.Language.GetEnemySwingSword());
                         break;
 
                     case EnemyType.ARCHER:
-                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 11);
-                        Console.Write("The enemy draws his bow!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnemyDrawsBow().Length / 2, tempWHD2 - 11);
+                        Console.Write(Localisation.Language.GetEnemyDrawsBow());
                         break;
 
                     case EnemyType.BOSS:
-                        Console.SetCursorPosition(tempWWD2 - 10 - (myName.Length / 2), tempWHD2 - 11);
-                        Console.Write(myName + " swings his weapon!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetBossWeapon().Length / 2 - (myName.Length / 2), tempWHD2 - 11);
+                        Console.Write(myName + Localisation.Language.GetBossWeapon());
                         break;
                 }
                 System.Threading.Thread.Sleep(1000);
                 if (aPlayer.TakeDamage(myDamage, out float tempDamageDealt))
                 {
-                    Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 9);
-                    Console.Write("You took ");
+                    Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetTakeDamagePt1().Length + Localisation.Language.GetTakeDamagePt2().Length + 5) / 2, tempWHD2 - 9);
+                    Console.Write(Localisation.Language.GetTakeDamagePt1());
                     Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Red);
-                    Console.Write(" damage!");
+                    Console.Write(" " + Localisation.Language.GetTakeDamagePt2());
                 }
                 else
                 {
-                    Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 9);
-                    Console.Write("You evaded the strike!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEvadedStrike().Length / 2, tempWHD2 - 9);
+                    Console.Write(Localisation.Language.GetEvadedStrike());
                 }
                 if (aPlayer.GetHealth() <= 0)
                 {

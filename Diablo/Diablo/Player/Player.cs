@@ -225,33 +225,33 @@ namespace Diablo.Player
             mySpellDamage += 10;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
-            Console.Write("Level up!");
+            Console.Write(Localisation.Language.GetLevelUp());
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 10);
-            Console.Write("Max health");
+            Console.Write(Localisation.Language.GetMaxHealth());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 9);
-            Console.Write("Max mana");
+            Console.Write(Localisation.Language.GetMaxMana());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
-            Console.Write("Max stamina");
+            Console.Write(Localisation.Language.GetMaxStamina());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 7);
-            Console.Write("Strength");
+            Console.Write(Localisation.Language.GetStrength());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 6);
-            Console.Write("Agility");
+            Console.Write(Localisation.Language.GetAgility());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 5);
-            Console.Write("Wisdom");
+            Console.Write(Localisation.Language.GetWisdom());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 4);
-            Console.Write("Intelligence");
+            Console.Write(Localisation.Language.GetIntelligence());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 3);
-            Console.Write("Luck");
+            Console.Write(Localisation.Language.GetLuck());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 2);
-            Console.Write("SpellDmg");
+            Console.Write(Localisation.Language.GetSpellDamage());
             Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
             System.Threading.Thread.Sleep(3000);
         }
@@ -267,23 +267,23 @@ namespace Diablo.Player
             if (myGold - 10 < 0)
             {
                 Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 3);
-                Console.Write("Insufficient funds!");
+                Console.Write(Localisation.Language.GetInsufficientFunds());
                 System.Threading.Thread.Sleep(750);
             }
             else
             {
                 PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                Console.Write("You light a fire and rest.");
+                Console.Write(Localisation.Language.GetLightFire());
                 System.Threading.Thread.Sleep(2000);
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                Console.Write("You re-gained ");
+                Console.Write(Localisation.Language.GetRegain());
                 Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
-                Console.Write(" stamina!");
+                Console.Write(Localisation.Language.GetRegainStamina());
                 System.Threading.Thread.Sleep(1500);
                 Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 8);
                 Utilities.Utility.PrintInColour("-10 ", ConsoleColor.Red);
-                Console.Write("gold!");
+                Console.Write(Localisation.Language.GetGold() + "!");
                 System.Threading.Thread.Sleep(1000);
                 AddStamina(20);
                 SetGold(-10);
@@ -303,10 +303,10 @@ namespace Diablo.Player
             myMana = myMaxMana;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write("You pitch a tent and light a fire");
+            Console.Write(Localisation.Language.GetPitchTent());
             System.Threading.Thread.Sleep(2000);
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 10);
-            Console.Write("Full recovery!");
+            Console.Write(Localisation.Language.GetFullRecovery());
             System.Threading.Thread.Sleep(1500);
         }
 
@@ -555,32 +555,32 @@ namespace Diablo.Player
             switch (aType)
             {
                 case Loot.ItemType.HELMET:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetFullName(), ConsoleColor.Gray);
                     break;
 
                 case Loot.ItemType.CHESTPLATE:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetFullName(), ConsoleColor.Gray);
                     break;
 
                 case Loot.ItemType.TROUSERS:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetFullName(), ConsoleColor.Gray);
                     break;
 
                 case Loot.ItemType.BOOTS:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetFullName(), ConsoleColor.Gray);
                     break;
 
                 case Loot.ItemType.WEAPON:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetFullName(), ConsoleColor.Gray);
                     break;
 
                 case Loot.ItemType.SHIELD:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating() + "]" + myEquippedShield.GetFullName(), ConsoleColor.Gray);
                     break;
 
@@ -590,7 +590,7 @@ namespace Diablo.Player
                     break;
 
                 case Loot.ItemType.TRINKET:
-                    Console.Write("Equipped: ");
+                    Console.Write(Localisation.Language.GetEquipped());
                     Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
                     tempPrintColour = ConsoleColor.Green;
                     break;
@@ -609,7 +609,7 @@ namespace Diablo.Player
                 }
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-            Console.Write("[0] Back");
+            Console.Write("[0] " + Localisation.Language.GetBack());
             switch (Utilities.Utility.GetDigitInput(-19, 1, tempItemCount, out int tempChoice))
             {
                 case 0:
@@ -618,7 +618,7 @@ namespace Diablo.Player
 
                 default:
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                    Console.Write("[1] " + (aType == Loot.ItemType.SCROLL ? "Apply" : "Equip") + " [2] Throw away [0] Back");
+                    Console.Write("[1] " + (aType == Loot.ItemType.SCROLL ? Localisation.Language.GetApply() : Localisation.Language.GetEquip()) + " [2] " + Localisation.Language.GetThrowAway() + " [0] " + Localisation.Language.GetBack());
                     switch (Utilities.Utility.GetDigitInput(-19, 3, 2, out int tempSecondChoice))
                     {
                         case 0:
@@ -630,8 +630,8 @@ namespace Diablo.Player
                             {
                                 ApplyScrollEffect((Loot.Scroll)myInventory[tempIndexes[tempChoice - 1]], out string tempEffect, out int tempEffectAmount);
                                 PrintUI();
-                                Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
-                                Console.Write("Effect applied!");
+                                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEffectApplied().Length / 2, tempWHD2 - 12);
+                                Console.Write(Localisation.Language.GetEffectApplied());
                                 myInventory.RemoveAt(tempIndexes[tempChoice - 1]);
                                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
                                 Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
@@ -670,21 +670,21 @@ namespace Diablo.Player
 
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("Gold: " + myGold.ToString() + "■       Inventory        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
+            Console.Write(Localisation.Language.GetGold() + ": " + myGold.ToString() + "■       " + Localisation.Language.GetInventory() + "        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
-            Utilities.Utility.PrintInColour(" ■ HP-Potions: " + myHPPotionAmount.ToString(), ConsoleColor.Red);
+            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetHPPotions() + ": " + myHPPotionAmount.ToString(), ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 10);
             Console.Write("[3]");
-            Utilities.Utility.PrintInColour(" ■ Scrolls", ConsoleColor.DarkMagenta);
+            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetScrolls(), ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 9);
             Console.Write("[4]");
-            Utilities.Utility.PrintInColour(" ■ Trinkets", ConsoleColor.Green);
+            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetTrinkets(), ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 8);
             Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
-            Utilities.Utility.PrintInColour(" ■ Mana-Potions: " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
+            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetManaPotions() + ": " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 7);
             Console.Write("[5] ");
             Utilities.Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
@@ -735,7 +735,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2 + 1);
             Utilities.Utility.PrintInColour(myEquippedShield.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
-            Console.Write("[0] Close inventory");
+            Console.Write("[0] " + Localisation.Language.GetCloseInventory());
 
             #endregion Doodle Sequence
 
@@ -818,19 +818,19 @@ namespace Diablo.Player
                 case Loot.ScrollEffect.ARMBUFF:
                     myTempArmourRating = aScroll.GetArmourBuff();
                     anEffectAmount = aScroll.GetArmourBuff();
-                    anEffect = "temporary armour!";
+                    anEffect = Localisation.Language.GetTempArmour();
                     break;
 
                 case Loot.ScrollEffect.STRBUFF:
                     myTempStrength = aScroll.GetStrengthBuff();
                     anEffectAmount = aScroll.GetStrengthBuff();
-                    anEffect = "temporary strength!";
+                    anEffect = Localisation.Language.GetTempStrength();
                     break;
 
                 case Loot.ScrollEffect.HPBUFF:
                     myTempHealth = aScroll.GetHealthBuff();
                     anEffectAmount = aScroll.GetHealthBuff();
-                    anEffect = "temporary health!";
+                    anEffect = Localisation.Language.GetTempHealth();
                     break;
             }
         }
@@ -853,13 +853,13 @@ namespace Diablo.Player
                 }
             }
             PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
-            Console.Write("You have drunk a health-potion.");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetDrinkHPPotion().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetDrinkHPPotion());
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
-            Console.Write("You re-gained ");
+            Console.Write(Localisation.Language.GetRegain());
             Utilities.Utility.PrintInColour("40", ConsoleColor.Green);
-            Console.Write(" health!");
+            Console.Write(" " + Localisation.Language.GetHealthLowerCase() + "!");
             System.Threading.Thread.Sleep(1500);
         }
 
@@ -882,10 +882,10 @@ namespace Diablo.Player
             }
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
-            Console.Write("You have drunk a mana-potion.");
+            Console.Write(Localisation.Language.GetDrinkManaPotion());
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
-            Console.Write("You re-gained ");
+            Console.Write(Localisation.Language.GetRegain() + " ");
             Utilities.Utility.PrintInColour("50", ConsoleColor.Blue);
             Console.Write(" mana!");
             System.Threading.Thread.Sleep(1500);
@@ -924,9 +924,9 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
             Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
-            Console.Write("[1] Menu");
-            Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 + 1);
-            Console.Write("[2] Exit");
+            Console.Write("[1] " + Localisation.Language.GetMenu());
+            Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetExit().Length + 4) / 2, tempWHD2 + 1);
+            Console.Write("[2] " + Localisation.Language.GetExit());
             switch (Utilities.Utility.GetDigitInput(-2, 3, 2))
             {
                 case 1:
@@ -1003,13 +1003,13 @@ namespace Diablo.Player
             PrintUI();
             myIsDefending = false;
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
-            Console.Write("What will you do?");
+            Console.Write(Localisation.Language.GetWhatUDo());
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-            Console.Write("[1] Offensive [2] Defensive");
+            Console.Write("[1] " + Localisation.Language.GetOffensive() + " [2] " + Localisation.Language.GetDefensive());
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
-            Console.Write("[3] Use item  [4] Flee");
+            Console.Write("[3] " + Localisation.Language.GetUseItem() + "  [4] " + Localisation.Language.GetFlee());
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
-            Console.Write("[5] Abstain");
+            Console.Write("[5] " + Localisation.Language.GetAbstain());
             switch (Utilities.Utility.GetDigitInput(-1, -6, 5))
             {
                 case 1:

@@ -98,34 +98,34 @@ namespace Diablo.Dungeon
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write("You enter the room and look around");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnterRoom().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetEnterRoom());
             if (myEnemies.Count > 0 && !myIsBossRoom)
             {
                 if (myEnemies.Count == 1)
                 {
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
-                    Console.Write("You have spotted 1 enemy!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetSpottedOne().Length / 2, tempWHD2 - 10);
+                    Console.Write(Localisation.Language.GetSpottedOne());
                 }
                 else
                 {
-                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
-                    Console.Write("You have spotted " + myEnemies.Count.ToString() + " enemies!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetSpottedMultiple().Length / 2, tempWHD2 - 10);
+                    Console.Write(Localisation.Language.GetSpottedMultiple());
                 }
                 System.Threading.Thread.Sleep(2000);
                 BattleSequence(aPlayer);
             }
             else if (myIsBossRoom)
             {
-                Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
-                Console.Write("You have spotted " + myBoss.GetName() + "!");
+                Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetSpottedBoss().Length + 7) / 2, tempWHD2 - 10);
+                Console.Write(Localisation.Language.GetSpottedBoss() + myBoss.GetName() + "!");
                 System.Threading.Thread.Sleep(2000);
                 BattleSequence(aPlayer);
             }
             else
             {
-                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                Console.Write("The are no enemies present");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetSpottedNone().Length / 2, tempWHD2 - 10);
+                Console.Write(Localisation.Language.GetSpottedNone());
                 System.Threading.Thread.Sleep(2000);
                 LootSequence(aPlayer);
             }
@@ -165,23 +165,23 @@ namespace Diablo.Dungeon
                     case Player.BattleActions.OFFENSIVE:
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                        Console.Write("Choose method of violence");
+                        Console.Write(Localisation.Language.GetMethodViolence());
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                        Console.Write("[1] Attacks");
+                        Console.Write("[1] " + Localisation.Language.GetAttack());
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
-                        Console.Write("[2] Spells");
+                        Console.Write("[2] " + Localisation.Language.GetSpells());
                         switch (Utilities.Utility.GetDigitInput(-12, -7, 2))
                         {
                             case 1:
                                 aPlayer.PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                                Console.Write("Choose attack");
+                                Console.Write(Localisation.Language.GetChooseAttack());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-                                Console.Write("[1] Slash (hits chosen enemy)");
+                                Console.Write("[1] " + Localisation.Language.GetSlash());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
-                                Console.Write("[2] Sweep (hits 2 at random -45% dmg)");
+                                Console.Write("[2] " + Localisation.Language.GetSweep());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
-                                Console.Write("[3] Slap (stuns chosen enemy -80% dmg)");
+                                Console.Write("[3] " + Localisation.Language.GetSlap());
                                 switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:
@@ -203,13 +203,13 @@ namespace Diablo.Dungeon
                             case 2:
                                 aPlayer.PrintUI();
                                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                                Console.Write("Choose spell");
+                                Console.Write(Localisation.Language.GetChooseSpell());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-                                Console.Write("[1] Fire Bolt (hits chosen enemy, 20 mp)");
+                                Console.Write("[1] " + Localisation.Language.GetFirebolt());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
-                                Console.Write("[2] Flamestrike (hits 3 at random, 60 mp)");
+                                Console.Write("[2] " + Localisation.Language.GetFlamestrike());
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
-                                Console.Write("[3] Fireball (might even kill you, 120 mp)");
+                                Console.Write("[3] " + Localisation.Language.GetFireball());
                                 switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                                 {
                                     case 1:
@@ -222,7 +222,7 @@ namespace Diablo.Dungeon
                                         else
                                         {
                                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-                                            Console.Write("Insufficient mana!");
+                                            Console.Write(Localisation.Language.GetInsufficientMana());
                                             System.Threading.Thread.Sleep(1500);
                                         }
                                         break;
@@ -238,7 +238,7 @@ namespace Diablo.Dungeon
                                         else
                                         {
                                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-                                            Console.Write("Insufficient mana!");
+                                            Console.Write(Localisation.Language.GetInsufficientMana());
                                             System.Threading.Thread.Sleep(1500);
                                         }
                                         break;
@@ -255,7 +255,7 @@ namespace Diablo.Dungeon
                                         else
                                         {
                                             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-                                            Console.Write("Insufficient mana!");
+                                            Console.Write(Localisation.Language.GetInsufficientMana());
                                             System.Threading.Thread.Sleep(1500);
                                         }
                                         break;
@@ -267,7 +267,7 @@ namespace Diablo.Dungeon
                         {
                             aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                            Console.WriteLine("Choose an enemy to attack");
+                            Console.WriteLine(Localisation.Language.GetChooseEnemy());
                             if (!myIsBossRoom)
                             {
                                 for (int i = 0; i < myEnemies.Count; i++)
@@ -275,20 +275,20 @@ namespace Diablo.Dungeon
                                     string tempTypeString = string.Empty;
                                     if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.ARCHER)
                                     {
-                                        tempTypeString = "Archer";
+                                        tempTypeString = Localisation.Language.GetArcher();
                                     }
                                     else if (myEnemies[i].GetEnemyType() == Enemies.EnemyType.SKELETON)
                                     {
-                                        tempTypeString = "Skeleton";
+                                        tempTypeString = Localisation.Language.GetSkeleton();
                                     }
                                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10 + i);
-                                    Console.Write("[" + (i + 1).ToString() + "] '" + tempTypeString + "'; Health - " + Math.Round(myEnemies[i].GetHealth(), 2).ToString() + "; Armour - " + myEnemies[i].GetArmourRating().ToString());
+                                    Console.Write("[" + (i + 1).ToString() + "] '" + tempTypeString + "'; " + Localisation.Language.GetHealth() + " - " + Math.Round(myEnemies[i].GetHealth(), 2).ToString() + "; " + Localisation.Language.GetArmour() + " - " + myEnemies[i].GetArmourRating().ToString());
                                 }
                             }
                             else
                             {
                                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-                                Console.Write("[1] '" + myBoss.GetName() + "'; Health - " + Math.Round(myBoss.GetHealth(), 2).ToString() + "; Armour - " + myBoss.GetArmourRating().ToString());
+                                Console.Write("[1] '" + myBoss.GetName() + "'; " + Localisation.Language.GetHealth() + " - " + Math.Round(myBoss.GetHealth(), 2).ToString() + "; " + Localisation.Language.GetArmour() + " - " + myBoss.GetArmourRating().ToString());
                             }
                             if (Utilities.Utility.GetDigitInput(-2, -9 + myEnemies.Count, (myIsBossRoom ? 1 : myEnemies.Count), out int tempInputValue) <= myEnemies.Count && !myIsBossRoom)
                             {
@@ -330,11 +330,11 @@ namespace Diablo.Dungeon
                             aPlayer.PrintUI();
                             aPlayer.TakeDamage(aPlayer.GetMaxHealth() * 0.6f, out float tempDamageTaken);
                             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
-                            Console.Write("The massive blast burns your skin!");
+                            Console.Write(Localisation.Language.GetBurnSkin());
                             Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
-                            Console.Write("You take ");
+                            Console.Write(Localisation.Language.GetTakeDamagePt1());
                             Utilities.Utility.PrintInColour(tempDamageTaken.ToString(), ConsoleColor.DarkRed);
-                            Console.Write(" damage!");
+                            Console.Write(Localisation.Language.GetTakeDamagePt2());
                             System.Threading.Thread.Sleep(2000);
                         }
                         break;
@@ -342,21 +342,21 @@ namespace Diablo.Dungeon
                     case Player.BattleActions.DEFENSIVE:
                         aPlayer.PrintUI();
                         Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                        Console.Write("Choose defence");
+                        Console.Write(Localisation.Language.GetChooseDefence());
                         Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-                        Console.Write("[1] Raise shield");
+                        Console.Write("[1] " + Localisation.Language.GetRaiseShield());
                         Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
-                        Console.Write("[2] Healing Touch");
+                        Console.Write("[2] " + Localisation.Language.GetHealingTouch());
                         Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
-                        Console.Write("[3] Super-stun (stuns all enemies)");
+                        Console.Write("[3] " + Localisation.Language.GetSuperStun());
                         switch (Utilities.Utility.GetDigitInput(-19, -6, 3, 1))
                         {
                             case 1:
                                 aPlayer.PrintUI();
-                                Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                                Console.Write("You raise your defences and");
-                                Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 10);
-                                Console.Write("brace for a strike!");
+                                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetRaiseDefencePt1().Length / 2, tempWHD2 - 11);
+                                Console.Write(Localisation.Language.GetRaiseDefencePt1());
+                                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetRaiseDefencePt2().Length / 2, tempWHD2 - 10);
+                                Console.Write(Localisation.Language.GetRaiseDefencePt2());
                                 aPlayer.SetIsDefending(true);
                                 break;
 
@@ -364,23 +364,23 @@ namespace Diablo.Dungeon
                                 aPlayer.PrintUI();
                                 if (aPlayer.GetMana() - 30 < aPlayer.GetMana())
                                 {
-                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 11);
-                                    Console.Write("You begin touching yourself...");
+                                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetBeginTouch().Length / 2, tempWHD2 - 11);
+                                    Console.Write(Localisation.Language.GetBeginTouch());
                                     System.Threading.Thread.Sleep(2000);
-                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 9);
-                                    Console.Write("It magically heals you(?)");
+                                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetMagicallyHeal().Length / 2, tempWHD2 - 9);
+                                    Console.Write(Localisation.Language.GetMagicallyHeal());
                                     float tempHealingAmount = 25 * (1 + aPlayer.GetWisdom() / 100f);
                                     aPlayer.SetHealth(tempHealingAmount);
-                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 7);
-                                    Console.Write("You re-gain ");
+                                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetRegain().Length / 2, tempWHD2 - 7);
+                                    Console.Write(Localisation.Language.GetRegain());
                                     Utilities.Utility.PrintInColour(tempHealingAmount.ToString(), ConsoleColor.Green);
-                                    Console.Write(" health!");
+                                    Console.Write(" " + Localisation.Language.GetHealthLowerCase() + "!");
                                     aPlayer.SetMana(20);
                                 }
                                 else
                                 {
                                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-                                    Console.Write("Insufficient mana!");
+                                    Console.Write(Localisation.Language.GetInsufficientMana());
                                 }
                                 break;
 
@@ -388,10 +388,10 @@ namespace Diablo.Dungeon
                                 aPlayer.PrintUI();
                                 if (aPlayer.GetMana() - 80 < aPlayer.GetMana())
                                 {
-                                    Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
-                                    Console.Write("You throw some pebbles and somehow");
-                                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 10);
-                                    Console.Write("it stuns every enemy in sight");
+                                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetThrowPebblesPt1().Length / 2, tempWHD2 - 11);
+                                    Console.Write(Localisation.Language.GetThrowPebblesPt1());
+                                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetThrowPebblesPt2().Length / 2, tempWHD2 - 10);
+                                    Console.Write(Localisation.Language.GetThrowPebblesPt2());
                                     if (myIsBossRoom)
                                     {
                                         myBoss.SetStunDuration(2);
@@ -408,7 +408,7 @@ namespace Diablo.Dungeon
                                 else
                                 {
                                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-                                    Console.Write("Insufficient mana!");
+                                    Console.Write(Localisation.Language.GetInsufficientMana());
                                 }
                                 break;
                         }
@@ -423,8 +423,8 @@ namespace Diablo.Dungeon
                         if (myIsBossRoom)
                         {
                             aPlayer.PrintUI();
-                            Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 11);
-                            Console.Write("You cannot flee from a boss-fight!");
+                            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetBossFlee().Length / 2, tempWHD2 - 11);
+                            Console.Write(Localisation.Language.GetBossFlee());
                             System.Threading.Thread.Sleep(1500);
                         }
                         else
@@ -435,10 +435,10 @@ namespace Diablo.Dungeon
 
                     case Player.BattleActions.ABSTAIN:
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 11);
-                        Console.Write("You do not wish to attack,");
-                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
-                        Console.Write("thus lowering your arms.");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetNoAttackPt1().Length / 2, tempWHD2 - 11);
+                        Console.Write(Localisation.Language.GetNoAttackPt1());
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetNoAttackPt2().Length / 2, tempWHD2 - 10);
+                        Console.Write(Localisation.Language.GetNoAttackPt2());
                         System.Threading.Thread.Sleep(2000);
                         break;
                 }
@@ -448,14 +448,14 @@ namespace Diablo.Dungeon
             if (!tempHasFled)
             {
                 aPlayer.PrintUI();
-                Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetAllDefeated().Length / 2, tempWHD2 - 12);
                 if (myIsBossRoom)
                 {
-                    Console.Write(myBoss.GetName() + " was defeated!");
+                    Console.Write(myBoss.GetName() + Localisation.Language.GetBossDefeated());
                 }
                 else
                 {
-                    Console.Write("All enemies were defeated!");
+                    Console.Write(Localisation.Language.GetAllDefeated());
                 }
                 aPlayer.SubtractStamina(10);
                 System.Threading.Thread.Sleep(2000);
@@ -466,7 +466,7 @@ namespace Diablo.Dungeon
             {
                 aPlayer.PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
-                Console.Write("You have fled the battle, coward...");
+                Console.Write(Localisation.Language.GetFlee());
                 aPlayer.SubtractStamina(30);
                 System.Threading.Thread.Sleep(2000);
             }
@@ -486,7 +486,7 @@ namespace Diablo.Dungeon
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
             if (myLoot.Count > 0)
             {
-                Console.Write("You have found some loot!");
+                Console.Write(Localisation.Language.GetFoundLoot());
                 System.Threading.Thread.Sleep(1500);
                 for (int i = 0; i < myLoot.Count; i++)
                 {
@@ -509,18 +509,18 @@ namespace Diablo.Dungeon
 
                     if (i == myLoot.Count - 1)
                     {
-                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
-                        Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
-                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
-                        Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
-                        Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
-                        Console.Write("Gold: " + myGold);
+                        Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i * 2 + 1);
+                        Utilities.Utility.PrintInColour(Localisation.Language.GetHPPotions() + ": " + myHPPotions.ToString(), ConsoleColor.Red);
+                        Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i * 2 + 2);
+                        Utilities.Utility.PrintInColour(Localisation.Language.GetManaPotions() + ": " + myManaPotions.ToString(), ConsoleColor.Blue);
+                        Console.SetCursorPosition(tempWWD2 - 20, tempTextOffset + i * 2 + 3);
+                        Console.Write(Localisation.Language.GetGold() + ": " + myGold);
                     }
                 }
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                Console.Write("[1] Pick up all    [0] Discard all");
+                Console.Write("[1] " + Localisation.Language.GetPickup() + "    [0] " + Localisation.Language.GetDiscard());
                 Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                Console.Write("[2] Pick up all & equip best");
+                Console.Write("[2] " + Localisation.Language.GetPickUpEquip());
 
                 switch (Utilities.Utility.GetDigitInput(-19, 3, 2))
                 {
@@ -534,8 +534,8 @@ namespace Diablo.Dungeon
                         aPlayer.SetHealthPotions(myHPPotions);
                         aPlayer.SetManaPotions(myManaPotions);
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                        Console.Write("Loot added to inventory!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetLootAdded().Length / 2, tempWHD2 - 12);
+                        Console.Write(Localisation.Language.GetLootAdded());
                         System.Threading.Thread.Sleep(1500);
                         break;
 
@@ -546,15 +546,15 @@ namespace Diablo.Dungeon
                         aPlayer.SetHealthPotions(myHPPotions);
                         aPlayer.SetManaPotions(myManaPotions);
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                        Console.Write("Loot added to inventory!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetLootAdded().Length / 2, tempWHD2 - 12);
+                        Console.Write(Localisation.Language.GetLootAdded());
                         break;
                 }
             }
             else
             {
-                Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                Console.Write("Looking around the room, you found no loot");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetFoundNoLoot().Length / 2, tempWHD2 - 12);
+                Console.Write(Localisation.Language.GetFoundNoLoot());
                 System.Threading.Thread.Sleep(1500);
             }
             if (myChests.Count > 0)
@@ -562,13 +562,13 @@ namespace Diablo.Dungeon
                 aPlayer.PrintUI();
                 if (myChests.Count == 1)
                 {
-                    Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                    Console.Write("You have found a chest!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetFoundChest().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetFoundChest());
                 }
                 else
                 {
-                    Console.SetCursorPosition(tempWWD2 - 14, tempWHD2 - 12);
-                    Console.Write("You have found some chests!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetFoundChests().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetFoundChests());
                 }
                 System.Threading.Thread.Sleep(1500);
                 for (int i = 0; i < myChestCount; i++)
@@ -577,8 +577,8 @@ namespace Diablo.Dungeon
                     if (myChestCount > 1)
                     {
                         aPlayer.PrintUI();
-                        Console.SetCursorPosition(tempWWD2 - 15, tempWHD2 - 12);
-                        Console.Write("You have found another chest!");
+                        Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetFoundAnotherChest().Length / 2, tempWHD2 - 12);
+                        Console.Write(Localisation.Language.GetFoundAnotherChest());
                         System.Threading.Thread.Sleep(1500);
                     }
                 }
@@ -596,19 +596,19 @@ namespace Diablo.Dungeon
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 12);
-            Console.Write("Possible actions");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetPossibleActions().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetPossibleActions());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 10);
-            Console.Write("[1] Continue adventure");
+            Console.Write("[1] " + Localisation.Language.GetContinueAdventure());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 9);
-            Console.Write("[2] Open inventory");
+            Console.Write("[2] " + Localisation.Language.GetOpenInventory());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 8);
-            Console.Write("[3] Rest ");
-            Utilities.Utility.PrintInColour("(-10 gold)", ConsoleColor.DarkRed);
+            Console.Write("[3] " + Localisation.Language.GetRest());
+            Utilities.Utility.PrintInColour("(-10 " + Localisation.Language.GetGold() + ")", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 7);
-            Console.Write("[4] View map");
+            Console.Write("[4] " + Localisation.Language.GetViewMap());
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 6);
-            Console.Write("[5] Commit suicide");
+            Console.Write("[5] " + Localisation.Language.GetCommitSuicide());
             switch (Utilities.Utility.GetDigitInput(-1, -4, 5))
             {
                 case 2:

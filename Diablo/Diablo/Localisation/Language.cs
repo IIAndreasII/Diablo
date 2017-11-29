@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diablo.Localisation
+﻿namespace Diablo.Localisation
 {
     public static class Language
     {
         #region Swedish
         private static string
+            myToggleMusicSE = "Sätt musik",
+            myOnSE = "På",
+            myOffSE = "Av",
+            myEnteringDungeonSE = "Du går ner i den närmaste hålan",
             myPlaySE = "Spela",
             myExitSE = "Avsluta",
             myBackSE = "Tillbaks",
@@ -84,7 +82,7 @@ namespace Diablo.Localisation
             myHealthSE = "Hälsa",
             myHealthSmallSE = "hälsa",
             myArmourSE = "Rustning",
-            myEnemyDefeatedSE = "Fiende besgrad!",
+            myEnemyDefeatedSE = "Fiende besegrad!",
             myExperienceSE = "erfarenhet!",
             myEnemyStunnedSE = "Fiende knockad!",
             myEnemyNotStunnedSE = "Fienden kan inte bli knockad!",
@@ -140,13 +138,55 @@ namespace Diablo.Localisation
             myViewMapSE = "Titta på kartan",
             myInitialRoomSE = "Utgångsrum och utgång",
             myCurrentRoomSE = "Nuvarande rum",
-            myRoomSE = "Rum";
+            myRoomSE = "Rum",
 
+            myEffectAppliedSE = "Effekt applicerad!",
+            myAvailableScrollsSE = "Tillgängliga rullar:",
+            myCloseInventorySE = "Stäng inventarie",
+            myTempStrengthSE = "temporär styrka!",
+            myTempArmourSE = "temporär rustning!",
+            myTempHealthSE = "temporär hälsa!",
+            myDrinkHPPotionSE = "Du dricker en hälsodryck",
+            myDrinkManaPotionSE = "Du dricker en manadryck",
+            myMenuSE = "Meny",
+            myEnterRoomSE = "Du går in i rummet och tittar dig omkring",
+            myDealDamage1SE = "Du gör ",
+            myDealDamage2SE = " skada!",
+            mySpottedOneSE = "Du ser en fiende!",
+            mySpottedMultipleSE = "Du ser flera fiender!",
+            mySpottedBossSE = "Du får syn på ",
+            mySpottedNoneSE = "Inga fiender är närvarande",
 
+            myScrollDecayedSE = "Rull-effekt gick ut!";
         #endregion Swedish
 
         #region English
         private static string
+            myScrollDecayedEN = "Scroll-effect wore off!",
+            myEnteringDungeonEN = "You delve into the nearest dungeon",
+            myToggleMusicEN = "Toggle music",
+            myOnEN = "On",
+            myOffEN = "Off",
+
+
+            myEffectAppliedEN = "Effect applied!",
+            myAvailableScrollsEN = "Available scrolls:",
+            myCloseInventoryEN = "Close inventory",
+            myTempStrengthEN = "temporary strength!",
+            myTempArmourEN = "temporary armour!",
+            myTempHealthEN = "temporary health!",
+            myDrinkHPPotionEN = "You drink a healthpotion",
+            myDrinkManaPotionEN = "You drink a manapotion",
+            myMenuEN = "Menu",
+            myEnterRoomEN = "You enter the room and look around",
+            myDealDamage1EN = "You deal ",
+            myDealDamage2EN = " damage!",
+            mySpottedOneEN = "You have spotted an enemy!",
+            mySpottedMultipleEN = "You have spotted multiple enemies!",
+            mySpottedBossEN = "You have spotted ",
+            mySpottedNoneEN = "There are no enemies present",
+
+
             myPlayEN = "Play",
             myExitEN = "Exit",
             myBackEN = "Back",
@@ -281,6 +321,12 @@ namespace Diablo.Localisation
         #endregion English
 
         #region Get
+        public static string GetToggleMusic() => myToggleMusic;
+
+        public static string GetOn() => myOn;
+
+        public static string GetOff() => myOff;
+
         public static string GetPlay() => myPlay;
 
         public static string GetExit() => myExit;
@@ -359,6 +405,8 @@ namespace Diablo.Localisation
 
         public static string GetOffensive() => myOffensive;
 
+        public static string GetMethodViolence() => myMethodViolence;
+
         public static string GetAttack() => myAttack;
 
         public static string GetChooseAttack() => myChooseAttack;
@@ -383,9 +431,9 @@ namespace Diablo.Localisation
 
         public static string GetCastFirebolt() => myCastFireBolt;
 
-        public static string GetCastFlamestrike() => myFlamestrike;
+        public static string GetCastFlamestrike() => myCastFlamestrike;
 
-        public static string GetCastFireball() => myFireball;
+        public static string GetCastFireball() => myCastFireBall;
 
         public static string GetBurnSkin() => myBurnSkin;
 
@@ -504,11 +552,65 @@ namespace Diablo.Localisation
         public static string GetCurrentRoom() => myCurrentRoom;
 
         public static string GetRoom() => myRoom;
+
+        public static string GetEffectApplied() => myEffectApplied;
+
+        public static string GetAvailableScrolls() => myAvailableScrolls;
+
+        public static string GetCloseInventory() => myCloseInventory;
+
+        public static string GetTempStrength() => myTempStrength;
+
+        public static string GetTempArmour() => myTempArmour;
+
+        public static string GetTempHealth() => myTempHealth;
+
+        public static string GetDrinkHPPotion() => myDrinkHPPotion;
+
+        public static string GetDrinkManaPotion() => myDrinkManaPotion;
+
+        public static string GetMenu() => myMenu;
+
+        public static string GetEnterRoom() => myEnterRoom;
+
+        public static string GetDealDamagePt1() => myDealDamage1;
+
+        public static string GetDealDamagePt2() => myDealDamage2;
+
+        public static string GetSpottedOne() => mySpottedOne;
+
+        public static string GetSpottedMultiple() => mySpottedMultiple;
+
+        public static string GetSpottedBoss() => mySpottedBoss;
+
+        public static string GetSpottedNone() => mySpottedNone;
+
+        public static string GetEnteringDungeon() => myEnteringDungeon;
         #endregion Get
 
         #region Active Language
         private static string
-        #region temp
+            myScrollDecayed,
+            myToggleMusic,
+            myOn,
+            myOff,
+            myEffectApplied,
+            myAvailableScrolls,
+            myCloseInventory,
+            myTempStrength,
+            myTempArmour,
+            myTempHealth,
+            myDrinkHPPotion,
+            myDrinkManaPotion,
+            myMenu,
+            myEnterRoom,
+            myDealDamage1,
+            myDealDamage2,
+            mySpottedOne,
+            mySpottedMultiple,
+            mySpottedBoss,
+            mySpottedNone,
+
             myPlay,
             myExit,
             myBack,
@@ -527,6 +629,7 @@ namespace Diablo.Localisation
 
             myPossibleActions,
             myEnterDungeon,
+            myEnteringDungeon,
 
             myOpenInventory,
             myInventory,
@@ -553,8 +656,7 @@ namespace Diablo.Localisation
 
             myMusicSettings,
             myChooseSong,
-        #endregion temp
-        #region temptemp
+       
             myWhatUDo,
             myOffensive,
             myMethodViolence ,
@@ -602,7 +704,7 @@ namespace Diablo.Localisation
             myHealingTouch,
             myBeginTouch,
             myMagicallyHeal,
-        #endregion temptemp
+
             mySuperStun ,
             myThrowPebbles1,
             myThrowPebbles2 ,
@@ -645,13 +747,36 @@ namespace Diablo.Localisation
         /// <summary>
         /// Initializes values
         /// </summary>
-        public static void Init() => English();
+        public static void Init() => Swedish();
 
         /// <summary>
         /// Sets the language to Swedish
         /// </summary>
         public static void Swedish()
         {
+            myScrollDecayed = myScrollDecayedSE;
+            myToggleMusic = myToggleMusicSE;
+            myOn = myOnSE;
+            myOff = myOffSE;
+            myEffectApplied = myEffectAppliedSE;
+            myAvailableScrolls = myAvailableScrollsSE;
+            myCloseInventory = myCloseInventorySE;
+            myTempStrength = myTempStrengthSE;
+            myTempArmour = myTempArmourSE;
+            myTempHealth = myTempHealthSE;
+            myDrinkHPPotion = myDrinkHPPotionSE;
+            myDrinkManaPotion = myDrinkManaPotionSE;
+            myMenu = myMenuSE;
+            myEnterRoom = myEnterRoomSE;
+            myDealDamage1 = myDealDamage1SE;
+            myDealDamage2 = myDealDamage2SE;
+            mySpottedOne = mySpottedOneSE;
+            mySpottedMultiple = mySpottedMultipleSE;
+            mySpottedBoss = mySpottedBossSE;
+            mySpottedNone = mySpottedNoneSE;
+
+            myEnteringDungeon = myEnteringDungeonSE;
+
             myPlay = myPlaySE;
             myExit = myExitSE;
             myBack = myBackSE;
@@ -664,7 +789,7 @@ namespace Diablo.Localisation
             myStrength = myStrengthSE;
             myAgility = myAgilitySE;
             myWisdom = myWisdomSE;
-            myIntelligence = myWisdomSE;
+            myIntelligence = myIntelligenceSE;
             myLuck = myLuckSE;
             mySpellDmg = mySpellDmgSE;
 
@@ -788,6 +913,33 @@ namespace Diablo.Localisation
         /// </summary>
         public static void English()
         {
+            myScrollDecayed = myScrollDecayedEN;
+            myToggleMusic = myToggleMusicEN;
+            myOn = myOnEN;
+            myOff = myOffEN;
+
+            myEffectApplied = myEffectAppliedEN;
+            myAvailableScrolls = myAvailableScrollsEN;
+            myCloseInventory = myCloseInventoryEN;
+            myTempStrength = myTempStrengthEN;
+            myTempArmour = myTempArmourEN;
+            myTempHealth = myTempHealthEN;
+            myDrinkHPPotion = myDrinkHPPotionEN;
+            myDrinkManaPotion = myDrinkManaPotionEN;
+            myMenu = myMenuEN;
+            myEnterRoom = myEnterRoomEN;
+            myDealDamage1 = myDealDamage1EN;
+            myDealDamage2 = myDealDamage2EN;
+            mySpottedOne = mySpottedOneEN;
+            mySpottedMultiple = mySpottedMultipleEN;
+            mySpottedBoss = mySpottedBossEN;
+            mySpottedNone = mySpottedNoneEN;
+
+            myEnteringDungeon = myEnteringDungeonEN;
+
+
+
+
             myPlay = myPlayEN;
             myExit = myExitEN;
             myBack = myBackEN;
@@ -800,7 +952,7 @@ namespace Diablo.Localisation
             myStrength = myStrengthEN;
             myAgility = myAgilityEN;
             myWisdom = myWisdomEN;
-            myIntelligence = myWisdomEN;
+            myIntelligence = myIntelligenceEN;
             myLuck = myLuckEN;
             mySpellDmg = mySpellDmgEN;
 
