@@ -90,35 +90,35 @@
             switch (myType)
             {
                 case ItemType.HELMET:
-                    myPrefix = "Helmet of";
+                    myPrefix = Localisation.Language.GetHelmetOf();
                     break;
 
                 case ItemType.CHESTPLATE:
-                    myPrefix = "Chestplate of";
+                    myPrefix = Localisation.Language.GetChestPlateOf();
                     break;
 
                 case ItemType.TROUSERS:
-                    myPrefix = "Trousers of";
+                    myPrefix = Localisation.Language.GetTrousersOf();
                     break;
 
                 case ItemType.BOOTS:
-                    myPrefix = "Boots of";
+                    myPrefix = Localisation.Language.GetBootsOf();
                     break;
 
                 case ItemType.SHIELD:
-                    myPrefix = "Shield of";
+                    myPrefix = Localisation.Language.GetShieldOf();
                     break;
 
                 case ItemType.WEAPON:
-                    myPrefix = "Sword of";
+                    myPrefix = Localisation.Language.GetSwordOf();
                     break;
 
                 case ItemType.TRINKET:
-                    myPrefix = "Trinket of";
+                    myPrefix = Localisation.Language.GetTrinketOf();
                     break;
 
                 case ItemType.SCROLL:
-                    myPrefix = "Scroll of";
+                    myPrefix = Localisation.Language.GetScrollOf();
                     break;
             }
             mySuffix = Utilities.Utility.GetRandomSuffix();

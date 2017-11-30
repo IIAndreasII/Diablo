@@ -21,7 +21,6 @@ namespace Diablo
         private static void Initialize()
         {
             Console.ForegroundColor = StandardTextColour;
-            Utilities.Utility.GenerateSuffixes();
             myPlayer = new Player.Player();
             Managers.DungeonManager.Init(myPlayer);
             Managers.EnemyManager.Init();
@@ -87,9 +86,12 @@ namespace Diablo
         /// </summary>
         public static void MainMenu()
         {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
             Utilities.Utility.PrintTitle();
             string tempPrintValue = string.Empty;
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
@@ -98,13 +100,17 @@ namespace Diablo
                         break;
 
                     case 1:
-                        tempPrintValue = "[2] " + Localisation.Language.GetExit();
+                        tempPrintValue = "[2] " + Localisation.Language.GetLanguageSettings();
+                        break;
+
+                    case 2:
+                        tempPrintValue = "[3] " + Localisation.Language.GetExit();
                         break;
                 }
-                Console.SetCursorPosition(Console.WindowWidth / 2 - 30, i + 16);
+                Console.SetCursorPosition(tempWWD2 - 30, tempWHD2 + i);
                 Console.Write(tempPrintValue);
             }
-            Utilities.Utility.PrintPentagram(Console.WindowWidth / 2, 9, ConsoleColor.DarkRed);
+            Utilities.Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
             switch (Utilities.Utility.GetDigitInput(-29, 4, 3))
             {
                 case 1:
@@ -113,6 +119,10 @@ namespace Diablo
                     break;
 
                 case 2:
+                    LanguageSettings();
+                    break;
+
+                case 3:
                     Environment.Exit(0);
                     break;
 
@@ -131,6 +141,9 @@ namespace Diablo
             MainMenu();
         }
 
+        /// <summary>
+        /// Music settings
+        /// </summary>
         public static void MusicSettings()
         {
             int
@@ -173,6 +186,70 @@ namespace Diablo
                     break;
             }
             MusicSettings();
+        }
+
+        public static void LanguageSettings()
+        {
+            int
+                tempWWD2 = Console.WindowWidth / 2,
+                tempWHD2 = Console.WindowHeight / 2;
+            Utilities.Utility.PrintTitle();
+            Utilities.Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
+            string tempPrintValue = string.Empty;
+            for (int i = 0; i < 8; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        tempPrintValue = Localisation.Language.GetChooseLanguage();   
+                        break;
+
+                    case 1:
+                        tempPrintValue = string.Empty;
+                        break;
+
+                    case 2:
+                        tempPrintValue = "[1] " + Localisation.Language.GetSwedish();
+                        break;
+
+                    case 3:
+                        tempPrintValue = "[2] " + Localisation.Language.GetEnglish();
+                        break;
+
+                    case 4:
+                        tempPrintValue = string.Empty;
+                        break;
+
+                    case 5:
+                        tempPrintValue = Localisation.Language.GetCurrentLanguage() + (Localisation.Language.GetIsInSwedish() == true ? Localisation.Language.GetSwedish() : Localisation.Language.GetEnglish());
+                        break;
+
+                    case 6:
+                        tempPrintValue = string.Empty;
+                        break;
+
+                    case 7:
+                        tempPrintValue = "[0] " + Localisation.Language.GetBack();
+                        break;
+                }
+                Console.SetCursorPosition(tempWWD2 - 30, tempWHD2 + i);
+                Console.Write(tempPrintValue);
+            }
+
+            switch (Utilities.Utility.GetDigitInput(-29, 9, 2))
+            {
+                case 0:
+                    MainMenu();
+                    break;
+
+                case 1:
+                    Localisation.Language.Swedish();
+                    break;
+
+                case 2:
+                    Localisation.Language.English();
+                    break;
+            }
         }
     }
 }

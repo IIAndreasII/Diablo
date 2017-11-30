@@ -2,14 +2,14 @@
 {
     public enum Buff
     {
-        Health,
-        Armour,
-        Stamina,
-        Agility,
-        Strength,
-        Luck,
-        Wisdom,
-        Intelligence
+        HEALTH,
+        ARMOUR,
+        STAMINA,
+        AGILITY,
+        STRENGTH,
+        LUCK,
+        WISDOM,
+        INTELLIGENCE
     }
 
     internal class Trinket : Item
@@ -19,6 +19,9 @@
 
         private Buff
             myBuffType;
+
+        private string
+            myEffectString;
 
         public Trinket()
         {
@@ -43,42 +46,50 @@
             switch (Utilities.Utility.GetRNG().Next(0, 8))
             {
                 case 0:
-                    myBuffType = Buff.Health;
+                    myBuffType = Buff.HEALTH;
+                    myEffectString = Localisation.Language.GetHealth();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 31);
                     break;
 
                 case 1:
-                    myBuffType = Buff.Armour;
+                    myBuffType = Buff.ARMOUR;
+                    myEffectString = Localisation.Language.GetArmour();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 2:
-                    myBuffType = Buff.Stamina;
+                    myBuffType = Buff.STAMINA;
+                    myEffectString = Localisation.Language.GetStamina();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 21);
                     break;
 
                 case 3:
-                    myBuffType = Buff.Agility;
+                    myBuffType = Buff.AGILITY;
+                    myEffectString = Localisation.Language.GetAgility();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
                     break;
 
                 case 4:
-                    myBuffType = Buff.Luck;
+                    myBuffType = Buff.LUCK;
+                    myEffectString = Localisation.Language.GetLuck();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 5:
-                    myBuffType = Buff.Strength;
+                    myBuffType = Buff.STRENGTH;
+                    myEffectString = Localisation.Language.GetStrength();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
                     break;
 
                 case 6:
-                    myBuffType = Buff.Wisdom;
+                    myBuffType = Buff.WISDOM;
+                    myEffectString = Localisation.Language.GetWisdom();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 7:
-                    myBuffType = Buff.Intelligence;
+                    myBuffType = Buff.INTELLIGENCE;
+                    myEffectString = Localisation.Language.GetIntelligence();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
             }
@@ -92,35 +103,35 @@
         {
             switch (myBuffType)
             {
-                case Buff.Agility:
+                case Buff.AGILITY:
                     aPlayer.SetAgilityBuff(myEffectAmount);
                     break;
 
-                case Buff.Armour:
+                case Buff.ARMOUR:
                     aPlayer.SetArmourBuff(myEffectAmount);
                     break;
 
-                case Buff.Health:
+                case Buff.HEALTH:
                     aPlayer.SetHealthBuff(myEffectAmount);
                     break;
 
-                case Buff.Luck:
+                case Buff.LUCK:
                     aPlayer.SetLuckBuff(myEffectAmount);
                     break;
 
-                case Buff.Stamina:
+                case Buff.STAMINA:
                     aPlayer.SetStaminaBuff(myEffectAmount);
                     break;
 
-                case Buff.Strength:
+                case Buff.STRENGTH:
                     aPlayer.SetStrengthBuff(myEffectAmount);
                     break;
 
-                case Buff.Wisdom:
+                case Buff.WISDOM:
                     aPlayer.SetWisdomBuff(myEffectAmount);
                     break;
 
-                case Buff.Intelligence:
+                case Buff.INTELLIGENCE:
                     aPlayer.SetIntelligenceBuff(myEffectAmount);
                     break;
             }
@@ -130,9 +141,9 @@
         /// Gets buff type
         /// </summary>
         /// <returns>Trinkets bufftype</returns>
-        public Buff GetBuffType()
+        public string GetEffectType()
         {
-            return myBuffType;
+            return myEffectString;
         }
 
         /// <summary>

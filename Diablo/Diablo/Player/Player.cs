@@ -104,14 +104,14 @@ namespace Diablo.Player
 
             myInventory = new List<Loot.Item>();
             myAppliedScrolls = new List<Loot.Scroll>();
-            myEquippedTrinket = new Loot.Trinket("Basicness");
+            myEquippedTrinket = new Loot.Trinket(Localisation.Language.GetBasicness());
             myEquippedTrinket.ApplyBuff(this);
-            myEquippedHelmet = new Loot.Armour(Loot.ItemType.HELMET, "Basicness", 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
-            myEquippedChestplate = new Loot.Armour(Loot.ItemType.CHESTPLATE, "Basicness", 4);
-            myEquippedTrousers = new Loot.Armour(Loot.ItemType.TROUSERS, "Basicness", 3);
-            myEquippedBoots = new Loot.Armour(Loot.ItemType.BOOTS, "Basicness", 1);
-            myEquippedWeapon = new Loot.Weapon("Basicness", 15);
-            myEquippedShield = new Loot.Armour(Loot.ItemType.SHIELD, "Basicness", 5);
+            myEquippedHelmet = new Loot.Armour(Loot.ItemType.HELMET, Localisation.Language.GetBasicness(), 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
+            myEquippedChestplate = new Loot.Armour(Loot.ItemType.CHESTPLATE, Localisation.Language.GetBasicness(), 4);
+            myEquippedTrousers = new Loot.Armour(Loot.ItemType.TROUSERS, Localisation.Language.GetBasicness(), 3);
+            myEquippedBoots = new Loot.Armour(Loot.ItemType.BOOTS, Localisation.Language.GetBasicness(), 1);
+            myEquippedWeapon = new Loot.Weapon(Localisation.Language.GetBasicness(), 15);
+            myEquippedShield = new Loot.Armour(Loot.ItemType.SHIELD, Localisation.Language.GetBasicness(), 5);
             myArmourRating = myEquippedBoots.GetRating() + myEquippedTrousers.GetRating() + myEquippedChestplate.GetRating() + myEquippedHelmet.GetRating() + myEquippedShield.GetRating() + myArmourBuff;
             myInventory.Add(Factories.LootFactory.CreateScroll());
             myStamina = myMaxStamina;
@@ -585,13 +585,13 @@ namespace Diablo.Player
                     break;
 
                 case Loot.ItemType.SCROLL:
-                    Console.Write("Available scrolls:");
+                    Console.Write(Localisation.Language.GetAvailableScrolls());
                     tempPrintColour = ConsoleColor.DarkMagenta;
                     break;
 
                 case Loot.ItemType.TRINKET:
                     Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
+                    Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
                     tempPrintColour = ConsoleColor.Green;
                     break;
             }
@@ -683,7 +683,7 @@ namespace Diablo.Player
             Console.Write("[4]");
             Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetTrinkets(), ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 8);
-            Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetBuffType().ToString() + "]", ConsoleColor.Green);
+            Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
             Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetManaPotions() + ": " + myManaPotionAmount.ToString(), ConsoleColor.Blue);

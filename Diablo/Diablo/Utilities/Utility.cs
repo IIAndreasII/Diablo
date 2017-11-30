@@ -15,68 +15,12 @@ namespace Diablo.Utilities
         public static Random GetRNG() => myRNG;
 
         /// <summary>
-        /// Generates all suffixes for items
+        /// Sets the suffixes
         /// </summary>
-        public static void GenerateSuffixes()
+        /// <param name="someSuffixes">Suffixes to set suffixes to</param>
+        public static void SetSuffixes(string[] someSuffixes)
         {
-            mySuffixes = new string[13];
-            for (int i = 0; i < mySuffixes.Length; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        mySuffixes[i] = "Divinity";
-                        break;
-
-                    case 1:
-                        mySuffixes[i] = "Corruption";
-                        break;
-
-                    case 2:
-                        mySuffixes[i] = "Fräsighet";
-                        break;
-
-                    case 3:
-                        mySuffixes[i] = "Deceit";
-                        break;
-
-                    case 4:
-                        mySuffixes[i] = "Peasants";
-                        break;
-
-                    case 5:
-                        mySuffixes[i] = "Odin";
-                        break;
-
-                    case 6:
-                        mySuffixes[i] = "Despair";
-                        break;
-
-                    case 7:
-                        mySuffixes[i] = "Clumpsiness";
-                        break;
-
-                    case 8:
-                        mySuffixes[i] = "Stupidity";
-                        break;
-
-                    case 9:
-                        mySuffixes[i] = "Saltiness";
-                        break;
-
-                    case 10:
-                        mySuffixes[i] = "Wisdom";
-                        break;
-
-                    case 11:
-                        mySuffixes[i] = "Might";
-                        break;
-
-                    case 12:
-                        mySuffixes[i] = "Tyrants";
-                        break;
-                }
-            }
+            mySuffixes = someSuffixes;
         }
 
         /// <summary>
