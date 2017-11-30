@@ -142,7 +142,7 @@ namespace Diablo.Enemies
                     Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetTakeDamagePt1().Length + Localisation.Language.GetTakeDamagePt2().Length + 5) / 2, tempWHD2 - 9);
                     Console.Write(Localisation.Language.GetTakeDamagePt1());
                     Utilities.Utility.PrintInColour(Math.Round(tempDamageDealt, 2).ToString(), ConsoleColor.Red);
-                    Console.Write(" " + Localisation.Language.GetTakeDamagePt2());
+                    Console.Write(Localisation.Language.GetTakeDamagePt2());
                 }
                 else
                 {

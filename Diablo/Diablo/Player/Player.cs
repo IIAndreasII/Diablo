@@ -602,7 +602,7 @@ namespace Diablo.Player
                 {
                     tempItemCount++;
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + tempOffset);
-                    Console.Write(" [" + (tempItemCount) + "]");
+                    Console.Write(" [" + tempItemCount.ToString() + "]");
                     Utilities.Utility.PrintInColour((myInventory[i].GetItemType() == Loot.ItemType.SCROLL || myInventory[i].GetItemType() == Loot.ItemType.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == Loot.ItemType.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
                     tempIndexes.Add(i);
                     tempOffset++;
@@ -642,10 +642,12 @@ namespace Diablo.Player
                             {
                                 Equip(myInventory[tempIndexes[tempChoice - 1]]);
                             }
+                            BrowseItems(aType);
                             break;
 
                         case 2:
                             myInventory.RemoveAt(tempIndexes[tempChoice - 1]);
+                            BrowseItems(aType);
                             break;
 
                         default:
