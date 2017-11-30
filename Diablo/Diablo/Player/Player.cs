@@ -874,7 +874,7 @@ namespace Diablo.Player
             if (myManaPotionAmount > 0)
             {
                 myManaPotionAmount -= 1;
-                myMaxMana += 50;
+                myMana += 50;
                 if (myMana > myMaxMana)
                 {
                     myMana = myMaxMana;
@@ -1233,7 +1233,7 @@ namespace Diablo.Player
                 myWisdom -= myWisdomBuff;
                 myWisdomBuff = 0;
             }
-            if(myIntelligenceBuff > 0)
+            if (myIntelligenceBuff > 0)
             {
                 myIntelligence -= myIntelligenceBuff;
                 myIntelligenceBuff = 0;

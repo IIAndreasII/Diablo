@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Diablo.Utilities
 {
-    static class Utility
+    internal static class Utility
     {
         private static Random myRNG = new Random();
         private static string[] mySuffixes;
@@ -15,7 +15,7 @@ namespace Diablo.Utilities
         public static Random GetRNG() => myRNG;
 
         /// <summary>
-        /// Generates all suffixes for items 
+        /// Generates all suffixes for items
         /// </summary>
         public static void GenerateSuffixes()
         {
@@ -27,39 +27,51 @@ namespace Diablo.Utilities
                     case 0:
                         mySuffixes[i] = "Divinity";
                         break;
+
                     case 1:
                         mySuffixes[i] = "Corruption";
                         break;
+
                     case 2:
                         mySuffixes[i] = "Fräsighet";
                         break;
+
                     case 3:
                         mySuffixes[i] = "Deceit";
                         break;
+
                     case 4:
                         mySuffixes[i] = "Peasants";
                         break;
+
                     case 5:
                         mySuffixes[i] = "Odin";
                         break;
+
                     case 6:
                         mySuffixes[i] = "Despair";
                         break;
+
                     case 7:
                         mySuffixes[i] = "Clumpsiness";
                         break;
+
                     case 8:
                         mySuffixes[i] = "Stupidity";
                         break;
+
                     case 9:
                         mySuffixes[i] = "Saltiness";
                         break;
+
                     case 10:
                         mySuffixes[i] = "Wisdom";
                         break;
+
                     case 11:
                         mySuffixes[i] = "Might";
                         break;
+
                     case 12:
                         mySuffixes[i] = "Tyrants";
                         break;
@@ -89,57 +101,75 @@ namespace Diablo.Utilities
                     case 0:
                         tempPrintValue = @"         .d$$$$*$$$$$$$bc";
                         break;
+
                     case 1:
                         tempPrintValue = @"      .d$P'     d$$    '*$$.";
                         break;
+
                     case 2:
                         tempPrintValue = @"     d$'       4$'$$      '$$.";
                         break;
+
                     case 3:
                         tempPrintValue = @"   4$P         $F ^$F       '$c";
                         break;
+
                     case 4:
                         tempPrintValue = @"  z$%         d$   3$        ^$L";
                         break;
+
                     case 5:
                         tempPrintValue = @" 4$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$F";
                         break;
+
                     case 6:
                         tempPrintValue = @" $$$F''''''''$F''''''$F'''''C$$*$";
                         break;
+
                     case 7:
                         tempPrintValue = @".$% '$$e    d$       3$   z$$'  $F";
                         break;
+
                     case 8:
                         tempPrintValue = @"4$     *$$.4$'        $$d$P'    $$";
                         break;
+
                     case 9:
                         tempPrintValue = @"4$      ^ *$$.       .d$F       $$";
                         break;
+
                     case 10:
                         tempPrintValue = @"4$        d$'$$c   z$$'3$       $F";
                         break;
+
                     case 11:
                         tempPrintValue = @" $L      4$' ^ *$$$P'   $$     4$";
                         break;
+
                     case 12:
                         tempPrintValue = @"  3$     $F  .d$P$$e    ^$F    $P";
                         break;
+
                     case 13:
                         tempPrintValue = @"   $$   d$  .$$'    '$$c 3$   d$";
                         break;
+
                     case 14:
                         tempPrintValue = @"    *$.4$'z$$'        ^*$$$$ $$";
                         break;
+
                     case 15:
                         tempPrintValue = @"     '$$$$P'             '$$$P";
                         break;
+
                     case 16:
                         tempPrintValue = @"       *$b.             .d$P'";
                         break;
+
                     case 17:
                         tempPrintValue = @"         '$$$ec.....ze$$$'";
                         break;
+
                     case 18:
                         tempPrintValue = @"             '**$$$**''";
                         break;
@@ -227,38 +257,48 @@ namespace Diablo.Utilities
                     case 0:
                         tempPrintValue = "╔══╗                   ╦══╗                   ╦╗  ╦        ╦";
                         break;
+
                     case 1:
                         tempPrintValue = "║  ║                   ║  ║                   ║╚╗ ║        ║     ╦";
                         break;
+
                     case 2:
                         tempPrintValue = "║  ║  ╦══╗  ╔══╦       ╬══╝  ╦══╗  ╔══╗       ║ ╚╗║  ╔══╗  ╠══╗  ╦  ╦═╗";
                         break;
+
                     case 3:
                         tempPrintValue = "║  ║  ║     ║  ║       ║     ║     ║  ║       ║  ╚╣  ║  ║  ║  ║  ║  ╚═╗";
                         break;
+
                     case 4:
                         tempPrintValue = "╚══╝  ╩     ╚══╚       ╩     ╩     ╚══╝       ╩   ╩  ╚══╝  ╩══╝  ╩  ╚═╩ ╦";
                         break;
+
                     case 5:
                         tempPrintValue = "                                                                        ╝";
                         break;
+
                     case 6:
                         tempPrintValue = "  ╦                      ╔══╗";
                         break;
+
                     case 7:
                         tempPrintValue = "  ║                   ╦  ║  ╩";
                         break;
+
                     case 8:
                         tempPrintValue = "  ║      ╦   ╦  ╦══╗  ╦  ╬══  ╦══╗  ╦══╗";
                         break;
+
                     case 9:
                         tempPrintValue = "  ║      ║   ║  ║     ║  ║    ╬══╝  ║";
                         break;
+
                     case 10:
                         tempPrintValue = "  ╩═══╝  ╚═══╝  ╩══╝  ╩  ╩    ╩══╝  ╩";
                         break;
                 }
-                Console.SetCursorPosition(Console.WindowWidth - 100 , i + 2);
+                Console.SetCursorPosition(Console.WindowWidth - 100, i + 2);
                 PrintInColour(tempPrintValue, ConsoleColor.Red);
             }
         }

@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Factories
 {
-    static class DungeonFactory
+    internal static class DungeonFactory
     {
         /// <summary>
         /// Generates a new dungeon

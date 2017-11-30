@@ -3,6 +3,7 @@
     public static class Language
     {
         #region Swedish
+
         private static string
             myToggleMusicSE = "Sätt musik",
             myOnSE = "På",
@@ -39,8 +40,6 @@
             myEquipSE = "Använd",
             myThrowAwaySE = "Kasta",
 
-
-
             myRestSE = "Vila",
             myLightFireSE = "Du tänder en brasa och vilar.",
             myRegainSE = "Du får åter",
@@ -74,7 +73,7 @@
             myCastFireBallSE = "Du använder eldklot!",
             myBurnSkinSE = "Den stora smällen bränner ditt skinn!",
             myTakeDamage1SE = "Du tar ",
-            myTakeDamage2SE = "skada!",
+            myTakeDamage2SE = " skada!",
             myInsufficientManaSE = "Otillräckligt med mana",
             myChooseEnemySE = "Välj en fiende att attackera:",
             myArcherSE = "Bågskytt",
@@ -158,16 +157,17 @@
             mySpottedNoneSE = "Inga fiender är närvarande",
 
             myScrollDecayedSE = "Rull-effekt gick ut!";
+
         #endregion Swedish
 
         #region English
+
         private static string
             myScrollDecayedEN = "Scroll-effect wore off!",
             myEnteringDungeonEN = "You delve into the nearest dungeon",
             myToggleMusicEN = "Toggle music",
             myOnEN = "On",
             myOffEN = "Off",
-
 
             myEffectAppliedEN = "Effect applied!",
             myAvailableScrollsEN = "Available scrolls:",
@@ -185,7 +185,6 @@
             mySpottedMultipleEN = "You have spotted multiple enemies!",
             mySpottedBossEN = "You have spotted ",
             mySpottedNoneEN = "There are no enemies present",
-
 
             myPlayEN = "Play",
             myExitEN = "Exit",
@@ -217,8 +216,6 @@
             myApplyEN = "Apply",
             myEquipEN = "Equip",
             myThrowAwayEN = "Throw away",
-
-
 
             myRestEN = "Rest",
             myLightFireEN = "You light a fire and rest",
@@ -318,9 +315,11 @@
             myInitialRoomEN = "Initial room and exit",
             myCurrentRoomEN = "Current room",
             myRoomEN = "Room";
+
         #endregion English
 
         #region Get
+
         public static string GetToggleMusic() => myToggleMusic;
 
         public static string GetOn() => myOn;
@@ -586,9 +585,11 @@
         public static string GetSpottedNone() => mySpottedNone;
 
         public static string GetEnteringDungeon() => myEnteringDungeon;
+
         #endregion Get
 
         #region Active Language
+
         private static string
             myScrollDecayed,
             myToggleMusic,
@@ -621,7 +622,7 @@
             myMaxMana,
             myMaxStamina,
             myStrength,
-            myAgility ,
+            myAgility,
             myWisdom,
             myIntelligence,
             myLuck,
@@ -633,20 +634,20 @@
 
             myOpenInventory,
             myInventory,
-            myGold ,
-            myHPPotions ,
+            myGold,
+            myHPPotions,
             myManaPotions,
-            myTrinkets ,
+            myTrinkets,
             myScrolls,
             myEquipped,
             myApply,
-            myEquip ,
+            myEquip,
             myThrowAway,
 
-            myRest ,
+            myRest,
             myLightFire,
-            myRegain ,
-            myRegainStamina ,
+            myRegain,
+            myRegainStamina,
 
             myLongRest,
             myPitchTent,
@@ -656,19 +657,19 @@
 
             myMusicSettings,
             myChooseSong,
-       
+
             myWhatUDo,
             myOffensive,
-            myMethodViolence ,
+            myMethodViolence,
             myAttack,
             myChooseAttack,
-            mySlash ,
+            mySlash,
             mySweep,
-            mySlap ,
+            mySlap,
             mySwingSword,
             mySpells,
-            myChooseSpell ,
-            myFireBolt ,
+            myChooseSpell,
+            myFireBolt,
             myCastFireBolt,
             myFlamestrike,
             myCastFlamestrike,
@@ -677,15 +678,15 @@
             myBurnSkin,
             myTakeDamage1,
             myTakeDamage2,
-            myInsufficientMana ,
+            myInsufficientMana,
             myChooseEnemy,
             myArcher,
-            mySkeleton ,
+            mySkeleton,
             myHealth,
             myHealthSmall,
             myArmour,
             myEnemyDefeated,
-            myExperience ,
+            myExperience,
             myEnemyStunned,
             myEnemyNoStunned,
             myMissedEnemy,
@@ -693,11 +694,11 @@
             myEnemyCannotAttack,
             myEnemySwingSword,
             myEnemyDrawsBow,
-            myBossWeapon ,
+            myBossWeapon,
             myEvadedStrike,
 
             myDefensive,
-            myChooseDefence ,
+            myChooseDefence,
             myRaiseShield,
             myRaiseDefence1,
             myRaiseDefence2,
@@ -705,30 +706,30 @@
             myBeginTouch,
             myMagicallyHeal,
 
-            mySuperStun ,
+            mySuperStun,
             myThrowPebbles1,
-            myThrowPebbles2 ,
+            myThrowPebbles2,
 
             myUseItem,
             myFlee,
-            myHasFled ,
-            myBossFlee ,
+            myHasFled,
+            myBossFlee,
 
             myAbstain,
             myNoAttack1,
             myNoAttack2,
 
             myAllDefeated,
-            myBossDefeated ,
+            myBossDefeated,
 
-            myFoundLoot ,
+            myFoundLoot,
             myPickUp,
             myPickUpEquip,
             myDiscard,
-            myLootAdded ,
+            myLootAdded,
 
             myFoundNoLoot,
-            myFoundChest ,
+            myFoundChest,
             myFoundChests,
             myFoundAnotherChest,
 
@@ -737,11 +738,12 @@
             myThereAreDoors2,
             myChooseDoor,
             myExitDungeon,
-            myExitingDungeon ,
-            myViewMap ,
-            myInitialRoom ,
-            myCurrentRoom ,
+            myExitingDungeon,
+            myViewMap,
+            myInitialRoom,
+            myCurrentRoom,
             myRoom;
+
         #endregion Active Language
 
         /// <summary>
@@ -936,9 +938,6 @@
             mySpottedNone = mySpottedNoneEN;
 
             myEnteringDungeon = myEnteringDungeonEN;
-
-
-
 
             myPlay = myPlayEN;
             myExit = myExitEN;

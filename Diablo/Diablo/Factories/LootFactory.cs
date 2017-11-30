@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Factories
 {
-    static class LootFactory
+    internal static class LootFactory
     {
         /// <summary>
         /// Creates an armour-item
@@ -36,12 +36,16 @@
             {
                 case 0:
                     return new Loot.Armour();
+
                 case 1:
                     return new Loot.Weapon();
+
                 case 2:
                     return new Loot.Trinket();
+
                 case 3:
                     return new Loot.Scroll();
+
                 default:
                     return new Loot.Armour();
             }

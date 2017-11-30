@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Threading;
 using System.Media;
+using System.Threading;
 
 namespace Diablo.Audio
 {
     public static class Audio
     {
-        private static 
+        private static
             SoundPlayer mySoundPlayer;
 
         private static Thread
@@ -91,7 +91,6 @@ namespace Diablo.Audio
                 myIsMusicPlaying = true;
                 PlayOraProNobisLucifer();
             }
-            
         }
 
         /// <summary>

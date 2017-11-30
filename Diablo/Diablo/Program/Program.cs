@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Media;
 
 namespace Diablo
 {
@@ -132,7 +131,6 @@ namespace Diablo
             MainMenu();
         }
 
-
         public static void MusicSettings()
         {
             int
@@ -157,7 +155,7 @@ namespace Diablo
                 case 0:
                     Play();
                     break;
-                
+
                 case 1:
                     Audio.Audio.PlayCirice();
                     break;

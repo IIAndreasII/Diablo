@@ -56,7 +56,7 @@ namespace Diablo.Loot
             Console.Write("Do wish to unlock it?");
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 6);
             Console.Write("[1] Yes ");
-            Utilities.Utility.PrintInColour("(-25 gold)", ConsoleColor.Red);
+            Utilities.Utility.PrintInColour("(-25 " + Localisation.Language.GetGold() + ")", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
             Console.Write("[2] No");
             if (!myIsMimic && Utilities.Utility.GetDigitInput(-7, -3, 2, 1) == 1)
@@ -89,17 +89,17 @@ namespace Diablo.Loot
                         if (i == myItems.Count - 1)
                         {
                             Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 1);
-                            Utilities.Utility.PrintInColour("Health potions: " + myHPPotions.ToString(), ConsoleColor.Red);
+                            Utilities.Utility.PrintInColour(Localisation.Language.GetHPPotions() + ": " + myHPPotions.ToString(), ConsoleColor.Red);
                             Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 2);
-                            Utilities.Utility.PrintInColour("Mana potions: " + myManaPotions.ToString(), ConsoleColor.Blue);
+                            Utilities.Utility.PrintInColour(Localisation.Language.GetManaPotions() + ": " + myManaPotions.ToString(), ConsoleColor.Blue);
                             Console.SetCursorPosition(tempWWD2 - 4, tempTextOffset + i * 2 + 3);
-                            Console.Write("Gold: " + myGold);
+                            Console.Write(Localisation.Language.GetGold() + ": " + myGold);
                         }
                     }
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-                    Console.Write("[1] Pick up all    [0] Discard all");
+                    Console.Write("[1] " + Localisation.Language.GetPickup() + "    [0] " + Localisation.Language.GetDiscard());
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 1);
-                    Console.Write("[2] Pick up all & equip best");
+                    Console.Write("[2] " + Localisation.Language.GetPickUpEquip());
                     switch (Utilities.Utility.GetDigitInput(-19, 3, 2))
                     {
                         case 0:
@@ -113,7 +113,7 @@ namespace Diablo.Loot
                             aPlayer.SetManaPotions(myManaPotions);
                             aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                            Console.Write("Loot added to inventory!");
+                            Console.Write(Localisation.Language.GetLootAdded());
                             System.Threading.Thread.Sleep(1500);
                             break;
 
@@ -125,7 +125,7 @@ namespace Diablo.Loot
                             aPlayer.SetManaPotions(myManaPotions);
                             aPlayer.PrintUI();
                             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 12);
-                            Console.Write("Loot added to inventory!");
+                            Console.Write(Localisation.Language.GetLootAdded());
                             System.Threading.Thread.Sleep(1500);
                             break;
                     }
