@@ -170,7 +170,6 @@
             myCurrentRoom,
             myRoom,
 
-
             myTrinketOf,
             myScrollOf,
             myHelmetOf,
@@ -183,7 +182,6 @@
 
         private static string[]
             mySuffixes;
-
 
         #endregion Active Language
 
@@ -361,7 +359,6 @@
             myShieldOfSE = "Sköld av",
             mySwordOfSE = "Svärd av",
             myStaminaSE = "Kondition";
-
 
         #endregion Swedish
 
@@ -552,7 +549,7 @@
         public static void Swedish()
         {
             myIsInSwedish = true;
-            mySuffixes = new string[]{ "Gudomlighet", "Korruption", "Fräsighet", "Bedrägeri", "Bonnläppar", "Oden", "Förtvivlan", "Klumpighet", "Dumhet", "Saltighet", "Visdom", "Makt", "Tyranner"};
+            mySuffixes = new string[] { "Gudomlighet", "Korruption", "Fräsighet", "Bedrägeri", "Bonnläppar", "Oden", "Förtvivlan", "Klumpighet", "Dumhet", "Saltighet", "Visdom", "Makt", "Tyranner" };
             Utilities.Utility.SetSuffixes(mySuffixes);
 
             myLanguageSettings = myLanguageSettingsSE;
@@ -910,6 +907,7 @@
         }
 
         #region Get
+
         public static bool GetIsInSwedish() => myIsInSwedish;
 
         public static string[] GetSuffixes() => mySuffixes;

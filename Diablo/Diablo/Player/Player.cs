@@ -85,12 +85,12 @@ namespace Diablo.Player
             myLevel = 1;
             myEXP = 0;
             myRequiredEXP = 50;
-            myStrength = Utilities.Utility.GetRNG().Next(5, 11);                  // Antal procent mer skada
-            myAgility = Utilities.Utility.GetRNG().Next(5, 11);                   // Antal procent chans det är att undvika en attack
-            myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121);             // Antal procent av maxHP
+            myStrength = Utilities.Utility.GetRNG().Next(5, 11);
+            myAgility = Utilities.Utility.GetRNG().Next(5, 11);
+            myMaxStamina = Utilities.Utility.GetRNG().Next(100, 121);
             myIntelligence = Utilities.Utility.GetRNG().Next(5, 11);
             myWisdom = Utilities.Utility.GetRNG().Next(5, 11);
-            myLuck = Utilities.Utility.GetRNG().Next(5, 11);                      // Antal procent chans för att hitta extra loot
+            myLuck = Utilities.Utility.GetRNG().Next(5, 11);
 
             myMaxHealth = 100;
             myMaxMana = 100;
@@ -106,7 +106,7 @@ namespace Diablo.Player
             myAppliedScrolls = new List<Loot.Scroll>();
             myEquippedTrinket = new Loot.Trinket(Localisation.Language.GetBasicness());
             myEquippedTrinket.ApplyBuff(this);
-            myEquippedHelmet = new Loot.Armour(Loot.ItemType.HELMET, Localisation.Language.GetBasicness(), 2); // Equip:ad gear är på en och inte i ens väska, därför läggs dem inte in i inventory:t
+            myEquippedHelmet = new Loot.Armour(Loot.ItemType.HELMET, Localisation.Language.GetBasicness(), 2);
             myEquippedChestplate = new Loot.Armour(Loot.ItemType.CHESTPLATE, Localisation.Language.GetBasicness(), 4);
             myEquippedTrousers = new Loot.Armour(Loot.ItemType.TROUSERS, Localisation.Language.GetBasicness(), 3);
             myEquippedBoots = new Loot.Armour(Loot.ItemType.BOOTS, Localisation.Language.GetBasicness(), 1);

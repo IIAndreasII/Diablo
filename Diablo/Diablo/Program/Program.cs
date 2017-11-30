@@ -188,6 +188,9 @@ namespace Diablo
             MusicSettings();
         }
 
+        /// <summary>
+        /// Language settings
+        /// </summary>
         public static void LanguageSettings()
         {
             int
@@ -201,7 +204,7 @@ namespace Diablo
                 switch (i)
                 {
                     case 0:
-                        tempPrintValue = Localisation.Language.GetChooseLanguage();   
+                        tempPrintValue = Localisation.Language.GetChooseLanguage();
                         break;
 
                     case 1:
