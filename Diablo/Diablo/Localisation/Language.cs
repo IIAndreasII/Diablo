@@ -10,6 +10,19 @@
         private static string
             myBasicness,
 
+            myApproachChest,
+            myItIsLocked,
+            myUnlockWish,
+            myYes,
+            myNo,
+            myPeekLoot,
+            myPeekNoLoot,
+            myNoOrdinary1,
+            myNoOrdinary2,
+            myEscapeFangs,
+            myDecapitate,
+
+
             myChooseLanguage,
             myCurrentLanguage,
             myLanguageSettings,
@@ -190,6 +203,19 @@
         private static string
             myBasicnessSE = "Ordinariehet",
 
+
+            myApproachChestSE = "Du närmar dig kistan och inspekterar den",
+            myItIsLockedSE = "Den är låst...",
+            myUnlockWishSE = "Vill du öppna den?",
+            myYesSE = "Ja",
+            myNoSE = "Nej",
+            myPeekLootSE = "Du tittar ner i kistan, det finns krimskrams!",
+            myPeekNoLootSE = "Du tittar ner i kistan, det finns inget krimskrams!",
+            myNoOrdinary1SE = "Medan du provar att öppna kistan märker du",
+            myNoOrdinary2SE = "att den andas. Detta är inte en vanlig kista",
+            myEscapeFangsSE = "Du lyckades fly från dess tänder!",
+            myDecapitateSE = "Kist-härmapan biter dig och sliter av ditt huvud!",
+
             mySwedishSE = "Svenska",
             myEnglishSE = "Engelska",
 
@@ -367,6 +393,25 @@
         private static string
             mySwedishEN = "Swedish",
             myEnglishEN = "English",
+
+
+
+            myApproachChestEN = "You approach the chest and inspect it",
+            myItIsLockedEN = "It is locked...",
+            myUnlockWishEN = "Do wish to unlock it?",
+            myYesEN = "Yes",
+            myNoEN = "No",
+            myPeekLootEN = "You peek inside the chest, there is loot!",
+            myPeekNoLootEN = "You peek inside the chest, there is no loot",
+            myNoOrdinary1EN = "As you try to open the chest, you notice",
+            myNoOrdinary2EN = "that it is breathing. This is no ordinary chest",
+            myEscapeFangsEN = "You managed to escape its fangs!",
+            myDecapitateEN = "The chest-mimic bites you and rips your head off!",
+
+
+
+
+
 
             myLanguageSettingsEN = "Languagesettings",
             myBasicnessEN = "Basicness",
@@ -556,6 +601,24 @@
             mySwedish = mySwedishSE;
             myEnglish = myEnglishSE;
 
+
+
+            myApproachChest = myApproachChestSE;
+            myItIsLocked = myItIsLockedSE;
+            myUnlockWish = myUnlockWishSE;
+            myYes = myYesSE;
+            myNo = myNoSE;
+            myPeekLoot = myPeekLootSE;
+            myPeekNoLoot = myPeekNoLootSE;
+            myNoOrdinary1 = myNoOrdinary1SE;
+            myNoOrdinary2 = myNoOrdinary2SE;
+            myEscapeFangs = myEscapeFangsSE;
+            myDecapitate = myDecapitateSE;
+
+
+
+
+
             myBasicness = myBasicnessSE;
             myStamina = myStaminaSE;
             myTrinketOf = myTrinketOfSE;
@@ -732,6 +795,20 @@
             myIsInSwedish = false;
             mySuffixes = new string[] { "Divinity", "Corruption", "Fräsighet", "Deceit", "Peasants", "Odin", "Despair", "Clumsiness", "Stupidity", "Saltiness", "Wisdom", "Might", "Tyrants" };
             Utilities.Utility.SetSuffixes(mySuffixes);
+
+            myApproachChest = myApproachChestEN;
+            myItIsLocked = myItIsLockedEN;
+            myUnlockWish = myUnlockWishEN;
+            myYes = myYesEN;
+            myNo = myNoEN;
+            myPeekLoot = myPeekLootEN;
+            myPeekNoLoot = myPeekNoLootEN;
+            myNoOrdinary1 = myNoOrdinary1EN;
+            myNoOrdinary2 = myNoOrdinary2EN;
+            myEscapeFangs = myEscapeFangsEN;
+            myDecapitate = myDecapitateEN;
+
+
 
             mySwedish = mySwedishEN;
             myEnglish = myEnglishEN;
