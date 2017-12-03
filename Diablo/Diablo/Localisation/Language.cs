@@ -577,7 +577,7 @@
         /// <summary>
         /// Initializes values
         /// </summary>
-        public static void Init() => Swedish();
+        public static void Init() => English();
 
         /// <summary>
         /// Sets the language to Swedish
