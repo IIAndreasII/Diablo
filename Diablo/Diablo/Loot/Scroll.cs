@@ -18,7 +18,7 @@ namespace Diablo.Loot
             myStrengthBuff,
             myArmourBuff,
             myHealthBuff,
-            myScrollDuration = 2;
+            myScrollDuration = 4;
 
         public Scroll()
         {
