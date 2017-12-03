@@ -253,6 +253,7 @@ namespace Diablo
                     Localisation.Language.English();
                     break;
             }
+            LanguageSettings();
         }
     }
 }
