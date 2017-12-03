@@ -22,7 +22,6 @@
             myEscapeFangs,
             myDecapitate,
 
-
             myChooseLanguage,
             myCurrentLanguage,
             myLanguageSettings,
@@ -202,7 +201,6 @@
 
         private static string
             myBasicnessSE = "Ordinariehet",
-
 
             myApproachChestSE = "Du närmar dig kistan och inspekterar den",
             myItIsLockedSE = "Den är låst...",
@@ -394,8 +392,6 @@
             mySwedishEN = "Swedish",
             myEnglishEN = "English",
 
-
-
             myApproachChestEN = "You approach the chest and inspect it",
             myItIsLockedEN = "It is locked...",
             myUnlockWishEN = "Do wish to unlock it?",
@@ -407,11 +403,6 @@
             myNoOrdinary2EN = "that it is breathing. This is no ordinary chest",
             myEscapeFangsEN = "You managed to escape its fangs!",
             myDecapitateEN = "The chest-mimic bites you and rips your head off!",
-
-
-
-
-
 
             myLanguageSettingsEN = "Languagesettings",
             myBasicnessEN = "Basicness",
@@ -601,8 +592,6 @@
             mySwedish = mySwedishSE;
             myEnglish = myEnglishSE;
 
-
-
             myApproachChest = myApproachChestSE;
             myItIsLocked = myItIsLockedSE;
             myUnlockWish = myUnlockWishSE;
@@ -614,10 +603,6 @@
             myNoOrdinary2 = myNoOrdinary2SE;
             myEscapeFangs = myEscapeFangsSE;
             myDecapitate = myDecapitateSE;
-
-
-
-
 
             myBasicness = myBasicnessSE;
             myStamina = myStaminaSE;
@@ -807,8 +792,6 @@
             myNoOrdinary2 = myNoOrdinary2EN;
             myEscapeFangs = myEscapeFangsEN;
             myDecapitate = myDecapitateEN;
-
-
 
             mySwedish = mySwedishEN;
             myEnglish = myEnglishEN;
