@@ -860,7 +860,7 @@ namespace Diablo.Player
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
             Console.Write(Localisation.Language.GetRegain());
-            Utilities.Utility.PrintInColour("40", ConsoleColor.Green);
+            Utilities.Utility.PrintInColour(" 40", ConsoleColor.Green);
             Console.Write(" " + Localisation.Language.GetHealthLowerCase() + "!");
             System.Threading.Thread.Sleep(1500);
         }
@@ -887,8 +887,8 @@ namespace Diablo.Player
             Console.Write(Localisation.Language.GetDrinkManaPotion());
             System.Threading.Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
-            Console.Write(Localisation.Language.GetRegain() + " ");
-            Utilities.Utility.PrintInColour("50", ConsoleColor.Blue);
+            Console.Write(Localisation.Language.GetRegain());
+            Utilities.Utility.PrintInColour(" 50", ConsoleColor.Blue);
             Console.Write(" mana!");
             System.Threading.Thread.Sleep(1500);
         }

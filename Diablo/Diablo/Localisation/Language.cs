@@ -456,7 +456,7 @@
             myWisdomEN = "Wisdom",
             myIntelligenceEN = "Intelligence",
             myLuckEN = "Luck",
-            mySpellDmgEN = "Spell damage",
+            mySpellDmgEN = "Spelldamage",
 
             myPossibleActionsEN = "Possible actions:",
             myEnterDungeonEN = "Enter dungeon",
@@ -506,7 +506,7 @@
             myCastFireBallEN = "You cast fireball!",
             myBurnSkinEN = "The massive blast burns your skin!",
             myTakeDamage1EN = "You take ",
-            myTakeDamage2EN = " damgae!",
+            myTakeDamage2EN = " damage!",
             myInsufficientManaEN = "Insufficient mana!",
             myChooseEnemyEN = "Choose enemy to attack:",
             myArcherEN = "Archer",
