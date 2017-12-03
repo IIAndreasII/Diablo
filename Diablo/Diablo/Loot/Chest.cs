@@ -47,26 +47,26 @@ namespace Diablo.Loot
                 tempWHD2 = Console.WindowHeight / 2,
                 tempTextOffset = tempWHD2 - 10;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 12);
-            Console.Write("You approach the chest and inspect it.");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetApproachChest().Length / 2, tempWHD2 - 12);
+            Console.Write(Localisation.Language.GetApproachChest());
             System.Threading.Thread.Sleep(1500);
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 10);
-            Console.Write("It is locked...");
-            Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 8);
-            Console.Write("Do wish to unlock it?");
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetItIsLocked().Length / 2, tempWHD2 - 10);
+            Console.Write(Localisation.Language.GetItIsLocked());
+            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetUnlockWish().Length / 2, tempWHD2 - 8);
+            Console.Write(Localisation.Language.GetUnlockWish());
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 6);
-            Console.Write("[1] Yes ");
+            Console.Write("[1] " + Localisation.Language.GetYes());
             Utilities.Utility.PrintInColour("(-25 " + Localisation.Language.GetGold() + ")", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 - 5);
-            Console.Write("[2] No");
+            Console.Write("[2] " + Localisation.Language.GetNo());
             if (!myIsMimic && Utilities.Utility.GetDigitInput(-7, -3, 2, 1) == 1)
             {
                 aPlayer.PrintUI();
                 aPlayer.SetGold(-25);
                 if (myItems.Count > 0)
                 {
-                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                    Console.Write("You peek inside the chest, there is loot!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetPeekLoot().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetPeekLoot());
                     System.Threading.Thread.Sleep(1500);
                     for (int i = 0; i < myItems.Count; i++)
                     {
@@ -132,31 +132,31 @@ namespace Diablo.Loot
                 }
                 else
                 {
-                    Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                    Console.Write("You peek inside the chest, there is no loot");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetPeekNoLoot().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetPeekNoLoot());
                     System.Threading.Thread.Sleep(1500);
                 }
             }
             else if (myIsMimic)
             {
                 aPlayer.PrintUI();
-                Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 12);
-                Console.Write("As you try to open the chest, you notice");
-                Console.SetCursorPosition(tempWWD2 - 21, tempWHD2 - 11);
-                Console.Write("that it is breathing. This is no ordinary chest");
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetNoOrdinaryPt1().Length / 2, tempWHD2 - 12);
+                Console.Write(Localisation.Language.GetNoOrdinaryPt1());
+                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetNoOrdinaryPt2().Length / 2, tempWHD2 - 11);
+                Console.Write(Localisation.Language.GetNoOrdinaryPt2());
                 System.Threading.Thread.Sleep(3000);
                 if (aPlayer.GetAgility() / 2 > Utilities.Utility.GetRNG().Next(1, 101))
                 {
                     aPlayer.PrintUI();
-                    Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
-                    Console.Write("You managed to escape its fangs!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEscapeFangs().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetEscapeFangs());
                     System.Threading.Thread.Sleep(1500);
                 }
                 else
                 {
                     aPlayer.PrintUI();
-                    Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 - 12);
-                    Console.Write("The chest-mimic bites you and rips your head off!");
+                    Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetDecapitate().Length / 2, tempWHD2 - 12);
+                    Console.Write(Localisation.Language.GetDecapitate());
                     System.Threading.Thread.Sleep(1500);
                     aPlayer.DeathSequence();
                 }

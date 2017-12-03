@@ -991,6 +991,28 @@
 
         public static string GetLanguageSettings() => myLanguageSettings;
 
+        public static string GetApproachChest() => myApproachChest;
+
+        public static string GetItIsLocked() => myItIsLocked;
+
+        public static string GetUnlockWish() => myUnlockWish;
+
+        public static string GetYes() => myYes;
+
+        public static string GetNo() => myNo;
+
+        public static string GetNoOrdinaryPt1() => myNoOrdinary1;
+
+        public static string GetNoOrdinaryPt2() => myNoOrdinary2;
+
+        public static string GetEscapeFangs() => myEscapeFangs;
+
+        public static string GetDecapitate() => myDecapitate;
+
+        public static string GetPeekLoot() => myPeekLoot;
+
+        public static string GetPeekNoLoot() => myPeekNoLoot;
+
         public static string GetBasicness() => myBasicness;
 
         public static string GetChooseLanguage() => myChooseLanguage;
