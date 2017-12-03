@@ -8,189 +8,187 @@
         #region Active Language
 
         private static string
-            myBasicness,
 
+            myAbstain,
+            myAgility,
+            myAllDefeated,
+            myApply,
             myApproachChest,
-            myItIsLocked,
-            myUnlockWish,
-            myYes,
-            myNo,
-            myPeekLoot,
-            myPeekNoLoot,
-            myNoOrdinary1,
-            myNoOrdinary2,
-            myEscapeFangs,
-            myDecapitate,
-
-            myChooseLanguage,
-            myCurrentLanguage,
-            myLanguageSettings,
-
-            mySwedish,
-            myEnglish,
-
-            myScrollDecayed,
-            myToggleMusic,
-            myOn,
-            myOff,
-            myEffectApplied,
+            myArcher,
+            myArmour,
+            myAttack,
             myAvailableScrolls,
+
+            myBack,
+            myBasicness,
+            myBeginTouch,
+            myBootsOf,
+            myBossDefeated,
+            myBossFlee,
+            myBossWeapon,
+            myBurnSkin,
+
+            myCastFlamestrike,
+            myCastFireBall,
+            myCastFireBolt,
+            myChestOf,
+            myChooseAttack,
+            myChooseDefence,
+            myChooseDoor,
+            myChooseEnemy,
+            myChooseLanguage,
+            myChooseSong,
+            myChooseSpell,
             myCloseInventory,
-            myTempStrength,
-            myTempArmour,
-            myTempHealth,
-            myDrinkHPPotion,
-            myDrinkManaPotion,
-            myMenu,
-            myEnterRoom,
+            myCommitSuicide,
+            myContinueAdventure,
+            myCurrentLanguage,
+            myCurrentRoom,
+
             myDealDamage1,
             myDealDamage2,
-            mySpottedOne,
-            mySpottedMultiple,
-            mySpottedBoss,
-            mySpottedNone,
+            myDecapitate,
+            myDefensive,
+            myDiscard,
+            myDrinkHPPotion,
+            myDrinkManaPotion,
 
-            myPlay,
+            myEffectApplied,
+            myEnemyCannotAttack,
+            myEnemyDefeated,
+            myEnemyDrawsBow,
+            myEnemyNoStunned,
+            myEnemyStunned,
+            myEnemySwingSword,
+            myEnglish,
+            myEnterRoom,
+            myEnterDungeon,
+            myEnteringDungeon,
+            myEquip,
+            myEquipped,
+            myEscapeFangs,
+            myEvadedStrike,
             myExit,
-            myBack,
-            myInsufficientFunds,
+            myExitDungeon,
+            myExitingDungeon,
+            myExperience,
 
+            myFireball,
+            myFireBolt,
+            myFlamestrike,
+            myFlee,
+            myFoundAnotherChest,
+            myFoundChest,
+            myFoundChests,
+            myFoundLoot,
+            myFoundNoLoot,
+            myFullRecovery,
+
+            myGold,
+
+            myHasFled,
+            myHealth,
+            myHealthSmall,
+            myHealingTouch,
+            myHelmetOf,
+            myHPPotions,
+
+            myInitialRoom,
+            myInsufficientFunds,
+            myInsufficientMana,
+            myIntelligence,
+            myInventory,
+            myItIsLocked,
+
+            myLanguageSettings,
             myLevelUp,
+            myLightFire,
+            myLongRest,
+            myLootAdded,
+            myLuck,
+
+            myMagicallyHeal,
+            myManaPotions,
             myMaxHealth,
             myMaxMana,
             myMaxStamina,
-            myStrength,
-            myAgility,
-            myWisdom,
-            myIntelligence,
-            myLuck,
-            mySpellDmg,
-
-            myPossibleActions,
-            myEnterDungeon,
-            myEnteringDungeon,
-
-            myOpenInventory,
-            myInventory,
-            myGold,
-            myHPPotions,
-            myManaPotions,
-            myTrinkets,
-            myScrolls,
-            myEquipped,
-            myApply,
-            myEquip,
-            myThrowAway,
-
-            myRest,
-            myLightFire,
-            myRegain,
-            myRegainStamina,
-
-            myLongRest,
-            myPitchTent,
-            myFullRecovery,
-
-            myCommitSuicide,
-
-            myMusicSettings,
-            myChooseSong,
-
-            myWhatUDo,
-            myOffensive,
+            myMenu,
             myMethodViolence,
-            myAttack,
-            myChooseAttack,
-            mySlash,
-            mySweep,
-            mySlap,
-            mySwingSword,
-            mySpells,
-            myChooseSpell,
-            myFireBolt,
-            myCastFireBolt,
-            myFlamestrike,
-            myCastFlamestrike,
-            myFireball,
-            myCastFireBall,
-            myBurnSkin,
-            myTakeDamage1,
-            myTakeDamage2,
-            myInsufficientMana,
-            myChooseEnemy,
-            myArcher,
-            mySkeleton,
-            myHealth,
-            myHealthSmall,
-            myArmour,
-            myEnemyDefeated,
-            myExperience,
-            myEnemyStunned,
-            myEnemyNoStunned,
             myMissedEnemy,
+            myMusicSettings,
 
-            myEnemyCannotAttack,
-            myEnemySwingSword,
-            myEnemyDrawsBow,
-            myBossWeapon,
-            myEvadedStrike,
-
-            myDefensive,
-            myChooseDefence,
-            myRaiseShield,
-            myRaiseDefence1,
-            myRaiseDefence2,
-            myHealingTouch,
-            myBeginTouch,
-            myMagicallyHeal,
-
-            mySuperStun,
-            myThrowPebbles1,
-            myThrowPebbles2,
-
-            myUseItem,
-            myFlee,
-            myHasFled,
-            myBossFlee,
-
-            myAbstain,
+            myNo,
             myNoAttack1,
             myNoAttack2,
+            myNoOrdinary1,
+            myNoOrdinary2,
 
-            myAllDefeated,
-            myBossDefeated,
+            myOff,
+            myOffensive,
+            myOn,
+            myOpenInventory,
 
-            myFoundLoot,
+            myPeekLoot,
+            myPeekNoLoot,
             myPickUp,
             myPickUpEquip,
-            myDiscard,
-            myLootAdded,
+            myPitchTent,
+            myPlay,
+            myPossibleActions,
 
-            myFoundNoLoot,
-            myFoundChest,
-            myFoundChests,
-            myFoundAnotherChest,
-
-            myContinueAdventure,
-            myThereAreDoors1,
-            myThereAreDoors2,
-            myChooseDoor,
-            myExitDungeon,
-            myExitingDungeon,
-            myViewMap,
-            myInitialRoom,
-            myCurrentRoom,
+            myRaiseDefence1,
+            myRaiseDefence2,
+            myRaiseShield,
+            myRegain,
+            myRegainStamina,
+            myRest,
             myRoom,
 
-            myTrinketOf,
+            myScrollDecayed,
             myScrollOf,
-            myHelmetOf,
-            myChestOf,
-            myTrousersOf,
-            myBootsOf,
+            myScrolls,
             myShieldOf,
+            mySkeleton,
+            mySlap,
+            mySlash,
+            mySwedish,
+            mySpellDmg,
+            mySpells,
+            mySpottedBoss,
+            mySpottedMultiple,
+            mySpottedNone,
+            mySpottedOne,
+            myStamina,
+            myStrength,
+            mySuperStun,
+            mySweep,
+            mySwingSword,
             mySwordOf,
-            myStamina;
+
+            myTakeDamage1,
+            myTakeDamage2,
+            myTempStrength,
+            myTempArmour,
+            myTempHealth,
+            myThereAreDoors1,
+            myThereAreDoors2,
+            myToggleMusic,
+            myTrousersOf,
+            myThrowAway,
+            myThrowPebbles1,
+            myThrowPebbles2,
+            myTrinketOf,
+            myTrinkets,
+
+            myUnlockWish,
+            myUseItem,
+
+            myViewMap,
+
+            myWhatUDo,
+            myWisdom,
+
+            myYes;
 
         private static string[]
             mySuffixes;
@@ -200,189 +198,187 @@
         #region Swedish
 
         private static string
-            myBasicnessSE = "Ordinariehet",
 
+            myAbstainSE = "Avstå",
+            myAgilitySE = "Smidighet",
+            myAllDefeatedSE = "Alla fiender är besegrade!",
             myApproachChestSE = "Du närmar dig kistan och inspekterar den",
-            myItIsLockedSE = "Den är låst...",
-            myUnlockWishSE = "Vill du öppna den?",
-            myYesSE = "Ja",
-            myNoSE = "Nej",
-            myPeekLootSE = "Du tittar ner i kistan, det finns krimskrams!",
-            myPeekNoLootSE = "Du tittar ner i kistan, det finns inget krimskrams!",
-            myNoOrdinary1SE = "Medan du provar att öppna kistan märker du",
-            myNoOrdinary2SE = "att den andas. Detta är inte en vanlig kista",
-            myEscapeFangsSE = "Du lyckades fly från dess tänder!",
-            myDecapitateSE = "Kist-härmapan biter dig och sliter av ditt huvud!",
+            myApplySE = "Applicera",
+            myArcherSE = "Bågskytt",
+            myArmourSE = "Rustning",
+            myAttackSE = "Attacker",
+            myAvailableScrollsSE = "Tillgängliga rullar:",
 
-            mySwedishSE = "Svenska",
-            myEnglishSE = "Engelska",
-
-            myChooseLanguageSE = "Välj språk:",
-            myCurrentLanguageSE = "Nuvarande språk: ",
-            myLanguageSettingsSE = "Språkinställningar",
-
-            myToggleMusicSE = "Sätt musik",
-            myOnSE = "På",
-            myOffSE = "Av",
-            myEnteringDungeonSE = "Du går ner i den närmaste hålan",
-            myPlaySE = "Spela",
-            myExitSE = "Avsluta",
             myBackSE = "Tillbaks",
-            myInsufficientFundsSE = "Otillräckligt med guld!",
+            myBasicnessSE = "Ordinariehet",
+            myBeginTouchSE = "Du börjar röra vid dig själv...",
+            myBootsOfSE = "Stövlar av",
+            myBossDefeatedSE = "är besegrad",
+            myBossFleeSE = "Du kan inte springa från en boss!",
+            myBossWeaponSE = " använder sitt vapen!",
+            myBurnSkinSE = "Den stora smällen bränner ditt skinn!",
 
+            myCastFireBallSE = "Du använder eldklot!",
+            myCastFireBoltSE = "Du använder eldvigg!",
+            myCastFlamestrikeSE = "Du använder flammsmisk!",
+            myChestOfSE = "Bröstplåt av",
+            myChooseAttackSE = "Välj attack:",
+            myChooseDefenceSE = "Välj försvar:",
+            myChooseDoorSE = "Vilken går du in i?",
+            myChooseLanguageSE = "Välj språk:",
+            myChooseSongSE = "Välj låt:",
+            myChooseSpellSE = "Välj trollformel:",
+            myChooseEnemySE = "Välj en fiende att attackera:",
+            myCloseInventorySE = "Stäng inventarie",
+            myCommitSuicideSE = "Begå självmord",
+            myContinueAdventureSE = "Fortsätt äventyr",
+            myCurrentLanguageSE = "Nuvarande språk: ",
+            myCurrentRoomSE = "Nuvarande rum",
+
+            myDealDamage1SE = "Du gör ",
+            myDealDamage2SE = " skada!",
+            myDecapitateSE = "Kist-härmapan biter dig och sliter av ditt huvud!",
+            myDefensiveSE = "Defensivt",
+            myDiscardSE = "Släng allt",
+            myDrinkHPPotionSE = "Du dricker en hälsodryck",
+            myDrinkManaPotionSE = "Du dricker en manadryck",
+
+            myEffectAppliedSE = "Effekt applicerad!",
+            myEnglishSE = "Engelska",
+            myEnemyCannotAttackSE = "Fienden är knockad och kan inte attackera",
+            myEnemyDefeatedSE = "Fiende besegrad!",
+            myEnemyDrawsBowSE = "Fienden spänner sin pilbåge!",
+            myEnterDungeonSE = "Gå in i fängelsehåla",
+            myEnemyNotStunnedSE = "Fienden kan inte bli knockad!",
+            myEnemyStunnedSE = "Fiende knockad!",
+            myEnemySwingSwordSE = "Fienden svingar sitt svärd!",
+            myEnteringDungeonSE = "Du går ner i den närmaste hålan",
+            myEnterRoomSE = "Du går in i rummet och tittar dig omkring",
+            myEquippedSE = "Använd:",
+            myEquipSE = "Använd",
+            myEscapeFangsSE = "Du lyckades fly från dess tänder!",
+            myEvadedStrikeSE = "Du undvek smällen!",
+            myExitSE = "Avsluta",
+            myExitDungeonSE = "Lämna fängelsehåla",
+            myExitingDungeonSE = "Säkert, lämnar du fängelsehålan",
+            myExperienceSE = "erfarenhet!",
+
+            myFireBoltSE = "Eldvigg (träffar vald fiende, 20mp)",
+            myFireballSE = "Eldklot (kanske t.o.m dödar dig, 120mp)",
+            myFlamestrikeSE = "Flammsmisk (träffar tre fiender, 60 mp)",
+            myFleeSE = "Fly",
+            myFoundAnotherChestSE = "Du hittade ytterligare en kista!",
+            myFoundChestSE = "Du hittade en kista!",
+            myFoundChestsSE = "Du hittade några kistor!",
+            myFoundLootSE = "Du har hittat lite krimskrams!",
+            myFoundNoLootSE = "Du hittade inget krimskrams i rummet",
+            myFullRecoverySE = "Fullständig återhämtning!",
+
+            myGoldSE = "Guld",
+
+            myHasFledSE = "Du flydde striden, jävla mes...",
+            myHealthSE = "Hälsa",
+            myHealthSmallSE = "hälsa",
+            myHealingTouchSE = "Helande beröring",
+            myHelmetOfSE = "Hjälm av",
+            myHPPotionsSE = "Hälsodrycker",
+
+            myInitialRoomSE = "Utgångsrum och utgång",
+            myInsufficientFundsSE = "Otillräckligt med guld!",
+            myInsufficientManaSE = "Otillräckligt med mana",
+            myIntelligenceSE = "Intelligens",
+            myInventorySE = "Inventarie",
+            myItIsLockedSE = "Den är låst...",
+
+            myLanguageSettingsSE = "Språkinställningar",
             myLevelUpSE = "Nivå ökad!",
+            myLightFireSE = "Du tänder en brasa och vilar",
+            myLongRestSE = "Vila länge",
+            myLootAddedSE = "Krimskrams tillagt i inventariet!",
+            myLuckSE = "Tur",
+
+            myMagicallyHealSE = "Det helar dig på något magiskt sätt(?)",
+            myManaPotionsSE = "Manadrycker",
             myMaxHealthSE = "Max hälsa",
             myMaxManaSE = "Max mana",
             myMaxStaminaSE = "Max kondition",
-            myStrengthSE = "Styrka",
-            myAgilitySE = "Smidighet",
-            myWisdomSE = "Visdom",
-            myIntelligenceSE = "Intelligens",
-            myLuckSE = "Tur",
-            mySpellDmgSE = "Trollformelsskada",
-
-            myPossibleActionsSE = "Möjliga val:",
-            myEnterDungeonSE = "Gå in i fängelsehåla",
-
-            myOpenInventorySE = "Öppna inventarie",
-            myInventorySE = "Inventarie",
-            myGoldSE = "Guld",
-            myHPPotionsSE = "Hälsodrycker",
-            myManaPotionsSE = "Manadrycker",
-            myTrinketsSE = "Prylar",
-            myScrollsSE = "Rullar",
-            myEquippedSE = "Använd:",
-            myApplySE = "Applicera",
-            myEquipSE = "Använd",
-            myThrowAwaySE = "Kasta",
-
-            myRestSE = "Vila",
-            myLightFireSE = "Du tänder en brasa och vilar.",
-            myRegainSE = "Du får åter",
-            myRegainStaminaSE = "kondition",
-
-            myLongRestSE = "Vila länge",
-            myPitchTentSE = "Du sätter upp ett tält och tänder en brasa",
-            myFullRecoverySE = "Fullständig återhämtning!",
-
-            myCommitSuicideSE = "Begå självmord",
-
-            myMusicSettingsSE = "Musik-inställningar",
-            myChooseSongSE = "Välj låt:",
-
-            myWhatUDoSE = "Vad gör du?",
-            myOffensiveSE = "Offensivt",
+            myMenuSE = "Meny",
             myMethodViolenceSE = "Välj metod av våldsamhet:",
-            myAttackSE = "Attacker",
-            myChooseAttackSE = "Välj attack:",
-            mySlashSE = "Hugg",
-            mySweepSE = "Svep (träffar 2 fiender)",
-            mySlapSE = "Örfil (knockar 1 fiende)",
-            mySwingSwordSE = "Du svingar ditt svärd",
-            mySpellsSE = "Trollformler",
-            myChooseSpellSE = "Välj trollformel:",
-            myFireBoltSE = "Eldvigg (träffar vald fiende, 20mp)",
-            myCastFireBoltSE = "Du använder eldvigg!",
-            myFlamestrikeSE = "Flammsmisk (träffar tre fiender, 60 mp)",
-            myCastFlamestrikeSE = "Du använder flammsmisk!",
-            myFireballSE = "Eldklot (kanske t.o.m dödar dig, 120mp)",
-            myCastFireBallSE = "Du använder eldklot!",
-            myBurnSkinSE = "Den stora smällen bränner ditt skinn!",
-            myTakeDamage1SE = "Du tar ",
-            myTakeDamage2SE = " skada!",
-            myInsufficientManaSE = "Otillräckligt med mana",
-            myChooseEnemySE = "Välj en fiende att attackera:",
-            myArcherSE = "Bågskytt",
-            mySkeletonSE = "Skelett",
-            myHealthSE = "Hälsa",
-            myHealthSmallSE = "hälsa",
-            myArmourSE = "Rustning",
-            myEnemyDefeatedSE = "Fiende besegrad!",
-            myExperienceSE = "erfarenhet!",
-            myEnemyStunnedSE = "Fiende knockad!",
-            myEnemyNotStunnedSE = "Fienden kan inte bli knockad!",
             myMissedEnemySE = "Du missade fienden!",
+            myMusicSettingsSE = "Musik-inställningar",
 
-            myEnemyCannotAttackSE = "Fienden är knockad och kan inte attackera",
-            myEnemySwingSwordSE = "Fienden svingar sitt svärd!",
-            myEnemyDrawsBowSE = "Fienden spänner sin pilbåge!",
-            myBossWeaponSE = " använder sitt vapen!",
-            myEvadedStrikeSE = "Du undvek smällen!",
+            myNoSE = "Nej",
+            myNoAttack1SE = "Du vill inte attackera och sänker",
+            myNoAttack2SE = "därför dina vapen",
+            myNoOrdinary1SE = "Medan du provar att öppna kistan märker du",
+            myNoOrdinary2SE = "att den andas. Detta är inte en vanlig kista",
 
-            myDefensiveSE = "Defensivt",
-            myChooseDefenceSE = "Välj försvar:",
+            myOnSE = "På",
+            myOffSE = "Av",
+            myOffensiveSE = "Offensivt",
+            myOpenInventorySE = "Öppna inventarie",
+
+            myPeekLootSE = "Du tittar ner i kistan, det finns krimskrams!",
+            myPeekNoLootSE = "Du tittar ner i kistan, det finns inget krimskrams!",
+            myPickUpSE = "Plocka upp",
+            myPickUpEquipSE = "Plocka upp och använd bästa",
+            myPitchTentSE = "Du sätter upp ett tält och tänder en brasa",
+            myPlaySE = "Spela",
+            myPossibleActionsSE = "Möjliga val:",
+
             myRaiseShieldSE = "Höj skölden",
             myRaiseDefence1SE = "Du höjer din sköld och",
             myRaiseDefence2SE = "förbereder för ett slag!",
-            myHealingTouchSE = "Helande beröring",
-            myBeginTouchSE = "Du börjar röra vid dig själv...",
-            myMagicallyHealSE = "Det helar dig på något magiskt sätt(?)",
-            mySuperStunSE = "Super örfil (knockar alla fiender)",
-            myThrowPebbles1SE = "Du kastar lite småsten och på något",
-            myThrowPebbles2SE = "sätt knockar det alla fiender",
-
-            myUseItemSE = "Använd föremål",
-            myFleeSE = "Fly",
-            myHasFledSE = "Du flydde striden, jävla mes...",
-            myBossFleeSE = "Du kan inte springa från en boss!",
-
-            myAbstainSE = "Avstå",
-            myNoAttack1SE = "Du vill inte attackera och sänker",
-            myNoAttack2SE = "därför dina vapen",
-
-            myAllDefeatedSE = "Alla fiender är besegrade!",
-            myBossDefeatedSE = "är besegrad",
-
-            myFoundLootSE = "Du har hittat lite krimskrams!",
-            myPickUpSE = "Plocka upp",
-            myPickUpEquipSE = "Plocka upp och använd bästa",
-            myDiscardSE = "Släng allt",
-            myLootAddedSE = "Krimskrams tillagt i inventariet!",
-
-            myFoundNoLootSE = "Du hittade inget krimskrams i rummet",
-            myFoundChestSE = "Du hittade en kista!",
-            myFoundChestsSE = "Du hittade några kistor!",
-            myFoundAnotherChestSE = "Du hittade ytterligare en kista!",
-
-            myContinueAdventureSE = "Fortsätt äventyr",
-            myThereAreDoors1SE = "Det finns ",
-            myThereAreDoors2SE = " dörrar i det här rummet",
-            myChooseDoorSE = "Vilken går du in i?",
-            myExitDungeonSE = "Lämna fängelsehåla",
-            myExitingDungeonSE = "Säkert, lämnar du fängelsehålan",
-            myViewMapSE = "Titta på kartan",
-            myInitialRoomSE = "Utgångsrum och utgång",
-            myCurrentRoomSE = "Nuvarande rum",
+            myRegainSE = "Du får åter",
+            myRegainStaminaSE = "kondition",
+            myRestSE = "Vila",
             myRoomSE = "Rum",
 
-            myEffectAppliedSE = "Effekt applicerad!",
-            myAvailableScrollsSE = "Tillgängliga rullar:",
-            myCloseInventorySE = "Stäng inventarie",
-            myTempStrengthSE = "temporär styrka!",
-            myTempArmourSE = "temporär rustning!",
-            myTempHealthSE = "temporär hälsa!",
-            myDrinkHPPotionSE = "Du dricker en hälsodryck",
-            myDrinkManaPotionSE = "Du dricker en manadryck",
-            myMenuSE = "Meny",
-            myEnterRoomSE = "Du går in i rummet och tittar dig omkring",
-            myDealDamage1SE = "Du gör ",
-            myDealDamage2SE = " skada!",
+            myScrollDecayedSE = "Rull-effekt gick ut!",
+            myScrollOfSE = "Rulle av",
+            myScrollsSE = "Rullar",
+            myShieldOfSE = "Sköld av",
+            mySlapSE = "Örfil (knockar 1 fiende)",
+            mySlashSE = "Hugg",
+            mySkeletonSE = "Skelett",
+            mySpellDmgSE = "Trollformelsskada",
+            mySpellsSE = "Trollformler",
             mySpottedOneSE = "Du ser en fiende!",
             mySpottedMultipleSE = "Du ser flera fiender!",
             mySpottedBossSE = "Du får syn på ",
             mySpottedNoneSE = "Inga fiender är närvarande",
-
-            myScrollDecayedSE = "Rull-effekt gick ut!",
-
-            myTrinketOfSE = "Pryl av",
-            myScrollOfSE = "Rulle av",
-            myHelmetOfSE = "Hjälm av",
-            myChestOfSE = "Bröstplåt av",
-            myTrousersOfSE = "Byxor av",
-            myBootsOfSE = "Stövlar av",
-            myShieldOfSE = "Sköld av",
+            myStaminaSE = "Kondition",
+            myStrengthSE = "Styrka",
+            mySuperStunSE = "Super örfil (knockar alla fiender)",
+            mySwedishSE = "Svenska",
+            mySweepSE = "Svep (träffar 2 fiender)",
+            mySwingSwordSE = "Du svingar ditt svärd",
             mySwordOfSE = "Svärd av",
-            myStaminaSE = "Kondition";
+
+            myTakeDamage1SE = "Du tar ",
+            myTakeDamage2SE = " skada!",
+            myTempArmourSE = "temporär rustning!",
+            myTempHealthSE = "temporär hälsa!",
+            myTempStrengthSE = "temporär styrka!",
+            myThereAreDoors1SE = "Det finns ",
+            myThereAreDoors2SE = " dörrar i det här rummet",
+            myThrowAwaySE = "Kasta",
+            myThrowPebbles1SE = "Du kastar lite småsten och på något",
+            myThrowPebbles2SE = "sätt knockar det alla fiender",
+            myToggleMusicSE = "Sätt musik",
+            myTrinketOfSE = "Pryl av",
+            myTrinketsSE = "Prylar",
+            myTrousersOfSE = "Byxor av",
+
+            myUnlockWishSE = "Vill du öppna den?",
+            myUseItemSE = "Använd föremål",
+           
+            myViewMapSE = "Titta på kartan",
+            
+            myWhatUDoSE = "Vad gör du?",
+            myWisdomSE = "Visdom",
+            
+            myYesSE = "Ja";
 
         #endregion Swedish
 
@@ -587,11 +583,9 @@
             myIsInSwedish = true;
             mySuffixes = new string[] { "Gudomlighet", "Korruption", "Fräsighet", "Bedrägeri", "Bonnläppar", "Oden", "Förtvivlan", "Klumpighet", "Dumhet", "Saltighet", "Visdom", "Makt", "Tyranner" };
             Utilities.Utility.SetSuffixes(mySuffixes);
-
             myLanguageSettings = myLanguageSettingsSE;
             mySwedish = mySwedishSE;
             myEnglish = myEnglishSE;
-
             myApproachChest = myApproachChestSE;
             myItIsLocked = myItIsLockedSE;
             myUnlockWish = myUnlockWishSE;
@@ -603,7 +597,6 @@
             myNoOrdinary2 = myNoOrdinary2SE;
             myEscapeFangs = myEscapeFangsSE;
             myDecapitate = myDecapitateSE;
-
             myBasicness = myBasicnessSE;
             myStamina = myStaminaSE;
             myTrinketOf = myTrinketOfSE;
@@ -614,10 +607,8 @@
             myBootsOf = myBootsOfSE;
             myShieldOf = myShieldOfSE;
             mySwordOf = mySwordOfSE;
-
             myChooseLanguage = myChooseLanguageSE;
             myCurrentLanguage = myCurrentLanguageSE;
-
             myScrollDecayed = myScrollDecayedSE;
             myToggleMusic = myToggleMusicSE;
             myOn = myOnSE;
@@ -638,14 +629,11 @@
             mySpottedMultiple = mySpottedMultipleSE;
             mySpottedBoss = mySpottedBossSE;
             mySpottedNone = mySpottedNoneSE;
-
             myEnteringDungeon = myEnteringDungeonSE;
-
             myPlay = myPlaySE;
             myExit = myExitSE;
             myBack = myBackSE;
             myInsufficientFunds = myInsufficientFundsSE;
-
             myLevelUp = myLevelUpSE;
             myMaxHealth = myMaxHealthSE;
             myMaxMana = myMaxManaSE;
@@ -656,10 +644,8 @@
             myIntelligence = myIntelligenceSE;
             myLuck = myLuckSE;
             mySpellDmg = mySpellDmgSE;
-
             myPossibleActions = myPossibleActionsSE;
             myEnterDungeon = myEnterDungeonSE;
-
             myOpenInventory = myOpenInventorySE;
             myInventory = myInventorySE;
             myGold = myGoldSE;
@@ -671,21 +657,16 @@
             myApply = myApplySE;
             myEquip = myEquipSE;
             myThrowAway = myThrowAwaySE;
-
             myRest = myRestSE;
             myLightFire = myLightFireSE;
             myRegain = myRegainSE;
             myRegainStamina = myRegainStaminaSE;
-
             myLongRest = myLongRestSE;
             myPitchTent = myPitchTentSE;
             myFullRecovery = myFullRecoverySE;
-
             myCommitSuicide = myCommitSuicideSE;
-
             myMusicSettings = myMusicSettingsSE;
             myChooseSong = myChooseSongSE;
-
             myWhatUDo = myWhatUDoSE;
             myOffensive = myOffensiveSE;
             myMethodViolence = myMethodViolenceSE;
@@ -718,13 +699,11 @@
             myEnemyStunned = myEnemyStunnedSE;
             myEnemyNoStunned = myEnemyNotStunnedSE;
             myMissedEnemy = myMissedEnemySE;
-
             myEnemyCannotAttack = myEnemyCannotAttackSE;
             myEnemySwingSword = myEnemySwingSwordSE;
             myEnemyDrawsBow = myEnemyDrawsBowSE;
             myBossWeapon = myBossWeaponSE;
             myEvadedStrike = myEvadedStrikeSE;
-
             myDefensive = myDefensiveSE;
             myChooseDefence = myChooseDefenceSE;
             myRaiseShield = myRaiseShieldSE;
@@ -736,30 +715,24 @@
             mySuperStun = mySuperStunSE;
             myThrowPebbles1 = myThrowPebbles1SE;
             myThrowPebbles2 = myThrowPebbles2SE;
-
             myUseItem = myUseItemSE;
             myFlee = myFleeSE;
             myHasFled = myHasFledSE;
             myBossFlee = myBossFleeSE;
-
             myAbstain = myAbstainSE;
             myNoAttack1 = myNoAttack1SE;
             myNoAttack2 = myNoAttack2SE;
-
             myAllDefeated = myAllDefeatedSE;
             myBossDefeated = myBossDefeatedSE;
-
             myFoundLoot = myFoundLootSE;
             myPickUp = myPickUpSE;
             myPickUpEquip = myPickUpEquipSE;
             myDiscard = myDiscardSE;
             myLootAdded = myLootAddedSE;
-
             myFoundNoLoot = myFoundNoLootSE;
             myFoundChest = myFoundChestSE;
             myFoundChests = myFoundChestsSE;
             myFoundAnotherChest = myFoundAnotherChestSE;
-
             myContinueAdventure = myContinueAdventureSE;
             myThereAreDoors1 = myThereAreDoors1SE;
             myThereAreDoors2 = myThereAreDoors2SE;
@@ -780,7 +753,6 @@
             myIsInSwedish = false;
             mySuffixes = new string[] { "Divinity", "Corruption", "Fräsighet", "Deceit", "Peasants", "Odin", "Despair", "Clumsiness", "Stupidity", "Saltiness", "Wisdom", "Might", "Tyrants" };
             Utilities.Utility.SetSuffixes(mySuffixes);
-
             myApproachChest = myApproachChestEN;
             myItIsLocked = myItIsLockedEN;
             myUnlockWish = myUnlockWishEN;
@@ -792,14 +764,11 @@
             myNoOrdinary2 = myNoOrdinary2EN;
             myEscapeFangs = myEscapeFangsEN;
             myDecapitate = myDecapitateEN;
-
             mySwedish = mySwedishEN;
             myEnglish = myEnglishEN;
-
             myLanguageSettings = myLanguageSettingsEN;
             myChooseLanguage = myChooseLanguageEN;
             myCurrentLanguage = myCurrentLanguageEN;
-
             myBasicness = myBasicnessEN;
             myStamina = myStaminaEN;
             myTrinketOf = myTrinketOfEN;
@@ -810,12 +779,10 @@
             myBootsOf = myBootsOfEN;
             myShieldOf = myShieldOfEN;
             mySwordOf = mySwordOfEN;
-
             myScrollDecayed = myScrollDecayedEN;
             myToggleMusic = myToggleMusicEN;
             myOn = myOnEN;
             myOff = myOffEN;
-
             myEffectApplied = myEffectAppliedEN;
             myAvailableScrolls = myAvailableScrollsEN;
             myCloseInventory = myCloseInventoryEN;
@@ -832,14 +799,11 @@
             mySpottedMultiple = mySpottedMultipleEN;
             mySpottedBoss = mySpottedBossEN;
             mySpottedNone = mySpottedNoneEN;
-
             myEnteringDungeon = myEnteringDungeonEN;
-
             myPlay = myPlayEN;
             myExit = myExitEN;
             myBack = myBackEN;
             myInsufficientFunds = myInsufficientFundsEN;
-
             myLevelUp = myLevelUpEN;
             myMaxHealth = myMaxHealthEN;
             myMaxMana = myMaxManaEN;
@@ -850,10 +814,8 @@
             myIntelligence = myIntelligenceEN;
             myLuck = myLuckEN;
             mySpellDmg = mySpellDmgEN;
-
             myPossibleActions = myPossibleActionsEN;
             myEnterDungeon = myEnterDungeonEN;
-
             myOpenInventory = myOpenInventoryEN;
             myInventory = myInventoryEN;
             myGold = myGoldEN;
@@ -865,21 +827,16 @@
             myApply = myApplyEN;
             myEquip = myEquipEN;
             myThrowAway = myThrowAwayEN;
-
             myRest = myRestEN;
             myLightFire = myLightFireEN;
             myRegain = myRegainEN;
             myRegainStamina = myRegainStaminaEN;
-
             myLongRest = myLongRestEN;
             myPitchTent = myPitchTentEN;
             myFullRecovery = myFullRecoveryEN;
-
             myCommitSuicide = myCommitSuicideEN;
-
             myMusicSettings = myMusicSettingsEN;
             myChooseSong = myChooseSongEN;
-
             myWhatUDo = myWhatUDoEN;
             myOffensive = myOffensiveEN;
             myMethodViolence = myMethodViolenceEN;
@@ -912,13 +869,11 @@
             myEnemyStunned = myEnemyStunnedEN;
             myEnemyNoStunned = myEnemyNotStunnedEN;
             myMissedEnemy = myMissedEnemyEN;
-
             myEnemyCannotAttack = myEnemyCannotAttackEN;
             myEnemySwingSword = myEnemySwingSwordEN;
             myEnemyDrawsBow = myEnemyDrawsBowEN;
             myBossWeapon = myBossWeaponEN;
             myEvadedStrike = myEvadedStrikeEN;
-
             myDefensive = myDefensiveEN;
             myChooseDefence = myChooseDefenceEN;
             myRaiseShield = myRaiseShieldEN;
@@ -930,30 +885,24 @@
             mySuperStun = mySuperStunEN;
             myThrowPebbles1 = myThrowPebbles1EN;
             myThrowPebbles2 = myThrowPebbles2EN;
-
             myUseItem = myUseItemEN;
             myFlee = myFleeEN;
             myHasFled = myHasFledEN;
             myBossFlee = myBossFleeEN;
-
             myAbstain = myAbstainEN;
             myNoAttack1 = myNoAttack1EN;
             myNoAttack2 = myNoAttack2EN;
-
             myAllDefeated = myAllDefeatedEN;
             myBossDefeated = myBossDefeatedEN;
-
             myFoundLoot = myFoundLootEN;
             myPickUp = myPickUpEN;
             myPickUpEquip = myPickUpEquipEN;
             myDiscard = myDiscardEN;
             myLootAdded = myLootAddedEN;
-
             myFoundNoLoot = myFoundNoLootEN;
             myFoundChest = myFoundChestEN;
             myFoundChests = myFoundChestsEN;
             myFoundAnotherChest = myFoundAnotherChestEN;
-
             myContinueAdventure = myContinueAdventureEN;
             myThereAreDoors1 = myThereAreDoors1EN;
             myThereAreDoors2 = myThereAreDoors2EN;

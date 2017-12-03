@@ -733,7 +733,7 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 2);
             Utilities.Utility.PrintInColour(@"\---/", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2);
-            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]Shield of", ConsoleColor.Gray);
+            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]" + Localisation.Language.GetShieldOf(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2 + 1);
             Utilities.Utility.PrintInColour(myEquippedShield.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
