@@ -1,6 +1,6 @@
 ﻿namespace Diablo.Loot
 {
-    public enum Buff
+    public enum BuffType
     {
         HEALTH,
         ARMOUR,
@@ -17,7 +17,7 @@
         private int
             myEffectAmount;
 
-        private Buff
+        private BuffType
             myBuffType;
 
         private string
@@ -46,49 +46,49 @@
             switch (Utilities.Utility.GetRNG().Next(0, 8))
             {
                 case 0:
-                    myBuffType = Buff.HEALTH;
+                    myBuffType = BuffType.HEALTH;
                     myEffectString = Localisation.Language.GetHealth();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 31);
                     break;
 
                 case 1:
-                    myBuffType = Buff.ARMOUR;
+                    myBuffType = BuffType.ARMOUR;
                     myEffectString = Localisation.Language.GetArmour();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 2:
-                    myBuffType = Buff.STAMINA;
+                    myBuffType = BuffType.STAMINA;
                     myEffectString = Localisation.Language.GetStamina();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 21);
                     break;
 
                 case 3:
-                    myBuffType = Buff.AGILITY;
+                    myBuffType = BuffType.AGILITY;
                     myEffectString = Localisation.Language.GetAgility();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
                     break;
 
                 case 4:
-                    myBuffType = Buff.LUCK;
+                    myBuffType = BuffType.LUCK;
                     myEffectString = Localisation.Language.GetLuck();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 5:
-                    myBuffType = Buff.STRENGTH;
+                    myBuffType = BuffType.STRENGTH;
                     myEffectString = Localisation.Language.GetStrength();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 16);
                     break;
 
                 case 6:
-                    myBuffType = Buff.WISDOM;
+                    myBuffType = BuffType.WISDOM;
                     myEffectString = Localisation.Language.GetWisdom();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
 
                 case 7:
-                    myBuffType = Buff.INTELLIGENCE;
+                    myBuffType = BuffType.INTELLIGENCE;
                     myEffectString = Localisation.Language.GetIntelligence();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(5, 11);
                     break;
@@ -103,35 +103,35 @@
         {
             switch (myBuffType)
             {
-                case Buff.AGILITY:
+                case BuffType.AGILITY:
                     aPlayer.SetAgilityBuff(myEffectAmount);
                     break;
 
-                case Buff.ARMOUR:
+                case BuffType.ARMOUR:
                     aPlayer.SetArmourBuff(myEffectAmount);
                     break;
 
-                case Buff.HEALTH:
+                case BuffType.HEALTH:
                     aPlayer.SetHealthBuff(myEffectAmount);
                     break;
 
-                case Buff.LUCK:
+                case BuffType.LUCK:
                     aPlayer.SetLuckBuff(myEffectAmount);
                     break;
 
-                case Buff.STAMINA:
+                case BuffType.STAMINA:
                     aPlayer.SetStaminaBuff(myEffectAmount);
                     break;
 
-                case Buff.STRENGTH:
+                case BuffType.STRENGTH:
                     aPlayer.SetStrengthBuff(myEffectAmount);
                     break;
 
-                case Buff.WISDOM:
+                case BuffType.WISDOM:
                     aPlayer.SetWisdomBuff(myEffectAmount);
                     break;
 
-                case Buff.INTELLIGENCE:
+                case BuffType.INTELLIGENCE:
                     aPlayer.SetIntelligenceBuff(myEffectAmount);
                     break;
             }

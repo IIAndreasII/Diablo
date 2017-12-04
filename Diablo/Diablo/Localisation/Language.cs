@@ -372,12 +372,12 @@
 
             myUnlockWishSE = "Vill du öppna den?",
             myUseItemSE = "Använd föremål",
-           
+
             myViewMapSE = "Titta på kartan",
-            
+
             myWhatUDoSE = "Vad gör du?",
             myWisdomSE = "Visdom",
-            
+
             myYesSE = "Ja";
 
         #endregion Swedish
@@ -561,7 +561,7 @@
             myUseItemEN = "Use item",
 
             myViewMapEN = "View map",
-            
+
             myWhatUDoEN = "What do you do?",
             myWisdomEN = "Wisdom",
 
@@ -940,7 +940,7 @@
             myTrinketOf = myTrinketOfEN;
             myTrinkets = myTrinketsEN;
             myTrousersOf = myTrousersOfEN;
-            
+
             myUnlockWish = myUnlockWishEN;
             myUseItem = myUseItemEN;
 
@@ -948,9 +948,9 @@
 
             myWhatUDo = myWhatUDoEN;
             myWisdom = myWisdomEN;
-            
+
             myYes = myYesEN;
-            
+
             myIsInSwedish = false;
             mySuffixes = new string[] { "Divinity", "Corruption", "Fräsighet", "Deceit", "Peasants", "Odin", "Despair", "Clumsiness", "Stupidity", "Saltiness", "Wisdom", "Might", "Tyrants" };
             Utilities.Utility.SetSuffixes(mySuffixes);
@@ -962,9 +962,17 @@
 
         public static string[] GetSuffixes() => mySuffixes;
 
-        public static string GetLanguageSettings() => myLanguageSettings;
-
+        public static string GetAbstain() => myAbstain;
+        public static string GetAgility() => myAgility;
+        public static string GetAllDefeated() => myAllDefeated;
+        public static string GetApply() => myApply;
         public static string GetApproachChest() => myApproachChest;
+        public static string GetArcher() => myArcher;   
+        public static string GetArmour() => myArmour;
+        public static string GetAttack() => myAttack;
+        public static string GetAvailableScrolls() => myAvailableScrolls;
+
+        public static string GetLanguageSettings() => myLanguageSettings;
 
         public static string GetItIsLocked() => myItIsLocked;
 
@@ -1038,8 +1046,6 @@
 
         public static string GetStrength() => myStrength;
 
-        public static string GetAgility() => myAgility;
-
         public static string GetWisdom() => myWisdom;
 
         public static string GetIntelligence() => myIntelligence;
@@ -1067,8 +1073,6 @@
         public static string GetScrolls() => myScrolls;
 
         public static string GetEquipped() => myEquipped;
-
-        public static string GetApply() => myApply;
 
         public static string GetEquip() => myEquip;
 
@@ -1100,7 +1104,7 @@
 
         public static string GetMethodViolence() => myMethodViolence;
 
-        public static string GetAttack() => myAttack;
+       
 
         public static string GetChooseAttack() => myChooseAttack;
 
@@ -1138,7 +1142,7 @@
 
         public static string GetChooseEnemy() => myChooseEnemy;
 
-        public static string GetArcher() => myArcher;
+        
 
         public static string GetSkeleton() => mySkeleton;
 
@@ -1146,7 +1150,6 @@
 
         public static string GetHealthLowerCase() => myHealthSmall;
 
-        public static string GetArmour() => myArmour;
 
         public static string GetEnemyDefeated() => myEnemyDefeated;
 
@@ -1198,13 +1201,12 @@
 
         public static string GetBossFlee() => myBossFlee;
 
-        public static string GetAbstain() => myAbstain;
+        
 
         public static string GetNoAttackPt1() => myNoAttack1;
 
         public static string GetNoAttackPt2() => myNoAttack2;
 
-        public static string GetAllDefeated() => myAllDefeated;
 
         public static string GetBossDefeated() => myBossDefeated;
 
@@ -1248,7 +1250,7 @@
 
         public static string GetEffectApplied() => myEffectApplied;
 
-        public static string GetAvailableScrolls() => myAvailableScrolls;
+       
 
         public static string GetCloseInventory() => myCloseInventory;
 
