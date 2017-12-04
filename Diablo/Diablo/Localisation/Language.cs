@@ -972,316 +972,176 @@
         public static string GetAttack() => myAttack;
         public static string GetAvailableScrolls() => myAvailableScrolls;
 
-        public static string GetLanguageSettings() => myLanguageSettings;
-
-        public static string GetItIsLocked() => myItIsLocked;
-
-        public static string GetUnlockWish() => myUnlockWish;
-
-        public static string GetYes() => myYes;
-
-        public static string GetNo() => myNo;
-
-        public static string GetNoOrdinaryPt1() => myNoOrdinary1;
-
-        public static string GetNoOrdinaryPt2() => myNoOrdinary2;
-
-        public static string GetEscapeFangs() => myEscapeFangs;
-
-        public static string GetDecapitate() => myDecapitate;
-
-        public static string GetPeekLoot() => myPeekLoot;
-
-        public static string GetPeekNoLoot() => myPeekNoLoot;
-
-        public static string GetBasicness() => myBasicness;
-
-        public static string GetChooseLanguage() => myChooseLanguage;
-
-        public static string GetCurrentLanguage() => myCurrentLanguage;
-
-        public static string GetSwedish() => mySwedish;
-
-        public static string GetEnglish() => myEnglish;
-
-        public static string GetStamina() => myStamina;
-
-        public static string GetScrollOf() => myScrollOf;
-
-        public static string GetTrinketOf() => myTrinketOf;
-
-        public static string GetHelmetOf() => myHelmetOf;
-
-        public static string GetChestPlateOf() => myChestOf;
-
-        public static string GetTrousersOf() => myTrousersOf;
-
-        public static string GetBootsOf() => myBootsOf;
-
-        public static string GetShieldOf() => myShieldOf;
-
-        public static string GetSwordOf() => mySwordOf;
-
-        public static string GetToggleMusic() => myToggleMusic;
-
-        public static string GetOn() => myOn;
-
-        public static string GetOff() => myOff;
-
-        public static string GetPlay() => myPlay;
-
-        public static string GetExit() => myExit;
-
         public static string GetBack() => myBack;
+        public static string GetBasicness() => myBasicness;
+        public static string GetBeginTouch() => myBeginTouch;
+        public static string GetBootsOf() => myBootsOf;
+        public static string GetBossDefeated() => myBossDefeated;
+        public static string GetBossFlee() => myBossFlee;
+        public static string GetBossWeapon() => myBossWeapon;
+        public static string GetBurnSkin() => myBurnSkin;
 
-        public static string GetInsufficientFunds() => myInsufficientFunds;
+        public static string GetCastFireball() => myCastFireBall;
+        public static string GetCastFirebolt() => myCastFireBolt;
+        public static string GetCastFlamestrike() => myCastFlamestrike;
+        public static string GetChestPlateOf() => myChestOf;
+        public static string GetChooseAttack() => myChooseAttack;
+        public static string GetChooseDefence() => myChooseDefence;
+        public static string GetChooseDoor() => myChooseDoor;
+        public static string GetChooseEnemy() => myChooseEnemy;
+        public static string GetChooseLanguage() => myChooseLanguage;
+        public static string GetChooseSong() => myChooseSong;
+        public static string GetChooseSpell() => myChooseSpell;
+        public static string GetCloseInventory() => myCloseInventory;
+        public static string GetCommitSuicide() => myCommitSuicide;
+        public static string GetContinueAdventure() => myContinueAdventure;
+        public static string GetCurrentLanguage() => myCurrentLanguage;
+        public static string GetCurrentRoom() => myCurrentRoom;
 
-        public static string GetLevelUp() => myLevelUp;
+        public static string GetDealDamagePt1() => myDealDamage1;
+        public static string GetDealDamagePt2() => myDealDamage2;
+        public static string GetDecapitate() => myDecapitate;
+        public static string GetDefensive() => myDefensive;
+        public static string GetDiscard() => myDiscard;
+        public static string GetDrinkHPPotion() => myDrinkHPPotion;
+        public static string GetDrinkManaPotion() => myDrinkManaPotion;
 
-        public static string GetMaxHealth() => myMaxHealth;
-
-        public static string GetMaxMana() => myMaxMana;
-
-        public static string GetMaxStamina() => myMaxStamina;
-
-        public static string GetStrength() => myStrength;
-
-        public static string GetWisdom() => myWisdom;
-
-        public static string GetIntelligence() => myIntelligence;
-
-        public static string GetLuck() => myLuck;
-
-        public static string GetSpellDamage() => mySpellDmg;
-
-        public static string GetPossibleActions() => myPossibleActions;
-
+        public static string GetEffectApplied() => myEffectApplied;
+        public static string GetEnemyCannotAttack() => myEnemyCannotAttack;
+        public static string GetEnemyDefeated() => myEnemyDefeated;
+        public static string GetEnemyDrawsBow() => myEnemyDrawsBow;
+        public static string GetEnemyNoStunned() => myEnemyNoStunned;
+        public static string GetEnemyStunned() => myEnemyStunned;
+        public static string GetEnemySwingSword() => myEnemySwingSword;
+        public static string GetEnglish() => myEnglish;
         public static string GetEnterDungeon() => myEnterDungeon;
+        public static string GetEnteringDungeon() => myEnteringDungeon;
+        public static string GetEnterRoom() => myEnterRoom;
+        public static string GetEquip() => myEquip;
+        public static string GetEquipped() => myEquipped;
+        public static string GetEscapeFangs() => myEscapeFangs;
+        public static string GetEvadedStrike() => myEvadedStrike;
+        public static string GetExit() => myExit;
+        public static string GetExitDungeon() => myExitDungeon;
+        public static string GetExitingDungeon() => myExitingDungeon;
+        public static string GetExperience() => myExperience;
 
-        public static string GetOpenInventory() => myOpenInventory;
-
-        public static string GetInventory() => myInventory;
+        public static string GetFireball() => myFireball;
+        public static string GetFirebolt() => myFireBolt;
+        public static string GetFlamestrike() => myFlamestrike;
+        public static string GetFlee() => myFlee;
+        public static string GetFoundAnotherChest() => myFoundAnotherChest;
+        public static string GetFoundChest() => myFoundChest;
+        public static string GetFoundChests() => myFoundChests;
+        public static string GetFoundLoot() => myFoundLoot;
+        public static string GetFoundNoLoot() => myFoundNoLoot;
+        public static string GetFullRecovery() => myFullRecovery;
 
         public static string GetGold() => myGold;
 
+        public static string GetHasFled() => myHasFled;
+        public static string GetHealingTouch() => myHealingTouch;
+        public static string GetHealth() => myHealth;
+        public static string GetHealthLowerCase() => myHealthSmall;
+        public static string GetHelmetOf() => myHelmetOf;
         public static string GetHPPotions() => myHPPotions;
 
-        public static string GetManaPotions() => myManaPotions;
-
-        public static string GetTrinkets() => myTrinkets;
-
-        public static string GetScrolls() => myScrolls;
-
-        public static string GetEquipped() => myEquipped;
-
-        public static string GetEquip() => myEquip;
-
-        public static string GetThrowAway() => myThrowAway;
-
-        public static string GetRest() => myRest;
-
-        public static string GetLightFire() => myLightFire;
-
-        public static string GetRegain() => myRegain;
-
-        public static string GetRegainStamina() => myRegainStamina;
-
-        public static string GetLongRest() => myLongRest;
-
-        public static string GetPitchTent() => myPitchTent;
-
-        public static string GetFullRecovery() => myFullRecovery;
-
-        public static string GetCommitSuicide() => myCommitSuicide;
-
-        public static string GetMusicSettings() => myMusicSettings;
-
-        public static string GetChooseSong() => myChooseSong;
-
-        public static string GetWhatUDo() => myWhatUDo;
-
-        public static string GetOffensive() => myOffensive;
-
-        public static string GetMethodViolence() => myMethodViolence;
-
-       
-
-        public static string GetChooseAttack() => myChooseAttack;
-
-        public static string GetSlash() => mySlash;
-
-        public static string GetSweep() => mySweep;
-
-        public static string GetSlap() => mySlap;
-
-        public static string GetSwingSword() => mySwingSword;
-
-        public static string GetSpells() => mySpells;
-
-        public static string GetChooseSpell() => myChooseSpell;
-
-        public static string GetFirebolt() => myFireBolt;
-
-        public static string GetFlamestrike() => myFlamestrike;
-
-        public static string GetFireball() => myFireball;
-
-        public static string GetCastFirebolt() => myCastFireBolt;
-
-        public static string GetCastFlamestrike() => myCastFlamestrike;
-
-        public static string GetCastFireball() => myCastFireBall;
-
-        public static string GetBurnSkin() => myBurnSkin;
-
-        public static string GetTakeDamagePt1() => myTakeDamage1;
-
-        public static string GetTakeDamagePt2() => myTakeDamage2;
-
+        public static string GetInitialRoom() => myInitialRoom;
+        public static string GetInsufficientFunds() => myInsufficientFunds;
         public static string GetInsufficientMana() => myInsufficientMana;
+        public static string GetIntelligence() => myIntelligence;
+        public static string GetInventory() => myInventory;
+        public static string GetItIsLocked() => myItIsLocked;
 
-        public static string GetChooseEnemy() => myChooseEnemy;
-
-        
-
-        public static string GetSkeleton() => mySkeleton;
-
-        public static string GetHealth() => myHealth;
-
-        public static string GetHealthLowerCase() => myHealthSmall;
-
-
-        public static string GetEnemyDefeated() => myEnemyDefeated;
-
-        public static string GetExperience() => myExperience;
-
-        public static string GetEnemyStunned() => myEnemyStunned;
-
-        public static string GetEnemyNoStunned() => myEnemyNoStunned;
-
-        public static string GetMissedEnemy() => myMissedEnemy;
-
-        public static string GetEnemyCannotAttack() => myEnemyCannotAttack;
-
-        public static string GetEnemySwingSword() => myEnemySwingSword;
-
-        public static string GetEnemyDrawsBow() => myEnemyDrawsBow;
-
-        public static string GetBossWeapon() => myBossWeapon;
-
-        public static string GetEvadedStrike() => myEvadedStrike;
-
-        public static string GetDefensive() => myDefensive;
-
-        public static string GetChooseDefence() => myChooseDefence;
-
-        public static string GetRaiseShield() => myRaiseShield;
-
-        public static string GetRaiseDefencePt1() => myRaiseDefence1;
-
-        public static string GetRaiseDefencePt2() => myRaiseDefence2;
-
-        public static string GetHealingTouch() => myHealingTouch;
-
-        public static string GetBeginTouch() => myBeginTouch;
+        public static string GetLanguageSettings() => myLanguageSettings;
+        public static string GetLevelUp() => myLevelUp;
+        public static string GetLightFire() => myLightFire;
+        public static string GetLongRest() => myLongRest;
+        public static string GetLootAdded() => myLootAdded;
+        public static string GetLuck() => myLuck;
 
         public static string GetMagicallyHeal() => myMagicallyHeal;
+        public static string GetManaPotions() => myManaPotions;
+        public static string GetMaxHealth() => myMaxHealth;
+        public static string GetMaxMana() => myMaxMana;
+        public static string GetMaxStamina() => myMaxStamina;
+        public static string GetMenu() => myMenu;
+        public static string GetMethodViolence() => myMethodViolence;
+        public static string GetMissedEnemy() => myMissedEnemy;
+        public static string GetMusicSettings() => myMusicSettings;
 
-        public static string GetSuperStun() => mySuperStun;
-
-        public static string GetThrowPebblesPt1() => myThrowPebbles1;
-
-        public static string GetThrowPebblesPt2() => myThrowPebbles2;
-
-        public static string GetUseItem() => myUseItem;
-
-        public static string GetFlee() => myFlee;
-
-        public static string GetHasFled() => myHasFled;
-
-        public static string GetBossFlee() => myBossFlee;
-
-        
-
+        public static string GetNo() => myNo;
         public static string GetNoAttackPt1() => myNoAttack1;
-
         public static string GetNoAttackPt2() => myNoAttack2;
+        public static string GetNoOrdinaryPt1() => myNoOrdinary1;
+        public static string GetNoOrdinaryPt2() => myNoOrdinary2;
 
+        public static string GetOff() => myOff;
+        public static string GetOffensive() => myOffensive;
+        public static string GetOn() => myOn;
+        public static string GetOpenInventory() => myOpenInventory;
 
-        public static string GetBossDefeated() => myBossDefeated;
-
-        public static string GetFoundLoot() => myFoundLoot;
-
+        public static string GetPeekLoot() => myPeekLoot;
+        public static string GetPeekNoLoot() => myPeekNoLoot;
         public static string GetPickup() => myPickUp;
-
         public static string GetPickUpEquip() => myPickUpEquip;
+        public static string GetPitchTent() => myPitchTent;
+        public static string GetPlay() => myPlay;
+        public static string GetPossibleActions() => myPossibleActions;
 
-        public static string GetDiscard() => myDiscard;
-
-        public static string GetLootAdded() => myLootAdded;
-
-        public static string GetFoundNoLoot() => myFoundNoLoot;
-
-        public static string GetFoundChest() => myFoundChest;
-
-        public static string GetFoundChests() => myFoundChests;
-
-        public static string GetFoundAnotherChest() => myFoundAnotherChest;
-
-        public static string GetContinueAdventure() => myContinueAdventure;
-
-        public static string GetThereAreDoorsPt1() => myThereAreDoors1;
-
-        public static string GetThereAreDoorsPt2() => myThereAreDoors2;
-
-        public static string GetChooseDoor() => myChooseDoor;
-
-        public static string GetExitDungeon() => myExitDungeon;
-
-        public static string GetExitingDungeon() => myExitingDungeon;
-
-        public static string GetViewMap() => myViewMap;
-
-        public static string GetInitialRoom() => myInitialRoom;
-
-        public static string GetCurrentRoom() => myCurrentRoom;
-
+        public static string GetRaiseDefencePt1() => myRaiseDefence1;
+        public static string GetRaiseDefencePt2() => myRaiseDefence2;
+        public static string GetRaiseShield() => myRaiseShield;
+        public static string GetRegain() => myRegain;
+        public static string GetRegainStamina() => myRegainStamina;
+        public static string GetRest() => myRest;
         public static string GetRoom() => myRoom;
 
-        public static string GetEffectApplied() => myEffectApplied;
-
-       
-
-        public static string GetCloseInventory() => myCloseInventory;
-
-        public static string GetTempStrength() => myTempStrength;
-
-        public static string GetTempArmour() => myTempArmour;
-
-        public static string GetTempHealth() => myTempHealth;
-
-        public static string GetDrinkHPPotion() => myDrinkHPPotion;
-
-        public static string GetDrinkManaPotion() => myDrinkManaPotion;
-
-        public static string GetMenu() => myMenu;
-
-        public static string GetEnterRoom() => myEnterRoom;
-
-        public static string GetDealDamagePt1() => myDealDamage1;
-
-        public static string GetDealDamagePt2() => myDealDamage2;
-
-        public static string GetSpottedOne() => mySpottedOne;
-
-        public static string GetSpottedMultiple() => mySpottedMultiple;
-
+        public static string GetScrollOf() => myScrollOf;
+        public static string GetScrolls() => myScrolls;
+        public static string GetShieldOf() => myShieldOf;
+        public static string GetSkeleton() => mySkeleton;
+        public static string GetSlap() => mySlap;
+        public static string GetSlash() => mySlash;
+        public static string GetSpellDamage() => mySpellDmg;
+        public static string GetSpells() => mySpells;
         public static string GetSpottedBoss() => mySpottedBoss;
-
+        public static string GetSpottedMultiple() => mySpottedMultiple;
         public static string GetSpottedNone() => mySpottedNone;
+        public static string GetSpottedOne() => mySpottedOne;
+        public static string GetStamina() => myStamina;
+        public static string GetStrength() => myStrength;
+        public static string GetSuperStun() => mySuperStun;
+        public static string GetSwedish() => mySwedish;
+        public static string GetSweep() => mySweep;
+        public static string GetSwingSword() => mySwingSword;
+        public static string GetSwordOf() => mySwordOf;
 
-        public static string GetEnteringDungeon() => myEnteringDungeon;
+        public static string GetTakeDamagePt1() => myTakeDamage1;
+        public static string GetTakeDamagePt2() => myTakeDamage2;
+        public static string GetTempArmour() => myTempArmour;
+        public static string GetTempHealth() => myTempHealth;
+        public static string GetTempStrength() => myTempStrength;
+        public static string GetThereAreDoorsPt1() => myThereAreDoors1;
+        public static string GetThereAreDoorsPt2() => myThereAreDoors2;
+        public static string GetThrowAway() => myThrowAway;
+        public static string GetThrowPebblesPt1() => myThrowPebbles1;
+        public static string GetThrowPebblesPt2() => myThrowPebbles2;
+        public static string GetToggleMusic() => myToggleMusic;
+        public static string GetTrinketOf() => myTrinketOf;
+        public static string GetTrinkets() => myTrinkets;
+        public static string GetTrousersOf() => myTrousersOf;
 
+        public static string GetUnlockWish() => myUnlockWish;
+        public static string GetUseItem() => myUseItem;
+  
+        public static string GetViewMap() => myViewMap;
+
+        public static string GetWhatUDo() => myWhatUDo;
+        public static string GetWisdom() => myWisdom;
+         
+        public static string GetYes() => myYes;
+ 
         #endregion Get
     }
 }
