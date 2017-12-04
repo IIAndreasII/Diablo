@@ -60,7 +60,7 @@ namespace Diablo.Dungeon
                 myChestCount = Utilities.Utility.GetRNG().Next(0, 3);
                 for (int i = 0; i < myChestCount; i++)
                 {
-                    myChests.Add(new Loot.Chest());
+                    myChests.Add(Factories.LootFactory.CreateChest());
                 }
             }
             for (int i = 0; i < anAmountOfItems; i++)
