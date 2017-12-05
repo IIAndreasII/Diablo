@@ -14,7 +14,7 @@ namespace Diablo.Player
 
     public class Player
     {
-        #region Variables
+        #region Values
 
         private int
             myMana,
@@ -78,7 +78,7 @@ namespace Diablo.Player
         private Loot.Trinket
             myEquippedTrinket;
 
-        #endregion Variables
+        #endregion Values
 
         public Player()
         {
