@@ -1,195 +1,195 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Diablo.Program" Collapsed="true">
-    <Position X="8.25" Y="0.75" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAQAACAAEQAAAAAAAAAQABAAAAAAgAAABAAAAAA=</HashCode>
       <FileName>Program\Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Dungeon.Dungeon" Collapsed="true">
-    <Position X="7.25" Y="5" Width="1.5" />
+    <Position X="7.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAIAEBCAAI=</HashCode>
       <FileName>Dungeon\Dungeon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Dungeon.Room" Collapsed="true">
-    <Position X="7.25" Y="5.75" Width="1.5" />
+    <Position X="7.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAIAAAAAAABgBAAAAAAIACAgAUgA4AIQGJAAIAAAYE=</HashCode>
       <FileName>Dungeon\Room.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Enemies.Archer" Collapsed="true">
-    <Position X="5" Y="6.25" Width="1.5" />
+    <Position X="5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enemies\Archer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Enemies.Enemy" Collapsed="true">
-    <Position X="2.75" Y="5" Width="1.5" />
+    <Position X="2.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABABAAQABAgAIAAAAoAAAAABIIAEJAAEAAAQgCAACEA=</HashCode>
       <FileName>Enemies\Base\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Enemies.Boss" Collapsed="true">
-    <Position X="0.5" Y="6.25" Width="1.5" />
+    <Position X="0.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAABAA=</HashCode>
       <FileName>Enemies\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Enemies.Skeleton" Collapsed="true">
-    <Position X="2.75" Y="6.25" Width="1.5" />
+    <Position X="2.75" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enemies\Skeleton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Factories.DungeonFactory" Collapsed="true">
-    <Position X="6.5" Y="4.25" Width="1.5" />
+    <Position X="6.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factories\DungeonFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Factories.EnemyFactory" Collapsed="true">
-    <Position X="2" Y="4.25" Width="1.5" />
+    <Position X="2" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAABAA=</HashCode>
       <FileName>Factories\EnemyFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Factories.LootFactory" Collapsed="true">
-    <Position X="3" Y="0.75" Width="1.5" />
+    <Position X="3" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABoAAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Factories\LootFactory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Armour" Collapsed="true">
-    <Position X="0.5" Y="2.75" Width="1.5" />
+    <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Loot\Armour.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Item" Collapsed="true">
-    <Position X="3.75" Y="1.5" Width="1.5" />
+    <Position X="3.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IIAAABBAIAAAAAAAAAAAAAAAAAEIAAAIAAAAQAAACEA=</HashCode>
       <FileName>Loot\Base\Item.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Chest" Collapsed="true">
-    <Position X="2" Y="1.5" Width="1.5" />
+    <Position X="2" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAIAAAgAAAAAAAABAEAAAAAQA=</HashCode>
       <FileName>Loot\Chest.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Scroll" Collapsed="true">
-    <Position X="8.75" Y="2.75" Width="1.5" />
+    <Position X="8.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAIAAAAQAAAEAAgQAAAAAgAEAIACQIAAAAAAAAAAA=</HashCode>
       <FileName>Loot\Scroll.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Trinket" Collapsed="true">
-    <Position X="2.75" Y="2.75" Width="1.5" />
+    <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAAAAASAAQAAAAAAAAAIAAAAACAAA=</HashCode>
       <FileName>Loot\Trinket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Loot.Weapon" Collapsed="true">
-    <Position X="6.5" Y="2.75" Width="1.5" />
+    <Position X="6.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Loot\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Managers.DungeonManager" Collapsed="true">
-    <Position X="8" Y="4.25" Width="1.5" />
+    <Position X="8" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABEIAAAAAAAAAAAAAAAAAAAAAKAAAAAAA=</HashCode>
       <FileName>Managers\DungeonManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Managers.EnemyManager" Collapsed="true">
-    <Position X="3.5" Y="4.25" Width="1.5" />
+    <Position X="3.5" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQCAEAAAAAABAAAAAAAAAAAAAAAAAEIAAACAAAAAAA=</HashCode>
       <FileName>Managers\EnemyManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Player.Player" Collapsed="true">
-    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>wtWBYDSEBAgCoAAEBm0hzZEnpiANYXAjBQAAkqSQOgA=</HashCode>
       <FileName>Player\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Properties.Settings" Collapsed="true">
-    <Position X="11.5" Y="4.5" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Utilities.Utility" Collapsed="true">
-    <Position X="7.5" Y="1.25" Width="1.5" />
+    <Position X="5.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgACACAkAAAAAAAAAIQAEAAEQAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Utilities\Utility.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Diablo.Localisation.Language" Collapsed="true">
-    <Position X="9" Y="1.25" Width="1.5" />
+    <Position X="6.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>+/////9f/v+9////9/N//9f//8/e/++/////////698=</HashCode>
       <FileName>Localisation\Language.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="Diablo.Dungeon.Doors" Collapsed="true">
-    <Position X="8.75" Y="5.75" Width="1.5" />
+    <Position X="8.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAQAAAAAAICAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Dungeon\Room.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Diablo.Enemies.EnemyType" Collapsed="true">
-    <Position X="4.25" Y="5" Width="1.5" />
+    <Position X="4.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAAAEAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Enemies\Base\Enemy.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Diablo.Loot.ItemType" Collapsed="true">
-    <Position X="5.25" Y="1.5" Width="1.5" />
+    <Position X="5.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAKAAIAAAAAACAEAACAAAAAAAAAAEAAAAAAAAAABAAA=</HashCode>
       <FileName>Loot\Base\Item.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Diablo.Loot.ScrollEffect" Collapsed="true">
-    <Position X="10.25" Y="2.75" Width="1.5" />
+    <Position X="10.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAA=</HashCode>
       <FileName>Loot\Scroll.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Diablo.Loot.BuffType" Collapsed="true">
-    <Position X="4.25" Y="2.75" Width="1.5" />
+    <Position X="4.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAhAAAAgAAABAAAAAAAIAAAAAAAAIAAAAAAABAA=</HashCode>
       <FileName>Loot\Trinket.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Diablo.Player.BattleActions" Collapsed="true">
-    <Position X="11.75" Y="0.5" Width="1.5" />
+    <Position X="9" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAwAABAAAAAAAAAAAA=</HashCode>
       <FileName>Player\Player.cs</FileName>
