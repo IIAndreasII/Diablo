@@ -4,7 +4,7 @@
     {
         public Armour()
         {
-            SetType();
+            SetArmourType();
             switch (myType)
             {
                 case ItemType.HELMET:
@@ -41,7 +41,7 @@
         /// <summary>
         /// Sets the item's item-type
         /// </summary>
-        private void SetType()
+        private void SetArmourType()
         {
             switch (Utilities.Utility.GetRNG().Next(0, 5))
             {
