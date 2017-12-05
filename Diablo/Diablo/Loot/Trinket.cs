@@ -1,4 +1,7 @@
-﻿namespace Diablo.Loot
+﻿using Diablo.Localisation;
+using Diablo.Utilities;
+
+namespace Diablo.Loot
 {
     public enum BuffType
     {
@@ -43,11 +46,11 @@
         /// </summary>
         private void SetBuff()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 8))
+            switch (Utility.GetRNG().Next(0, 8))
             {
                 case 0:
                     myBuffType = BuffType.HEALTH;
-                    myEffectString = Localisation.Language.GetHealth();
+                    myEffectString = Language.GetHealth();
                     myEffectAmount = Utilities.Utility.GetRNG().Next(10, 31);
                     break;
 

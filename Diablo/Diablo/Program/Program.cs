@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Diablo.Localisation;
+using Diablo.Utilities;
+using System;
 
 namespace Diablo
 {
@@ -89,29 +91,29 @@ namespace Diablo
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            Utilities.Utility.PrintTitle();
+            Utility.PrintTitle();
             string tempPrintValue = string.Empty;
             for (int i = 0; i < 3; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        tempPrintValue = "[1] " + Localisation.Language.GetPlay();
+                        tempPrintValue = "[1] " + Language.GetPlay();
                         break;
 
                     case 1:
-                        tempPrintValue = "[2] " + Localisation.Language.GetLanguageSettings();
+                        tempPrintValue = "[2] " + Language.GetLanguageSettings();
                         break;
 
                     case 2:
-                        tempPrintValue = "[3] " + Localisation.Language.GetExit();
+                        tempPrintValue = "[3] " + Language.GetExit();
                         break;
                 }
                 Console.SetCursorPosition(tempWWD2 - 30, tempWHD2 + i);
                 Console.Write(tempPrintValue);
             }
-            Utilities.Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
-            switch (Utilities.Utility.GetDigitInput(-29, 4, 3))
+            Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
+            switch (Utility.GetDigitInput(-29, 4, 3))
             {
                 case 1:
                     Initialize();
@@ -151,7 +153,7 @@ namespace Diablo
                 tempWHD2 = Console.WindowHeight / 2;
             myPlayer.PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetChooseSong());
+            Console.Write(Language.GetChooseSong());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
             Console.Write("[1] 'Cirice' - Ghost B.C");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 9);
@@ -159,11 +161,11 @@ namespace Diablo
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 8);
             Console.Write("[3] 'Ora Pro Nobis Lucifer' - Behemoth");
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 6);
-            Console.Write("[4] " + Localisation.Language.GetToggleMusic() + ": " + (Audio.Audio.GetIsMusicPlaying() == true ? Localisation.Language.GetOn() : Localisation.Language.GetOff()));
+            Console.Write("[4] " + Language.GetToggleMusic() + ": " + (Audio.Audio.GetIsMusicPlaying() == true ? Language.GetOn() : Language.GetOff()));
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 4);
-            Console.Write("[0] " + Localisation.Language.GetBack());
+            Console.Write("[0] " + Language.GetBack());
 
-            switch (Utilities.Utility.GetDigitInput(-19, -3, 4))
+            switch (Utility.GetDigitInput(-19, -3, 4))
             {
                 case 0:
                     Play();
@@ -196,15 +198,15 @@ namespace Diablo
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            Utilities.Utility.PrintTitle();
-            Utilities.Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
+            Utility.PrintTitle();
+            Utility.PrintPentagram(tempWWD2, 9, ConsoleColor.DarkRed);
             string tempPrintValue = string.Empty;
             for (int i = 0; i < 8; i++)
             {
                 switch (i)
                 {
                     case 0:
-                        tempPrintValue = Localisation.Language.GetChooseLanguage();
+                        tempPrintValue = Language.GetChooseLanguage();
                         break;
 
                     case 1:
@@ -212,11 +214,11 @@ namespace Diablo
                         break;
 
                     case 2:
-                        tempPrintValue = "[1] " + Localisation.Language.GetSwedish();
+                        tempPrintValue = "[1] " + Language.GetSwedish();
                         break;
 
                     case 3:
-                        tempPrintValue = "[2] " + Localisation.Language.GetEnglish();
+                        tempPrintValue = "[2] " + Language.GetEnglish();
                         break;
 
                     case 4:
@@ -224,7 +226,7 @@ namespace Diablo
                         break;
 
                     case 5:
-                        tempPrintValue = Localisation.Language.GetCurrentLanguage() + (Localisation.Language.GetIsInSwedish() == true ? Localisation.Language.GetSwedish() : Localisation.Language.GetEnglish());
+                        tempPrintValue = Language.GetCurrentLanguage() + (Language.GetIsInSwedish() == true ? Language.GetSwedish() : Language.GetEnglish());
                         break;
 
                     case 6:
@@ -232,25 +234,25 @@ namespace Diablo
                         break;
 
                     case 7:
-                        tempPrintValue = "[0] " + Localisation.Language.GetBack();
+                        tempPrintValue = "[0] " + Language.GetBack();
                         break;
                 }
                 Console.SetCursorPosition(tempWWD2 - 30, tempWHD2 + i);
                 Console.Write(tempPrintValue);
             }
 
-            switch (Utilities.Utility.GetDigitInput(-29, 9, 2))
+            switch (Utility.GetDigitInput(-29, 9, 2))
             {
                 case 0:
                     MainMenu();
                     break;
 
                 case 1:
-                    Localisation.Language.Swedish();
+                    Language.Swedish();
                     break;
 
                 case 2:
-                    Localisation.Language.English();
+                    Language.English();
                     break;
             }
             LanguageSettings();

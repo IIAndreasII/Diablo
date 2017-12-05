@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Diablo.Localisation;
+using Diablo.Loot;
+using Diablo.Utilities;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Diablo.Player
 {
@@ -61,13 +65,13 @@ namespace Diablo.Player
         private bool
             myIsDefending;
 
-        private List<Loot.Item>
+        private List<Item>
             myInventory;
 
-        private List<Loot.Scroll>
+        private List<Scroll>
             myAppliedScrolls;
 
-        private Loot.Item
+        private Item
             myEquippedHelmet,
             myEquippedChestplate,
             myEquippedTrousers,
@@ -75,7 +79,7 @@ namespace Diablo.Player
             myEquippedShield,
             myEquippedWeapon;
 
-        private Loot.Trinket
+        private Trinket
             myEquippedTrinket;
 
         #endregion Values
@@ -128,71 +132,71 @@ namespace Diablo.Player
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             Console.Clear();
-            Utilities.Utility.PrintPentagram(tempWWD2 - 57, tempWHD2 - 12, ConsoleColor.DarkRed);
-            Utilities.Utility.PrintPentagram(tempWWD2 + 22, tempWHD2 - 12, ConsoleColor.DarkRed);
+            Utility.PrintPentagram(tempWWD2 - 57, tempWHD2 - 12, ConsoleColor.DarkRed);
+            Utility.PrintPentagram(tempWWD2 + 22, tempWHD2 - 12, ConsoleColor.DarkRed);
 
             Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(" " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
+            Utility.PrintInColour(" " + (myHealth + myTempHealth) + @"/" + myMaxHealth, ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 - 23, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Red);
 
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
+            Utility.PrintInColour(@"  Dmg: " + myDamage.ToString(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
 
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  Arm: " + myArmourRating.ToString(), ConsoleColor.Gray);
+            Utility.PrintInColour(@"  Arm: " + myArmourRating.ToString(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 1, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Gray);
 
             Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 5);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 6);
-            Utilities.Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
+            Utility.PrintInColour(@"  " + myMana + "/" + myMaxMana.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 + 10, tempWHD2 + 7);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Blue);
 
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 8);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkRed);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 9);
-            Utilities.Utility.PrintInColour(@"  Str: " + (myStrength + myTempStrength), ConsoleColor.DarkRed);
+            Utility.PrintInColour(@"  Str: " + (myStrength + myTempStrength), ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 10);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkRed);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkRed);
 
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 8);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Magenta);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Magenta);
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 9);
-            Utilities.Utility.PrintInColour(@"  Agi: " + myAgility.ToString(), ConsoleColor.Magenta);
+            Utility.PrintInColour(@"  Agi: " + myAgility.ToString(), ConsoleColor.Magenta);
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 10);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Magenta);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Magenta);
 
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 8);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Cyan);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Cyan);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 9);
-            Utilities.Utility.PrintInColour(@"  Int: " + myIntelligence.ToString(), ConsoleColor.Cyan);
+            Utility.PrintInColour(@"  Int: " + myIntelligence.ToString(), ConsoleColor.Cyan);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 + 10);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Cyan);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Cyan);
 
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 11);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Green);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 12);
-            Utilities.Utility.PrintInColour(@"Sta:" + myStamina.ToString() + "/" + myMaxStamina.ToString(), ConsoleColor.Green);
+            Utility.PrintInColour(@"Sta:" + myStamina.ToString() + "/" + myMaxStamina.ToString(), ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 + 13);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Green);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.Green);
 
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 11);
-            Utilities.Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkMagenta);
+            Utility.PrintInColour(@"/■■■■■■■■■\", ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 12);
-            Utilities.Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
+            Utility.PrintInColour(@"  Wis: " + myWisdom.ToString(), ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 - 2, tempWHD2 + 13);
-            Utilities.Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
+            Utility.PrintInColour(@"\■■■■■■■■■/", ConsoleColor.DarkMagenta);
         }
 
         #region Stats
@@ -225,35 +229,35 @@ namespace Diablo.Player
             mySpellDamage += 10;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetLevelUp());
+            Console.Write(Language.GetLevelUp());
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 10);
-            Console.Write(Localisation.Language.GetMaxHealth());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetMaxHealth());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 9);
-            Console.Write(Localisation.Language.GetMaxMana());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetMaxMana());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
-            Console.Write(Localisation.Language.GetMaxStamina());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetMaxStamina());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 7);
-            Console.Write(Localisation.Language.GetStrength());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetStrength());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 6);
-            Console.Write(Localisation.Language.GetAgility());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetAgility());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 5);
-            Console.Write(Localisation.Language.GetWisdom());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetWisdom());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 4);
-            Console.Write(Localisation.Language.GetIntelligence());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetIntelligence());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 3);
-            Console.Write(Localisation.Language.GetLuck());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
+            Console.Write(Language.GetLuck());
+            Utility.PrintInColour("+", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 2);
-            Console.Write(Localisation.Language.GetSpellDamage());
-            Utilities.Utility.PrintInColour("+", ConsoleColor.Green);
-            System.Threading.Thread.Sleep(3000);
+            Console.Write(Language.GetSpellDamage());
+            Utility.PrintInColour("+", ConsoleColor.Green);
+            Thread.Sleep(3000);
         }
 
         /// <summary>
@@ -267,24 +271,24 @@ namespace Diablo.Player
             if (myGold - 10 < 0)
             {
                 Console.SetCursorPosition(tempWWD2 - 10, tempWHD2 - 3);
-                Console.Write(Localisation.Language.GetInsufficientFunds());
-                System.Threading.Thread.Sleep(750);
+                Console.Write(Language.GetInsufficientFunds());
+                Thread.Sleep(750);
             }
             else
             {
                 PrintUI();
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 12);
-                Console.Write(Localisation.Language.GetLightFire());
-                System.Threading.Thread.Sleep(2000);
+                Console.Write(Language.GetLightFire());
+                Thread.Sleep(2000);
                 Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-                Console.Write(Localisation.Language.GetRegain());
-                Utilities.Utility.PrintInColour("20", ConsoleColor.Green);
-                Console.Write(Localisation.Language.GetRegainStamina());
-                System.Threading.Thread.Sleep(1500);
+                Console.Write(Language.GetRegain());
+                Utility.PrintInColour("20", ConsoleColor.Green);
+                Console.Write(Language.GetRegainStamina());
+                Thread.Sleep(1500);
                 Console.SetCursorPosition(tempWWD2 - 5, tempWHD2 - 8);
-                Utilities.Utility.PrintInColour("-10 ", ConsoleColor.Red);
-                Console.Write(Localisation.Language.GetGold() + "!");
-                System.Threading.Thread.Sleep(1000);
+                Utility.PrintInColour("-10 ", ConsoleColor.Red);
+                Console.Write(Language.GetGold() + "!");
+                Thread.Sleep(1000);
                 AddStamina(20);
                 SetGold(-10);
             }
@@ -303,11 +307,11 @@ namespace Diablo.Player
             myMana = myMaxMana;
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 17, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetPitchTent());
-            System.Threading.Thread.Sleep(2000);
+            Console.Write(Language.GetPitchTent());
+            Thread.Sleep(2000);
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 - 10);
-            Console.Write(Localisation.Language.GetFullRecovery());
-            System.Threading.Thread.Sleep(1500);
+            Console.Write(Language.GetFullRecovery());
+            Thread.Sleep(1500);
         }
 
         /// <summary>
@@ -401,12 +405,12 @@ namespace Diablo.Player
         /// Equips the player with given item
         /// </summary>
         /// <param name="anItem">Item to equip</param>
-        public void Equip(Loot.Item anItem)
+        public void Equip(Item anItem)
         {
-            Loot.Item tempItem;
+            Item tempItem;
             switch (anItem.GetItemType())
             {
-                case Loot.ItemType.HELMET:
+                case ItemType.HELMET:
                     tempItem = myEquippedHelmet;
                     myEquippedHelmet = anItem;
                     if (myInventory.Contains(anItem))
@@ -416,7 +420,7 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.CHESTPLATE:
+                case ItemType.CHESTPLATE:
                     tempItem = myEquippedChestplate;
                     myEquippedChestplate = anItem;
                     if (myInventory.Contains(anItem))
@@ -426,7 +430,7 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.TROUSERS:
+                case ItemType.TROUSERS:
                     tempItem = myEquippedTrousers;
                     myEquippedTrousers = anItem;
                     if (myInventory.Contains(anItem))
@@ -436,7 +440,7 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.BOOTS:
+                case ItemType.BOOTS:
                     tempItem = myEquippedBoots;
                     myEquippedBoots = anItem;
                     if (myInventory.Contains(anItem))
@@ -446,7 +450,7 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.WEAPON:
+                case ItemType.WEAPON:
                     tempItem = myEquippedWeapon;
                     myEquippedWeapon = anItem;
                     if (myInventory.Contains(anItem))
@@ -456,7 +460,7 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.SHIELD:
+                case ItemType.SHIELD:
                     tempItem = myEquippedShield;
                     myEquippedShield = anItem;
                     if (myInventory.Contains(anItem))
@@ -466,9 +470,9 @@ namespace Diablo.Player
                     myInventory.Add(tempItem);
                     break;
 
-                case Loot.ItemType.TRINKET:
+                case ItemType.TRINKET:
                     tempItem = myEquippedTrinket;
-                    myEquippedTrinket = (Loot.Trinket)anItem;
+                    myEquippedTrinket = (Trinket)anItem;
                     ResetBuffs();
                     myEquippedTrinket.ApplyBuff(this);
                     if (myInventory.Contains(anItem))
@@ -491,42 +495,42 @@ namespace Diablo.Player
             {
                 switch (myInventory[i].GetItemType())
                 {
-                    case Loot.ItemType.HELMET:
+                    case ItemType.HELMET:
                         if (myInventory[i].GetRating() > myEquippedHelmet.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
 
-                    case Loot.ItemType.CHESTPLATE:
+                    case ItemType.CHESTPLATE:
                         if (myInventory[i].GetRating() > myEquippedChestplate.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
 
-                    case Loot.ItemType.TROUSERS:
+                    case ItemType.TROUSERS:
                         if (myInventory[i].GetRating() > myEquippedTrousers.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
 
-                    case Loot.ItemType.BOOTS:
+                    case ItemType.BOOTS:
                         if (myInventory[i].GetRating() > myEquippedBoots.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
 
-                    case Loot.ItemType.WEAPON:
+                    case ItemType.WEAPON:
                         if (myInventory[i].GetRating() > myEquippedWeapon.GetRating())
                         {
                             Equip(myInventory[i]);
                         }
                         break;
 
-                    case Loot.ItemType.SHIELD:
+                    case ItemType.SHIELD:
                         if (myInventory[i].GetRating() > myEquippedShield.GetRating())
                         {
                             Equip(myInventory[i]);
@@ -540,7 +544,7 @@ namespace Diablo.Player
         /// Let's the player browse the given type of items in his inventory
         /// </summary>
         /// <param name="aType">Item type to browse</param>
-        public void BrowseItems(Loot.ItemType aType)
+        public void BrowseItems(ItemType aType)
         {
             int tempOffset = -10,
                 tempItemCount = 0,
@@ -554,44 +558,44 @@ namespace Diablo.Player
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
             switch (aType)
             {
-                case Loot.ItemType.HELMET:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetFullName(), ConsoleColor.Gray);
+                case ItemType.HELMET:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.CHESTPLATE:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetFullName(), ConsoleColor.Gray);
+                case ItemType.CHESTPLATE:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.TROUSERS:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetFullName(), ConsoleColor.Gray);
+                case ItemType.TROUSERS:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.BOOTS:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetFullName(), ConsoleColor.Gray);
+                case ItemType.BOOTS:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.WEAPON:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetFullName(), ConsoleColor.Gray);
+                case ItemType.WEAPON:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.SHIELD:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating() + "]" + myEquippedShield.GetFullName(), ConsoleColor.Gray);
+                case ItemType.SHIELD:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour("[" + myEquippedShield.GetRating() + "]" + myEquippedShield.GetFullName(), ConsoleColor.Gray);
                     break;
 
-                case Loot.ItemType.SCROLL:
-                    Console.Write(Localisation.Language.GetAvailableScrolls());
+                case ItemType.SCROLL:
+                    Console.Write(Language.GetAvailableScrolls());
                     tempPrintColour = ConsoleColor.DarkMagenta;
                     break;
 
-                case Loot.ItemType.TRINKET:
-                    Console.Write(Localisation.Language.GetEquipped());
-                    Utilities.Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
+                case ItemType.TRINKET:
+                    Console.Write(Language.GetEquipped());
+                    Utility.PrintInColour(myEquippedTrinket.GetFullName() + " [+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
                     tempPrintColour = ConsoleColor.Green;
                     break;
             }
@@ -603,14 +607,14 @@ namespace Diablo.Player
                     tempItemCount++;
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + tempOffset);
                     Console.Write(" [" + tempItemCount.ToString() + "]");
-                    Utilities.Utility.PrintInColour((myInventory[i].GetItemType() == Loot.ItemType.SCROLL || myInventory[i].GetItemType() == Loot.ItemType.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == Loot.ItemType.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
+                    Utility.PrintInColour((myInventory[i].GetItemType() == ItemType.SCROLL || myInventory[i].GetItemType() == ItemType.TRINKET ? " " : ("[" + (myInventory[i].GetItemType() == ItemType.WEAPON ? myInventory[i].GetRating().ToString() : myInventory[i].GetRating().ToString()) + "]")) + myInventory[i].GetFullName(), tempPrintColour);
                     tempIndexes.Add(i);
                     tempOffset++;
                 }
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2);
-            Console.Write("[0] " + Localisation.Language.GetBack());
-            switch (Utilities.Utility.GetDigitInput(-19, 1, tempItemCount, out int tempChoice))
+            Console.Write("[0] " + Language.GetBack());
+            switch (Utility.GetDigitInput(-19, 1, tempItemCount, out int tempChoice))
             {
                 case 0:
                     OpenInventory();
@@ -618,25 +622,25 @@ namespace Diablo.Player
 
                 default:
                     Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-                    Console.Write("[1] " + (aType == Loot.ItemType.SCROLL ? Localisation.Language.GetApply() : Localisation.Language.GetEquip()) + " [2] " + Localisation.Language.GetThrowAway() + " [0] " + Localisation.Language.GetBack());
-                    switch (Utilities.Utility.GetDigitInput(-19, 3, 2, out int tempSecondChoice))
+                    Console.Write("[1] " + (aType == ItemType.SCROLL ? Language.GetApply() : Language.GetEquip()) + " [2] " + Language.GetThrowAway() + " [0] " + Language.GetBack());
+                    switch (Utility.GetDigitInput(-19, 3, 2, out int tempSecondChoice))
                     {
                         case 0:
                             OpenInventory();
                             break;
 
                         case 1:
-                            if (aType == Loot.ItemType.SCROLL)
+                            if (aType == ItemType.SCROLL)
                             {
-                                ApplyScrollEffect((Loot.Scroll)myInventory[tempIndexes[tempChoice - 1]], out string tempEffect, out int tempEffectAmount);
+                                ApplyScrollEffect((Scroll)myInventory[tempIndexes[tempChoice - 1]], out string tempEffect, out int tempEffectAmount);
                                 PrintUI();
-                                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEffectApplied().Length / 2, tempWHD2 - 12);
-                                Console.Write(Localisation.Language.GetEffectApplied());
+                                Console.SetCursorPosition(tempWWD2 - Language.GetEffectApplied().Length / 2, tempWHD2 - 12);
+                                Console.Write(Language.GetEffectApplied());
                                 myInventory.RemoveAt(tempIndexes[tempChoice - 1]);
                                 Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
-                                Utilities.Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
+                                Utility.PrintInColour("+" + tempEffectAmount.ToString() + " ", ConsoleColor.Green);
                                 Console.Write(tempEffect);
-                                System.Threading.Thread.Sleep(2000);
+                                Thread.Sleep(2000);
                             }
                             else
                             {
@@ -672,76 +676,76 @@ namespace Diablo.Player
 
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetGold() + ": " + myGold.ToString() + "■       " + Localisation.Language.GetInventory() + "        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
+            Console.Write(Language.GetGold() + ": " + myGold.ToString() + "■       " + Language.GetInventory() + "        (" + (myHPPotionAmount + myManaPotionAmount + myInventory.Count) + "/" + myInventoryCapacity + ")");
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 10);
             Console.Write("[1]");
-            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetHPPotions() + ": " + myHPPotionAmount.ToString(), ConsoleColor.Red);
+            Utility.PrintInColour(" ■ " + Language.GetHPPotions() + ": " + myHPPotionAmount.ToString(), ConsoleColor.Red);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 10);
             Console.Write("[3]");
-            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetScrolls(), ConsoleColor.DarkMagenta);
+            Utility.PrintInColour(" ■ " + Language.GetScrolls(), ConsoleColor.DarkMagenta);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 9);
             Console.Write("[4]");
-            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetTrinkets(), ConsoleColor.Green);
+            Utility.PrintInColour(" ■ " + Language.GetTrinkets(), ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 8);
-            Utilities.Utility.PrintInColour("[+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
+            Utility.PrintInColour("[+" + myEquippedTrinket.GetEffectType() + "]", ConsoleColor.Green);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 9);
             Console.Write("[2]");
-            Utilities.Utility.PrintInColour(" ■ " + Localisation.Language.GetManaPotions() + ": " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
+            Utility.PrintInColour(" ■ " + Language.GetManaPotions() + ": " + myManaPotionAmount.ToString(), ConsoleColor.Blue);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 7);
             Console.Write("[5] ");
-            Utilities.Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╔╤╗ [" + myEquippedHelmet.GetRating() + "]" + myEquippedHelmet.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 6);
-            Utilities.Utility.PrintInColour("╚═╝ " + myEquippedHelmet.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╚═╝ " + myEquippedHelmet.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 4);
             Console.Write("[6]");
-            Utilities.Utility.PrintInColour("╔╦═╦╗[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetPrefix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╔╦═╦╗[" + myEquippedChestplate.GetRating() + "]" + myEquippedChestplate.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 - 3);
-            Utilities.Utility.PrintInColour("╚═╝ " + myEquippedChestplate.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╚═╝ " + myEquippedChestplate.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 - 1);
             Console.Write("[7] ");
-            Utilities.Utility.PrintInColour("╔═╗ [" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetPrefix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╔═╗ [" + myEquippedTrousers.GetRating() + "]" + myEquippedTrousers.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2);
-            Utilities.Utility.PrintInColour("║ ║ " + myEquippedTrousers.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour("║ ║ " + myEquippedTrousers.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 22, tempWHD2 + 2);
             Console.Write("[8] ");
-            Utilities.Utility.PrintInColour("    [" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetPrefix(), ConsoleColor.Gray);
+            Utility.PrintInColour("    [" + myEquippedBoots.GetRating() + "]" + myEquippedBoots.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 - 18, tempWHD2 + 3);
-            Utilities.Utility.PrintInColour("╝ ╚ " + myEquippedBoots.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour("╝ ╚ " + myEquippedBoots.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 7);
             Console.Write("[9]");
-            Utilities.Utility.PrintInColour(@"/\  [" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetPrefix(), ConsoleColor.Gray);
+            Utility.PrintInColour(@"/\  [" + myEquippedWeapon.GetRating() + "]" + myEquippedWeapon.GetPrefix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 6);
-            Utilities.Utility.PrintInColour(@"||  " + myEquippedWeapon.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour(@"||  " + myEquippedWeapon.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 5);
-            Utilities.Utility.PrintInColour(@"||", ConsoleColor.Gray);
+            Utility.PrintInColour(@"||", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 4);
-            Utilities.Utility.PrintInColour(@"||", ConsoleColor.Gray);
+            Utility.PrintInColour(@"||", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 3);
-            Utilities.Utility.PrintInColour("||", ConsoleColor.Gray);
+            Utility.PrintInColour("||", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 - 2);
-            Utilities.Utility.PrintInColour(@"O==\/==O", ConsoleColor.Gray);
+            Utility.PrintInColour(@"O==\/==O", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2 - 1);
-            Utilities.Utility.PrintInColour("][", ConsoleColor.Gray);
+            Utility.PrintInColour("][", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 4, tempWHD2);
-            Utilities.Utility.PrintInColour("()", ConsoleColor.Gray);
+            Utility.PrintInColour("()", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 7, tempWHD2 - 4);
             Console.Write("[10]");
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 4);
-            Utilities.Utility.PrintInColour(@"/---\", ConsoleColor.Gray);
+            Utility.PrintInColour(@"/---\", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 3);
-            Utilities.Utility.PrintInColour(@"| o |", ConsoleColor.Gray);
+            Utility.PrintInColour(@"| o |", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 11, tempWHD2 - 2);
-            Utilities.Utility.PrintInColour(@"\---/", ConsoleColor.Gray);
+            Utility.PrintInColour(@"\---/", ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2);
-            Utilities.Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]" + Localisation.Language.GetShieldOf(), ConsoleColor.Gray);
+            Utility.PrintInColour("[" + myEquippedShield.GetRating().ToString() + "]" + Language.GetShieldOf(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 8, tempWHD2 + 1);
-            Utilities.Utility.PrintInColour(myEquippedShield.GetSuffix(), ConsoleColor.Gray);
+            Utility.PrintInColour(myEquippedShield.GetSuffix(), ConsoleColor.Gray);
             Console.SetCursorPosition(tempWWD2 + 1, tempWHD2 + 2);
-            Console.Write("[0] " + Localisation.Language.GetCloseInventory());
+            Console.Write("[0] " + Language.GetCloseInventory());
 
             #endregion Doodle Sequence
 
-            switch (Utilities.Utility.GetDigitInput(2, 3, 10))
+            switch (Utility.GetDigitInput(2, 3, 10))
             {
                 case 1:
                     DrinkHPPotion();
@@ -754,35 +758,35 @@ namespace Diablo.Player
                     break;
 
                 case 3:
-                    BrowseItems(Loot.ItemType.SCROLL);
+                    BrowseItems(ItemType.SCROLL);
                     break;
 
                 case 4:
-                    BrowseItems(Loot.ItemType.TRINKET);
+                    BrowseItems(ItemType.TRINKET);
                     break;
 
                 case 5:
-                    BrowseItems(Loot.ItemType.HELMET);
+                    BrowseItems(ItemType.HELMET);
                     break;
 
                 case 6:
-                    BrowseItems(Loot.ItemType.CHESTPLATE);
+                    BrowseItems(ItemType.CHESTPLATE);
                     break;
 
                 case 7:
-                    BrowseItems(Loot.ItemType.TROUSERS);
+                    BrowseItems(ItemType.TROUSERS);
                     break;
 
                 case 8:
-                    BrowseItems(Loot.ItemType.BOOTS);
+                    BrowseItems(ItemType.BOOTS);
                     break;
 
                 case 9:
-                    BrowseItems(Loot.ItemType.WEAPON);
+                    BrowseItems(ItemType.WEAPON);
                     break;
 
                 case 10:
-                    BrowseItems(Loot.ItemType.SHIELD);
+                    BrowseItems(ItemType.SHIELD);
                     break;
 
                 default:
@@ -794,9 +798,9 @@ namespace Diablo.Player
         /// Adds items in the parameter-list to the inventory and clears the parameter-list
         /// </summary>
         /// <param name="anItemList">Items to add</param>
-        public void AddItemsToInventory(List<Loot.Item> anItemList)
+        public void AddItemsToInventory(List<Item> anItemList)
         {
-            foreach (Loot.Item tempItem in anItemList)
+            foreach (Item tempItem in anItemList)
             {
                 if (myInventory.Count + myManaPotionAmount + myHPPotionAmount < myInventoryCapacity)
                 {
@@ -810,29 +814,29 @@ namespace Diablo.Player
         /// Applies the scrolleffect to the player
         /// </summary>
         /// <param name="aScroll">A scroll which's effect shall be applied</param>
-        private void ApplyScrollEffect(Loot.Scroll aScroll, out string anEffect, out int anEffectAmount)
+        private void ApplyScrollEffect(Scroll aScroll, out string anEffect, out int anEffectAmount)
         {
             myAppliedScrolls.Add(aScroll);
             anEffectAmount = 0;
             anEffect = string.Empty;
             switch (aScroll.GetScrollEffect())
             {
-                case Loot.ScrollEffect.ARMBUFF:
+                case ScrollEffect.ARMBUFF:
                     myTempArmourRating = aScroll.GetArmourBuff();
                     anEffectAmount = aScroll.GetArmourBuff();
-                    anEffect = Localisation.Language.GetTempArmour();
+                    anEffect = Language.GetTempArmour();
                     break;
 
-                case Loot.ScrollEffect.STRBUFF:
+                case ScrollEffect.STRBUFF:
                     myTempStrength = aScroll.GetStrengthBuff();
                     anEffectAmount = aScroll.GetStrengthBuff();
-                    anEffect = Localisation.Language.GetTempStrength();
+                    anEffect = Language.GetTempStrength();
                     break;
 
-                case Loot.ScrollEffect.HPBUFF:
+                case ScrollEffect.HPBUFF:
                     myTempHealth = aScroll.GetHealthBuff();
                     anEffectAmount = aScroll.GetHealthBuff();
-                    anEffect = Localisation.Language.GetTempHealth();
+                    anEffect = Language.GetTempHealth();
                     break;
             }
         }
@@ -855,14 +859,14 @@ namespace Diablo.Player
                 }
             }
             PrintUI();
-            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetDrinkHPPotion().Length / 2, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetDrinkHPPotion());
-            System.Threading.Thread.Sleep(1000);
+            Console.SetCursorPosition(tempWWD2 - Language.GetDrinkHPPotion().Length / 2, tempWHD2 - 12);
+            Console.Write(Language.GetDrinkHPPotion());
+            Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 12, tempWHD2 - 10);
-            Console.Write(Localisation.Language.GetRegain());
-            Utilities.Utility.PrintInColour(" 40", ConsoleColor.Green);
-            Console.Write(" " + Localisation.Language.GetHealthLowerCase() + "!");
-            System.Threading.Thread.Sleep(1500);
+            Console.Write(Language.GetRegain());
+            Utility.PrintInColour(" 40", ConsoleColor.Green);
+            Console.Write(" " + Language.GetHealthLowerCase() + "!");
+            Thread.Sleep(1500);
         }
 
         /// <summary>
@@ -884,13 +888,13 @@ namespace Diablo.Player
             }
             PrintUI();
             Console.SetCursorPosition(tempWWD2 - 16, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetDrinkManaPotion());
-            System.Threading.Thread.Sleep(1000);
+            Console.Write(Language.GetDrinkManaPotion());
+            Thread.Sleep(1000);
             Console.SetCursorPosition(tempWWD2 - 11, tempWHD2 - 10);
-            Console.Write(Localisation.Language.GetRegain());
-            Utilities.Utility.PrintInColour(" 50", ConsoleColor.Blue);
+            Console.Write(Language.GetRegain());
+            Utility.PrintInColour(" 50", ConsoleColor.Blue);
             Console.Write(" mana!");
-            System.Threading.Thread.Sleep(1500);
+            Thread.Sleep(1500);
         }
 
         #endregion Inventory
@@ -907,29 +911,29 @@ namespace Diablo.Player
                 tempWHD2 = Console.WindowHeight / 2,
                 tempTextOffset = 31;
             Console.Clear();
-            Utilities.Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
-            Utilities.Utility.PrintPentagram(tempWWD2 + 23, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Utility.PrintPentagram(tempWWD2 - 58, tempWHD2 - 5, ConsoleColor.DarkRed);
+            Utility.PrintPentagram(tempWWD2 + 23, tempWHD2 - 5, ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 14);
-            Utilities.Utility.PrintInColour("╦   ╦   ╔════╗   ╦    ╦      ╦════╗    ═╦═   ╦═════╗   ╦════╗", ConsoleColor.DarkRed);
+            Utility.PrintInColour("╦   ╦   ╔════╗   ╦    ╦      ╦════╗    ═╦═   ╦═════╗   ╦════╗", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 13);
-            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 12);
-            Utilities.Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("║   ║   ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 11);
-            Utilities.Utility.PrintInColour("╚═╦═╝   ║    ║   ║    ║      ║     ║    ║    ╬════     ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("╚═╦═╝   ║    ║   ║    ║      ║     ║    ║    ╬════     ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 10);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 9);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 8);
-            Utilities.Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
+            Utility.PrintInColour("  ║     ║    ║   ║    ║      ║     ║    ║    ║         ║     ║", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - tempTextOffset, tempWHD2 - 7);
-            Utilities.Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
+            Utility.PrintInColour("  ╩     ╚════╝   ╚════╝      ╩════╝    ═╩═   ╩═════╝   ╩════╝", ConsoleColor.DarkRed);
             Console.SetCursorPosition(tempWWD2 - 4, tempWHD2 - 1);
-            Console.Write("[1] " + Localisation.Language.GetMenu());
-            Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetExit().Length + 4) / 2, tempWHD2 + 1);
-            Console.Write("[2] " + Localisation.Language.GetExit());
-            switch (Utilities.Utility.GetDigitInput(-2, 3, 2))
+            Console.Write("[1] " + Language.GetMenu());
+            Console.SetCursorPosition(tempWWD2 - (Language.GetExit().Length + 4) / 2, tempWHD2 + 1);
+            Console.Write("[2] " + Language.GetExit());
+            switch (Utility.GetDigitInput(-2, 3, 2))
             {
                 case 1:
                     Program.Reboot();
@@ -961,7 +965,7 @@ namespace Diablo.Player
             {
                 tempAgility += 20;
             }
-            if (Utilities.Utility.GetRNG().Next(1, 101) > tempAgility)
+            if (Utility.GetRNG().Next(1, 101) > tempAgility)
             {
                 if (!myIsDefending)
                 {
@@ -1005,14 +1009,14 @@ namespace Diablo.Player
             PrintUI();
             myIsDefending = false;
             Console.SetCursorPosition(tempWWD2 - 9, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetWhatUDo());
+            Console.Write(Language.GetWhatUDo());
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 10);
-            Console.Write("[1] " + Localisation.Language.GetOffensive() + " [2] " + Localisation.Language.GetDefensive());
+            Console.Write("[1] " + Language.GetOffensive() + " [2] " + Language.GetDefensive());
             Console.SetCursorPosition(tempWWD2 - 13, tempWHD2 - 9);
-            Console.Write("[3] " + Localisation.Language.GetUseItem() + "  [4] " + Localisation.Language.GetFlee());
+            Console.Write("[3] " + Language.GetUseItem() + "  [4] " + Language.GetFlee());
             Console.SetCursorPosition(tempWWD2 - 6, tempWHD2 - 8);
-            Console.Write("[5] " + Localisation.Language.GetAbstain());
-            switch (Utilities.Utility.GetDigitInput(-1, -6, 5))
+            Console.Write("[5] " + Language.GetAbstain());
+            switch (Utility.GetDigitInput(-1, -6, 5))
             {
                 case 1:
                     return BattleActions.OFFENSIVE;

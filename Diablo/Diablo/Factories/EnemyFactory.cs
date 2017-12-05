@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Diablo.Enemies;
+using System.Collections.Generic;
 
 namespace Diablo.Factories
 {
@@ -9,15 +10,15 @@ namespace Diablo.Factories
         /// </summary>
         /// <param name="aLvl">Level of the enemy</param>
         /// <returns>An enemy</returns>
-        public static Enemies.Enemy CreateEnemy(int aLvl)
+        public static Enemy CreateEnemy(int aLvl)
         {
             switch (Utilities.Utility.GetRNG().Next(0, 2))
             {
                 case 0:
-                    return new Enemies.Archer(aLvl);
+                    return new Archer(aLvl);
 
                 default:
-                    return new Enemies.Skeleton(aLvl);
+                    return new Skeleton(aLvl);
             }
         }
 
@@ -27,9 +28,9 @@ namespace Diablo.Factories
         /// <param name="aNumberOfEnemies">Number of enemies in the list</param>
         /// <param name="aLvl">Level of the enemies</param>
         /// <returns>a list of enemies</returns>
-        public static List<Enemies.Enemy> CreateEnemies(int aNumberOfEnemies, int aLvl)
+        public static List<Enemy> CreateEnemies(int aNumberOfEnemies, int aLvl)
         {
-            List<Enemies.Enemy> tempListToReturn = new List<Enemies.Enemy>();
+            List<Enemy> tempListToReturn = new List<Enemy>();
             for (int i = 0; i < aNumberOfEnemies; i++)
             {
                 tempListToReturn.Add(CreateEnemy(aLvl));
@@ -42,6 +43,6 @@ namespace Diablo.Factories
         /// </summary>
         /// <param name="aLvl">The boss' level</param>
         /// <returns>A boss</returns>
-        public static Enemies.Boss CreateBoss(int aLvl) => new Enemies.Boss(aLvl);
+        public static Boss CreateBoss(int aLvl) => new Boss(aLvl);
     }
 }

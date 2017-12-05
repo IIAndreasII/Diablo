@@ -80,6 +80,28 @@ namespace Diablo.Loot
         #region Get
 
         /// <summary>
+        /// Gets a random Scrolleffect
+        /// </summary>
+        /// <returns>A random scrolleffect</returns>
+        private ScrollEffect GetRandomEffect()
+        {
+            switch (Utilities.Utility.GetRNG().Next(0, 3))
+            {
+                case 0:
+                    return ScrollEffect.ARMBUFF;
+
+                case 1:
+                    return ScrollEffect.HPBUFF;
+
+                case 2:
+                    return ScrollEffect.STRBUFF;
+
+                default:
+                    return ScrollEffect.ARMBUFF;
+            }
+        }
+
+        /// <summary>
         /// Gets the scrolls duration
         /// </summary>
         /// <returns></returns>

@@ -1,27 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using Diablo.Enemies;
+using System.Collections.Generic;
 
 namespace Diablo.Managers
 {
     internal static class EnemyManager
     {
-        private static List<Enemies.Enemy> myEnemies;
+        private static List<Enemy> myEnemies;
 
         /// <summary>
         /// Initializes the manager
         /// </summary>
-        public static void Init() => myEnemies = new List<Enemies.Enemy>();
+        public static void Init() => myEnemies = new List<Enemy>();
 
         /// <summary>
         /// Sets enemies
         /// </summary>
         /// <param name="someEnemies"></param>
-        public static void SetEnemies(List<Enemies.Enemy> someEnemies) => myEnemies = someEnemies;
+        public static void SetEnemies(List<Enemy> someEnemies) => myEnemies = someEnemies;
 
         /// <summary>
         /// Adds an enemy
         /// </summary>
         /// <param name="anEnemy">Enemy to add</param>
-        public static void AddEnemy(Enemies.Enemy anEnemy) => myEnemies.Add(anEnemy);
+        public static void AddEnemy(Enemy anEnemy) => myEnemies.Add(anEnemy);
 
         /// <summary>
         /// Updates all enemies
@@ -47,17 +48,7 @@ namespace Diablo.Managers
         /// Checks if enemies are still present
         /// </summary>
         /// <returns>Returns true if enemies are defeated</returns>
-        public static bool AreEnemiesDefeated()
-        {
-            if (myEnemies.Count <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public static bool AreEnemiesDefeated() => myEnemies.Count > 0 ? false : true;
 
         /// <summary>
         /// Resets the manager's enemies

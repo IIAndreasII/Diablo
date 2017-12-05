@@ -1,4 +1,6 @@
-﻿namespace Diablo.Factories
+﻿using Diablo.Loot;
+
+namespace Diablo.Factories
 {
     internal static class LootFactory
     {
@@ -6,37 +8,37 @@
         /// Creates a chest
         /// </summary>
         /// <returns>A chest</returns>
-        public static Loot.Chest CreateChest() => new Loot.Chest();
+        public static Chest CreateChest() => new Chest();
 
         /// <summary>
         /// Creates an armour-item
         /// </summary>
         /// <returns>An armour-item</returns>
-        public static Loot.Armour CreateArmour() => new Loot.Armour();
+        public static Armour CreateArmour() => new Armour();
 
         /// <summary>
         /// Creates a weapon-item
         /// </summary>
         /// <returns>A weaponn-item</returns>
-        public static Loot.Weapon CreateWeapon() => new Loot.Weapon();
+        public static Weapon CreateWeapon() => new Weapon();
 
         /// <summary>
         /// Creates a scroll
         /// </summary>
         /// <returns>A scroll</returns>
-        public static Loot.Scroll CreateScroll() => new Loot.Scroll();
+        public static Scroll CreateScroll() => new Scroll();
 
         /// <summary>
         /// Creates a trinket
         /// </summary>
         /// <returns>A trinket</returns>
-        public static Loot.Trinket CreateTrinket() => new Loot.Trinket();
+        public static Trinket CreateTrinket() => new Trinket();
 
         /// <summary>
         /// Creates a random item
         /// </summary>
         /// <returns>An item</returns>
-        public static Loot.Item CreateItem()
+        public static Item CreateItem()
         {
             switch (Utilities.Utility.GetRNG().Next(0, 4))
             {

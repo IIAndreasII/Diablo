@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Diablo.Localisation;
+using Diablo.Utilities;
+using System;
 
 namespace Diablo.Dungeon
 {
@@ -17,12 +19,12 @@ namespace Diablo.Dungeon
                 tempX = 7,
                 tempY = 7;
             myRooms = new Room[16, 16];
-            myRooms[tempX, tempY] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utilities.Utility.GetRNG().Next(0, 4), false, aPlayer);
+            myRooms[tempX, tempY] = new Room(Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utility.GetRNG().Next(0, 4), false, aPlayer);
             myRooms[tempX, tempY].SetPosition(tempX, tempY);
             myCurrentRoom = myRooms[tempX, tempY];
             myInitialRoom = myRooms[tempX, tempY];
 
-            switch (Utilities.Utility.GetRNG().Next(0, 4))
+            switch (Utility.GetRNG().Next(0, 4))
             {
                 case 0:
                     myRooms[tempX, tempY].AddDoor(Doors.LEFT);
@@ -60,7 +62,7 @@ namespace Diablo.Dungeon
         private void Generate(Room prevRoom, Doors prevDoor, int aNumberOfRooms, Player.Player aPlayer)
         {
             int
-                tempNumberOfDoors = Utilities.Utility.GetRNG().Next(0, (aNumberOfRooms > 2 ? 2 : aNumberOfRooms));
+                tempNumberOfDoors = Utility.GetRNG().Next(0, (aNumberOfRooms > 2 ? 2 : aNumberOfRooms));
             if (aNumberOfRooms <= 0)
             {
                 return;
@@ -72,7 +74,7 @@ namespace Diablo.Dungeon
             if (tempNumberOfDoors <= 0)
             {
                 bool tempIsBossRoom = false;
-                switch (Utilities.Utility.GetRNG().Next(0, 2))
+                switch (Utility.GetRNG().Next(0, 2))
                 {
                     case 0:
                         tempIsBossRoom = true;
@@ -81,25 +83,25 @@ namespace Diablo.Dungeon
                 switch (prevDoor)
                 {
                     case Doors.UP:
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utilities.Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1] = new Room(Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1].AddDoor(Doors.DOWN);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1].SetPosition(prevRoom.GetXPosition(), prevRoom.GetYPosition() - 1);
                         break;
 
                     case Doors.DOWN:
-                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utilities.Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
+                        myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1] = new Room(Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1].AddDoor(Doors.UP);
                         myRooms[prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1].SetPosition(prevRoom.GetXPosition(), prevRoom.GetYPosition() + 1);
                         break;
 
                     case Doors.RIGHT:
-                        myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utilities.Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
+                        myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()] = new Room(Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
                         myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()].AddDoor(Doors.LEFT);
                         myRooms[prevRoom.GetXPosition() + 1, prevRoom.GetYPosition()].SetPosition(prevRoom.GetXPosition() + 1, prevRoom.GetYPosition());
                         break;
 
                     case Doors.LEFT:
-                        myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()] = new Room(Utilities.Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utilities.Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
+                        myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()] = new Room(Utility.GetRNG().Next(0, aPlayer.GetLevel() * 3 + 1), Utility.GetRNG().Next(0, 3), tempIsBossRoom, aPlayer);
                         myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()].AddDoor(Doors.RIGHT);
                         myRooms[prevRoom.GetXPosition() - 1, prevRoom.GetYPosition()].SetPosition(prevRoom.GetXPosition() - 1, prevRoom.GetYPosition());
                         break;
@@ -170,7 +172,7 @@ namespace Diablo.Dungeon
         /// <returns>A random Door</returns>
         private Doors GetRandomDoor()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 4))
+            switch (Utility.GetRNG().Next(0, 4))
             {
                 case 0:
                     return Doors.UP;
@@ -199,8 +201,8 @@ namespace Diablo.Dungeon
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
             aPlayer.PrintUI();
-            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetEnteringDungeon().Length / 2, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetEnteringDungeon());
+            Console.SetCursorPosition(tempWWD2 - Language.GetEnteringDungeon().Length / 2, tempWHD2 - 12);
+            Console.Write(Language.GetEnteringDungeon());
             System.Threading.Thread.Sleep(1500);
             myInitialRoom.EnterRoom(aPlayer);
             EnterNewRoom(aPlayer);
@@ -216,10 +218,10 @@ namespace Diablo.Dungeon
             int
                 tempWWD2 = Console.WindowWidth / 2,
                 tempWHD2 = Console.WindowHeight / 2;
-            Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetThereAreDoorsPt1().Length + Localisation.Language.GetThereAreDoorsPt2().Length + 4) / 2, tempWHD2 - 12);
-            Console.Write(Localisation.Language.GetThereAreDoorsPt1() + myCurrentRoom.GetDoors().Count + Localisation.Language.GetThereAreDoorsPt2());
-            Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetChooseDoor().Length / 2, tempWHD2 - 11);
-            Console.Write(Localisation.Language.GetChooseDoor());
+            Console.SetCursorPosition(tempWWD2 - (Language.GetThereAreDoorsPt1().Length + Language.GetThereAreDoorsPt2().Length + 4) / 2, tempWHD2 - 12);
+            Console.Write(Language.GetThereAreDoorsPt1() + myCurrentRoom.GetDoors().Count + Language.GetThereAreDoorsPt2());
+            Console.SetCursorPosition(tempWWD2 - Language.GetChooseDoor().Length / 2, tempWHD2 - 11);
+            Console.Write(Language.GetChooseDoor());
             if (myCurrentRoom.GetDoors().Contains(Doors.UP))
             {
                 Console.SetCursorPosition(tempWWD2 - 3, tempWHD2 - 9);
@@ -260,18 +262,18 @@ namespace Diablo.Dungeon
             Console.Write("?");
             if (myCurrentRoom == myInitialRoom)
             {
-                Console.SetCursorPosition(tempWWD2 - (Localisation.Language.GetExitDungeon().Length + 4) / 2, tempWHD2 + 2);
-                Console.Write("[E] " + Localisation.Language.GetExitDungeon());
+                Console.SetCursorPosition(tempWWD2 - (Language.GetExitDungeon().Length + 4) / 2, tempWHD2 + 2);
+                Console.Write("[E] " + Language.GetExitDungeon());
             }
             Console.SetCursorPosition(tempWWD2 - 8, tempWHD2 + 3);
             Console.Write("[ ]");
             Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
-            string tempChoice = Utilities.Utility.ReadOnlyLetters(1);
+            string tempChoice = Utility.ReadOnlyLetters(1);
             while (tempChoice != "R" && tempChoice != "r" && tempChoice != "U" && tempChoice != "u" && tempChoice != "D" && tempChoice != "d" && tempChoice != "L" && tempChoice != "l" && tempChoice != "E" && tempChoice != "e")
             {
                 Console.SetCursorPosition(tempWWD2 - 7, tempWHD2 + 3);
                 Console.Write(" ]\b\b");
-                tempChoice = Utilities.Utility.ReadOnlyLetters(1);
+                tempChoice = Utility.ReadOnlyLetters(1);
             }
             if (tempChoice != "E" && tempChoice != "e")
             {
@@ -312,8 +314,8 @@ namespace Diablo.Dungeon
             else if (myCurrentRoom == myInitialRoom)
             {
                 aPlayer.PrintUI();
-                Console.SetCursorPosition(tempWWD2 - Localisation.Language.GetExitingDungeon().Length / 2, tempWHD2 - 12);
-                Console.Write(Localisation.Language.GetExitingDungeon());
+                Console.SetCursorPosition(tempWWD2 - Language.GetExitingDungeon().Length / 2, tempWHD2 - 12);
+                Console.Write(Language.GetExitingDungeon());
                 System.Threading.Thread.Sleep(1500);
             }
             else
@@ -358,14 +360,14 @@ namespace Diablo.Dungeon
                 }
             }
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 12);
-            Console.Write("[S]: " + Localisation.Language.GetInitialRoom());
+            Console.Write("[S]: " + Language.GetInitialRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 11);
-            Console.Write("[X]: " + Localisation.Language.GetCurrentRoom());
+            Console.Write("[X]: " + Language.GetCurrentRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 - 10);
-            Console.Write("[■]: " + Localisation.Language.GetRoom());
+            Console.Write("[■]: " + Language.GetRoom());
             Console.SetCursorPosition(tempWWD2 - 20, tempWHD2 + 2);
-            Console.Write("[0] " + Localisation.Language.GetBack());
-            Utilities.Utility.GetDigitInput(-19, 3, 0);
+            Console.Write("[0] " + Language.GetBack());
+            Utility.GetDigitInput(-19, 3, 0);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Diablo.Loot
+﻿using Diablo.Utilities;
+
+namespace Diablo.Loot
 {
     internal class Armour : Item
     {
@@ -8,23 +10,23 @@
             switch (myType)
             {
                 case ItemType.HELMET:
-                    myRating = Utilities.Utility.GetRNG().Next(1, 16);
+                    myRating = Utility.GetRNG().Next(1, 16);
                     break;
 
                 case ItemType.CHESTPLATE:
-                    myRating = Utilities.Utility.GetRNG().Next(1, 26);
+                    myRating = Utility.GetRNG().Next(1, 26);
                     break;
 
                 case ItemType.TROUSERS:
-                    myRating = Utilities.Utility.GetRNG().Next(1, 16);
+                    myRating = Utility.GetRNG().Next(1, 16);
                     break;
 
                 case ItemType.BOOTS:
-                    myRating = Utilities.Utility.GetRNG().Next(1, 11);
+                    myRating = Utility.GetRNG().Next(1, 11);
                     break;
 
                 case ItemType.SHIELD:
-                    myRating = Utilities.Utility.GetRNG().Next(1, 36);
+                    myRating = Utility.GetRNG().Next(1, 36);
                     break;
             }
             SetName();
@@ -43,7 +45,7 @@
         /// </summary>
         private void SetArmourType()
         {
-            switch (Utilities.Utility.GetRNG().Next(0, 5))
+            switch (Utility.GetRNG().Next(0, 5))
             {
                 case 0:
                     myType = ItemType.HELMET;
