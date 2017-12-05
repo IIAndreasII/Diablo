@@ -3,6 +3,12 @@
     internal static class LootFactory
     {
         /// <summary>
+        /// Creates a chest
+        /// </summary>
+        /// <returns>A chest</returns>
+        public static Loot.Chest CreateChest() => new Loot.Chest();
+
+        /// <summary>
         /// Creates an armour-item
         /// </summary>
         /// <returns>An armour-item</returns>
