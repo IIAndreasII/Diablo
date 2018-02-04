@@ -10,3 +10,6 @@
 /Diablo/.vs/Diablo/v15/Server/sqlite3/storage.ide-shm
 /Diablo/Diablo/obj/Debug/Diablo.csproj.CoreCompileInputs.cache
 /Diablo/.vs/Diablo/v15/.suo
+/Diablo/Diablo/obj/Release/Diablo.csproj.CoreCompileInputs.cache
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
