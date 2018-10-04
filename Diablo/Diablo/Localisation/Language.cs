@@ -539,7 +539,7 @@
             mySuperStunEN = "Super stun (stuns all enemies)",
             mySwedishEN = "Swedish",
             mySweepEN = "Sweep (hits 2 random enemies)",
-            mySwingSwordEN = "Du swing your sword!",
+            mySwingSwordEN = "You swing your sword!",
             mySwordOfEN = "Sword of",
 
             myTakeDamage1EN = "You take ",
